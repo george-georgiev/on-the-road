@@ -18,7 +18,7 @@ namespace OnTheRoad.Identity
         private ApplicationUserManager AppUserManager { get; set; }
         private ApplicationSignInManager AppSignInManager { get; set; }
 
-        public void CreateUser(string username, string email, string password)
+        public void CreateUser(string email, string password)
         {
             var user = new ApplicationUser() { UserName = email, Email = email };
             IdentityResult result = this.AppUserManager.Create(user, password);
@@ -34,14 +34,10 @@ namespace OnTheRoad.Identity
             }
         }
 
-        public void SomeMethod()
+        public string LoginUser(string email, string password, bool rememberMe)
         {
-
-        }
-
-        public void LoginUser(string email, string password, bool rememberMe)
-        {
-            this.AppSignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout: false);
+            SignInStatus result = this.AppSignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout: false);
+            return result.ToString();
         }
     }
 }

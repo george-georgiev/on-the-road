@@ -2,6 +2,6 @@
 {
     public interface ILoginService
     {
-        void LoginUser(string email, string password, bool rememberMe);
+        string LoginUser(string email, string password, bool rememberMe);
     }
 }

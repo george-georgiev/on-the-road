@@ -5,16 +5,16 @@ using WebFormsMvp.Web;
 
 using OnTheRoad.Models;
 using OnTheRoad.Presenters;
-using OnTheRoad.Views.Interfaces;
+using OnTheRoad.Account.Interfaces;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Common;
 
-namespace OnTheRoad.Views
+namespace OnTheRoad.Account
 {
     [PresenterBinding(typeof(RegisterPresenter))]
     public partial class Register : MvpPage<RegisterModel>, IRegisterView
     {
-        public event EventHandler<RegisterEventArgs> CreateUser;
+        public event EventHandler<AuthEventArgs> CreateUser;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace OnTheRoad.Views
                 return;
             }
 
-            CreateUser(this, new RegisterEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text });
+            CreateUser(this, new AuthEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text });
 
             if (this.Model.HasSucceeded)
             {

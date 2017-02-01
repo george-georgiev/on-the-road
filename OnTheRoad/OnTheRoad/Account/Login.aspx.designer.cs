@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnTheRoad.Views {
+namespace OnTheRoad.Account {
     
     
-    public partial class Register {
+    public partial class Login {
         
         /// <summary>
         /// ErrorMessage control.
@@ -19,7 +19,16 @@ namespace OnTheRoad.Views {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
+        
+        /// <summary>
+        /// FailureText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal FailureText;
         
         /// <summary>
         /// Email control.
@@ -40,12 +49,21 @@ namespace OnTheRoad.Views {
         protected global::System.Web.UI.WebControls.TextBox Password;
         
         /// <summary>
-        /// ConfirmPassword control.
+        /// RememberMe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmPassword;
+        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
+        
+        /// <summary>
+        /// RegisterHyperLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
     }
 }
