@@ -7,6 +7,6 @@ namespace OnTheRoad.Account.Interfaces
 {
     public interface IRegisterView : IView<RegisterModel>
     {
-        event EventHandler<AuthEventArgs> CreateUser;
+        event EventHandler<RegisterEventArgs> CreateUser;
     }
 }

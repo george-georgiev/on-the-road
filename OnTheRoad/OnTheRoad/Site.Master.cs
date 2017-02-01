@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Microsoft.AspNet.Identity;
 
 namespace OnTheRoad
 {
@@ -38,14 +37,16 @@ namespace OnTheRoad
                     HttpOnly = true,
                     Value = _antiXsrfTokenValue
                 };
+
                 if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
                 {
                     responseCookie.Secure = true;
                 }
-                Response.Cookies.Set(responseCookie);
+
+                this.Response.Cookies.Set(responseCookie);
             }
 
-            Page.PreLoad += master_Page_PreLoad;
+            this.Page.PreLoad += master_Page_PreLoad;
         }
 
         protected void master_Page_PreLoad(object sender, EventArgs e)
@@ -69,12 +70,12 @@ namespace OnTheRoad
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
-            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Context.GetOwinContext().Authentication.SignOut("ApplicationCookie");
         }
     }
 

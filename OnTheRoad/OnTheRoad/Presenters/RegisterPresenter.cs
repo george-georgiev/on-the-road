@@ -4,6 +4,7 @@ using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Account.Interfaces;
 using WebFormsMvp;
+using Microsoft.Owin;
 
 namespace OnTheRoad.Presenters
 {
@@ -14,13 +15,18 @@ namespace OnTheRoad.Presenters
         public RegisterPresenter(IRegisterView view, IAuthenticationServiceFactory authServiceFactory)
             : base(view)
         {
+            if (authServiceFactory == null)
+            {
+                throw new ArgumentNullException("Authentication Factory cannot be null");
+            }
+
             this.authenticationServiceFactory = authServiceFactory;
-            View.CreateUser += CreateUser;
+            View.CreateUser += Create_User;
         }
 
-        private void CreateUser(object sender, AuthEventArgs e)
+        private void Create_User(object sender, RegisterEventArgs e)
         {
-            var registerService = authenticationServiceFactory.GetRegisterService(this.HttpContext.GetOwinContext());
+            var registerService = authenticationServiceFactory.GetRegisterService(e.OwinContext);
             
             try
             {

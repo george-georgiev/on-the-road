@@ -8,13 +8,15 @@ using OnTheRoad.Presenters;
 using OnTheRoad.Account.Interfaces;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Common;
+using System.Web.UI.WebControls;
+using System.Web;
 
 namespace OnTheRoad.Account
 {
     [PresenterBinding(typeof(RegisterPresenter))]
     public partial class Register : MvpPage<RegisterModel>, IRegisterView
     {
-        public event EventHandler<AuthEventArgs> CreateUser;
+        public event EventHandler<RegisterEventArgs> CreateUser;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace OnTheRoad.Account
                 return;
             }
 
-            CreateUser(this, new AuthEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text });
+            CreateUser(this, new RegisterEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text, OwinContext = this.Context.GetOwinContext() });
 
             if (this.Model.HasSucceeded)
             {
