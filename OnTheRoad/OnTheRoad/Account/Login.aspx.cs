@@ -1,12 +1,12 @@
-﻿using OnTheRoad.Models;
-using OnTheRoad.Presenters;
-using OnTheRoad.Account.Interfaces;
-using System;
+﻿using System;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Enums;
+using OnTheRoad.Account.Interfaces;
 using OnTheRoad.Common;
+using OnTheRoad.Enums;
+using OnTheRoad.EventArgsClasses;
+using OnTheRoad.Models;
+using OnTheRoad.Presenters;
 
 namespace OnTheRoad.Account
 {
@@ -32,8 +32,7 @@ namespace OnTheRoad.Account
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                         break;
                     case LoginStatus.LockedOut:
-                        // TODO: Implement lockout
-                        //Response.Redirect("/Account/Lockout");
+                        this.Response.Redirect("/Account/Lockout");
                         break;
                     case LoginStatus.Failure:
                     default:

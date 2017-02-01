@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Account\Lockout.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -242,6 +243,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\Lockout.aspx.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Lockout.aspx.designer.cs">
+      <DependentUpon>Lockout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\AuthConfiguration.cs" />
     <Compile Include="App_Start\BindingModules\AuthenticationBindingModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
