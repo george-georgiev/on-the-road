@@ -1,5 +1,4 @@
 ﻿using Microsoft.Owin;
-using OnTheRoad.Identity;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(OnTheRoad.Startup))]

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace OnTheRoad.Views.EventArgsClasses
+namespace OnTheRoad.EventArgsClasses
 {
-    public class AuthEventArgs : EventArgs
+    public class RegisterEventArgs : EventArgs
     {
         public string Username { get; set; }
 

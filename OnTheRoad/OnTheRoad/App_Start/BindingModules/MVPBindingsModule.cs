@@ -7,8 +7,6 @@ using Ninject.Modules;
 using OnTheRoad.App_Start.Factories;
 using WebFormsMvp;
 using WebFormsMvp.Binder;
-using OnTheRoad.Identity;
-using Microsoft.Owin;
 
 namespace OnTheRoad.App_Start.BindingModules
 {

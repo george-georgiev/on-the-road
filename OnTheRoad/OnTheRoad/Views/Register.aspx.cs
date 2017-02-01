@@ -1,17 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
+using WebFormsMvp;
+using WebFormsMvp.Web;
+
+using OnTheRoad.Models;
+using OnTheRoad.Presenters;
+using OnTheRoad.Views.Interfaces;
+using OnTheRoad.EventArgsClasses;
+using OnTheRoad.Common;
 
 namespace OnTheRoad.Views
 {
-    public partial class Register : System.Web.UI.Page
+    [PresenterBinding(typeof(RegisterPresenter))]
+    public partial class Register : MvpPage<RegisterModel>, IRegisterView
     {
+        public event EventHandler<RegisterEventArgs> CreateUser;
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+
+        protected void CreateUser_Click(object sender, EventArgs e)
+        {
+            if (CreateUser == null)
+            {
+                return;
+            }
+
+            CreateUser(this, new RegisterEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text });
+
+            if (this.Model.HasSucceeded)
+            {
+                IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+            }
+            else
+            {
+                this.ErrorMessage.Text = this.Model.ErrorMsg;
+            }
         }
     }
 }

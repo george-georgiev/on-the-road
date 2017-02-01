@@ -1,40 +1,31 @@
 ﻿using System;
-using OnTheRoad.Identity;
-using OnTheRoad.Views.EventArgsClasses;
-using OnTheRoad.Views.Interfaces;
-using WebFormsMvp;
 using System.Web;
 using OnTheRoad.App_Start.Factories;
+using OnTheRoad.EventArgsClasses;
+using OnTheRoad.Views.Interfaces;
+using WebFormsMvp;
 
 namespace OnTheRoad.Presenters
 {
-    public class AuthPresenter : Presenter<IAuthView>
+    public class RegisterPresenter : Presenter<IRegisterView>
     {
         private IAuthenticationServiceFactory authenticationServiceFactory;
 
-        public AuthPresenter(IAuthView view, IAuthenticationServiceFactory authServiceFactory)
+        public RegisterPresenter(IRegisterView view, IAuthenticationServiceFactory authServiceFactory)
             : base(view)
         {
             this.authenticationServiceFactory = authServiceFactory;
-            View.Load += ViewLoad;
             View.CreateUser += CreateUser;
         }
 
-        void ViewLoad(object sender, EventArgs e)
+        private void CreateUser(object sender, RegisterEventArgs e)
         {
-
-        }
-
-        void CreateUser(object sender, AuthEventArgs e)
-        {
-            var authService = authenticationServiceFactory.GetAuthenticationService(this.HttpContext.GetOwinContext());
-
+            var authService = authenticationServiceFactory.GetRegisterService(this.HttpContext.GetOwinContext());
+            
             try
             {
                 authService.CreateUser(e.Username, e.UserEmail, e.UserPassword);
                 View.Model.HasSucceeded = true;
-                View.Model.Username = e.Username;
-                View.Model.UserEmail = e.UserEmail;
             }
             catch (ArgumentException err)
             {

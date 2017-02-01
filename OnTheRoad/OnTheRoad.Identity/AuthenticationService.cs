@@ -1,37 +1,47 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
 using System;
 using System.Linq;
 
+using OnTheRoad.Identity.Interfaces;
+
 namespace OnTheRoad.Identity
 {
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationService : IRegisterService, ILoginService
     {
-        public AuthenticationService(IOwinContext context)
+        public AuthenticationService(ApplicationUserManager appUserManager, ApplicationSignInManager appSignInManager)
         {
-            this.Context = context;
+            this.AppUserManager = appUserManager;
+            this.AppSignInManager = appSignInManager;
         }
 
-        private IOwinContext Context { get; set; }
+        private ApplicationUserManager AppUserManager { get; set; }
+        private ApplicationSignInManager AppSignInManager { get; set; }
 
         public void CreateUser(string username, string email, string password)
         {
-            var manager = this.Context.GetUserManager<ApplicationUserManager>();
             var user = new ApplicationUser() { UserName = email, Email = email };
-            IdentityResult result = manager.Create(user, password);
+            IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)
             {
-                var signInManager = this.Context.Get<ApplicationSignInManager>();
-                signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-
+                this.AppSignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
             }
             else
             {
                 // TODO: Create custom exception?
                 throw new ArgumentException(result.Errors.FirstOrDefault());
             }
+        }
+
+        public void SomeMethod()
+        {
+
+        }
+
+        public void LoginUser(string email, string password, bool rememberMe)
+        {
+            this.AppSignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout: false);
         }
     }
 }

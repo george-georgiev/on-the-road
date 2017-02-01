@@ -1,10 +1,13 @@
 ﻿using Microsoft.Owin;
-using OnTheRoad.Identity;
+
+using OnTheRoad.Identity.Interfaces;
 
 namespace OnTheRoad.App_Start.Factories
 {
     public interface IAuthenticationServiceFactory
     {
-        IAuthenticationService GetAuthenticationService(IOwinContext owinContext);
+        IRegisterService GetRegisterService(IOwinContext owinContext);
+
+        ILoginService GetLoginService(IOwinContext owinContext);
     }
 }
