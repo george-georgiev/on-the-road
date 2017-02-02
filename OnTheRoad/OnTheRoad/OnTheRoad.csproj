@@ -448,9 +448,21 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">
+      <Project>{95562e63-dc49-42f5-ae33-e32a29eb5997}</Project>
+      <Name>OnTheRoad.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
+      <Project>{c7b621ab-03d3-42f6-b2df-92fa0b0af86e}</Project>
+      <Name>OnTheRoad.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Identity\OnTheRoad.Identity.csproj">
       <Project>{af550f2b-b00a-4835-8df7-995fc7f863cf}</Project>
       <Name>OnTheRoad.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
+      <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
+      <Name>OnTheRoad.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

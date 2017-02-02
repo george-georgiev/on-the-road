@@ -5,19 +5,22 @@ using OnTheRoad.Views.Interfaces;
 using WebFormsMvp;
 using System.Web;
 using OnTheRoad.App_Start.Factories;
+using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.Presenters
 {
     public class AuthPresenter : Presenter<IAuthView>
     {
         private IAuthenticationServiceFactory authenticationServiceFactory;
+        private readonly IEventService eventService;
 
-        public AuthPresenter(IAuthView view, IAuthenticationServiceFactory authServiceFactory)
+        public AuthPresenter(IAuthView view, IAuthenticationServiceFactory authServiceFactory, IEventService eventService)
             : base(view)
         {
             this.authenticationServiceFactory = authServiceFactory;
             View.Load += ViewLoad;
             View.CreateUser += CreateUser;
+            this.eventService = eventService;
         }
 
         void ViewLoad(object sender, EventArgs e)
@@ -28,7 +31,7 @@ namespace OnTheRoad.Presenters
         void CreateUser(object sender, AuthEventArgs e)
         {
             var authService = authenticationServiceFactory.GetAuthenticationService(this.HttpContext.GetOwinContext());
-
+            this.eventService.GetEvent();
             try
             {
                 authService.CreateUser(e.Username, e.UserEmail, e.UserPassword);
