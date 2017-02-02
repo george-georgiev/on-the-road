@@ -7,6 +7,7 @@ using OnTheRoad.Enums;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Models;
 using OnTheRoad.Presenters;
+using System.Web;
 
 namespace OnTheRoad.Account
 {
@@ -25,7 +26,7 @@ namespace OnTheRoad.Account
             if (this.IsValid)
             {
                 LoginUser?.Invoke(sender, new LoginEventArgs() { UserEmail = this.Email.Text, UserPassword = this.Password.Text, RememberMe = this.RememberMe.Checked });
-
+              
                 switch (this.Model.LoginStatus)
                 {
                     case LoginStatus.Success:
