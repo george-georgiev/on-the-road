@@ -1,0 +1,65 @@
+public
+-Начало
+-Видове туризъм (Всички категории)
+    --Категория
+        --Детайли за пътешествие
+-Потребител
+    --Профил инфо
+
+private
+-Потребител
+    --Профил инфо
+    --Моите пътешествия (Ще присъствам)/Интересни събития - data grid
+    --?Любими пътешественици
+    --Рейтинг и коментар
+
+-Администратор
+    --Всички потребители - data grid (data source)
+    --Събития - data grid (data source)
+
+Models
+
+-User
+    --City (CityId)
+    --Country (CountryId)
+    --Phone (string)
+    --FavouriteUsers (Collection<UserId>)
+    --Subscribtion (Subscribtion)
+    --Picture
+    --Info (string)
+    --Reviews (Collection<Review>)
+
+-City
+    --Name
+    --Country
+
+-Country
+    --Name
+
+-Trip
+    --Name (string)
+    --Picture
+    --StartDate (Date)
+    --EndDate (Date)
+    --Description (string)
+    --Location (string)
+    --Categories (Category)
+    --Tags (Tag)
+    --Subscribtion (Subscribtion)
+
+-Category
+    --Name
+
+-Tag
+    --Tag
+
+-Subscribtion
+    --Trip (Trip)
+    --User (User)
+    --Status (enum)
+
+-Review
+    --Rating (enum)
+    --Comment (string)
+    --FromUser (User)
+    --ToUser (User)
