@@ -7,11 +7,6 @@ using Ninject.Modules;
 using OnTheRoad.App_Start.Factories;
 using WebFormsMvp;
 using WebFormsMvp.Binder;
-using OnTheRoad.Logic.Factories;
-using OnTheRoad.Domain.Models;
-using OnTheRoad.Data.Models;
-using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Logic.Services;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -30,16 +25,6 @@ namespace OnTheRoad.App_Start.BindingModules
             this.Bind<IPresenter>()
                 .ToMethod(this.PresenterFactoryMethod)
                 .Named("Presenter");
-
-            this.Bind<IEvent>()
-                .To<Event>();
-
-            this.Bind<IEventFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
-            this.Bind<IEventService>()
-                .To<EventServices>();
         }
 
         private IPresenter PresenterFactoryMethod(IContext ctx)
