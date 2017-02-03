@@ -1,16 +1,10 @@
-﻿using Ninject;
-using OnTheRoad.App_Start;
-using OnTheRoad.App_Start.Factories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using System.Web.SessionState;
+using Ninject;
+using OnTheRoad.App_Start;
 using WebFormsMvp.Binder;
-using OnTheRoad.Identity;
 
 namespace OnTheRoad
 {
@@ -27,9 +21,6 @@ namespace OnTheRoad
 
             var customPresenterFactory = NinjectKernelInstanceProvider.Instance.Get<IPresenterFactory>();
             PresenterBinder.Factory = customPresenterFactory;
-
-            var authServiceFactory = NinjectKernelInstanceProvider.Instance.Get<IConfigureAuthServiceFactory>();
-            AuthConfiguration.Instance = authServiceFactory.CreateConfigureAuthService();
         }
     }
 }

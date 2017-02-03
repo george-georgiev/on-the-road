@@ -265,7 +265,6 @@
     </Compile>
     <Compile Include="App_Start\Factories\CustomWebFormsMvpPresenterFactory.cs" />
     <Compile Include="App_Start\Factories\IAuthenticationServiceFactory.cs" />
-    <Compile Include="App_Start\Factories\IConfigureAuthServiceFactory.cs" />
     <Compile Include="App_Start\Factories\ICustomPresenterFactory.cs" />
     <Compile Include="App_Start\BindingModules\MVPBindingsModule.cs" />
     <Compile Include="App_Start\NinjectKernelInstanceProvider.cs" />

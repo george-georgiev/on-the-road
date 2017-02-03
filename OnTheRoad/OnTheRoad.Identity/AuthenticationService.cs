@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System;
+﻿using System;
 using System.Linq;
-
-using OnTheRoad.Identity.Interfaces;
-using System.Web;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.Identity
 {
@@ -17,22 +15,20 @@ namespace OnTheRoad.Identity
         }
 
         private ApplicationUserManager AppUserManager { get; set; }
+
         private ApplicationSignInManager AppSignInManager { get; set; }
 
         public void CreateUser(string email, string password)
         {
-            var user = new ApplicationUser() { UserName = email, Email = email, City = "Varna", Country = "Bulgaria" };
+            var user = new ApplicationUser() { UserName = email, Email = email };
             IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)
             {
                 // Add initial User Role
-                //var currentUser = this.AppUserManager.FindByName(email);
-                //this.AppUserManager.AddToRole(currentUser.Id, "Admin");
+                // var currentUser = this.AppUserManager.FindByName(email);
+                // this.AppUserManager.AddToRole(currentUser.Id, "Admin");
                 this.AppSignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
-                var userId = this.AppUserManager.FindByName(email).Id;
-                HttpCookie cookie = new HttpCookie("UserInfo");
-                cookie.Values.Add("UserId", userId);
             }
             else
             {

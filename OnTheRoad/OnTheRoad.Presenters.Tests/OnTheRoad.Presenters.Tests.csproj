@@ -81,6 +81,10 @@
       <Project>{af550f2b-b00a-4835-8df7-995fc7f863cf}</Project>
       <Name>OnTheRoad.Identity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
+      <Project>{e4b2c057-17cb-4da4-bd4f-148bf976591c}</Project>
+      <Name>OnTheRoad.Logic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnTheRoad\OnTheRoad.csproj">
       <Project>{78256b09-977f-472e-9455-54a5b27199f6}</Project>
       <Name>OnTheRoad</Name>
