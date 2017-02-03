@@ -6,7 +6,7 @@ using OnTheRoad.Account.Contracts;
 using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Presenters.Tests.Account.Fakes;
+using OnTheRoad.Models;
 
 namespace OnTheRoad.Presenters.Account.Tests
 {
@@ -51,89 +51,90 @@ namespace OnTheRoad.Presenters.Account.Tests
         }
 
         [Test]
-        public void WhenRegisterPresenterIsInitialized_View_ShouldSubscribeTo_CreateUserEvent()
-        {
-            var fakeRegView = new FakeRegisterView();
-            var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
-
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            Assert.That(fakeRegView.SubscribedMethod.Equals("Create_User"));
-        }
-
-        [Test]
-        public void WhenViewSubscribesToCreateUser_ParameterClassName_ShouldBe_RegisterEventArgs()
-        {
-            var fakeRegView = new FakeRegisterView();
-            var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
-
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            Assert.That(fakeRegView.ParameterClassName.Equals("RegisterEventArgs"));
-        }
-
-        [Test]
         public void WhenViewInvokesCreateUser_GetRegisterService_ShouldBeCalledExactlyOnce()
         {
-            var fakeRegView = new FakeRegisterView();
-            var mockedRegEventArgs = new Mock<RegisterEventArgs>();
+            var mockedRegView = new Mock<IRegisterView>();
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
             var mockedRegService = new Mock<IRegisterService>();
+            var mockedModel = new Mock<RegisterModel>();
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
+            mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
 
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            fakeRegView.InvokeGetCreateUser(mockedRegEventArgs.Object);
-
+            var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
+            mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
+            
             mockedAuthServiceFactory.Verify(x => x.GetRegisterService(It.IsAny<IOwinContext>()), Times.Once());
         }
 
         [Test]
         public void WhenViewInvokesCreateUser_ModelHasSucceeded_ShouldBeTrue()
         {
-            var fakeRegView = new FakeRegisterView();
-            var mockedRegEventArgs = new Mock<RegisterEventArgs>();
+            var mockedRegView = new Mock<IRegisterView>();
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
             var mockedRegService = new Mock<IRegisterService>();
+            var mockedModel = new Mock<RegisterModel>();
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
+            mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
 
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            fakeRegView.InvokeGetCreateUser(mockedRegEventArgs.Object);
+            var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
+            mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
 
-            Assert.That(fakeRegView.Model.HasSucceeded, Is.True);
+            Assert.That(mockedRegView.Object.Model.HasSucceeded, Is.True);
+        }
+
+        [Test]
+        public void WhenViewInvokesCreateUser_RegisterService_ShouldCall_CreateUserExactlyOnce()
+        {
+            var mockedRegView = new Mock<IRegisterView>();
+            var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
+            var mockedRegService = new Mock<IRegisterService>();
+            var mockedModel = new Mock<RegisterModel>();
+
+            mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
+            mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
+
+            var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
+            mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
+
+            mockedRegService.Verify(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Test]
         public void WhenViewInvokesCreateUser_ModelHasSucceeded_ShouldBeFalse_WhenArgumentExceptionIsThrown()
         {
-            var fakeRegView = new FakeRegisterView();
-            var mockedRegEventArgs = new Mock<RegisterEventArgs>();
+            var mockedRegView = new Mock<IRegisterView>();
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
             var mockedRegService = new Mock<IRegisterService>();
+            var mockedModel = new Mock<RegisterModel>();
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
+            mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
             mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
 
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            fakeRegView.InvokeGetCreateUser(mockedRegEventArgs.Object);
+            var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
+            mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
 
-            Assert.That(fakeRegView.Model.HasSucceeded, Is.False);
+            Assert.That(mockedRegView.Object.Model.HasSucceeded, Is.False);
         }
 
         [Test]
         public void WhenViewInvokesCreateUser_ModelHasSucceeded_ShouldReturnProperError_WhenArgumentExceptionIsThrown()
         {
-            var fakeRegView = new FakeRegisterView();
-            var mockedRegEventArgs = new Mock<RegisterEventArgs>();
+            var mockedRegView = new Mock<IRegisterView>();
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
             var mockedRegService = new Mock<IRegisterService>();
+            var mockedModel = new Mock<RegisterModel>();
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
+            mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
             mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
 
-            var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            fakeRegView.InvokeGetCreateUser(mockedRegEventArgs.Object);
+            var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
+            mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
 
-            Assert.That(fakeRegView.Model.ErrorMsg.Equals("Value does not fall within the expected range."));
+            Assert.That(mockedRegView.Object.Model.ErrorMsg.Equals("Value does not fall within the expected range."));
         }
     }
 }
