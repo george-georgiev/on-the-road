@@ -1,7 +1,7 @@
 ﻿using OnTheRoad.App_Start.Factories;
 using OnTheRoad.Enums;
 using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Account.Interfaces;
+using OnTheRoad.Account.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +23,7 @@ namespace OnTheRoad.Presenters
 
         private void View_LogInUser(object sender, LoginEventArgs e)
         {
-            var loginService = authenticationServiceFactory.GetLoginService(this.HttpContext.GetOwinContext());
+            var loginService = authenticationServiceFactory.GetLoginService(e.OwinContext);
 
             var result = loginService.LoginUser(e.UserEmail, e.UserPassword, e.RememberMe);
 

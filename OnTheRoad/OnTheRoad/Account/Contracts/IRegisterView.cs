@@ -3,7 +3,7 @@ using WebFormsMvp;
 using OnTheRoad.Models;
 using OnTheRoad.EventArgsClasses;
 
-namespace OnTheRoad.Account.Interfaces
+namespace OnTheRoad.Account.Contracts
 {
     public interface IRegisterView : IView<RegisterModel>
     {

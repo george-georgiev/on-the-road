@@ -3,7 +3,7 @@ using WebFormsMvp;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Models;
 
-namespace OnTheRoad.Account.Interfaces
+namespace OnTheRoad.Account.Contracts
 {
     public interface ILoginView : IView<LoginModel>
     {

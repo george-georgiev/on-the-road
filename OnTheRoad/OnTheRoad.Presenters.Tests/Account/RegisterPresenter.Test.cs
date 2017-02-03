@@ -1,8 +1,8 @@
-﻿using Microsoft.Owin;
-using System;
+﻿using System;
+using Microsoft.Owin;
 using Moq;
 using NUnit.Framework;
-using OnTheRoad.Account.Interfaces;
+using OnTheRoad.Account.Contracts;
 using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Logic.Contracts;
@@ -57,7 +57,7 @@ namespace OnTheRoad.Presenters.Account.Tests
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
 
             var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            Assert.That(fakeRegView.subscribedMethod.Equals("Create_User"));
+            Assert.That(fakeRegView.SubscribedMethod.Equals("Create_User"));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace OnTheRoad.Presenters.Account.Tests
             var mockedAuthServiceFactory = new Mock<IAuthenticationServiceFactory>();
 
             var registerPresenter = new RegisterPresenter(fakeRegView, mockedAuthServiceFactory.Object);
-            Assert.That(fakeRegView.parameterClassName.Equals("RegisterEventArgs"));
+            Assert.That(fakeRegView.ParameterClassName.Equals("RegisterEventArgs"));
         }
 
         [Test]

@@ -39,7 +39,7 @@ namespace OnTheRoad.Identity
 
         public string LoginUser(string email, string password, bool rememberMe)
         {
-            SignInStatus result = this.AppSignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout: false);
+            SignInStatus result = this.AppSignInManager.PasswordSignIn(email, password, rememberMe, shouldLockout: true);
             return result.ToString();
         }
     }
