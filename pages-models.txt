@@ -21,13 +21,15 @@ Models
 
 -User
     --City (CityId)
-    --Country (CountryId)
     --Phone (string)
     --FavouriteUsers (Collection<UserId>)
     --Subscribtion (Subscribtion)
-    --Picture
+    --Image (UserImage)
     --Info (string)
     --Reviews (Collection<Review>)
+
+-UserImage
+    --Path
 
 -City
     --Name
@@ -38,22 +40,25 @@ Models
 
 -Trip
     --Name (string)
-    --Picture
+    --Image (TripImage)
     --StartDate (Date)
     --EndDate (Date)
     --Description (string)
     --Location (string)
-    --Categories (Category)
-    --Tags (Tag)
+    --Categories (Collection<Category>)
+    --Tags (Collection<Tag>)
     --Subscribtion (Subscribtion)
 
+-TripImage
+    --Path
+
 -Category
-    --Name
+    --Name (string)
 
 -Tag
-    --Tag
+    --Name (string)
 
--Subscribtion
+-Subscription
     --Trip (Trip)
     --User (User)
     --Status (enum)

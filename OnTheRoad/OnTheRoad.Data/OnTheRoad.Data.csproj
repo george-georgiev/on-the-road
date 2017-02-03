@@ -51,14 +51,15 @@
   <ItemGroup>
     <Compile Include="EfRepository.cs" />
     <Compile Include="EfUnitOfWork.cs" />
-    <Compile Include="Models\Event.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
       <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>

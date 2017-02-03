@@ -40,12 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IEventService.cs" />
-    <Compile Include="Factories\IEventFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EventServices.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Contracts\" />
+    <Folder Include="Factories\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
       <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
