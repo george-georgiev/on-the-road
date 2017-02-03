@@ -1,4 +1,4 @@
-﻿namespace OnTheRoad.Identity.Interfaces
+﻿namespace OnTheRoad.Logic.Contracts
 {
     public interface ILoginService
     {

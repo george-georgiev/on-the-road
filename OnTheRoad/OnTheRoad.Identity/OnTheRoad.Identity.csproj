@@ -99,12 +99,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSignInManager.cs" />
     <Compile Include="AuthenticationService.cs" />
     <Compile Include="ConfigureAuthService.cs" />
-    <Compile Include="Interfaces\ILoginService.cs" />
-    <Compile Include="Interfaces\IRegisterService.cs" />
-    <Compile Include="IdentityConfig.cs" />
-    <Compile Include="IdentityModels.cs" />
+    <Compile Include="ApplicationUserManager.cs" />
+    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="MessageServices\EmailService.cs" />
+    <Compile Include="MessageServices\SmsService.cs" />
+    <Compile Include="OnTheRoadDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.Auth.cs" />
   </ItemGroup>
@@ -114,7 +116,12 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
+      <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
+      <Name>OnTheRoad.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

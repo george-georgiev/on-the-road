@@ -5,7 +5,7 @@ using NUnit.Framework;
 using OnTheRoad.Account.Interfaces;
 using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Identity.Interfaces;
+using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Presenters.Tests.Account.Fakes;
 
 namespace OnTheRoad.Presenters.Account.Tests

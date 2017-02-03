@@ -10,8 +10,7 @@ using OnTheRoad.App_Start.Factories;
 using Microsoft.AspNet.Identity.Owin;
 
 using OnTheRoad.Identity;
-using OnTheRoad.Identity.Interfaces;
-using OnTheRoad.Presenters;
+using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -19,9 +18,6 @@ namespace OnTheRoad.App_Start.BindingModules
     {
         public override void Load()
         {
-            //this.Bind<IRegisterService>()
-            //    .To<AuthenticationService>();
-
             this.Bind<IAuthenticationServiceFactory>()
                 .ToFactory()
                 .InSingletonScope();
@@ -34,10 +30,7 @@ namespace OnTheRoad.App_Start.BindingModules
                 .ToMethod(this.AuthenticationServiceFactoryMethod)
                 .Named("LoginService");
 
-            this.Bind<IConfigureAuthServiceFactory>()
-                .ToFactory()
-                .InSingletonScope();
-
+            this.Bind<ConfigureAuthService>().ToSelf();
         }
 
         private AuthenticationService AuthenticationServiceFactoryMethod(IContext ctx)

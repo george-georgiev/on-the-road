@@ -1,6 +1,5 @@
 ﻿using Microsoft.Owin;
-
-using OnTheRoad.Identity.Interfaces;
+using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.App_Start.Factories
 {
