@@ -1,4 +1,9 @@
 version: 1.0.{build}
+branches:
+  only:
+  - master
+nuget:
+  project_feed: true
 before_build:
 - cmd: nuget restore OnTheRoad/OnTheRoad.sln
 build:
@@ -6,7 +11,6 @@ build:
   publish_nuget: true
   include_nuget_references: true
   verbosity: minimal
-
   
 environment:
   COVERALLS_REPO_TOKEN:
