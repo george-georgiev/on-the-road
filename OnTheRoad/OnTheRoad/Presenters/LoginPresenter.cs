@@ -1,11 +1,8 @@
-﻿using OnTheRoad.App_Start.Factories;
+﻿using System;
+using OnTheRoad.App_Start.Factories;
 using OnTheRoad.Enums;
 using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Account.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using OnTheRoad.Account.Contracts;
 using WebFormsMvp;
 
 namespace OnTheRoad.Presenters
@@ -17,13 +14,18 @@ namespace OnTheRoad.Presenters
         public LoginPresenter(ILoginView view, IAuthenticationServiceFactory authServiceFactory)
             : base(view)
         {
+            if (authServiceFactory == null)
+            {
+                throw new ArgumentNullException("Authentication Factory cannot be null");
+            }
+
             this.authenticationServiceFactory = authServiceFactory;
             View.LoginUser += View_LogInUser;
         }
 
         private void View_LogInUser(object sender, LoginEventArgs e)
         {
-            var loginService = authenticationServiceFactory.GetLoginService(this.HttpContext.GetOwinContext());
+            var loginService = authenticationServiceFactory.GetLoginService(e.OwinContext);
 
             var result = loginService.LoginUser(e.UserEmail, e.UserPassword, e.RememberMe);
 

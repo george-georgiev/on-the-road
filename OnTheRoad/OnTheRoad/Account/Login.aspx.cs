@@ -1,7 +1,7 @@
 ﻿using System;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using OnTheRoad.Account.Interfaces;
+using OnTheRoad.Account.Contracts;
 using OnTheRoad.Common;
 using OnTheRoad.Enums;
 using OnTheRoad.EventArgsClasses;
@@ -25,7 +25,11 @@ namespace OnTheRoad.Account
         {
             if (this.IsValid)
             {
-                LoginUser?.Invoke(sender, new LoginEventArgs() { UserEmail = this.Email.Text, UserPassword = this.Password.Text, RememberMe = this.RememberMe.Checked });
+                LoginUser?.Invoke(sender, new LoginEventArgs() {
+                    UserEmail = this.Email.Text,
+                    UserPassword = this.Password.Text,
+                    RememberMe = this.RememberMe.Checked,
+                    OwinContext = this.Context.GetOwinContext()});
               
                 switch (this.Model.LoginStatus)
                 {
