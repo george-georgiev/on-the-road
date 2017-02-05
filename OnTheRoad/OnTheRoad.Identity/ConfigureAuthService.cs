@@ -12,7 +12,7 @@ namespace OnTheRoad.Identity
         public void Configure(IAppBuilder app)
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
-            app.CreatePerOwinContext(OnTheRoadDbContext.Create);
+            app.CreatePerOwinContext(OnTheRoadIdentityDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
 

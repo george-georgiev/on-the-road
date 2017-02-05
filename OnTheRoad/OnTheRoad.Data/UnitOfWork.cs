@@ -1,13 +1,12 @@
 ﻿using OnTheRoad.Domain.Contracts;
-using System.Data.Entity;
 
 namespace OnTheRoad.Data
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private DbContext context;
+        private OnTheRoadDbContext context;
 
-        public EfUnitOfWork(DbContext context)
+        public UnitOfWork(OnTheRoadDbContext context)
         {
             this.context = context;
         }
