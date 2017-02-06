@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using OnTheRoad.Domain.Models;
+using System.Collections.Generic;
 
 namespace OnTheRoad.Domain.Repositories
 {
     public interface IRepository<DomainType>
-        where DomainType : class
+        where DomainType : IIdentifiable
     {
         IEnumerable<DomainType> GetAll();
 

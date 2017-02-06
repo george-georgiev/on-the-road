@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace OnTheRoad.Data.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository<ICategory>, IRepository<ICategory>
+    public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository, IRepository<ICategory>
     {
         public CategoryRepository(OnTheRoadDbContext context) : base(context)
         {
@@ -15,10 +15,11 @@ namespace OnTheRoad.Data.Repositories
         public ICategory GetCategoryByName(string name)
         {
             Mapper.Initialize(config => config.CreateMap<Category, ICategory>());
-            var entity = this.Context.Categories.Where(c => c.Name == name).Single();
-            var result = Mapper.Map<Category, ICategory>(entity);
 
-            return result;
+            var entity = this.Context.Categories.Where(c => c.Name == name).FirstOrDefault();
+            var mapped = Mapper.Map<Category, ICategory>(entity);
+
+            return mapped;
         }
     }
 }

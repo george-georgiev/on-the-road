@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Models\Category.cs" />

@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Web;
 using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Account.Contracts;
 using WebFormsMvp;
-using Microsoft.Owin;
-using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.Presenters
 {
     public class RegisterPresenter : Presenter<IRegisterView>
     {
         private readonly IAuthenticationServiceFactory authenticationServiceFactory;
-        //private readonly ICategoryService categoryService;
 
-        public RegisterPresenter(IRegisterView view, IAuthenticationServiceFactory authServiceFactory/*, ICategoryService categoryService*/)
+        public RegisterPresenter(IRegisterView view, IAuthenticationServiceFactory authServiceFactory)
             : base(view)
         {
             if (authServiceFactory == null)
@@ -22,16 +18,12 @@ namespace OnTheRoad.Presenters
                 throw new ArgumentNullException("Authentication Factory cannot be null");
             }
 
-            //this.categoryService = categoryService;
-
             this.authenticationServiceFactory = authServiceFactory;
             View.CreateUser += Create_User;
         }
 
         private void Create_User(object sender, RegisterEventArgs e)
         {
-            //this.categoryService.AddCategory("name");
-            //var category = this.categoryService.GetCategoryByName("name");
             var registerService = authenticationServiceFactory.GetRegisterService(e.OwinContext);
             
             try

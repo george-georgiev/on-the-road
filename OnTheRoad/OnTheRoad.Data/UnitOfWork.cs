@@ -4,7 +4,7 @@ namespace OnTheRoad.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private OnTheRoadDbContext context;
+        private readonly OnTheRoadDbContext context;
 
         public UnitOfWork(OnTheRoadDbContext context)
         {

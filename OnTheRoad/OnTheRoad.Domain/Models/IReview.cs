@@ -2,14 +2,14 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface IReview
+    public interface IReview : IIdentifiable
     {
-        Rating Rating { get; }
+        Rating Rating { get; set; }
 
-        string Comment { get; }
+        string Comment { get; set; }
 
-        IUser FromUser { get; }
+        IUser FromUser { get; set; }
 
-        IUser ToUser { get; }
+        IUser ToUser { get; set; }
     }
 }

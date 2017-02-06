@@ -1,7 +1,7 @@
 ﻿namespace OnTheRoad.Domain.Models
 {
-    public interface IImage
+    public interface IImage : IIdentifiable
     {
-        string Path { get; }
+        string Path { get; set; }
     }
 }

@@ -2,20 +2,20 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface IUser
+    public interface IUser : IIdentifiable
     {
-        ICity City { get; }
+        ICity City { get; set; }
 
-        string Phone { get; }
+        string Phone { get; set; }
 
-        ICollection<IUser> FavouriteUsers { get; }
+        ICollection<IUser> FavouriteUsers { get; set; }
 
-        IImage Image { get; }
+        IImage Image { get; set; }
 
-        string PersonalInfo { get; }
+        string PersonalInfo { get; set; }
 
-        ISubscribtion Subscription { get; }
+        ISubscribtion Subscription { get; set; }
 
-        ICollection<IReview> Reviews { get; }
+        ICollection<IReview> Reviews { get; set; }
     }
 }

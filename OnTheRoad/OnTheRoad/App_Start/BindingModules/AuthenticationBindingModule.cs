@@ -11,12 +11,6 @@ using Microsoft.AspNet.Identity.Owin;
 
 using OnTheRoad.Identity;
 using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Domain.Repositories;
-using OnTheRoad.Data.Repositories;
-using OnTheRoad.Logic.Services;
-using OnTheRoad.Domain.Contracts;
-using OnTheRoad.Data;
-using Ninject.Web.Common;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -37,21 +31,6 @@ namespace OnTheRoad.App_Start.BindingModules
                 .Named("LoginService");
 
             this.Bind<ConfigureAuthService>().ToSelf();
-
-
-            // TODO Remove from here
-            this.Bind<ICategoryService>()
-                .To<CategoryService>();
-
-            this.Bind<OnTheRoadDbContext>()
-                .ToSelf()
-                .InRequestScope();
-
-            this.Bind<IUnitOfWork>()
-                .To<UnitOfWork>();
-
-            this.Bind(typeof(ICategoryRepository<>))
-                .To<CategoryRepository>();
         }
 
         private AuthenticationService AuthenticationServiceFactoryMethod(IContext ctx)

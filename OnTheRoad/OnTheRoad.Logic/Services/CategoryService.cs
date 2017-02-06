@@ -4,16 +4,16 @@ using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Models;
 using System;
+using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Services
 {
-    // TODO implement ICategoryService inteface
     public class CategoryService : ICategoryService
     {
-        private readonly ICategoryRepository<ICategory> categoryRepository;
+        private readonly ICategoryRepository categoryRepository;
         private readonly IUnitOfWork uniOfWork;
 
-        public CategoryService(ICategoryRepository<ICategory> categoryRepository, IUnitOfWork uniOfWork)
+        public CategoryService(ICategoryRepository categoryRepository, IUnitOfWork uniOfWork)
         {
             if (categoryRepository == null)
             {
@@ -34,6 +34,27 @@ namespace OnTheRoad.Logic.Services
             var category = new Category(name);
             this.categoryRepository.Add(category);
             this.uniOfWork.Commit();
+        }
+
+        public void DeleteCategoryByName(string name)
+        {
+            var category = this.GetCategoryByName(name);
+            this.categoryRepository.Delete(category);
+            this.uniOfWork.Commit();
+        }
+
+        public IEnumerable<ICategory> GetAllCategories()
+        {
+            var categories = this.categoryRepository.GetAll();
+
+            return categories;
+        }
+
+        public ICategory GetCategoryById(int id)
+        {
+            var category = this.categoryRepository.GetById(id);
+
+            return category;
         }
 
         public ICategory GetCategoryByName(string name)

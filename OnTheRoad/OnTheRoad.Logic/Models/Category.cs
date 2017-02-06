@@ -2,13 +2,15 @@
 
 namespace OnTheRoad.Logic.Models
 {
-    public class Category : ICategory
+    public class Category : ICategory, IIdentifiable
     {
         public Category(string name)
         {
             this.Name = name;
         }
 
-        public string Name { get; }
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

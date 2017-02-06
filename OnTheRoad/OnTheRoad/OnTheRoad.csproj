@@ -245,6 +245,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BindingModules\DataBindingModule.cs" />
     <Compile Include="Common\UserInfoUtility.cs" />
     <Compile Include="Account\Lockout.aspx.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>

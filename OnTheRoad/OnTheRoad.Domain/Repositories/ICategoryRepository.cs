@@ -2,8 +2,7 @@
 
 namespace OnTheRoad.Domain.Repositories
 {
-    public interface ICategoryRepository<DomainType> : IRepository<DomainType>
-        where DomainType : class
+    public interface ICategoryRepository : IRepository<ICategory>
     {
         ICategory GetCategoryByName(string name);
     }

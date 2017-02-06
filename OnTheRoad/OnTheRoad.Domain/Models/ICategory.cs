@@ -1,7 +1,7 @@
 ﻿namespace OnTheRoad.Domain.Models
 {
-    public interface ICategory
+    public interface ICategory : IIdentifiable
     {
-        string Name { get; }
+        string Name { get; set; }
     }
 }

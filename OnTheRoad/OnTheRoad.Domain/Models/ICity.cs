@@ -1,9 +1,9 @@
 ﻿namespace OnTheRoad.Domain.Models
 {
-    public interface ICity
+    public interface ICity : IIdentifiable
     {
-        string Name { get; }
+        string Name { get; set; }
 
-        ICountry Country { get; }
+        ICountry Country { get; set; }
     }
 }

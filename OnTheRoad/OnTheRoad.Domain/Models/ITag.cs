@@ -1,7 +1,7 @@
 ﻿namespace OnTheRoad.Domain.Models
 {
-    public interface ITag
+    public interface ITag : IIdentifiable
     {
-        string Name { get; }
+        string Name { get; set; }
     }
 }

@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface ITrip
+    public interface ITrip : IIdentifiable
     {
-        string Name { get; }
+        string Name { get; set; }
 
-        string Description { get; }
+        string Description { get; set; }
 
-        DateTime StartDate { get; }
+        DateTime StartDate { get; set; }
 
-        DateTime EndDate { get; }
+        DateTime EndDate { get; set; }
 
-        string Location { get; }
+        string Location { get; set; }
 
-        ICollection<ITag> Tags { get; }
+        ICollection<ITag> Tags { get; set; }
 
-        ICollection<ICategory> Categories { get; }
+        ICollection<ICategory> Categories { get; set; }
 
-        IImage Image { get; }
+        IImage Image { get; set; }
     }
 }

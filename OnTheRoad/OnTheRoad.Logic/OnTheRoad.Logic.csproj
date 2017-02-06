@@ -53,6 +53,7 @@
     <Compile Include="Contracts\ILoginService.cs" />
     <Compile Include="Contracts\IRegisterService.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\City.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
   </ItemGroup>
