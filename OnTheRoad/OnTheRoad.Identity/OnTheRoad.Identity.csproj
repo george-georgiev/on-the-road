@@ -117,10 +117,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">
-      <Project>{95562E63-DC49-42F5-AE33-E32A29EB5997}</Project>
-      <Name>OnTheRoad.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
       <Name>OnTheRoad.Logic</Name>

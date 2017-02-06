@@ -42,6 +42,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -53,8 +61,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Rating.cs" />
+    <Compile Include="Enums\TripStatus.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\TripImage.cs" />
+    <Compile Include="Models\UserImage.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\Subscription.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\Trip.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Models\Category.cs" />
@@ -70,6 +89,10 @@
     <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
       <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
       <Name>OnTheRoad.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Identity\OnTheRoad.Identity.csproj">
+      <Project>{af550f2b-b00a-4835-8df7-995fc7f863cf}</Project>
+      <Name>OnTheRoad.Identity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
