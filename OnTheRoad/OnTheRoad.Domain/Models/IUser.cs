@@ -4,9 +4,19 @@ namespace OnTheRoad.Domain.Models
 {
     public interface IUser : IIdentifiable
     {
+        string FirstName { get; set; }
+
+        string LastName { get; set; }
+
+        string Email { get; set; }
+
+        string Info { get; set; }
+
+        string Country { get; set; }
+
         ICity City { get; set; }
 
-        string Phone { get; set; }
+        string PhoneNumber { get; set; }
 
         ICollection<IUser> FavouriteUsers { get; set; }
 
@@ -14,7 +24,7 @@ namespace OnTheRoad.Domain.Models
 
         string PersonalInfo { get; set; }
 
-        ISubscribtion Subscription { get; set; }
+        ICollection<ISubscribtion> Subscription { get; set; }
 
         ICollection<IReview> Reviews { get; set; }
     }
