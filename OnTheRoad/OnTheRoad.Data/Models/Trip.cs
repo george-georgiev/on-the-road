@@ -6,22 +6,21 @@ namespace OnTheRoad.Data.Models
 {
     public class Trip : BaseEntity
     {
+        private ICollection<TripImage> images;
         private ICollection<Category> categories;
-
         private ICollection<Tag> tags;
+        private ICollection<Subscription> subscription;
 
         public Trip()
         {
+            this.images = new HashSet<TripImage>();
             this.categories = new HashSet<Category>();
             this.tags = new HashSet<Tag>();
+            this.subscription = new HashSet<Subscription>();
         }
 
         [Required]
         public string Name { get; set; }
-
-        public int TripImageId { get; set; }
-
-        public virtual TripImage TripImage { get; set; }
 
         public DateTime StartDate { get; set; }
 
@@ -30,6 +29,12 @@ namespace OnTheRoad.Data.Models
         public string Description { get; set; }
 
         public string Location { get; set; }
+
+        public virtual ICollection<TripImage> Images
+        {
+            get { return this.images; }
+            set { this.images = value; }
+        }
 
         public virtual ICollection<Category> Categories
         {
@@ -43,9 +48,10 @@ namespace OnTheRoad.Data.Models
             set { this.tags = value; }
         }
 
-        // Collection?
-        public int SubscriptionId { get; set; }
-
-        public virtual Subscription Subscription { get; set; }
+        public virtual ICollection<Subscription> Subscriptions
+        {
+            get { return this.subscription; }
+            set { this.subscription = value; }
+        }
     }
 }

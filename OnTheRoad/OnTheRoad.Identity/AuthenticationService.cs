@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using OnTheRoad.Logic.Contracts;
+using OnTheRoad.Data.Models;
 
 namespace OnTheRoad.Identity
 {
@@ -20,7 +21,7 @@ namespace OnTheRoad.Identity
 
         public void CreateUser(string email, string password)
         {
-            var user = new ApplicationUser() { UserName = email, Email = email };
+            var user = new User() { UserName = email, Email = email, Info = string.Empty, FirstName = string.Empty, LastName = string.Empty };
             IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)
