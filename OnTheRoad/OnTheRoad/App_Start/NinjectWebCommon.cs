@@ -11,21 +11,23 @@ namespace OnTheRoad.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using BindingModules;
-
-    public static class NinjectWebCommon 
+    using System.Reflection;
+    using System.Linq;
+    using Ninject.Modules;
+    public static class NinjectWebCommon
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
         /// </summary>
-        public static void Start() 
+        public static void Start()
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
         }
-        
+
         /// <summary>
         /// Stops the application.
         /// </summary>
@@ -33,7 +35,7 @@ namespace OnTheRoad.App_Start
         {
             bootstrapper.ShutDown();
         }
-        
+
         /// <summary>
         /// Creates the kernel that will manage your application.
         /// </summary>
@@ -66,8 +68,14 @@ namespace OnTheRoad.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Load(new MVPBindingsModule());
-            kernel.Load(new AuthenticationBindingModule());
-        }        
+            //kernel.Load(new MVPBindingsModule());
+            //kernel.Load(new AuthenticationBindingModule());
+            Assembly.GetAssembly(typeof(Global))
+                .GetTypes()
+                .Where(type => (typeof(NinjectModule)).IsAssignableFrom(type) && type.Name.Contains("Module"))
+                .Select(type => (INinjectModule)Activator.CreateInstance(type))
+                .ToList()
+                .ForEach(instance => kernel.Load(instance));
+        }
     }
 }
