@@ -94,5 +94,16 @@ namespace OnTheRoad.Tests
 
             Assert.That(actualInstance, Is.InstanceOf<IPresenter>());
         }
+
+        [Test]
+        public void VerifyThat_ExceptionIsNotThrownWhenReleaseMethodIsCalled()
+        {
+            var customPresenterFactoryMock = new Mock<ICustomPresenterFactory>();
+            var iPresenterMock = new Mock<IPresenter>();
+
+            var factory = new CustomWebFormsMvpPresenterFactory(customPresenterFactoryMock.Object);
+
+            Assert.DoesNotThrow(() => factory.Release(iPresenterMock.Object));
+        }
     }
 }
