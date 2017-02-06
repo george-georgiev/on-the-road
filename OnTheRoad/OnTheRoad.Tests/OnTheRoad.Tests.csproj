@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2AF9C97A-DA10-4215-947E-3CC6B551C9DC}</ProjectGuid>
+    <ProjectGuid>{532C3FF0-2517-45E9-A42E-B25EA03897C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnTheRoad.Presenters.Tests</RootNamespace>
-    <AssemblyName>OnTheRoad.Presenters.Tests</AssemblyName>
+    <RootNamespace>OnTheRoad.Tests</RootNamespace>
+    <AssemblyName>OnTheRoad.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -56,7 +56,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Web" />
     <Reference Include="WebFormsMvp, Version=1.4.5.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
       <HintPath>..\packages\WebFormsMvp.1.4.5.0\lib\WebFormsMvp.dll</HintPath>
       <Private>True</Private>
@@ -77,20 +76,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Account\Fakes\FakeRegisterView.cs" />
-    <Compile Include="Account\LoginPresenter.Test.cs" />
-    <Compile Include="Account\RegisterPresenter.Test.cs" />
+    <Compile Include="LoginPresenterTests.cs" />
+    <Compile Include="RegisterPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OnTheRoad.Identity\OnTheRoad.Identity.csproj">
-      <Project>{af550f2b-b00a-4835-8df7-995fc7f863cf}</Project>
-      <Name>OnTheRoad.Identity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{e4b2c057-17cb-4da4-bd4f-148bf976591c}</Project>
       <Name>OnTheRoad.Logic</Name>
