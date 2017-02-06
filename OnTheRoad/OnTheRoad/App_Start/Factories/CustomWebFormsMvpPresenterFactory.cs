@@ -4,7 +4,7 @@ using WebFormsMvp.Binder;
 
 namespace OnTheRoad.App_Start.Factories
 {
-    public class CustomWebFormsMvpPresenterFactory :IPresenterFactory
+    public class CustomWebFormsMvpPresenterFactory : IPresenterFactory
     {
         private readonly ICustomPresenterFactory presenterFactory;
 
@@ -37,11 +37,11 @@ namespace OnTheRoad.App_Start.Factories
         /// <param name="presenter"></param>
         public void Release(IPresenter presenter)
         {
-            //var disposablePresenter = presenter as IDisposable;
-            //if (disposablePresenter != null)
-            //{
-            //    disposablePresenter.Dispose();
-            //}
+            // var disposablePresenter = presenter as IDisposable;
+            // if (disposablePresenter != null)
+            // {
+            //     disposablePresenter.Dispose();
+            // }
         }
     }
 }

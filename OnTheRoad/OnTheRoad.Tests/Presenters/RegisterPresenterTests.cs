@@ -7,8 +7,9 @@ using OnTheRoad.App_Start.Factories;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Models;
+using OnTheRoad.Presenters;
 
-namespace OnTheRoad.Presenters.Account.Tests
+namespace OnTheRoad.Presenters.Tests
 {
     [TestFixture]
     public class RegisterPresterTest
@@ -63,7 +64,7 @@ namespace OnTheRoad.Presenters.Account.Tests
 
             var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
             mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
-            
+
             mockedAuthServiceFactory.Verify(x => x.GetRegisterService(It.IsAny<IOwinContext>()), Times.Once());
         }
 

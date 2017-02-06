@@ -8,8 +8,9 @@ using OnTheRoad.Enums;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Models;
+using OnTheRoad.Presenters;
 
-namespace OnTheRoad.Presenters.Tests.Account
+namespace OnTheRoad.Presenters.Tests
 {
     [TestFixture]
     public class LoginPresenterTest
@@ -50,7 +51,7 @@ namespace OnTheRoad.Presenters.Tests.Account
             var loginPresenter = new LoginPresenter(mockedLoginView.Object, mockedAuthServiceFactory.Object);
             Assert.That(loginPresenter, Is.InstanceOf<LoginPresenter>());
         }
-        
+
         [Test]
         public void WhenLoginPresenterIsInitialized_AuthServiceFactory_ShouldCall_GetLoginServiceExactlyOnce()
         {

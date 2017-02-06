@@ -254,7 +254,6 @@
     <Compile Include="Account\Lockout.aspx.designer.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\AuthConfiguration.cs" />
     <Compile Include="App_Start\BindingModules\AuthenticationBindingModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
