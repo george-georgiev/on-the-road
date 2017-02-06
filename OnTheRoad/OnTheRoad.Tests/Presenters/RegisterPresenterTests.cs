@@ -9,7 +9,7 @@ using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Models;
 using OnTheRoad.Presenters;
 
-namespace OnTheRoad.Tests
+namespace OnTheRoad.Presenters.Tests
 {
     [TestFixture]
     public class RegisterPresterTest
