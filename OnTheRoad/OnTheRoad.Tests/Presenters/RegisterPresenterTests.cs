@@ -99,7 +99,7 @@ namespace OnTheRoad.Presenters.Tests
             var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
             mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
 
-            mockedRegService.Verify(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
+            mockedRegService.Verify(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace OnTheRoad.Presenters.Tests
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
             mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
-            mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
+            mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
 
             var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
             mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());
@@ -130,7 +130,7 @@ namespace OnTheRoad.Presenters.Tests
 
             mockedAuthServiceFactory.Setup(x => x.GetRegisterService(It.IsAny<IOwinContext>())).Returns(mockedRegService.Object);
             mockedRegView.Setup(x => x.Model).Returns(mockedModel.Object);
-            mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
+            mockedRegService.Setup(x => x.CreateUser(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Throws(new ArgumentException());
 
             var registerPresenter = new RegisterPresenter(mockedRegView.Object, mockedAuthServiceFactory.Object);
             mockedRegView.Raise(x => x.CreateUser += null, null, new RegisterEventArgs());

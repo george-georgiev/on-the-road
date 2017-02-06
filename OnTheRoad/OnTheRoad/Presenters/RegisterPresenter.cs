@@ -28,7 +28,7 @@ namespace OnTheRoad.Presenters
             
             try
             {
-                registerService.CreateUser(e.UserEmail, e.UserPassword);
+                registerService.CreateUser(e.UserEmail, e.UserPassword, e.FirstName, e.LastName);
                 View.Model.HasSucceeded = true;
             }
             catch (ArgumentException err)

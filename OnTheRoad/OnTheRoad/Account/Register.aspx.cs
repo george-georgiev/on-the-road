@@ -30,7 +30,14 @@ namespace OnTheRoad.Account
                 return;
             }
 
-            CreateUser(this, new RegisterEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text, OwinContext = this.Context.GetOwinContext() });
+            CreateUser(this, new RegisterEventArgs
+            {
+                UserEmail = this.Email.Text,
+                UserPassword = this.Password.Text,
+                FirstName = this.FirstName.Text,
+                LastName = this.LastName.Text,
+                OwinContext = this.Context.GetOwinContext()
+            });
 
             if (this.Model.HasSucceeded)
             {
