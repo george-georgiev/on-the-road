@@ -36,6 +36,7 @@ namespace OnTheRoad.Presenters
             this.View.Model.Country = user.Country != null ? user.Country.Name : string.Empty;
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
+            this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
             //this.View.Model.ImagePath = user.Image.Path;
             //this.View.Model.FavouriteUsers = user.FavouriteUsers;
         }

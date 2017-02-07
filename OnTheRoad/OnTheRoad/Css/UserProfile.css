@@ -36,13 +36,13 @@
 }
 
 #navbar-user {
-    padding:0;
+    padding: 0;
 }
 
 .navbar-hr {
     width: 35%;
     margin-top: 0;
-    border-color: rgba(72, 149, 14, 0.85);
+    border-color: RGBA(72, 149, 14, 0.85);
 }
 
 /* color-profile page */
@@ -60,7 +60,21 @@
     display: inline;
 }
 
+.fa {
+    margin-right:10px;
+}
+
 #username {
     text-align: center;
     color: #00B5DB;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
+    width: 400px;
+    float: left;
+    margin-right: 50px;
+}
+
+#MainContent_ProfileContent_EditButton {
+    float:right;
 }
