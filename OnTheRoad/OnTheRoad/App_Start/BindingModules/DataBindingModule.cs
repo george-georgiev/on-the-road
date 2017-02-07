@@ -4,8 +4,6 @@ using OnTheRoad.Data;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Contracts;
 using OnTheRoad.Domain.Repositories;
-using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Logic.Services;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -22,6 +20,9 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ICategoryRepository>()
                 .To<CategoryRepository>();
+
+            this.Bind<ITripRepository>()
+                .To<TripRepository>();
         }
     }
 }

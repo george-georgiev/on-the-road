@@ -52,10 +52,13 @@
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ILoginService.cs" />
     <Compile Include="Contracts\IRegisterService.cs" />
+    <Compile Include="Contracts\ITripService.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Trip.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\TripService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />

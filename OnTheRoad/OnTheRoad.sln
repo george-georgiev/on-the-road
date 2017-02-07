@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad", "OnTheRoad\OnTheRoad.csproj", "{78256B09-977F-472E-9455-54A5B27199F6}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B7D7FC5-85A8-4BB0-BA39-803E9F69C379}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Tests", "OnTheRoad.Tests\OnTheRoad.Tests.csproj", "{532C3FF0-2517-45E9-A42E-B25EA03897C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Presenters", "OnTheRoad.Presenters\OnTheRoad.Presenters.csproj", "{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{532C3FF0-2517-45E9-A42E-B25EA03897C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{532C3FF0-2517-45E9-A42E-B25EA03897C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{532C3FF0-2517-45E9-A42E-B25EA03897C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

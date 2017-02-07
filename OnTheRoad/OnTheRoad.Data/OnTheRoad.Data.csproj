@@ -75,6 +75,7 @@
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\TripRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
