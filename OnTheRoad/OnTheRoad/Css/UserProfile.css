@@ -23,7 +23,7 @@
     border-color: #030033;*/
     border-radius: 0;
     border: 0;
-    box-shadow: 0 2px 1px #888888;
+    /*box-shadow: 0 2px 1px #888888;*/
     background-color: white;
     padding: 10px;
     font-family: 'Roboto', sans-serif;
@@ -35,11 +35,32 @@
     text-decoration: underline;
 }
 
+#navbar-user {
+    padding:0;
+}
+
+.navbar-hr {
+    width: 35%;
+    margin-top: 0;
+    border-color: rgba(72, 149, 14, 0.85);
+}
+
+/* color-profile page */
 #MainContent_ProfileContent_FormViewProfileInfo {
     display: inline-block;
+    text-align: left;
 }
 
 .font-awesome {
-    font-size: 1.2em;
+    font-size: 1.7em;
     color: forestgreen;
+}
+
+.horizontal-view {
+    display: inline;
+}
+
+#username {
+    text-align: center;
+    color: #00B5DB;
 }

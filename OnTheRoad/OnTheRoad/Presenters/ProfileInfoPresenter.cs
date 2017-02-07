@@ -28,14 +28,14 @@ namespace OnTheRoad.Presenters
             var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
             var user = this.userService.GetUserInfo(userId);
 
-            //this.View.Model.City = user.City.Name;
             this.View.Model.Username = user.Username;
             this.View.Model.FirstName = user.FirstName;
             this.View.Model.LastName = user.LastName;
             this.View.Model.Email = user.Email;
-            //this.View.Model.Country = user.Country.Name;
-            //this.View.Model.PhoneNumber = user.PhoneNumber;
-            //this.View.Model.Info = user.Info;
+            this.View.Model.City = user.City != null ? user.City.Name : string.Empty;
+            this.View.Model.Country = user.Country != null ? user.Country.Name : string.Empty;
+            this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
+            this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
             //this.View.Model.ImagePath = user.Image.Path;
             //this.View.Model.FavouriteUsers = user.FavouriteUsers;
         }

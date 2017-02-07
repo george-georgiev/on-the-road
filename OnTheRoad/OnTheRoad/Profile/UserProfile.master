@@ -1,13 +1,13 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="UserProfile.master.cs" Inherits="OnTheRoad.Profile.UserProfile" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderCSSMaster" runat="server">
-    <link href="/Css/UserProfile.css" rel="stylesheet"/>
+    <link href="/Css/UserProfile.css" rel="stylesheet" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
-    <div class="row">
+    <div class="row navbar-user">
         <div class="col-md-12 column">
-            <nav class="navbar navbar-default" id="navbar">
+            <nav class="navbar navbar-default" id="navbar-user">
                 <div>
                     <ul class="nav navbar-nav">
                         <li><a href="~/">Профил</a></li>
@@ -18,7 +18,11 @@
             </nav>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col-md-12">
+            <hr class="navbar-hr" />
+        </div>
+    </div>
     <asp:ContentPlaceHolder ID="ProfileContent" runat="server">
     </asp:ContentPlaceHolder>
 </asp:Content>

@@ -21,7 +21,7 @@ namespace OnTheRoad.Identity
 
         public void CreateUser(string email, string password, string firstName, string lastName)
         {
-            var user = new User() { UserName = email, Email = email, Info = string.Empty, FirstName = firstName, LastName = lastName };
+            var user = new User() { UserName = email, Email = email, Info = null, FirstName = firstName, LastName = lastName };
             IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)

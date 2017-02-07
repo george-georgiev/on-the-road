@@ -27,11 +27,33 @@ input[type="select"] {
     max-width: 280px;
 }
 
+.navbar {
+    background-color: forestgreen;
+    border: 0;
+}
+
+.navbar-inverse .navbar-main > li > a,
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    font-size:2em;
+    color:white;
+    font-family: 'Hobo Std';
+}
+
+
+.btn {
+    font-family: Roboto, Arial;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
         margin-top: 20px;
     }
+
     .body-content {
         padding: 0;
     }
