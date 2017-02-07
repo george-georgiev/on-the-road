@@ -16,7 +16,7 @@ namespace OnTheRoad.Data
 
         public virtual DbSet<City> Cities { get; set; }
 
-        public virtual DbSet<Country> Countries { get; set; }
+        //public virtual DbSet<Country> Countries { get; set; }
 
         public virtual DbSet<Review> Reviews { get; set; }
 
@@ -27,9 +27,7 @@ namespace OnTheRoad.Data
         public virtual DbSet<Trip> Trips { get; set; }
 
         public virtual DbSet<TripImage> TripImages { get; set; }
-
-        //public virtual DbSet<ApplicationUser> Users { get; set; }
-
+        
         public virtual DbSet<UserImage> UserImages { get; set; }
 
         public static OnTheRoadIdentityDbContext Create()
@@ -50,7 +48,6 @@ namespace OnTheRoad.Data
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
-
         }
     }
 }
