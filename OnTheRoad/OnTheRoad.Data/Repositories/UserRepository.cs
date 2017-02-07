@@ -15,6 +15,16 @@ namespace OnTheRoad.Data.Repositories
         {
             this.Context = context;
             this.DbSet = this.Context.Set<User>();
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<User, IUser>();
+                config.CreateMap<City, ICity>();
+                config.CreateMap<Subscription, ISubscribtion>();
+                config.CreateMap<Review, IReview>();
+                config.CreateMap<Country, ICountry>();
+                config.CreateMap<UserImage, IImage>();
+            });
         }
 
         protected OnTheRoadIdentityDbContext Context { get; set; }
@@ -34,16 +44,6 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetByUserName(string userName)
         {
-            Mapper.Initialize(config =>
-           {
-               config.CreateMap<User, IUser>();
-               config.CreateMap<City, ICity>();
-               config.CreateMap<Subscription, ISubscribtion>();
-               config.CreateMap<Review, IReview>();
-               config.CreateMap<Country, ICountry>();
-               config.CreateMap<UserImage, IImage>();
-           });
-
             var found = this.DbSet.Where(x => x.UserName == userName).Single();
             var mapped = Mapper.Map<User, IUser>(found);
 
@@ -52,8 +52,6 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetById(object id)
         {
-            Mapper.Initialize(config => config.CreateMap<User, IUser>());
-
             var found = this.DbSet.Find(id);
             var mapped = Mapper.Map<User, IUser>(found);
 

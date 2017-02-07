@@ -3,6 +3,7 @@ using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Profile.Contracts;
 using WebFormsMvp;
+using OnTheRoad.Common;
 
 namespace OnTheRoad.Presenters
 {
@@ -24,8 +25,8 @@ namespace OnTheRoad.Presenters
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            //var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
-            var user = this.userService.GetUserInfo(this.HttpContext.User.Identity.Name);
+            var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
+            var user = this.userService.GetUserInfo(userId);
 
             //this.View.Model.City = user.City.Name;
             this.View.Model.FirstName = user.FirstName;

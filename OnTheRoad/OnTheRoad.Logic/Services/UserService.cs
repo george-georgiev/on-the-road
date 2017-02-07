@@ -27,9 +27,9 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork = uniOfWork;
         }
 
-        public IUser GetUserInfo(string userName)
+        public IUser GetUserInfo(string id)
         {
-            var user = this.userRepository.GetByUserName(userName);
+            var user = this.userRepository.GetById(id);
 
             return user;
         }
