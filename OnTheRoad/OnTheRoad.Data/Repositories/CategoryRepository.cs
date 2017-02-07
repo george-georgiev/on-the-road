@@ -8,7 +8,7 @@ namespace OnTheRoad.Data.Repositories
 {
     public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository, IRepository<ICategory>
     {
-        public CategoryRepository(OnTheRoadDbContext context) : base(context)
+        public CategoryRepository(OnTheRoadIdentityDbContext context) : base(context)
         {
         }
 

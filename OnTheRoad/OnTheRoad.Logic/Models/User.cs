@@ -16,7 +16,7 @@ namespace OnTheRoad.Logic.Models
 
         public ICity City { get; set; }
          
-        public string Country { get; set; }
+        public ICountry Country { get; set; }
 
         public int Id { get; set; }
 

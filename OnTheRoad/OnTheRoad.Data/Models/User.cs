@@ -23,11 +23,11 @@ namespace OnTheRoad.Data.Models
             this.subscription = new HashSet<Subscription>();
         }
 
-        //[MinLength(2)]
+        [MinLength(2)]
         [MaxLength(20)]
         public string FirstName { get; set; }
 
-        //[MinLength(2)]
+        [MinLength(2)]
         [MaxLength(20)]
         public string LastName { get; set; }
 
@@ -35,22 +35,22 @@ namespace OnTheRoad.Data.Models
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }
-        
+
         public string Info { get; set; }
 
-        public ICollection<UserImage> Image
+        public virtual ICollection<UserImage> Image
         {
             get { return this.images; }
             set { this.images = value; }
         }
 
-        public ICollection<Review> Reviews
+        public virtual ICollection<Review> Reviews
         {
             get { return this.reviews; }
             set { this.reviews = value; }
         }
 
-        public ICollection<User> FavouriteUsers
+        public virtual ICollection<User> FavouriteUsers
         {
             get { return this.favouriteUsers; }
             set { this.favouriteUsers = value; }

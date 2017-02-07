@@ -3,5 +3,5 @@
 <asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
 
     <h1>Prfile here!</h1>
-
+    <h3><%# Model.FirstName %></h3>
 </asp:Content>

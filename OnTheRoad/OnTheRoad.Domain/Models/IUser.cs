@@ -12,7 +12,7 @@ namespace OnTheRoad.Domain.Models
 
         string Info { get; set; }
 
-        string Country { get; set; }
+        ICountry Country { get; set; }
 
         ICity City { get; set; }
 

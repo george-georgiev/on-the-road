@@ -1,18 +1,37 @@
-﻿using OnTheRoad.Logic.Contracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using OnTheRoad.Domain.Models;
+using OnTheRoad.Domain.Contracts;
+using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.Logic.Services
 {
     public class UserService : IUserService
     {
-        public IUser GetUserInfo(string id)
+        private readonly IUnitOfWork uniOfWork;
+        private readonly IUserRepository userRepository;
+
+        public UserService(IUserRepository userRepository, IUnitOfWork uniOfWork)
         {
-            throw new NotImplementedException();
+            if (userRepository == null)
+            {
+                throw new ArgumentNullException("repository can not be null!");
+            }
+
+            if (uniOfWork == null)
+            {
+                throw new ArgumentNullException("uniOfWork can not be null!");
+            }
+
+            this.userRepository = userRepository;
+            this.uniOfWork = uniOfWork;
+        }
+
+        public IUser GetUserInfo(string userName)
+        {
+            var user = this.userRepository.GetByUserName(userName);
+
+            return user;
         }
 
         public void UpdateUserInfo()

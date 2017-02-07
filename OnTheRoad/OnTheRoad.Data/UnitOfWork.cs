@@ -4,9 +4,9 @@ namespace OnTheRoad.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly OnTheRoadDbContext context;
+        private readonly OnTheRoadIdentityDbContext context;
 
-        public UnitOfWork(OnTheRoadDbContext context)
+        public UnitOfWork(OnTheRoadIdentityDbContext context)
         {
             this.context = context;
         }

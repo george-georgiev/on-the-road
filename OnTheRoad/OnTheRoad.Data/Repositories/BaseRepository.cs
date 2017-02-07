@@ -13,13 +13,13 @@ namespace OnTheRoad.Data.Repositories
         where EntityType : BaseEntity
         where DomainType : IIdentifiable
     {
-        public BaseRepository(OnTheRoadDbContext context)
+        public BaseRepository(OnTheRoadIdentityDbContext context)
         {
             this.Context = context;
             this.DbSet = this.Context.Set<EntityType>();
         }
 
-        protected OnTheRoadDbContext Context { get; set; }
+        protected OnTheRoadIdentityDbContext Context { get; set; }
 
         protected DbSet<EntityType> DbSet { get; set; }
 

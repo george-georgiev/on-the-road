@@ -20,7 +20,7 @@ namespace OnTheRoad.Presenters
             }
 
             this.authenticationServiceFactory = authServiceFactory;
-            View.LoginUser += View_LogInUser;
+            this.View.LoginUser += View_LogInUser;
         }
 
         private void View_LogInUser(object sender, LoginEventArgs e)
@@ -29,7 +29,7 @@ namespace OnTheRoad.Presenters
 
             var result = loginService.LoginUser(e.UserEmail, e.UserPassword, e.RememberMe);
 
-            View.Model.LoginStatus = (LoginStatus)Enum.Parse(typeof(LoginStatus), result, true);
+            this.View.Model.LoginStatus = (LoginStatus)Enum.Parse(typeof(LoginStatus), result, true);
         }
     }
 }
