@@ -1,11 +1,8 @@
 namespace OnTheRoad.Data.Migrations
 {
-    using System;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<OnTheRoad.Data.OnTheRoadIdentityDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<OnTheRoadIdentityDbContext>
     {
         public Configuration()
         {
@@ -13,7 +10,7 @@ namespace OnTheRoad.Data.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(OnTheRoad.Data.OnTheRoadIdentityDbContext context)
+        protected override void Seed(OnTheRoadIdentityDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

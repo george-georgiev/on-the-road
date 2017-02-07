@@ -4,7 +4,7 @@ using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Models
 {
-    public class User : IUser, IIdentifiable
+    public class User : IUser
     {
         public string FirstName { get; set; }
 
@@ -18,7 +18,7 @@ namespace OnTheRoad.Logic.Models
          
         public ICountry Country { get; set; }
 
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public IImage Image { get; set; }
     

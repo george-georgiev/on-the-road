@@ -63,6 +63,10 @@
   <ItemGroup>
     <Compile Include="Enums\Rating.cs" />
     <Compile Include="Enums\TripStatus.cs" />
+    <Compile Include="Migrations\201702071253599_Basic Models.cs" />
+    <Compile Include="Migrations\201702071253599_Basic Models.Designer.cs">
+      <DependentUpon>201702071253599_Basic Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -91,6 +95,11 @@
       <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
       <Name>OnTheRoad.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702071253599_Basic Models.resx">
+      <DependentUpon>201702071253599_Basic Models.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

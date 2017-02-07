@@ -21,12 +21,8 @@ namespace OnTheRoad.Data.Repositories
 
         protected DbSet<User> DbSet { get; set; }
 
-        // not implemented
-        public void Add(IUser entity)
-        {
-        }
 
-        // not impemented
+        // TODO: not impemented
         public void Delete(IUser entity)
         {
         }
@@ -38,9 +34,16 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetByUserName(string userName)
         {
-            Mapper.Initialize(config => config.CreateMap<User, IUser>());
+            Mapper.Initialize(config =>
+           {
+               config.CreateMap<User, IUser>();
+               config.CreateMap<City, ICity>();
+               config.CreateMap<Subscription, ISubscribtion>();
+               config.CreateMap<Review, IReview>();
+               config.CreateMap<Country, ICountry>();
+               config.CreateMap<UserImage, IImage>();
+           });
 
-            //var found = this.DbSet.Find(userName);
             var found = this.DbSet.Where(x => x.UserName == userName).Single();
             var mapped = Mapper.Map<User, IUser>(found);
 

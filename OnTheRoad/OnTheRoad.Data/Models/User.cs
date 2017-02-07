@@ -10,14 +10,12 @@ namespace OnTheRoad.Data.Models
 {
     public class User : IdentityUser
     {
-        private ICollection<UserImage> images;
         private ICollection<Review> reviews;
         private ICollection<User> favouriteUsers;
         private ICollection<Subscription> subscription;
 
         public User()
         {
-            this.images = new HashSet<UserImage>();
             this.reviews = new HashSet<Review>();
             this.favouriteUsers = new HashSet<User>();
             this.subscription = new HashSet<Subscription>();
@@ -38,11 +36,10 @@ namespace OnTheRoad.Data.Models
 
         public string Info { get; set; }
 
-        public virtual ICollection<UserImage> Image
-        {
-            get { return this.images; }
-            set { this.images = value; }
-        }
+        [ForeignKey("Image")]
+        public int? ImageId { get; set; }
+
+        public virtual UserImage Image { get; set; }
 
         public virtual ICollection<Review> Reviews
         {

@@ -2,8 +2,10 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface IUser : IIdentifiable
+    public interface IUser 
     {
+        string Id { get; set; }
+
         string FirstName { get; set; }
 
         string LastName { get; set; }
