@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace OnTheRoad.EventArgsClasses
 {
-    public class ProfileInfoEventArgs
+    public class ProfileInfoEventArgs : EventArgs
     {
         public string Username { get; set; }
 

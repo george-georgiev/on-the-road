@@ -11,7 +11,9 @@ namespace OnTheRoad.Logic.Models
         public string LastName { get; set; }
 
         public string Email { get; set; }
-         
+
+        public string Username { get; set; }
+
         public string Info { get; set; }
 
         public ICity City { get; set; }

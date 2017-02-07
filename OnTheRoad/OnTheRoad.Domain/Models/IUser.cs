@@ -12,6 +12,8 @@ namespace OnTheRoad.Domain.Models
 
         string Email { get; set; }
 
+        string Username { get; set; }
+
         string Info { get; set; }
 
         ICountry Country { get; set; }

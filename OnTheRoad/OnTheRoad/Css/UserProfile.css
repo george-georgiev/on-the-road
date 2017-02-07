@@ -34,3 +34,12 @@
 .nav > li > a:focus {
     text-decoration: underline;
 }
+
+#MainContent_ProfileContent_FormViewProfileInfo {
+    display: inline-block;
+}
+
+.font-awesome {
+    font-size: 1.2em;
+    color: forestgreen;
+}

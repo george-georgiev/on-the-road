@@ -70,9 +70,6 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("model can not be null!");
             }
 
-            Mapper.Initialize(config => config.CreateMap<IUser, User>());
-
-            // TODO: IUser should not implement IIdentifiable
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id.ToString()).FirstOrDefault();
             if (entity == null)
             {

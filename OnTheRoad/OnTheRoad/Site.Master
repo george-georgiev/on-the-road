@@ -12,6 +12,7 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <asp:ContentPlaceHolder ID="ContentPlaceHolderCSSMaster" runat="server">
     </asp:ContentPlaceHolder>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />

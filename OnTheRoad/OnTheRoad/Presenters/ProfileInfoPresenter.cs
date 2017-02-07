@@ -29,6 +29,7 @@ namespace OnTheRoad.Presenters
             var user = this.userService.GetUserInfo(userId);
 
             //this.View.Model.City = user.City.Name;
+            this.View.Model.Username = user.Username;
             this.View.Model.FirstName = user.FirstName;
             this.View.Model.LastName = user.LastName;
             this.View.Model.Email = user.Email;
