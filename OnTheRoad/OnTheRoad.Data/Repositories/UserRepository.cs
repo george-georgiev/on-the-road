@@ -62,11 +62,25 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("model can not be null!");
             }
 
+            this.MapIUserToUser(model);
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id.ToString()).FirstOrDefault();
             if (entity == null)
             {
                 entity = Mapper.Map<IUser, User>(model);
             }
+            else
+            {
+                entity = Mapper.Map<IUser, User>(model, entity);
+            }
+
+            //entity.FirstName = model.FirstName;
+            //entity.LastName = model.LastName;
+            //entity.Info = model.Info;
+            //entity.PhoneNumber = model.PhoneNumber;
+            //entity.UserName = model.Username;
+            //entity.CityId = model.City.Id;
+
+            //entity.CityId = model.City.Id;
 
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
@@ -82,6 +96,18 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<Review, IReview>();
                 config.CreateMap<Country, ICountry>();
                 config.CreateMap<UserImage, IImage>();
+            });
+        }
+
+        private void MapIUserToUser(IUser model)
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<IUser, User>().ForMember(x => x.City, opt => opt.Ignore());
+                config.CreateMap<ISubscribtion, Subscription>();
+                config.CreateMap<IReview, Review>();
+                config.CreateMap<ICountry, Country>();
+                config.CreateMap<IImage, UserImage>();
             });
         }
     }

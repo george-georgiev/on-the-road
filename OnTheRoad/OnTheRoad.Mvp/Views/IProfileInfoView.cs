@@ -8,5 +8,7 @@ namespace OnTheRoad.Mvp.Profile.Contracts
     public interface IProfileInfoView : IView<ProfileInfoModel>
     { 
         event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
+
+        event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
     }
 }

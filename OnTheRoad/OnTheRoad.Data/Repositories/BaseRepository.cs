@@ -68,11 +68,10 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("model can not be null!");
             }
 
-            Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
-
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id).FirstOrDefault();
             if (entity == null)
             {
+                Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
                 entity = Mapper.Map<DomainType, EntityType>(model);
             }
 

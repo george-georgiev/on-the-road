@@ -13,35 +13,45 @@
                         <asp:Literal Text='<%# this.Model.Username %>' runat="server" />
                     </h2>
                     <br />
-                    <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
-                    <div class="form-group">
-                        <i class="fa fa-user-circle font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%# Item.FirstName + " " + Item.LastName %>' runat="server" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <i class="fa fa-user-circle font-awesome" aria-hidden="true"></i>
+                                <asp:Literal Text='<%# Item.FirstName + " " + Item.LastName %>' runat="server" />
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-envelope-o font-awesome" aria-hidden="true"></i>
+                                <asp:Literal Text='<%# Item.Email %>' runat="server" />
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
+                                <asp:Literal Text='<%# Item.City %>' runat="server" />
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
+                                <asp:Literal Text='<%# Item.PhoneNumber %>' runat="server" />
+                            </div>
+                            <div class="form-group">
+                                <i class="fa fa-id-card-o font-awesome" aria-hidden="true"></i>
+                                <asp:Literal Text='<%# Item.Info %>' runat="server" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <i class="fa fa-envelope-o font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%# Item.Email %>' runat="server" />
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%# Item.City + " " + Item.Country%>' runat="server" />
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%# Item.PhoneNumber %>' runat="server" />
-                    </div>
-                    <div class="form-group">
-                        <i class="fa fa-id-card-o font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%# Item.Info %>' runat="server" />
-                    </div>
+                    <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
 
                 </ItemTemplate>
 
                 <EditItemTemplate>
-                    <h2 class="page-headers">Смяна на профил</h2>
+                    <h2 class="page-headers">Промяна на профил</h2>
                     <br />
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group ">
                                 <label>първо име</label>
                                 <asp:TextBox ID="FirstName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
@@ -52,14 +62,13 @@
                             </div>
                             <div class="form-group">
                                 <label>град</label>
-                                <uc:CitiesDropDown runat="server" />
+                                <uc:CitiesDropDown ID="City" runat="server" />
                             </div>
                         </div>
-                        <div class="col-md-6">
-                          
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>фамилно име</label>
-                                <asp:TextBox ID="LastName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
+                                <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
                             </div>
                             <div class="form-group">
                                 <label>тел. номер</label>
@@ -69,12 +78,11 @@
                     </div>
                     <div class="form-group">
                         <label>кратка информация</label>
-                        <asp:TextBox TextMode="MultiLine" Rows="10" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                        <asp:TextBox ID="Info" TextMode="MultiLine" Rows="10" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
                     </div>
                     <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
-            <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
 
         </div>
     </div>

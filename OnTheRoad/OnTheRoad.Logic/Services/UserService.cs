@@ -34,9 +34,17 @@ namespace OnTheRoad.Logic.Services
             return user;
         }
 
-        public void UpdateUserInfo()
+        public void UpdateUserInfo(IUser user, string firstName, string lastName, string username, string phoneNumber, string info, ICity city)
         {
-            throw new NotImplementedException();
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Username = username;
+            user.PhoneNumber = phoneNumber;
+            user.Info = info;
+            user.City = city;
+
+            this.userRepository.Update(user);
+            this.uniOfWork.Commit();
         }
     }
 }
