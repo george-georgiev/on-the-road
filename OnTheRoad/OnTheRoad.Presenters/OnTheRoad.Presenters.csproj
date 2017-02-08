@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</ProjectGuid>
+    <ProjectGuid>{1AC0CC7A-2E39-432C-9AC7-6F48A0EFA44C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnTheRoad.Logic</RootNamespace>
-    <AssemblyName>OnTheRoad.Logic</AssemblyName>
+    <RootNamespace>OnTheRoad.Presenters</RootNamespace>
+    <AssemblyName>OnTheRoad.Presenters</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,16 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,32 +38,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebFormsMvp, Version=1.4.5.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebFormsMvp.1.4.5.0\lib\WebFormsMvp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICategoryService.cs" />
-    <Compile Include="Contracts\ICityService.cs" />
-    <Compile Include="Contracts\ILoginService.cs" />
-    <Compile Include="Contracts\IRegisterService.cs" />
-    <Compile Include="Contracts\ITripService.cs" />
-    <Compile Include="Contracts\IUserService.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\City.cs" />
-    <Compile Include="Models\Trip.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\CityService.cs" />
-    <Compile Include="Services\TripService.cs" />
-    <Compile Include="Services\UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
-      <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
-      <Name>OnTheRoad.Domain</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

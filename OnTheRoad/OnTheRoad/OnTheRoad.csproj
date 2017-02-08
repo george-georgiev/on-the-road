@@ -64,6 +64,10 @@
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Extensions.Factory, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Extensions.Factory.3.2.1.0\lib\net45-full\Ninject.Extensions.Factory.dll</HintPath>
       <Private>True</Private>
@@ -190,6 +194,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -234,6 +239,7 @@
     <Content Include="Site.Master" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Trips.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -249,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BindingModules\DataBindingModule.cs" />
+    <Compile Include="App_Start\BindingModules\ServiceBindingModule.cs" />
     <Compile Include="Common\UserInfoUtility.cs" />
     <Compile Include="Account\Lockout.aspx.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
@@ -276,6 +283,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
+    <Compile Include="CustomControllers\CategoryOverview.ascx.cs">
+      <DependentUpon>CategoryOverview.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\CategoryOverview.ascx.designer.cs">
+      <DependentUpon>CategoryOverview.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControllers\Contracts\ICategoryOverviewView.cs" />
     <Compile Include="CustomControllers\CitiesDropDown.ascx.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -292,22 +307,26 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Enums\LoginStatus.cs" />
+    <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
     <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileInfoEventArgs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryOverviewModel.cs" />
     <Compile Include="Models\CitiesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProfileInfoModel.cs" />
     <Compile Include="Presenters\CitiesPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\ProfileInfoPresenter.cs" />
-    <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
     <Compile Include="Account\Contracts\ILoginView.cs" />
     <Compile Include="Account\Contracts\IRegisterView.cs" />
     <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Presenters\CategoryOverviewPresenter.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Profile\Contracts\IProfileInfoView.cs" />
     <Compile Include="Profile\ProfileInfo.aspx.cs">
       <DependentUpon>ProfileInfo.aspx</DependentUpon>
@@ -352,6 +371,13 @@
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Trips.aspx.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Trips.aspx.designer.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
