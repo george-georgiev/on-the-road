@@ -9,7 +9,7 @@ namespace OnTheRoad.Data.Repositories
 {
     public class TripRepository : BaseRepository<Trip, ITrip>, ITripRepository
     {
-        public TripRepository(OnTheRoadDbContext context) : base(context)
+        public TripRepository(OnTheRoadIdentityDbContext context) : base(context)
         {
         }
 

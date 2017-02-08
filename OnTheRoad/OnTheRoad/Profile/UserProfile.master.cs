@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace OnTheRoad
+namespace OnTheRoad.Profile
 {
-    public partial class Contact : Page
+    public partial class UserProfile : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

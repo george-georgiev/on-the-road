@@ -5,9 +5,11 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
 using OnTheRoad.Data.Models;
+using OnTheRoad.Data;
 
 namespace OnTheRoad.Identity
 {
+    // TODO: We might not need it
     public partial class Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301883

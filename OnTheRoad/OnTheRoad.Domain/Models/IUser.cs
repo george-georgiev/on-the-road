@@ -2,11 +2,25 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface IUser : IIdentifiable
+    public interface IUser 
     {
+        string Id { get; set; }
+
+        string FirstName { get; set; }
+
+        string LastName { get; set; }
+
+        string Email { get; set; }
+
+        string Username { get; set; }
+
+        string Info { get; set; }
+
+        ICountry Country { get; set; }
+
         ICity City { get; set; }
 
-        string Phone { get; set; }
+        string PhoneNumber { get; set; }
 
         ICollection<IUser> FavouriteUsers { get; set; }
 
@@ -14,7 +28,7 @@ namespace OnTheRoad.Domain.Models
 
         string PersonalInfo { get; set; }
 
-        ISubscribtion Subscription { get; set; }
+        ICollection<ISubscribtion> Subscription { get; set; }
 
         ICollection<IReview> Reviews { get; set; }
     }

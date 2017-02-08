@@ -3,7 +3,7 @@ using OnTheRoad.Data.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace OnTheRoad.Identity
+namespace OnTheRoad.Data
 {
     public class OnTheRoadIdentityDbContext : IdentityDbContext<User>
     {
@@ -11,6 +11,26 @@ namespace OnTheRoad.Identity
             : base("OnTheRoadDB", throwIfV1Schema: false)
         {
         }
+
+        public virtual DbSet<Category> Categories { get; set; }
+
+        public virtual DbSet<City> Cities { get; set; }
+
+        public virtual DbSet<Country> Countries { get; set; }
+
+        public virtual DbSet<Review> Reviews { get; set; }
+
+        public virtual DbSet<Subscription> Subscriptions { get; set; }
+
+        public virtual DbSet<Tag> Tags { get; set; }
+
+        public virtual DbSet<Trip> Trips { get; set; }
+
+        public virtual DbSet<TripImage> TripImages { get; set; }
+
+        //public virtual DbSet<ApplicationUser> Users { get; set; }
+
+        public virtual DbSet<UserImage> UserImages { get; set; }
 
         public static OnTheRoadIdentityDbContext Create()
         {

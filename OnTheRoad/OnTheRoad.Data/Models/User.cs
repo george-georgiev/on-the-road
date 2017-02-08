@@ -10,24 +10,22 @@ namespace OnTheRoad.Data.Models
 {
     public class User : IdentityUser
     {
-        private ICollection<UserImage> images;
         private ICollection<Review> reviews;
         private ICollection<User> favouriteUsers;
         private ICollection<Subscription> subscription;
 
         public User()
         {
-            this.images = new HashSet<UserImage>();
             this.reviews = new HashSet<Review>();
             this.favouriteUsers = new HashSet<User>();
             this.subscription = new HashSet<Subscription>();
         }
 
-        //[MinLength(2)]
+        [MinLength(2)]
         [MaxLength(20)]
         public string FirstName { get; set; }
 
-        //[MinLength(2)]
+        [MinLength(2)]
         [MaxLength(20)]
         public string LastName { get; set; }
 
@@ -35,22 +33,21 @@ namespace OnTheRoad.Data.Models
         public int? CityId { get; set; }
 
         public virtual City City { get; set; }
-        
+
         public string Info { get; set; }
 
-        public ICollection<UserImage> Image
-        {
-            get { return this.images; }
-            set { this.images = value; }
-        }
+        [ForeignKey("Image")]
+        public int? ImageId { get; set; }
 
-        public ICollection<Review> Reviews
+        public virtual UserImage Image { get; set; }
+
+        public virtual ICollection<Review> Reviews
         {
             get { return this.reviews; }
             set { this.reviews = value; }
         }
 
-        public ICollection<User> FavouriteUsers
+        public virtual ICollection<User> FavouriteUsers
         {
             get { return this.favouriteUsers; }
             set { this.favouriteUsers = value; }

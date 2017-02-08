@@ -11,7 +11,7 @@ namespace OnTheRoad.App_Start.BindingModules
     {
         public override void Load()
         {
-            this.Bind<OnTheRoadDbContext>()
+            this.Bind<OnTheRoadIdentityDbContext>()
                 .ToSelf()
                 .InRequestScope();
 
@@ -23,6 +23,9 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ITripRepository>()
                 .To<TripRepository>();
+
+            this.Bind<IUserRepository>()
+                .To<UserRepository>();
         }
     }
 }

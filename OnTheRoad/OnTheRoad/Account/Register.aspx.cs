@@ -1,15 +1,12 @@
 ﻿using System;
-
+using System.Web;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-
 using OnTheRoad.Models;
 using OnTheRoad.Presenters;
 using OnTheRoad.Account.Contracts;
 using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Common;
-using System.Web.UI.WebControls;
-using System.Web;
 
 namespace OnTheRoad.Account
 {
@@ -30,7 +27,14 @@ namespace OnTheRoad.Account
                 return;
             }
 
-            CreateUser(this, new RegisterEventArgs { UserEmail = this.Email.Text, UserPassword = this.Password.Text, OwinContext = this.Context.GetOwinContext() });
+            CreateUser(this, new RegisterEventArgs
+            {
+                UserEmail = this.Email.Text,
+                UserPassword = this.Password.Text,
+                FirstName = this.FirstName.Text,
+                LastName = this.LastName.Text,
+                OwinContext = this.Context.GetOwinContext()
+            });
 
             if (this.Model.HasSucceeded)
             {

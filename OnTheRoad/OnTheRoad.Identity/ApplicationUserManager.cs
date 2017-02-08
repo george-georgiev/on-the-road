@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using OnTheRoad.Identity.MessageServices;
 using OnTheRoad.Data.Models;
+using OnTheRoad.Data;
 
 namespace OnTheRoad.Identity
 {

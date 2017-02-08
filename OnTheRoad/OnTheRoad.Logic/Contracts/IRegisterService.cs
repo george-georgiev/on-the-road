@@ -2,6 +2,6 @@
 {
    public interface IRegisterService
     {
-        void CreateUser(string email, string password);
+        void CreateUser(string email, string password, string firstName, string lastName);
     }
 }
