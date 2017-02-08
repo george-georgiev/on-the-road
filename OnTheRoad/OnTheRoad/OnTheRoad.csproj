@@ -191,6 +191,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\UserProfile.css" />
+    <Content Include="CustomControllers\CitiesDropDown.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -275,6 +276,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
+    <Compile Include="CustomControllers\CitiesDropDown.ascx.cs">
+      <DependentUpon>CitiesDropDown.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\CitiesDropDown.ascx.designer.cs">
+      <DependentUpon>CitiesDropDown.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControllers\Contracts\ICitiesView.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -288,8 +297,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CitiesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProfileInfoModel.cs" />
+    <Compile Include="Presenters\CitiesPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\ProfileInfoPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
@@ -350,9 +361,7 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CustomControllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">
       <Project>{95562e63-dc49-42f5-ae33-e32a29eb5997}</Project>

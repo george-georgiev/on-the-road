@@ -1,14 +1,15 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Profile/UserProfile.master" AutoEventWireup="true" CodeBehind="ProfileInfo.aspx.cs" Inherits="OnTheRoad.Profile.ProfileInfo" %>
 
-<asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
+<%@ Register TagPrefix="uc" TagName="CitiesDropDown"  Src="~/CustomControllers/CitiesDropDown.ascx" %>
 
+<asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
 
     <div class="row text-center">
         <div class="col-md-12">
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Models.ProfileInfoModel">
                 <ItemTemplate>
-
+                    <uc:CitiesDropDown runat="server" />
                     <h2 id="username">
                         <asp:Literal Text="<%# this.Model.Username %>" runat="server" />
                     </h2>
@@ -34,6 +35,7 @@
                         <i class="fa fa-id-card-o font-awesome" aria-hidden="true"></i>
                         <asp:Literal Text='<%# Item.Info %>' runat="server" />
                     </div>
+
                 </ItemTemplate>
 
                 <EditItemTemplate>

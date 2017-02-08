@@ -26,6 +26,12 @@ namespace OnTheRoad.App_Start.BindingModules
             this.Bind<IUserService>()
                 .To<UserService>();
 
+            this.Bind<ICityService>()
+                .To<CityService>();
+
+            this.Bind<ICityRepository>()
+                .To<CityRepository>();
+
             this.Bind<IUserRepository>()
                 .To<UserRepository>();
         }

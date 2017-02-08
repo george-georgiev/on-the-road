@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Models
 {
-    class City
+    public class City : ICity, IIdentifiable
     {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
     }
 }

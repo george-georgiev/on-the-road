@@ -4,6 +4,6 @@
     {
         string Name { get; set; }
 
-        ICountry Country { get; set; }
+        //ICountry Country { get; set; }
     }
 }
