@@ -1,13 +1,13 @@
 ﻿using System;
-using Microsoft.Owin;
-using Moq;
-using NUnit.Framework;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Mvp.Account.Contracts;
 using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Factories;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.EventArgsClasses;
+using NUnit.Framework;
+using Moq;
+using Microsoft.Owin;
 
 namespace OnTheRoad.Presenters.Tests
 {
