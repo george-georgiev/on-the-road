@@ -325,7 +325,6 @@
     <Compile Include="Account\Contracts\IRegisterView.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenter.cs" />
-    <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Profile\Contracts\IProfileInfoView.cs" />
     <Compile Include="Profile\ProfileInfo.aspx.cs">

@@ -10,6 +10,9 @@ namespace OnTheRoad.App_Start.BindingModules
 {
     public class ServiceBindingModule : NinjectModule
     {
+        /// <summary>
+        /// Binds all services.
+        /// </summary>
         public override void Load()
         {
             var typesToExclude = this.GetTypesToExclude();

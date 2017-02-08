@@ -23,10 +23,7 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ITripRepository>()
                 .To<TripRepository>();
-
-            this.Bind<ICityService>()
-                .To<CityService>();
-
+           
             this.Bind<ICityRepository>()
                 .To<CityRepository>();
 
