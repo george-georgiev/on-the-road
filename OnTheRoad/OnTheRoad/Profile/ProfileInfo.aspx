@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Profile/UserProfile.master" AutoEventWireup="true" CodeBehind="ProfileInfo.aspx.cs" Inherits="OnTheRoad.Profile.ProfileInfo" %>
 
-<%@ Register TagPrefix="uc" TagName="CitiesDropDown"  Src="~/CustomControllers/CitiesDropDown.ascx" %>
+<%@ Register TagPrefix="uc" TagName="CitiesDropDown" Src="~/CustomControllers/CitiesDropDown.ascx" %>
 
 <asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
 
@@ -9,8 +9,7 @@
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
-                    <uc:CitiesDropDown runat="server" /> 
-                    <h2 id="username">
+                    <h2 class="page-headers">
                         <asp:Literal Text='<%# this.Model.Username %>' runat="server" />
                     </h2>
                     <br />
@@ -39,10 +38,7 @@
                 </ItemTemplate>
 
                 <EditItemTemplate>
-                    <div class="form-group">
-                        <label>потребителско име</label>
-                        <asp:TextBox ID="Username" Text="<%# this.Model.Username %>" runat="server" CssClass="form-control" />
-                    </div>
+                    <h2 class="page-headers">Смяна на профил</h2>
                     <br />
                     <div class="row">
                         <div class="col-md-6">
@@ -51,33 +47,29 @@
                                 <asp:TextBox ID="FirstName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
                             </div>
                             <div class="form-group">
+                                <label>потребителско име</label>
+                                <asp:TextBox ID="Username" Text="<%# this.Model.Username %>" runat="server" CssClass="form-control" />
+                            </div>
+                            <div class="form-group">
                                 <label>град</label>
-                                <asp:TextBox ID="City" Text='<%# Item.City %>' runat="server" CssClass="form-control" />
+                                <uc:CitiesDropDown runat="server" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                          
+                            <div class="form-group">
+                                <label>фамилно име</label>
+                                <asp:TextBox ID="LastName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
                             </div>
                             <div class="form-group">
                                 <label>тел. номер</label>
                                 <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>фамилно име</label>
-                                <asp:TextBox ID="LastName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>държава</label>
-                                <asp:TextBox ID="Country" Text='<%# Item.City %>' runat="server" CssClass="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>имейл</label>
-                                <br />
-                                <asp:Literal Text='<%# Item.Email %>' runat="server" />
-                            </div>
-                        </div>
                     </div>
                     <div class="form-group">
                         <label>кратка информация</label>
-                        <asp:TextBox TextMode="MultiLine" Rows="5" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                        <asp:TextBox TextMode="MultiLine" Rows="10" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
                     </div>
                     <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>
