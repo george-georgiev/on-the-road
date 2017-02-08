@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Moq;
 using NUnit.Framework;
-using OnTheRoad.EventArgsClasses;
+using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad.Tests.EventArgsClasses
 {

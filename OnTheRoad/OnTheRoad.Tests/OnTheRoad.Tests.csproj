@@ -93,9 +93,9 @@
       <Project>{e4b2c057-17cb-4da4-bd4f-148bf976591c}</Project>
       <Name>OnTheRoad.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OnTheRoad\OnTheRoad.csproj">
-      <Project>{78256b09-977f-472e-9455-54a5b27199f6}</Project>
-      <Name>OnTheRoad</Name>
+    <ProjectReference Include="..\OnTheRoad.Mvp\OnTheRoad.Mvp.csproj">
+      <Project>{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}</Project>
+      <Name>OnTheRoad.Mvp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

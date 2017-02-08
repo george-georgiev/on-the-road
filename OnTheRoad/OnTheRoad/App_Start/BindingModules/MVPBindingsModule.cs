@@ -4,9 +4,9 @@ using Ninject;
 using Ninject.Activation;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
-using OnTheRoad.App_Start.Factories;
 using WebFormsMvp;
 using WebFormsMvp.Binder;
+using OnTheRoad.Mvp.Factories;
 
 namespace OnTheRoad.App_Start.BindingModules
 {

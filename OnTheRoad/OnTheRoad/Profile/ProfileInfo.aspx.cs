@@ -1,12 +1,12 @@
 ﻿using System;
-using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Models;
-using OnTheRoad.Presenters;
-using OnTheRoad.Profile.Contracts;
 using WebFormsMvp;
 using WebFormsMvp.Web;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
+using OnTheRoad.Mvp.Presenters;
+using OnTheRoad.Mvp.Models;
+using OnTheRoad.Mvp.Profile.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad.Profile
 {

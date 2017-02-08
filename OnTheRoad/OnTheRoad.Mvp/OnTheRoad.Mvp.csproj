@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnTheRoad.Mvp</RootNamespace>
+    <AssemblyName>OnTheRoad.Mvp</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebFormsMvp, Version=1.4.5.0, Culture=neutral, PublicKeyToken=537f18701145dff0, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebFormsMvp.1.4.5.0\lib\WebFormsMvp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\UserInfoUtility.cs" />
+    <Compile Include="Enums\LoginStatus.cs" />
+    <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
+    <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
+    <Compile Include="EventArgsClasses\ProfileInfoEventArgs.cs" />
+    <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
+    <Compile Include="Factories\CustomWebFormsMvpPresenterFactory.cs" />
+    <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
+    <Compile Include="Factories\ICustomPresenterFactory.cs" />
+    <Compile Include="Models\CategoryOverviewModel.cs" />
+    <Compile Include="Models\CitiesModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\ProfileInfoModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Presenters\CategoryOverviewPresenter.cs" />
+    <Compile Include="Presenters\CitiesPresenter.cs" />
+    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\ProfileInfoPresenter.cs" />
+    <Compile Include="Presenters\RegisterPresenter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ICategoryOverviewView.cs" />
+    <Compile Include="Views\ICitiesView.cs" />
+    <Compile Include="Views\ILoginView.cs" />
+    <Compile Include="Views\IProfileInfoView.cs" />
+    <Compile Include="Views\IRegisterView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
+      <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
+      <Name>OnTheRoad.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
+      <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
+      <Name>OnTheRoad.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

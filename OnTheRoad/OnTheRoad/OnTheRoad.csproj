@@ -256,7 +256,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BindingModules\DataBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\ServiceBindingModule.cs" />
-    <Compile Include="Common\UserInfoUtility.cs" />
     <Compile Include="Account\Lockout.aspx.cs">
       <DependentUpon>Lockout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,9 +272,6 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Start\Factories\CustomWebFormsMvpPresenterFactory.cs" />
-    <Compile Include="App_Start\Factories\IAuthenticationServiceFactory.cs" />
-    <Compile Include="App_Start\Factories\ICustomPresenterFactory.cs" />
     <Compile Include="App_Start\BindingModules\MVPBindingsModule.cs" />
     <Compile Include="App_Start\NinjectKernelInstanceProvider.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
@@ -290,7 +286,6 @@
     <Compile Include="CustomControllers\CategoryOverview.ascx.designer.cs">
       <DependentUpon>CategoryOverview.ascx</DependentUpon>
     </Compile>
-    <Compile Include="CustomControllers\Contracts\ICategoryOverviewView.cs" />
     <Compile Include="CustomControllers\CitiesDropDown.ascx.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -298,7 +293,6 @@
     <Compile Include="CustomControllers\CitiesDropDown.ascx.designer.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
     </Compile>
-    <Compile Include="CustomControllers\Contracts\ICitiesView.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -306,27 +300,9 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Enums\LoginStatus.cs" />
-    <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
-    <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
-    <Compile Include="EventArgsClasses\ProfileInfoEventArgs.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CategoryOverviewModel.cs" />
-    <Compile Include="Models\CitiesModel.cs" />
-    <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\ProfileInfoModel.cs" />
-    <Compile Include="Presenters\CitiesPresenter.cs" />
-    <Compile Include="Presenters\LoginPresenter.cs" />
-    <Compile Include="Presenters\ProfileInfoPresenter.cs" />
-    <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
-    <Compile Include="Account\Contracts\ILoginView.cs" />
-    <Compile Include="Account\Contracts\IRegisterView.cs" />
-    <Compile Include="Models\RegisterModel.cs" />
-    <Compile Include="Presenters\CategoryOverviewPresenter.cs" />
-    <Compile Include="Presenters\RegisterPresenter.cs" />
-    <Compile Include="Profile\Contracts\IProfileInfoView.cs" />
     <Compile Include="Profile\ProfileInfo.aspx.cs">
       <DependentUpon>ProfileInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -403,6 +379,10 @@
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
       <Name>OnTheRoad.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Mvp\OnTheRoad.Mvp.csproj">
+      <Project>{e19ca2c7-fcb4-4a9b-8de4-4e9ca600bf26}</Project>
+      <Name>OnTheRoad.Mvp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

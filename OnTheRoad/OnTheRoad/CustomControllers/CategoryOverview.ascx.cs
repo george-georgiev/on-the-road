@@ -1,10 +1,10 @@
-﻿using OnTheRoad.CustomControllers.Contracts;
-using System;
+﻿using System;
 using WebFormsMvp.Web;
-using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Models;
-using OnTheRoad.Presenters;
 using WebFormsMvp;
+using OnTheRoad.Mvp.Presenters;
+using OnTheRoad.Mvp.Models;
+using OnTheRoad.Mvp.CustomControllers.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad.CustomControllers
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
-using OnTheRoad.Account.Contracts;
-using OnTheRoad.App_Start.Factories;
-using OnTheRoad.Presenters;
 using WebFormsMvp;
+using OnTheRoad.Mvp.Account.Contracts;
+using OnTheRoad.Mvp.Presenters;
+using OnTheRoad.Mvp.Factories;
 
 namespace OnTheRoad.Tests
 {

@@ -1,13 +1,13 @@
 ﻿using System;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using OnTheRoad.Account.Contracts;
 using OnTheRoad.Common;
-using OnTheRoad.Enums;
-using OnTheRoad.EventArgsClasses;
-using OnTheRoad.Models;
-using OnTheRoad.Presenters;
 using System.Web;
+using OnTheRoad.Mvp.Presenters;
+using OnTheRoad.Mvp.Models;
+using OnTheRoad.Mvp.Account.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
+using OnTheRoad.Mvp.Enums;
 
 namespace OnTheRoad.Account
 {

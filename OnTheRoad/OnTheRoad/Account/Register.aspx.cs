@@ -2,11 +2,11 @@
 using System.Web;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using OnTheRoad.Models;
-using OnTheRoad.Presenters;
-using OnTheRoad.Account.Contracts;
-using OnTheRoad.EventArgsClasses;
 using OnTheRoad.Common;
+using OnTheRoad.Mvp.Presenters;
+using OnTheRoad.Mvp.Models;
+using OnTheRoad.Mvp.Account.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad.Account
 {

@@ -5,12 +5,11 @@ using Ninject.Activation;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
 
-using OnTheRoad.App_Start.Factories;
-
 using Microsoft.AspNet.Identity.Owin;
 
 using OnTheRoad.Identity;
 using OnTheRoad.Logic.Contracts;
+using OnTheRoad.Mvp.Factories;
 
 namespace OnTheRoad.App_Start.BindingModules
 {

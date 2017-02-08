@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OnTheRoad.Mvp.CustomControllers.Contracts;
+using OnTheRoad.Mvp.Models;
+using OnTheRoad.Mvp.Presenters;
+using System;
 using System.Collections.Generic;
-using OnTheRoad.CustomControllers.Contracts;
-using OnTheRoad.Models;
-using OnTheRoad.Presenters;
 using WebFormsMvp;
 using WebFormsMvp.Web;
 
