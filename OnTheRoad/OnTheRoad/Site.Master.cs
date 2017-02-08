@@ -76,7 +76,7 @@ namespace OnTheRoad
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
-            Context.GetOwinContext().Authentication.SignOut("ApplicationCookie");
+            this.Context.GetOwinContext().Authentication.SignOut("ApplicationCookie");
         }
     }
 }

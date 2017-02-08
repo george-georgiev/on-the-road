@@ -7,11 +7,11 @@
     <div class="row text-center">
         <div class="col-md-12">
             <asp:FormView ID="FormViewProfileInfo" runat="server"
-                ItemType="OnTheRoad.Models.ProfileInfoModel">
+                ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
-                    <uc:CitiesDropDown runat="server" />
+                    <uc:CitiesDropDown runat="server" /> 
                     <h2 id="username">
-                        <asp:Literal Text="<%# this.Model.Username %>" runat="server" />
+                        <asp:Literal Text='<%# this.Model.Username %>' runat="server" />
                     </h2>
                     <br />
                     <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
@@ -29,7 +29,7 @@
                     </div>
                     <div class="form-group">
                         <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
-                        <asp:Literal Text='<%#Item.PhoneNumber%>' runat="server" />
+                        <asp:Literal Text='<%# Item.PhoneNumber %>' runat="server" />
                     </div>
                     <div class="form-group">
                         <i class="fa fa-id-card-o font-awesome" aria-hidden="true"></i>

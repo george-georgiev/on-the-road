@@ -15,16 +15,6 @@ namespace OnTheRoad.Data.Repositories
         {
             this.Context = context;
             this.DbSet = this.Context.Set<User>();
-
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<User, IUser>();
-                config.CreateMap<City, ICity>();
-                config.CreateMap<Subscription, ISubscribtion>();
-                config.CreateMap<Review, IReview>();
-                config.CreateMap<Country, ICountry>();
-                config.CreateMap<UserImage, IImage>();
-            });
         }
 
         protected OnTheRoadIdentityDbContext Context { get; set; }
@@ -44,6 +34,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetByUserName(string userName)
         {
+            this.MapUserToIUser();
             var found = this.DbSet.Where(x => x.UserName == userName).Single();
             var mapped = Mapper.Map<User, IUser>(found);
 
@@ -52,6 +43,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetById(object id)
         {
+            this.MapUserToIUser();
             var found = this.DbSet.Find(id);
             var mapped = Mapper.Map<User, IUser>(found);
 
@@ -78,6 +70,19 @@ namespace OnTheRoad.Data.Repositories
 
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
+        }
+
+        private void MapUserToIUser()
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<User, IUser>();
+                config.CreateMap<City, ICity>();
+                config.CreateMap<Subscription, ISubscribtion>();
+                config.CreateMap<Review, IReview>();
+                config.CreateMap<Country, ICountry>();
+                config.CreateMap<UserImage, IImage>();
+            });
         }
     }
 }

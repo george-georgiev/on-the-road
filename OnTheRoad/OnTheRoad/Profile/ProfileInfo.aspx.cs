@@ -41,7 +41,6 @@ namespace OnTheRoad.Profile
             TextBox country = this.FormViewProfileInfo.FindControl("FirstName") as TextBox;
             TextBox username = this.FormViewProfileInfo.FindControl("FirstName") as TextBox;
 
-
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
             this.EditButton.Visible = true;
         }

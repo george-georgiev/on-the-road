@@ -16,7 +16,7 @@ namespace OnTheRoad.CustomControllers
         protected void Page_Load(object sender, EventArgs e)
         {
             this.GetCities?.Invoke(this, new EventArgs());
-            this.DropDownCities.DataSource = new List<CitiesModel>() { this.Model };
+            this.DropDownCities.DataSource = this.Model.Cities;
             this.DropDownCities.DataBind();
         }
     }
