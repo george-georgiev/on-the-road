@@ -73,15 +73,6 @@ namespace OnTheRoad.Data.Repositories
                 entity = Mapper.Map<IUser, User>(model, entity);
             }
 
-            //entity.FirstName = model.FirstName;
-            //entity.LastName = model.LastName;
-            //entity.Info = model.Info;
-            //entity.PhoneNumber = model.PhoneNumber;
-            //entity.UserName = model.Username;
-            //entity.CityId = model.City.Id;
-
-            //entity.CityId = model.City.Id;
-
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
         }

@@ -43,6 +43,11 @@ namespace OnTheRoad.Profile
             TextBox phoneNumber = this.FormViewProfileInfo.FindControl("PhoneNumber") as TextBox;
             TextBox info = this.FormViewProfileInfo.FindControl("Info") as TextBox;
 
+            if (city.SelectedCityId == 0)
+            {
+                city.SelectedCityId = 1;
+            }
+
             this.UpdateProfileInfo?.Invoke(this, new ProfileInfoEventArgs()
             {
                 CityId = city.SelectedCityId,

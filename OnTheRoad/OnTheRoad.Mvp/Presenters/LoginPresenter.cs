@@ -1,8 +1,8 @@
-﻿using OnTheRoad.Mvp.Account.Contracts;
+﻿using System;
+using OnTheRoad.Mvp.Account.Contracts;
 using OnTheRoad.Mvp.Enums;
 using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.Mvp.Factories;
-using System;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
@@ -27,7 +27,7 @@ namespace OnTheRoad.Mvp.Presenters
         {
             var loginService = authenticationServiceFactory.GetLoginService(e.OwinContext);
 
-            var result = loginService.LoginUser(e.UserEmail, e.UserPassword, e.RememberMe);
+            var result = loginService.LoginUser(e.Username, e.UserPassword, e.RememberMe);
 
             this.View.Model.LoginStatus = (LoginStatus)Enum.Parse(typeof(LoginStatus), result, true);
         }
