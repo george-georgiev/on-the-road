@@ -15,16 +15,6 @@ namespace OnTheRoad.Data.Repositories
         {
             this.Context = context;
             this.DbSet = this.Context.Set<User>();
-
-            Mapper.Initialize(config =>
-            {
-                config.CreateMap<User, IUser>();
-                config.CreateMap<City, ICity>();
-                config.CreateMap<Subscription, ISubscribtion>();
-                config.CreateMap<Review, IReview>();
-                config.CreateMap<Country, ICountry>();
-                config.CreateMap<UserImage, IImage>();
-            });
         }
 
         protected OnTheRoadIdentityDbContext Context { get; set; }
@@ -42,9 +32,21 @@ namespace OnTheRoad.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public IUser GetByUserName(string userName)
+        public bool CheckIfUsernameExists(string username)
         {
-            var found = this.DbSet.Where(x => x.UserName == userName).Single();
+            var user = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
+            if (user != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public IUser GetByUserName(string username)
+        {
+            this.MapUserToIUser();
+            var found = this.DbSet.Where(x => x.UserName == username).Single();
             var mapped = Mapper.Map<User, IUser>(found);
 
             return mapped;
@@ -52,6 +54,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IUser GetById(object id)
         {
+            this.MapUserToIUser();
             var found = this.DbSet.Find(id);
             var mapped = Mapper.Map<User, IUser>(found);
 
@@ -70,14 +73,44 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("model can not be null!");
             }
 
+            this.MapIUserToUser(model);
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id.ToString()).FirstOrDefault();
             if (entity == null)
             {
                 entity = Mapper.Map<IUser, User>(model);
             }
+            else
+            {
+                entity = Mapper.Map<IUser, User>(model, entity);
+            }
 
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
+        }
+
+        private void MapUserToIUser()
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<User, IUser>();
+                config.CreateMap<City, ICity>();
+                config.CreateMap<Subscription, ISubscribtion>();
+                config.CreateMap<Review, IReview>();
+                config.CreateMap<Country, ICountry>();
+                config.CreateMap<UserImage, IImage>();
+            });
+        }
+
+        private void MapIUserToUser(IUser model)
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<IUser, User>().ForMember(x => x.City, opt => opt.Ignore());
+                config.CreateMap<ISubscribtion, Subscription>();
+                config.CreateMap<IReview, Review>();
+                config.CreateMap<ICountry, Country>();
+                config.CreateMap<IImage, UserImage>();
+            });
         }
     }
 }

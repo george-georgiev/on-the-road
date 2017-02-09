@@ -10,10 +10,10 @@ namespace OnTheRoad.Data.Models
 
         public virtual User FromUser { get; set; }
 
-        [ForeignKey("ToUser")]
-        public string ToUserId { get; set; }
+        //[ForeignKey("ToUser")]
+        //public string ToUserId { get; set; }
 
-        public virtual User ToUser { get; set; }
+        //public virtual User ToUser { get; set; }
 
         public Rating Rating { get; set; }
 

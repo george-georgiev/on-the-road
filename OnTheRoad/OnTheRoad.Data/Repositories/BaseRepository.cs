@@ -9,7 +9,7 @@ using System;
 
 namespace OnTheRoad.Data.Repositories
 {
-    public abstract class BaseRepository<EntityType, DomainType> : IRepository<DomainType>
+    public abstract class BaseRepository<EntityType, DomainType> : IGetRepository<DomainType>, IModifyRepository<DomainType>
         where EntityType : BaseEntity
         where DomainType : IIdentifiable
     {
@@ -68,11 +68,10 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("model can not be null!");
             }
 
-            Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
-
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id).FirstOrDefault();
             if (entity == null)
             {
+                Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
                 entity = Mapper.Map<DomainType, EntityType>(model);
             }
 

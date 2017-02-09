@@ -27,6 +27,12 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork = uniOfWork;
         }
 
+        public bool ChechIfUsernameExists(string username)
+        {
+            bool doesExists = this.userRepository.CheckIfUsernameExists(username);
+            return doesExists;
+        }
+
         public IUser GetUserInfo(string id)
         {
             var user = this.userRepository.GetById(id);
@@ -34,9 +40,17 @@ namespace OnTheRoad.Logic.Services
             return user;
         }
 
-        public void UpdateUserInfo()
+        public void UpdateUserInfo(IUser user, string firstName, string lastName, string username, string phoneNumber, string info, ICity city)
         {
-            throw new NotImplementedException();
+            user.FirstName = firstName;
+            user.LastName = lastName;
+            user.Username = username;
+            user.PhoneNumber = phoneNumber;
+            user.Info = info;
+            user.City = city;
+
+            this.userRepository.Update(user);
+            this.uniOfWork.Commit();
         }
     }
 }

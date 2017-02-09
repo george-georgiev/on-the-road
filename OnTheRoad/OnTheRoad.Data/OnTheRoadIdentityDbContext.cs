@@ -16,8 +16,6 @@ namespace OnTheRoad.Data
 
         public virtual DbSet<City> Cities { get; set; }
 
-        //public virtual DbSet<Country> Countries { get; set; }
-
         public virtual DbSet<Review> Reviews { get; set; }
 
         public virtual DbSet<Subscription> Subscriptions { get; set; }
@@ -39,7 +37,6 @@ namespace OnTheRoad.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            //modelBuilder.Entity<User>().HasMany(m => m.Reviews).WithMany();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
@@ -48,6 +45,8 @@ namespace OnTheRoad.Data
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRoles");
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
+
+            modelBuilder.Entity<User>().HasMany(m => m.FavouriteUsers).WithMany();
         }
     }
 }

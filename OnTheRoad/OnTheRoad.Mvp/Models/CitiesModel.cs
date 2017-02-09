@@ -5,6 +5,6 @@ namespace OnTheRoad.Mvp.Models
 {
     public class CitiesModel
     {
-        public IEnumerable<ICity> Cities;
+        public IEnumerable<ICity> Cities { get; set; }
     }
 }

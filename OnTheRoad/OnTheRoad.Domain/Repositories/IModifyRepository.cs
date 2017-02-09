@@ -1,15 +1,10 @@
 ﻿using OnTheRoad.Domain.Models;
-using System.Collections.Generic;
 
 namespace OnTheRoad.Domain.Repositories
 {
-    public interface IRepository<DomainType>
-        where DomainType : IIdentifiable
+    public interface IModifyRepository<DomainType>
+         where DomainType : IIdentifiable
     {
-        IEnumerable<DomainType> GetAll();
-
-        DomainType GetById(object id);
-
         void Add(DomainType entity);
 
         void Delete(DomainType entity);

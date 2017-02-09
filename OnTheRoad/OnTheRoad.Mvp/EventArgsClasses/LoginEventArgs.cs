@@ -4,7 +4,7 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 {
     public class LoginEventArgs
     {
-        public string UserEmail { get; set; }
+        public string Username { get; set; }
 
         public string UserPassword { get; set; }
 

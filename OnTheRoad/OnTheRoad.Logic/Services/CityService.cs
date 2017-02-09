@@ -24,5 +24,10 @@ namespace OnTheRoad.Logic.Services
         {
             return this.cityRepository.GetAll();
         }
+
+        public ICity GetCityById(int id)
+        {
+            return this.cityRepository.GetById(id);
+        }
     }
 }

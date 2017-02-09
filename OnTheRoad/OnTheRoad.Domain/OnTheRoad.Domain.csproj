@@ -43,7 +43,8 @@
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\ICityRepository.cs" />
-    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IGetRepository.cs" />
+    <Compile Include="Repositories\IModifyRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Enumerations\Rating.cs" />
     <Compile Include="Enumerations\SubscriptionStatus.cs" />

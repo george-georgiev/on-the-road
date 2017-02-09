@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad", "OnTheRoad\OnTheRoad.csproj", "{78256B09-977F-472E-9455-54A5B27199F6}"
 EndProject
@@ -14,8 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Logic", "OnTheRoad.Logic\OnTheRoad.Logic.csproj", "{E4B2C057-17CB-4DA4-BD4F-148BF976591C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoverDependency", "CoverDependency\CoverDependency.csproj", "{9ABFBBD5-D2BD-414F-B9C0-761D817E60E1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B7D7FC5-85A8-4BB0-BA39-803E9F69C379}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Mvp", "OnTheRoad.Mvp\OnTheRoad.Mvp.csproj", "{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}"
 EndProject

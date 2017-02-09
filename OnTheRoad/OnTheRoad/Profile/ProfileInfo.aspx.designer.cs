@@ -13,6 +13,33 @@ namespace OnTheRoad.Profile {
     public partial class ProfileInfo {
         
         /// <summary>
+        /// UpdatePanelResults control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelResults;
+        
+        /// <summary>
+        /// PanelError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelError;
+        
+        /// <summary>
+        /// FailureText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal FailureText;
+        
+        /// <summary>
         /// FormViewProfileInfo control.
         /// </summary>
         /// <remarks>
@@ -22,12 +49,12 @@ namespace OnTheRoad.Profile {
         protected global::System.Web.UI.WebControls.FormView FormViewProfileInfo;
         
         /// <summary>
-        /// EditButton control.
+        /// BulletedListFavouriteUsers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton EditButton;
+        protected global::System.Web.UI.WebControls.BulletedList BulletedListFavouriteUsers;
     }
 }

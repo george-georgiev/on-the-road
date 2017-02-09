@@ -26,7 +26,7 @@ namespace OnTheRoad.Account
             if (this.IsValid)
             {
                 LoginUser?.Invoke(sender, new LoginEventArgs() {
-                    UserEmail = this.Email.Text,
+                    Username = this.Username.Text,
                     UserPassword = this.Password.Text,
                     RememberMe = this.RememberMe.Checked,
                     OwinContext = this.Context.GetOwinContext()});

@@ -1,13 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using System.Collections.Generic;
+using AutoMapper;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OnTheRoad.Data.Repositories
 {
-    public class TripRepository : BaseRepository<Trip, ITrip>, ITripRepository
+    public class TripRepository : BaseRepository<Trip, ITrip>, ITripRepository, IGetRepository<ITrip>, IModifyRepository<ITrip>
     {
         public TripRepository(OnTheRoadIdentityDbContext context) : base(context)
         {

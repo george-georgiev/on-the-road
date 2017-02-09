@@ -10,8 +10,9 @@ namespace OnTheRoad.Mvp.Presenters
     public class ProfileInfoPresenter : Presenter<IProfileInfoView>
     {
         private readonly IUserService userService;
+        private readonly ICityService cityService;
 
-        public ProfileInfoPresenter(IProfileInfoView view, IUserService userService)
+        public ProfileInfoPresenter(IProfileInfoView view, IUserService userService, ICityService cityService)
             : base(view)
         {
             if (userService == null)
@@ -19,8 +20,30 @@ namespace OnTheRoad.Mvp.Presenters
                 throw new ArgumentNullException("userService cannot be null.");
             }
 
+            if (cityService == null)
+            {
+                throw new ArgumentNullException("cityService cannot be null.");
+            }
+
             this.userService = userService;
+            this.cityService = cityService;
             this.View.GetProfileInfo += View_GetProfileInfo;
+            this.View.UpdateProfileInfo += View_UpdateProfileInfo;
+            this.View.CheckIfUserExists += View_CheckIfUserExists;
+        }
+
+        private void View_CheckIfUserExists(object sender, ProfileInfoEventArgs e)
+        {
+            this.View.Model.DoesUserExist = this.userService.ChechIfUsernameExists(e.Username);
+        }
+
+        private void View_UpdateProfileInfo(object sender, ProfileInfoEventArgs e)
+        {
+            var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
+            var user = this.userService.GetUserInfo(userId);
+            var city = this.cityService.GetCityById(e.CityId);
+
+            this.userService.UpdateUserInfo(user, e.FirstName, e.LastName, e.Username, e.PhoneNumber, e.Info, city);
         }
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
@@ -33,7 +56,6 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Model.LastName = user.LastName;
             this.View.Model.Email = user.Email;
             this.View.Model.City = user.City != null ? user.City.Name : string.Empty;
-            this.View.Model.Country = user.Country != null ? user.Country.Name : string.Empty;
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
             this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";

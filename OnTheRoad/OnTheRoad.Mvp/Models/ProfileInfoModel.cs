@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Mvp.Models
 {
@@ -16,12 +17,12 @@ namespace OnTheRoad.Mvp.Models
 
         public string City { get; set; }
 
-        public string Country { get; set; }
-
         public string ImagePath { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<string> FavouriteUsers { get; set; }
+        public ICollection<IUser> FavouriteUsers { get; set; }
+
+        public bool DoesUserExist { get; set; }
     }
 }

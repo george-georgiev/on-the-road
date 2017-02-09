@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Domain.Repositories
 {
-    public interface ICityRepository : IRepository<ICity>
+    public interface ICityRepository : IGetRepository<ICity>
     {
     }
 }

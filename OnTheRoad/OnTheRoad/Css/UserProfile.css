@@ -64,17 +64,18 @@
     margin-right:10px;
 }
 
-#username {
-    text-align: center;
-    color: #00B5DB;
-}
-
 #MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
-    width: 400px;
-    float: left;
     margin-right: 50px;
 }
 
-#MainContent_ProfileContent_EditButton {
+#MainContent_ProfileContent_FormViewProfileInfo_EditButton {
     float:right;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_SaveButton {
+    float: right;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_City_DropDownCities {
+    max-width: 280px;
 }

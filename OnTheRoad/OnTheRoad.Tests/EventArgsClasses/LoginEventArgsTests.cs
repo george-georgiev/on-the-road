@@ -17,14 +17,14 @@ namespace OnTheRoad.Tests.EventArgsClasses
         }
 
         [Test]
-        public void VerifyThatUserEmailCanBeGettedSetted()
+        public void VerifyThatUsernameCanBeGettedSetted()
         {
             var loginEventArgs = new LoginEventArgs();
-            var email = "SomeRandomEmail";
+            var username = "SomeRandomEmail";
 
-            loginEventArgs.UserEmail = email;
+            loginEventArgs.Username = username;
 
-            Assert.That(loginEventArgs.UserEmail.Equals(email));
+            Assert.That(loginEventArgs.Username.Equals(username));
         }
 
         [Test]

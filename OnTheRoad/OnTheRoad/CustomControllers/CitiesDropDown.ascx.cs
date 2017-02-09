@@ -13,11 +13,25 @@ namespace OnTheRoad.CustomControllers
     {
         public event EventHandler GetCities;
 
+        public string SelectedCityName { get; set; }
+
+        public int SelectedCityId { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
             this.GetCities?.Invoke(this, new EventArgs());
-            this.DropDownCities.DataSource = new List<CitiesModel>() { this.Model };
+            this.DropDownCities.DataSource = this.Model.Cities;
             this.DropDownCities.DataBind();
+        }
+        
+        protected void DropDownCities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.SelectedCityId = int.Parse(this.DropDownCities.SelectedValue);
         }
     }
 }
