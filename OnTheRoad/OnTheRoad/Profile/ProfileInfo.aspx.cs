@@ -65,6 +65,7 @@ namespace OnTheRoad.Profile
                 Username = username.Text
             });
 
+            this.PanelError.Visible = false;
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
         }
 
