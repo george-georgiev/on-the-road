@@ -61,15 +61,15 @@
 }
 
 .fa {
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
     margin-right: 50px;
 }
 
-#MainContent_ProfileContent_FormViewProfileInfo_EditButton {
-    float:right;
+div > #MainContent_ProfileContent_EditButton {
+    float: right;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_SaveButton {
@@ -78,4 +78,9 @@
 
 #MainContent_ProfileContent_FormViewProfileInfo_City_DropDownCities {
     max-width: 280px;
+}
+
+.favUserImage {
+    width: 50px;
+    margin-right:30px;
 }

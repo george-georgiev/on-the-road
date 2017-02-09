@@ -33,22 +33,22 @@ namespace OnTheRoad.Logic.Services
             return doesExists;
         }
 
-        public IUser GetUserInfo(string id)
+        public IUser GetUserInfo(string username)
         {
-            var user = this.userRepository.GetById(id);
+            var user = this.userRepository.GetByUserName(username);
 
             return user;
         }
 
-        public void UpdateUserInfo(IUser user, string firstName, string lastName, string username, string phoneNumber, string info, ICity city)
+        public void UpdateUserInfo(IUser user, string firstName, string lastName, string email, string phoneNumber, string info, ICity city)
         {
             user.FirstName = firstName;
             user.LastName = lastName;
-            user.Username = username;
+            user.Email = email;
             user.PhoneNumber = phoneNumber;
             user.Info = info;
             user.City = city;
-
+            
             this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }

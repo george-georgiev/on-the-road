@@ -20,13 +20,7 @@ namespace OnTheRoad.Data.Repositories
         protected OnTheRoadIdentityDbContext Context { get; set; }
 
         protected DbSet<User> DbSet { get; set; }
-
-
-        // TODO: not impemented
-        public void Delete(IUser entity)
-        {
-        }
-
+        
         public IEnumerable<IUser> GetAll()
         {
             throw new NotImplementedException();
@@ -46,7 +40,12 @@ namespace OnTheRoad.Data.Repositories
         public IUser GetByUserName(string username)
         {
             this.MapUserToIUser();
-            var found = this.DbSet.Where(x => x.UserName == username).Single();
+            var found = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
+            if (found == null)
+            {
+                return null;
+            }
+
             var mapped = Mapper.Map<User, IUser>(found);
 
             return mapped;
@@ -105,7 +104,8 @@ namespace OnTheRoad.Data.Repositories
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<IUser, User>().ForMember(x => x.City, opt => opt.Ignore());
+                config.CreateMap<IUser, User>().ForMember(x => x.City, opt => opt.Ignore())
+                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
                 config.CreateMap<ISubscribtion, Subscription>();
                 config.CreateMap<IReview, Review>();
                 config.CreateMap<ICountry, Country>();

@@ -13,8 +13,6 @@ namespace OnTheRoad.Domain.Repositories
 
         bool CheckIfUsernameExists(string username);
 
-        void Delete(IUser entity);
-
         void Update(IUser entity);
     }
 }

@@ -20,7 +20,7 @@
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
                     <h2 class="page-headers">
-                        <asp:Literal Text='<%# this.Model.Username %>' runat="server" />
+                        <asp:Literal Text='<%# Item.Username %>' runat="server" />
                     </h2>
                     <br />
                     <div class="row">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
+
 
                 </ItemTemplate>
                 <EditItemTemplate>
@@ -68,8 +68,8 @@
                             <asp:UpdatePanel runat="server" UpdateMode="Always" ID="upDetails">
                                 <ContentTemplate>
                                     <div class="form-group">
-                                        <label>потребителско име</label>
-                                        <asp:TextBox ID="Username" OnTextChanged="Username_TextChanged" AutoPostBack="true" Text="<%# this.GetUsername %>" runat="server" CssClass="form-control" />
+                                        <label>имейл</label>
+                                        <asp:TextBox ID="Email" OnTextChanged="Username_TextChanged" AutoPostBack="true" Text="<%# this.GetEmail %>" runat="server" CssClass="form-control" />
                                     </div>
                                 </ContentTemplate>
                             </asp:UpdatePanel>
@@ -101,10 +101,26 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12">
-            <asp:BulletedList runat="server" ID="BulletedListFavouriteUsers">
-                   
-            </asp:BulletedList>
+        <div class="col-md-1 col-md-offset-11">
+            <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
         </div>
+    </div>
+
+    <div class="row">
+        <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12">
+            <h3 class="page-headers">Любими пътешественици</h3>
+            <asp:Repeater runat="server" ID="RepeaterFavouriteUsers"
+                ItemType="OnTheRoad.Domain.Models.IUser">
+                <SeparatorTemplate>
+                </SeparatorTemplate>
+                <ItemTemplate>
+                    <asp:HyperLink runat="server"
+                        Text="<%#: Item.Username %>"
+                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+                    <asp:Image runat="server" CssClass="favUserImage img-circle"
+                        ImageUrl="https://truejuggalofamily.com/wp-content/uploads/2016/05/tiwh1.jpg" />
+                </ItemTemplate>
+            </asp:Repeater>
+        </asp:Panel>
     </div>
 </asp:Content>
