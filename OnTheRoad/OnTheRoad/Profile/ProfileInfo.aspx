@@ -6,16 +6,16 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-
             <asp:UpdatePanel ID="UpdatePanelResults" UpdateMode="Always" runat="server">
                 <ContentTemplate>
                     <asp:Panel runat="server" ID="PanelError" Visible="false">
                         <p class="text-danger">
-                            <asp:Literal runat="server" Text="asddasdasdasdsad" ID="FailureText" />
+                            <asp:Literal runat="server" ID="FailureText" />
                         </p>
                     </asp:Panel>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
@@ -65,7 +65,6 @@
                                 <label>първо име</label>
                                 <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
                             </div>
-
                             <asp:UpdatePanel runat="server" UpdateMode="Always" ID="upDetails">
                                 <ContentTemplate>
                                     <div class="form-group">
@@ -98,7 +97,14 @@
                     <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <asp:BulletedList runat="server" ID="BulletedListFavouriteUsers">
+                   
+            </asp:BulletedList>
         </div>
     </div>
 </asp:Content>

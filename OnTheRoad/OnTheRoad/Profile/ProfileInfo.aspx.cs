@@ -28,12 +28,15 @@ namespace OnTheRoad.Profile
         {
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs());
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
-            this.FormViewProfileInfo.DataBind();
+            //this.FormViewProfileInfo.DataBind();
 
             if (this.GetUsername == null)
             {
                 this.GetUsername = this.Model.Username;
             }
+
+            this.BulletedListFavouriteUsers.DataSource = this.Model.FavouriteUsers;
+            this.Page.DataBind();
         }
 
         protected void EditButton_Click(object sender, EventArgs e)
