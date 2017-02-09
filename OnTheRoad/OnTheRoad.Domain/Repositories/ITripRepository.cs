@@ -1,9 +1,9 @@
-﻿using OnTheRoad.Domain.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Domain.Repositories
 {
-    public interface ITripRepository : IRepository<ITrip>
+    public interface ITripRepository : IGetRepository<ITrip>, IModifyRepository<ITrip>
     {
         IEnumerable<ITrip> GetTripsByCategoryName(string categoryName);
 

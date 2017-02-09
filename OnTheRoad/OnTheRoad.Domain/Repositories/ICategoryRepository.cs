@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Domain.Repositories
 {
-    public interface ICategoryRepository : IRepository<ICategory>
+    public interface ICategoryRepository : IGetRepository<ICategory>, IModifyRepository<ICategory>
     {
         ICategory GetCategoryByName(string name);
     }

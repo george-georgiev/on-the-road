@@ -9,7 +9,7 @@ using System;
 
 namespace OnTheRoad.Data.Repositories
 {
-    public abstract class BaseRepository<EntityType, DomainType> : IRepository<DomainType>
+    public abstract class BaseRepository<EntityType, DomainType> : IGetRepository<DomainType>, IModifyRepository<DomainType>
         where EntityType : BaseEntity
         where DomainType : IIdentifiable
     {

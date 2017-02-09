@@ -6,7 +6,7 @@ using AutoMapper;
 
 namespace OnTheRoad.Data.Repositories
 {
-    public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository, IRepository<ICategory>
+    public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository, IGetRepository<ICategory>
     {
         public CategoryRepository(OnTheRoadIdentityDbContext context) : base(context)
         {
