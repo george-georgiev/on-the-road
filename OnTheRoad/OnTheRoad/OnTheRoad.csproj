@@ -239,7 +239,8 @@
     <Content Include="Site.Master" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Trips.aspx" />
+    <Content Include="Categories.aspx" />
+    <Content Include="Trips\AddTrip.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -347,12 +348,19 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Trips.aspx.cs">
-      <DependentUpon>Trips.aspx</DependentUpon>
+    <Compile Include="Categories.aspx.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Trips.aspx.designer.cs">
-      <DependentUpon>Trips.aspx</DependentUpon>
+    <Compile Include="Categories.aspx.designer.cs">
+      <DependentUpon>Categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Trips\AddTrip.aspx.cs">
+      <DependentUpon>AddTrip.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Trips\AddTrip.aspx.designer.cs">
+      <DependentUpon>AddTrip.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

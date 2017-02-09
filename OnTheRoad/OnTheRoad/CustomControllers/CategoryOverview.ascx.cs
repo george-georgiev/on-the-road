@@ -13,11 +13,13 @@ namespace OnTheRoad.CustomControllers
     {
         public string CategoryName { get; set; }
 
-        public event EventHandler<CategoryOverviewEventArgs> OnPageLoad;
+        public event EventHandler<CategoryOverviewEventArgs> GetTrips;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.OnPageLoad?.Invoke(this, new CategoryOverviewEventArgs() { CategoryName = this.CategoryName });
+            this.GetTrips?.Invoke(this, new CategoryOverviewEventArgs() { CategoryName = this.CategoryName });
+            this.TripRepeater.DataSource = this.Model.Trips;
+            this.TripRepeater.DataBind();
         }
     }
 }

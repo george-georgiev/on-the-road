@@ -7,7 +7,7 @@
     <div class="row text-center">
         <div class="col-md-12">
             <asp:FormView ID="FormViewProfileInfo" runat="server"
-                ItemType="OnTheRoad.Models.ProfileInfoModel">
+                ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
                     <uc:CitiesDropDown runat="server" />
                     <h2 id="username">

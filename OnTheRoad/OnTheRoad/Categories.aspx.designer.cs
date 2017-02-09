@@ -10,7 +10,7 @@
 namespace OnTheRoad {
     
     
-    public partial class Trips {
+    public partial class Categories {
         
         /// <summary>
         /// CategoryRepeater control.

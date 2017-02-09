@@ -7,6 +7,6 @@ namespace OnTheRoad.Mvp.CustomControllers.Contracts
 {
     public interface ICategoryOverviewView : IView<CategoryOverviewModel>
     {
-        event EventHandler<CategoryOverviewEventArgs> OnPageLoad;
+        event EventHandler<CategoryOverviewEventArgs> GetTrips;
     }
 }

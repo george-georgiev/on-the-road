@@ -1,7 +1,10 @@
-﻿using OnTheRoad.Logic.Contracts;
+﻿using OnTheRoad.Domain.Models;
+using OnTheRoad.Logic.Contracts;
+using OnTheRoad.Logic.Models;
 using OnTheRoad.Mvp.CustomControllers.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
 using System;
+using System.Collections.Generic;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
@@ -20,12 +23,13 @@ namespace OnTheRoad.Mvp.Presenters
 
             this.tripService = tripService;
 
-            this.View.OnPageLoad += View_OnPageLoad; ;
+            this.View.GetTrips += View_GetTrips; ;
         }
 
-        private void View_OnPageLoad(object sender, CategoryOverviewEventArgs e)
+        private void View_GetTrips(object sender, CategoryOverviewEventArgs e)
         {
-            var trips = this.tripService.GetTripsOrderedByDateCreated(TripsCount);
+            //var trips = this.tripService.GetTripsOrderedByDateCreated(TripsCount);
+            var trips = new List<ITrip>() { new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1") };
             this.View.Model.Trips = trips;
         }
     }
