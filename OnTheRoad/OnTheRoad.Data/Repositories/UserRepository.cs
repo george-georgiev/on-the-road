@@ -32,10 +32,21 @@ namespace OnTheRoad.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public IUser GetByUserName(string userName)
+        public bool CheckIfUsernameExists(string username)
+        {
+            var user = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
+            if (user != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public IUser GetByUserName(string username)
         {
             this.MapUserToIUser();
-            var found = this.DbSet.Where(x => x.UserName == userName).Single();
+            var found = this.DbSet.Where(x => x.UserName == username).Single();
             var mapped = Mapper.Map<User, IUser>(found);
 
             return mapped;

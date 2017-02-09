@@ -16,8 +16,6 @@ namespace OnTheRoad.Data
 
         public virtual DbSet<City> Cities { get; set; }
 
-        //public virtual DbSet<Country> Countries { get; set; }
-
         public virtual DbSet<Review> Reviews { get; set; }
 
         public virtual DbSet<Subscription> Subscriptions { get; set; }

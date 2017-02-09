@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Mvp.EventArgsClasses
 {
@@ -21,6 +22,6 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<string> FavouriteUsers { get; set; }
+        public ICollection<IUser> FavouriteUsers { get; set; }
     }
 }

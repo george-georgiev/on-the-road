@@ -6,6 +6,16 @@
 
     <div class="row text-center">
         <div class="col-md-12">
+
+            <asp:UpdatePanel ID="UpdatePanelResults" UpdateMode="Always" runat="server">
+                <ContentTemplate>
+                    <asp:Panel runat="server" ID="PanelError" Visible="false">
+                        <p class="text-danger">
+                            <asp:Literal runat="server" Text="asddasdasdasdsad" ID="FailureText" />
+                        </p>
+                    </asp:Panel>
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
@@ -43,7 +53,6 @@
                     <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
 
                 </ItemTemplate>
-
                 <EditItemTemplate>
                     <h2 class="page-headers">Промяна на профил</h2>
                     <br />
@@ -54,12 +63,18 @@
                         <div class="col-md-4">
                             <div class="form-group ">
                                 <label>първо име</label>
-                                <asp:TextBox ID="FirstName" Text='<%# Item.FirstName %>' runat="server" CssClass="form-control" />
+                                <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label>потребителско име</label>
-                                <asp:TextBox ID="Username" Text="<%# this.Model.Username %>" runat="server" CssClass="form-control" />
-                            </div>
+
+                            <asp:UpdatePanel runat="server" UpdateMode="Always" ID="upDetails">
+                                <ContentTemplate>
+                                    <div class="form-group">
+                                        <label>потребителско име</label>
+                                        <asp:TextBox ID="Username" OnTextChanged="Username_TextChanged" AutoPostBack="true" Text="<%# this.GetUsername %>" runat="server" CssClass="form-control" />
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+
                             <div class="form-group">
                                 <label>град</label>
                                 <uc:CitiesDropDown ID="City" runat="server" />

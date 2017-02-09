@@ -27,6 +27,12 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork = uniOfWork;
         }
 
+        public bool ChechIfUsernameExists(string username)
+        {
+            bool doesExists = this.userRepository.CheckIfUsernameExists(username);
+            return doesExists;
+        }
+
         public IUser GetUserInfo(string id)
         {
             var user = this.userRepository.GetById(id);

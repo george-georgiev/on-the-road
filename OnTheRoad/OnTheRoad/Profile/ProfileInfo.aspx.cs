@@ -16,10 +16,12 @@ namespace OnTheRoad.Profile
     {
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
+        public event EventHandler<ProfileInfoEventArgs> CheckIfUserExists;
+
+        public string GetUsername { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void Page_PreRender(object sender, EventArgs e)
@@ -27,6 +29,11 @@ namespace OnTheRoad.Profile
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs());
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
             this.FormViewProfileInfo.DataBind();
+
+            if (this.GetUsername == null)
+            {
+                this.GetUsername = this.Model.Username;
+            }
         }
 
         protected void EditButton_Click(object sender, EventArgs e)
@@ -59,6 +66,37 @@ namespace OnTheRoad.Profile
             });
 
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
+        }
+
+        protected void Username_TextChanged(object sender, EventArgs e)
+        {
+            TextBox username = this.FormViewProfileInfo.FindControl("Username") as TextBox;
+            var selectedUsername = username.Text.Trim();
+            if (selectedUsername == string.Empty)
+            {
+                this.ShowErrorMessage("Трябва да въведете потребителско име.");
+                (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
+                return;
+            }
+
+            this.CheckIfUserExists?.Invoke(this, new ProfileInfoEventArgs() { Username = username.Text });
+
+            if (this.Model.DoesUserExist)
+            {
+                this.ShowErrorMessage("Потребителското име вече е заето.");
+                (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
+            }
+            else
+            {
+                this.GetUsername = selectedUsername;
+                this.PanelError.Visible = false;
+            }
+        }
+
+        private void ShowErrorMessage(string msg)
+        {
+            this.FailureText.Text = msg;
+            this.PanelError.Visible = true;
         }
     }
 }
