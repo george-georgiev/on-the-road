@@ -41,7 +41,6 @@
                         </div>
                     </div>
 
-
                 </ItemTemplate>
                 <EditItemTemplate>
                     <h2 class="page-headers">Промяна на профил</h2>
@@ -59,7 +58,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label>град</label>
-                                        <uc:CitiesDropDown ID="City" runat="server" />
+                                        <uc:CitiesDropDown ID="City" runat="server" CurrentSelection="<%# Item.City %>"/>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -79,7 +78,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>

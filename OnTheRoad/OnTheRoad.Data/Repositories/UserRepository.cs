@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using AutoMapper;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Data.Models;
-using AutoMapper;
-using System.Data.Entity;
-using System.Linq;
 
 namespace OnTheRoad.Data.Repositories
 {
