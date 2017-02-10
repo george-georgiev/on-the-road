@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity.Migrations;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Seeders;
 using OnTheRoad.Data.Models;
@@ -41,10 +40,7 @@ namespace OnTheRoad.Data.Migrations
         {
             this.AddCities(context);
 
-            if (context.Categories.Count() == 0)
-            {
-                this.dataSeeder.SeedCategories(context);
-            }
+            this.dataSeeder.SeedCategories(context);
 
             //  This method will be called after migrating to the latest version.
 

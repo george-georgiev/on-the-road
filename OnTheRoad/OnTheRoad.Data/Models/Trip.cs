@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnTheRoad.Data.Models
 {
@@ -26,6 +27,8 @@ namespace OnTheRoad.Data.Models
 
         public DateTime EndDate { get; set; }
 
+        public DateTime CreateDate { get; set; }
+
         public string Description { get; set; }
 
         public string Location { get; set; }
@@ -35,6 +38,16 @@ namespace OnTheRoad.Data.Models
             get { return this.images; }
             set { this.images = value; }
         }
+
+        [ForeignKey("CoverImage")]
+        public int CoverImageId { get; set; }
+
+        public virtual TripImage CoverImage { get; set; }
+
+        [ForeignKey("Organiser")]
+        public string OrganiserId { get; set; }
+
+        public virtual User Organiser { get; set; }
 
         public virtual ICollection<Category> Categories
         {
