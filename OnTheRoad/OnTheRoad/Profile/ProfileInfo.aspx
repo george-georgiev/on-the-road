@@ -6,21 +6,15 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-            <asp:UpdatePanel runat="server" ID="UpdatePanelFollow" Visible="false">
+            <asp:UpdatePanel runat="server" ID="UpdatePanelFollowingButtons" EnableViewState="false" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:Button Text="ПОСЛЕДВАЙ" runat="server"
-                        ID="ButtonFolow"
+                    <asp:Button Text="ПОСЛЕДВАЙ" runat="server" Visible="false"
+                        ID="ButtonFollow"
                         OnClick="ButtonFollow_Click"
                         CssClass="btn btn-success btn-follow" />
-                </ContentTemplate>
-            </asp:UpdatePanel>
-
-            <asp:UpdatePanel runat="server" ID="UpdatePanelUnfollow" Visible="false">
-                <ContentTemplate>
-                    <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server"
+                    <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server" Visible="false"
                         ID="ButtonUnfollow"
                         OnClick="ButtonUnfollow_Click"
-                        CommandArgument='<%# this.Request.QueryString["name"] %>'
                         CssClass="btn btn-warning btn-sm btn-follow" />
                 </ContentTemplate>
             </asp:UpdatePanel>
@@ -98,9 +92,9 @@
                         </div>
                     </div>
 
-                    <asp:LinkButton ID="ButtonSave" runat="server" 
-                        OnClick="ButtonSave_Click" 
-                        Text="ЗАПАЗИ" 
+                    <asp:LinkButton ID="ButtonSave" runat="server"
+                        OnClick="ButtonSave_Click"
+                        Text="ЗАПАЗИ"
                         CssClass="btn btn-success">
                     </asp:LinkButton>
                 </EditItemTemplate>
@@ -135,7 +129,7 @@
                                     Text="премахни"
                                     CssClass="btn-unfollow"
                                     CommandArgument="<%#: Item.Username %>"
-                                    OnClick="ButtonUnfollow_Click" />
+                                    OnClick="DropdownUnfollow_Click" />
                             </li>
                         </ul>
                     </div>

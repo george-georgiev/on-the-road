@@ -30,7 +30,6 @@ namespace OnTheRoad.Profile
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
 
@@ -40,35 +39,36 @@ namespace OnTheRoad.Profile
             // add users to sesstion
             if (this.Request.QueryString[USERNAME] == this.Context.User.Identity.Name)
             {
-                this.Session.Add(FAVOURITE_USERS, this.Model.FavouriteUsers);
+                var favUsers = this.Model.FavouriteUsers.Select(x => x.Username).ToList();
+                this.Session.Add(FAVOURITE_USERS, favUsers);
                 this.ButtonEdit.Visible = true;
             }
 
             // if on different user page -> show or hide follow and unfollow btns
-            if (this.Context.User.Identity.Name != string.Empty && 
+            if (this.Context.User.Identity.Name != string.Empty &&
                 this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
             {
-             
-
-                IEnumerable<IUser> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<IUser>;
+                IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
                 if (favouriteUsers != null)
                 {
-                    var isFollowing = favouriteUsers.Any(x => x.Username == this.Request.QueryString[USERNAME]);
+                    var isFollowing = favouriteUsers.Any(x => x == this.Request.QueryString[USERNAME]);
 
                     if (isFollowing)
                     {
-                        this.UpdatePanelUnfollow.Visible = true;
+                        this.ButtonUnfollow.Visible = true;
                     }
                     else
                     {
-                        this.UpdatePanelFollow.Visible = true;
+                        this.ButtonFollow.Visible = true;
                     }
                 }
                 else
                 {
-                    this.UpdatePanelFollow.Visible = true;
+                    this.ButtonFollow.Visible = true;
                 }
             }
+
+            this.UpdatePanelFollowingButtons.Update();
         }
 
         protected void ButtonEdit_Click(object sender, EventArgs e)
@@ -109,6 +109,18 @@ namespace OnTheRoad.Profile
 
         protected void ButtonUnfollow_Click(object sender, EventArgs e)
         {
+            var favUserToRemove = this.Request.QueryString[USERNAME];
+            this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
+            {
+                FavouriteUserUsername = favUserToRemove,
+                CurrentUserUsername = this.Context.User.Identity.Name
+            });
+
+            this.RemoveFavouriteUserFromSession(favUserToRemove);
+        }
+
+        protected void DropdownUnfollow_Click(object sender, EventArgs e)
+        {
             var favUserToRemove = ((Button)sender).CommandArgument;
             this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
             {
@@ -116,9 +128,7 @@ namespace OnTheRoad.Profile
                 CurrentUserUsername = this.Context.User.Identity.Name
             });
 
-            //this.UpdatePanelUnfollow.Visible = false;
-            //this.UpdatePanelFollow.Visible = true;
-            //this.Session[FAVOURITE_USERS];
+            this.RemoveFavouriteUserFromSession(favUserToRemove);
         }
 
         protected void ButtonFollow_Click(object sender, EventArgs e)
@@ -129,9 +139,17 @@ namespace OnTheRoad.Profile
                 FavouriteUserUsername = this.Request.QueryString[USERNAME]
             });
 
-            //this.UpdatePanelUnfollow.Visible = true;
-            //this.UpdatePanelFollow.Visible = false;
-            //this.Session[FAVOURITE_USERS] = this.Model.FavouriteUsers;
+            ICollection<string> favouriteUsers = this.Session[FAVOURITE_USERS] as ICollection<string>;
+            favouriteUsers.Add(this.Request.QueryString[USERNAME]);
+            this.Session[FAVOURITE_USERS] = favouriteUsers;
+        }
+
+        private void RemoveFavouriteUserFromSession(string favUserToRemove)
+        {
+            ICollection<string> favouriteUsers = this.Session[FAVOURITE_USERS] as ICollection<string>;
+            var userToRemoveFromSession = favouriteUsers.First(x => x == favUserToRemove);
+            favouriteUsers.Remove(userToRemoveFromSession);
+            this.Session[FAVOURITE_USERS] = favouriteUsers;
         }
     }
 }
