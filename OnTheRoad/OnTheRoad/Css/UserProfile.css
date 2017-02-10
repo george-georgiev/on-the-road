@@ -68,10 +68,7 @@
     margin-right: 50px;
 }
 
-div > #MainContent_ProfileContent_ButtonEdit {
-    float: right;
-}
-
+#MainContent_ProfileContent_ButtonEdit,
 #MainContent_ProfileContent_FormViewProfileInfo_ButtonSave {
     float: right;
 }
@@ -80,7 +77,7 @@ div > #MainContent_ProfileContent_ButtonEdit {
     max-width: 280px;
 }
 
-#MainContent_ProfileContent_ButtonFollow {
+.btn-follow {
     float: left;
 }
 

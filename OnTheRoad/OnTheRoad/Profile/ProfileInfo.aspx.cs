@@ -8,6 +8,8 @@ using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.CustomControllers;
 using WebFormsMvp;
 using WebFormsMvp.Web;
+using OnTheRoad.Domain.Models;
+using System.Linq;
 
 namespace OnTheRoad.Profile
 {
@@ -15,13 +17,12 @@ namespace OnTheRoad.Profile
     public partial class ProfileInfo : MvpPage<ProfileInfoModel>, IProfileInfoView
     {
         private const string USERNAME = "name";
+        private const string FAVOURITE_USERS = "favouriteUsers";
 
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
         public event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
         public event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
-
-        //public string GetEmail { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,21 +30,44 @@ namespace OnTheRoad.Profile
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
+
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
-
-            //if (this.GetEmail == null)
-            //{
-            //    this.GetEmail = this.Model.Email;
-            //}
 
             this.RepeaterFavouriteUsers.DataSource = this.Model.FavouriteUsers;
             this.Page.DataBind();
 
-            if (this.Request.QueryString["name"] != this.Context.User.Identity.Name)
+            // add users to sesstion
+            if (this.Request.QueryString[USERNAME] == this.Context.User.Identity.Name)
             {
-                this.ButtonEdit.Visible = false;
-                this.ButtonFollow.Visible = true;
+                this.Session.Add(FAVOURITE_USERS, this.Model.FavouriteUsers);
+                this.ButtonEdit.Visible = true;
+            }
+
+            // if on different user page -> show or hide follow and unfollow btns
+            if (this.Context.User.Identity.Name != string.Empty && 
+                this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
+            {
+             
+
+                IEnumerable<IUser> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<IUser>;
+                if (favouriteUsers != null)
+                {
+                    var isFollowing = favouriteUsers.Any(x => x.Username == this.Request.QueryString[USERNAME]);
+
+                    if (isFollowing)
+                    {
+                        this.UpdatePanelUnfollow.Visible = true;
+                    }
+                    else
+                    {
+                        this.UpdatePanelFollow.Visible = true;
+                    }
+                }
+                else
+                {
+                    this.UpdatePanelFollow.Visible = true;
+                }
             }
         }
 
@@ -89,8 +113,12 @@ namespace OnTheRoad.Profile
             this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
             {
                 FavouriteUserUsername = favUserToRemove,
-                CurrentUserUsername = this.Request.QueryString[USERNAME]
+                CurrentUserUsername = this.Context.User.Identity.Name
             });
+
+            //this.UpdatePanelUnfollow.Visible = false;
+            //this.UpdatePanelFollow.Visible = true;
+            //this.Session[FAVOURITE_USERS];
         }
 
         protected void ButtonFollow_Click(object sender, EventArgs e)
@@ -100,6 +128,10 @@ namespace OnTheRoad.Profile
                 CurrentUserUsername = this.Context.User.Identity.Name,
                 FavouriteUserUsername = this.Request.QueryString[USERNAME]
             });
+
+            //this.UpdatePanelUnfollow.Visible = true;
+            //this.UpdatePanelFollow.Visible = false;
+            //this.Session[FAVOURITE_USERS] = this.Model.FavouriteUsers;
         }
     }
 }

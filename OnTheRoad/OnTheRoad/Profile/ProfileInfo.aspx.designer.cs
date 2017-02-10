@@ -13,13 +13,40 @@ namespace OnTheRoad.Profile {
     public partial class ProfileInfo {
         
         /// <summary>
-        /// ButtonFollow control.
+        /// UpdatePanelFollow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton ButtonFollow;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelFollow;
+        
+        /// <summary>
+        /// ButtonFolow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonFolow;
+        
+        /// <summary>
+        /// UpdatePanelUnfollow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanelUnfollow;
+        
+        /// <summary>
+        /// ButtonUnfollow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonUnfollow;
         
         /// <summary>
         /// FormViewProfileInfo control.

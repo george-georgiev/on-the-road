@@ -6,12 +6,24 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-            <asp:LinkButton ID="ButtonFollow" runat="server"
-                OnClick="ButtonFollow_Click"
-                Visible="false"
-                Text="ПОСЛЕДВАЙ"
-                CssClass="btn btn-success">
-            </asp:LinkButton>
+            <asp:UpdatePanel runat="server" ID="UpdatePanelFollow" Visible="false">
+                <ContentTemplate>
+                    <asp:Button Text="ПОСЛЕДВАЙ" runat="server"
+                        ID="ButtonFolow"
+                        OnClick="ButtonFollow_Click"
+                        CssClass="btn btn-success btn-follow" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
+            <asp:UpdatePanel runat="server" ID="UpdatePanelUnfollow" Visible="false">
+                <ContentTemplate>
+                    <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server"
+                        ID="ButtonUnfollow"
+                        OnClick="ButtonUnfollow_Click"
+                        CommandArgument='<%# this.Request.QueryString["name"] %>'
+                        CssClass="btn btn-warning btn-sm btn-follow" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
@@ -86,13 +98,17 @@
                         </div>
                     </div>
 
-                    <asp:LinkButton ID="ButtonSave" runat="server" OnClick="ButtonSave_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
+                    <asp:LinkButton ID="ButtonSave" runat="server" 
+                        OnClick="ButtonSave_Click" 
+                        Text="ЗАПАЗИ" 
+                        CssClass="btn btn-success">
+                    </asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
         </div>
     </div>
 
-    <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
+    <asp:LinkButton ID="ButtonEdit" runat="server" Visible="false" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
 
     <div class="row">
         <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
@@ -101,8 +117,10 @@
                 ItemType="OnTheRoad.Domain.Models.IUser">
                 <ItemTemplate>
                     <asp:HyperLink runat="server"
+                        ID="LinkButtonFollowing"
                         Text="<%#: Item.Username %>"
                         NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
                         ImageUrl="https://truejuggalofamily.com/wp-content/uploads/2016/05/tiwh1.jpg" />
 
@@ -115,7 +133,6 @@
                                 <asp:Button
                                     runat="server"
                                     Text="премахни"
-                                    ID="ButtonUnfollow"
                                     CssClass="btn-unfollow"
                                     CommandArgument="<%#: Item.Username %>"
                                     OnClick="ButtonUnfollow_Click" />

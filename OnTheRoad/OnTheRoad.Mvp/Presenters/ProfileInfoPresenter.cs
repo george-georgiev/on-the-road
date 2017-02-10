@@ -53,7 +53,7 @@ namespace OnTheRoad.Mvp.Presenters
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            var user = GetCurrentUser(e.Username);
+            var user = this.GetCurrentUser(e.Username);
 
             this.View.Model.FavouriteUsers = user.FavouriteUsers;
             this.View.Model.Username = user.Username;
