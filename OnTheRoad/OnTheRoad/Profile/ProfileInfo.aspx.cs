@@ -16,7 +16,6 @@ namespace OnTheRoad.Profile
     {
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
-        public event EventHandler<ProfileInfoEventArgs> CheckIfUserExists;
 
         public string GetEmail { get; set; }
 
@@ -71,44 +70,11 @@ namespace OnTheRoad.Profile
                 LastName = lastName.Text,
                 PhoneNumber = phoneNumber.Text,
                 Info = info.Text,
-                Email = email.Text
             });
 
-            this.PanelError.Visible = false;
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
             this.EditButton.Visible = true;
             this.PanelFavouriteUsers.Visible = true;
-        }
-
-        protected void Username_TextChanged(object sender, EventArgs e)
-        {
-            //TextBox email = this.FormViewProfileInfo.FindControl("Email") as TextBox;
-            //var selectedEmail= email.Text.Trim();
-            //if (selectedEmail == string.Empty)
-            //{
-            //    this.ShowErrorMessage("Трябва да въведете имейл.");
-            //    (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
-            //    return;
-            //}
-
-            //this.CheckIfUserExists?.Invoke(this, new ProfileInfoEventArgs() { Email = email.Text });
-
-            //if (this.Model.DoesUserExist)
-            //{
-            //    this.ShowErrorMessage("Имейлът вече е зает.");
-            //    (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
-            //}
-            //else
-            //{
-            //    this.GetEmail = selectedEmail;
-            //    this.PanelError.Visible = false;
-            //}
-        }
-
-        private void ShowErrorMessage(string msg)
-        {
-            this.FailureText.Text = msg;
-            this.PanelError.Visible = true;
         }
     }
 }

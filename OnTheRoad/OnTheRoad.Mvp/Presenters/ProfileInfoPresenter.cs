@@ -29,12 +29,6 @@ namespace OnTheRoad.Mvp.Presenters
             this.cityService = cityService;
             this.View.GetProfileInfo += View_GetProfileInfo;
             this.View.UpdateProfileInfo += View_UpdateProfileInfo;
-            this.View.CheckIfUserExists += View_CheckIfUserExists;
-        }
-
-        private void View_CheckIfUserExists(object sender, ProfileInfoEventArgs e)
-        {
-            this.View.Model.DoesUserExist = this.userService.ChechIfUsernameExists(e.Username);
         }
 
         private void View_UpdateProfileInfo(object sender, ProfileInfoEventArgs e)
@@ -43,7 +37,7 @@ namespace OnTheRoad.Mvp.Presenters
             var user = GetUserFromQueryString();
             var city = this.cityService.GetCityById(e.CityId);
 
-            this.userService.UpdateUserInfo(user, e.FirstName, e.LastName, e.Email, e.PhoneNumber, e.Info, city);
+            this.userService.UpdateUserInfo(user, e.FirstName, e.LastName, e.PhoneNumber, e.Info, city);
         }
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)

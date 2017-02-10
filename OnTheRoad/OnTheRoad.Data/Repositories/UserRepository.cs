@@ -26,17 +26,6 @@ namespace OnTheRoad.Data.Repositories
             throw new NotImplementedException();
         }
 
-        public bool CheckIfUsernameExists(string username)
-        {
-            var user = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
-            if (user != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public IUser GetByUserName(string username)
         {
             this.MapUserToIUser();

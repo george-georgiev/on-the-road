@@ -6,8 +6,6 @@ namespace OnTheRoad.Logic.Contracts
     {
         IUser GetUserInfo(string id);
 
-        void UpdateUserInfo(IUser user, string firstName, string lastName, string email, string phoneNumber, string info, ICity city);
-
-        bool ChechIfUsernameExists(string username);
+        void UpdateUserInfo(IUser user, string firstName, string lastName, string phoneNumber, string info, ICity city);
     }
 }

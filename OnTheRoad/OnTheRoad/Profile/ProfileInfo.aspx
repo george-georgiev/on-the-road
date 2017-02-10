@@ -6,16 +6,6 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-            <asp:UpdatePanel ID="UpdatePanelResults" UpdateMode="Always" runat="server">
-                <ContentTemplate>
-                    <asp:Panel runat="server" ID="PanelError" Visible="false">
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:Panel>
-                </ContentTemplate>
-            </asp:UpdatePanel>
-
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
@@ -60,40 +50,37 @@
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group ">
-                                <label>първо име</label>
-                                <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
-                            </div>
-                            <asp:UpdatePanel runat="server" UpdateMode="Always" ID="upDetails">
-                                <ContentTemplate>
-                                    <div class="form-group">
-                                        <label>имейл</label>
-                                        <asp:TextBox ID="Email" OnTextChanged="Username_TextChanged" AutoPostBack="true" Text="<%# this.GetEmail %>" runat="server" CssClass="form-control" />
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <label>първо име</label>
+                                        <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
                                     </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                                    <div class="form-group">
+                                        <label>град</label>
+                                        <uc:CitiesDropDown ID="City" runat="server" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>фамилно име</label>
+                                        <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>тел. номер</label>
+                                        <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>кратка информация</label>
+                                <asp:TextBox ID="Info" TextMode="MultiLine" Rows="4" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                                <label>град</label>
-                                <uc:CitiesDropDown ID="City" runat="server" />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>фамилно име</label>
-                                <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>тел. номер</label>
-                                <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>кратка информация</label>
-                        <asp:TextBox ID="Info" TextMode="MultiLine" Rows="10" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
-                    </div>
+
                     <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>

@@ -10,7 +10,5 @@ namespace OnTheRoad.Mvp.Profile.Contracts
         event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
 
         event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
-
-        event EventHandler<ProfileInfoEventArgs> CheckIfUserExists;
     }
 }

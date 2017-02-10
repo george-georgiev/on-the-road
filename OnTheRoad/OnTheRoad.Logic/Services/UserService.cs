@@ -27,12 +27,6 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork = uniOfWork;
         }
 
-        public bool ChechIfUsernameExists(string username)
-        {
-            bool doesExists = this.userRepository.CheckIfUsernameExists(username);
-            return doesExists;
-        }
-
         public IUser GetUserInfo(string username)
         {
             var user = this.userRepository.GetByUserName(username);
@@ -40,11 +34,10 @@ namespace OnTheRoad.Logic.Services
             return user;
         }
 
-        public void UpdateUserInfo(IUser user, string firstName, string lastName, string email, string phoneNumber, string info, ICity city)
+        public void UpdateUserInfo(IUser user, string firstName, string lastName, string phoneNumber, string info, ICity city)
         {
             user.FirstName = firstName;
             user.LastName = lastName;
-            user.Email = email;
             user.PhoneNumber = phoneNumber;
             user.Info = info;
             user.City = city;

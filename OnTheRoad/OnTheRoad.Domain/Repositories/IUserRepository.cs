@@ -11,8 +11,6 @@ namespace OnTheRoad.Domain.Repositories
 
         IUser GetById(object id);
 
-        bool CheckIfUsernameExists(string username);
-
         void Update(IUser entity);
     }
 }
