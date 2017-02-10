@@ -1,32 +1,33 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace OnTheRoad.Data
 {
-    public class OnTheRoadIdentityDbContext : IdentityDbContext<User>
+    public class OnTheRoadIdentityDbContext : IdentityDbContext<User>, IOnTheRoadDbContext
     {
         public OnTheRoadIdentityDbContext()
             : base("OnTheRoadDB", throwIfV1Schema: false)
         {
         }
 
-        public virtual DbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
 
-        public virtual DbSet<City> Cities { get; set; }
+        public virtual IDbSet<City> Cities { get; set; }
 
-        public virtual DbSet<Review> Reviews { get; set; }
+        public virtual IDbSet<Review> Reviews { get; set; }
 
-        public virtual DbSet<Subscription> Subscriptions { get; set; }
+        public virtual IDbSet<Subscription> Subscriptions { get; set; }
 
-        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual IDbSet<Tag> Tags { get; set; }
 
-        public virtual DbSet<Trip> Trips { get; set; }
+        public virtual IDbSet<Trip> Trips { get; set; }
 
-        public virtual DbSet<TripImage> TripImages { get; set; }
+        public virtual IDbSet<TripImage> TripImages { get; set; }
         
-        public virtual DbSet<UserImage> UserImages { get; set; }
+        public virtual IDbSet<UserImage> UserImages { get; set; }
 
         public static OnTheRoadIdentityDbContext Create()
         {
