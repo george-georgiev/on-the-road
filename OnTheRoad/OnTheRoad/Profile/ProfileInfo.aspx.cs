@@ -41,13 +41,14 @@ namespace OnTheRoad.Profile
             {
                 var favUsers = this.Model.FavouriteUsers.Select(x => x.Username).ToList();
                 this.Session.Add(FAVOURITE_USERS, favUsers);
-                this.ButtonEdit.Visible = true;
             }
 
             // if on different user page -> show or hide follow and unfollow btns
             if (this.Context.User.Identity.Name != string.Empty &&
                 this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
             {
+                this.ButtonEdit.Visible = false;
+
                 IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
                 if (favouriteUsers != null)
                 {

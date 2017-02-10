@@ -102,7 +102,7 @@
         </div>
     </div>
 
-    <asp:LinkButton ID="ButtonEdit" runat="server" Visible="false" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
+    <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
 
     <div class="row">
         <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
