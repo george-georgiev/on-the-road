@@ -194,6 +194,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="CustomControllers\CategoriesDropDown.ascx" />
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
@@ -280,6 +281,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
+    <Compile Include="CustomControllers\CategoriesDropDown.ascx.cs">
+      <DependentUpon>CategoriesDropDown.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\CategoriesDropDown.ascx.designer.cs">
+      <DependentUpon>CategoriesDropDown.ascx</DependentUpon>
+    </Compile>
     <Compile Include="CustomControllers\CategoryOverview.ascx.cs">
       <DependentUpon>CategoryOverview.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
