@@ -13,6 +13,15 @@ namespace OnTheRoad.Profile {
     public partial class ProfileInfo {
         
         /// <summary>
+        /// ButtonFollow control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton ButtonFollow;
+        
+        /// <summary>
         /// FormViewProfileInfo control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace OnTheRoad.Profile {
         protected global::System.Web.UI.WebControls.FormView FormViewProfileInfo;
         
         /// <summary>
-        /// EditButton control.
+        /// ButtonEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton EditButton;
+        protected global::System.Web.UI.WebControls.LinkButton ButtonEdit;
         
         /// <summary>
         /// PanelFavouriteUsers control.

@@ -4,8 +4,8 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 {
     public class FavouriteUserEventArgs : EventArgs
     {
-        public string FavouriteUserToRemove { get; set; }
+        public string FavouriteUserUsername { get; set; }
 
-        public string CurrentUsername { get; set; }
+        public string CurrentUserUsername { get; set; }
     }
 }

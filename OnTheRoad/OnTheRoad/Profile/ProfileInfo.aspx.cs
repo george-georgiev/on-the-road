@@ -19,8 +19,9 @@ namespace OnTheRoad.Profile
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
         public event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
+        public event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
 
-        public string GetEmail { get; set; }
+        //public string GetEmail { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -31,28 +32,29 @@ namespace OnTheRoad.Profile
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
 
-            if (this.GetEmail == null)
-            {
-                this.GetEmail = this.Model.Email;
-            }
+            //if (this.GetEmail == null)
+            //{
+            //    this.GetEmail = this.Model.Email;
+            //}
 
             this.RepeaterFavouriteUsers.DataSource = this.Model.FavouriteUsers;
             this.Page.DataBind();
 
             if (this.Request.QueryString["name"] != this.Context.User.Identity.Name)
             {
-                this.EditButton.Visible = false;
+                this.ButtonEdit.Visible = false;
+                this.ButtonFollow.Visible = true;
             }
         }
 
-        protected void EditButton_Click(object sender, EventArgs e)
+        protected void ButtonEdit_Click(object sender, EventArgs e)
         {
             this.FormViewProfileInfo.ChangeMode(FormViewMode.Edit);
-            this.EditButton.Visible = false;
+            this.ButtonEdit.Visible = false;
             this.PanelFavouriteUsers.Visible = false;
         }
 
-        protected void SaveButton_Click(object sender, EventArgs e)
+        protected void ButtonSave_Click(object sender, EventArgs e)
         {
             TextBox firstName = this.FormViewProfileInfo.FindControl("FirstName") as TextBox;
             TextBox lastName = this.FormViewProfileInfo.FindControl("Lastname") as TextBox;
@@ -77,7 +79,7 @@ namespace OnTheRoad.Profile
             });
 
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
-            this.EditButton.Visible = true;
+            this.ButtonEdit.Visible = true;
             this.PanelFavouriteUsers.Visible = true;
         }
 
@@ -86,8 +88,17 @@ namespace OnTheRoad.Profile
             var favUserToRemove = ((Button)sender).CommandArgument;
             this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
             {
-                FavouriteUserToRemove = favUserToRemove,
-                CurrentUsername = this.Request.QueryString[USERNAME]
+                FavouriteUserUsername = favUserToRemove,
+                CurrentUserUsername = this.Request.QueryString[USERNAME]
+            });
+        }
+
+        protected void ButtonFollow_Click(object sender, EventArgs e)
+        {
+            this.AddFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
+            {
+                CurrentUserUsername = this.Context.User.Identity.Name,
+                FavouriteUserUsername = this.Request.QueryString[USERNAME]
             });
         }
     }

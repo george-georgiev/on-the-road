@@ -6,6 +6,13 @@
 
     <div class="row text-center">
         <div class="col-md-12">
+            <asp:LinkButton ID="ButtonFollow" runat="server"
+                OnClick="ButtonFollow_Click"
+                Visible="false"
+                Text="ПОСЛЕДВАЙ"
+                CssClass="btn btn-success">
+            </asp:LinkButton>
+
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
@@ -79,17 +86,13 @@
                         </div>
                     </div>
 
-                    <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
+                    <asp:LinkButton ID="ButtonSave" runat="server" OnClick="ButtonSave_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
         </div>
     </div>
 
-    <%--<div class="row">
-        <div class="col-md-1 col-md-offset-11">--%>
-    <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
-    <%--</div>--%>
-    <%--    </div>--%>
+    <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
 
     <div class="row">
         <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
@@ -124,4 +127,3 @@
         </asp:Panel>
     </div>
 </asp:Content>
-

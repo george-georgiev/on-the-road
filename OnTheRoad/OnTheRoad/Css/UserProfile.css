@@ -68,16 +68,20 @@
     margin-right: 50px;
 }
 
-div > #MainContent_ProfileContent_EditButton {
+div > #MainContent_ProfileContent_ButtonEdit {
     float: right;
 }
 
-#MainContent_ProfileContent_FormViewProfileInfo_SaveButton {
+#MainContent_ProfileContent_FormViewProfileInfo_ButtonSave {
     float: right;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_City_DropDownCities {
     max-width: 280px;
+}
+
+#MainContent_ProfileContent_ButtonFollow {
+    float: left;
 }
 
 .favUserImage {

@@ -30,11 +30,17 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.GetProfileInfo += View_GetProfileInfo;
             this.View.UpdateProfileInfo += View_UpdateProfileInfo;
             this.View.RemoveFavouriteUser += View_RemoveFavouriteUser;
+            this.View.AddFavouriteUser += View_AddFavouriteUser;
+        }
+
+        private void View_AddFavouriteUser(object sender, FavouriteUserEventArgs e)
+        {
+            this.userService.AddFafouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
         }
 
         private void View_RemoveFavouriteUser(object sender, FavouriteUserEventArgs e)
         {
-            this.userService.RemoveFavouriteUser(e.CurrentUsername, e.FavouriteUserToRemove);
+            this.userService.RemoveFavouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
         }
 
         private void View_UpdateProfileInfo(object sender, ProfileInfoEventArgs e)
