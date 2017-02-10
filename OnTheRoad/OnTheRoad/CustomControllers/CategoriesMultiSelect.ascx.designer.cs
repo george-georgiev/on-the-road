@@ -10,15 +10,15 @@
 namespace OnTheRoad.CustomControllers {
     
     
-    public partial class CategoriesDropDown {
+    public partial class CategoriesMultiSelect {
         
         /// <summary>
-        /// DropDownCategories control.
+        /// CategoriesListBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownCategories;
+        protected global::System.Web.UI.WebControls.ListBox CategoriesListBox;
     }
 }
