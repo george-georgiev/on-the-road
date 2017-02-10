@@ -67,6 +67,15 @@ namespace OnTheRoad.Trips {
         protected global::System.Web.UI.WebControls.TextBox EndDate;
         
         /// <summary>
+        /// Categories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OnTheRoad.CustomControllers.CategoriesMultiSelect Categories;
+        
+        /// <summary>
         /// CreateTripButton control.
         /// </summary>
         /// <remarks>

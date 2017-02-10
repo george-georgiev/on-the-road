@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddTrip.aspx.cs" Inherits="OnTheRoad.Trips.AddTrip" %>
 
-<%--<%@ Register TagPrefix="uc" TagName="CategoriesMultiSelect" Src="~/CustomControllers/CategoriesMultiSelect.ascx" %>--%>
+<%@ Register TagPrefix="uc" TagName="CategoriesMultiSelect" Src="~/CustomControllers/CategoriesMultiSelect.ascx" %>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <p class="text-danger">
@@ -59,14 +59,14 @@
             </div>
         </div>
 
-        <%--<div class="form-group">
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Categories" CssClass="col-md-2 control-label">Категории</asp:Label>
             <div class="col-md-10">
                 <uc:CategoriesMultiSelect ID="Categories" runat="server"  CssClass="form-control" 
                     IsRequired="true" 
                     ErrorMessage="Моля изберете поне една категория." />
             </div>
-        </div>--%>
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

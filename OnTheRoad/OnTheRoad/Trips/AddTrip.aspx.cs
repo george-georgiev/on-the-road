@@ -20,7 +20,7 @@ namespace OnTheRoad.Trips
 
         protected void CreateTripButton_Click(object sender, EventArgs e)
         {
-            //var categoryIds = this.Categories.SelecetedCategoryIds;
+            var categoryIds = this.Categories.SelecetedCategoryIds;
         }
     }
 }
