@@ -1,17 +1,20 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="OnTheRoad.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2 class="page-headers">Регистрация</h2>
 
-    <p class="text-danger">
-        <asp:Literal runat="server" ID="ErrorMessage" />
-    </p>
+
 
     <div class="form-horizontal">
-        <h4>Create a new account</h4>
-        <hr />
-        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
-         <div class="form-group">
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Username" CssClass="col-md-2 control-label input-labels">Потребителско име</asp:Label>
+            <div class="col-md-10">
+                <asp:TextBox runat="server" ID="Username" CssClass="form-control" TextMode="SingleLine" />
+                <asp:RequiredFieldValidator runat="server" ControlToValidate="Username"
+                    CssClass="text-danger" ErrorMessage="Моля въведете потребителско име." />
+            </div>
+        </div>
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label input-labels">Име</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="FirstName" CssClass="form-control" TextMode="SingleLine" />

@@ -19,9 +19,9 @@ namespace OnTheRoad.Identity
 
         private ApplicationSignInManager AppSignInManager { get; set; }
 
-        public void CreateUser(string email, string password, string firstName, string lastName)
+        public void CreateUser(string username, string email, string password, string firstName, string lastName)
         {
-            var user = new User() { UserName = email, Email = email, Info = null, FirstName = firstName, LastName = lastName };
+            var user = new User() { UserName = username, Email = email, Info = null, FirstName = firstName, LastName = lastName };
             IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)

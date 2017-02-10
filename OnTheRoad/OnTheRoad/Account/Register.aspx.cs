@@ -33,6 +33,7 @@ namespace OnTheRoad.Account
                 UserPassword = this.Password.Text,
                 FirstName = this.FirstName.Text,
                 LastName = this.LastName.Text,
+                Username = this.Username.Text,
                 OwinContext = this.Context.GetOwinContext()
             });
 

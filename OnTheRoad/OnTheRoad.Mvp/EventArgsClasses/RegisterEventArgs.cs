@@ -5,7 +5,9 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 {
     public class RegisterEventArgs : EventArgs
     {
-        //TODO: Test First and LastName
+        //TODO: Test First and LastName and Username
+        public string Username { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
