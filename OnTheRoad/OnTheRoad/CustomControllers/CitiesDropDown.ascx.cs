@@ -1,8 +1,7 @@
-﻿using OnTheRoad.Mvp.CustomControllers.Contracts;
+﻿using System;
+using OnTheRoad.Mvp.CustomControllers.Contracts;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.Presenters;
-using System;
-using System.Collections.Generic;
 using WebFormsMvp;
 using WebFormsMvp.Web;
 
@@ -17,8 +16,6 @@ namespace OnTheRoad.CustomControllers
 
         public int SelectedCityId { get; set; }
 
-        public string CurrentSelection { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -29,11 +26,6 @@ namespace OnTheRoad.CustomControllers
             this.GetCities?.Invoke(this, new EventArgs());
             this.DropDownCities.DataSource = this.Model.Cities;
             this.DropDownCities.DataBind();
-
-            if (this.CurrentSelection != null)
-            {
-                this.DropDownCities.Items.FindByText(this.CurrentSelection).Selected = true;
-            }
         }
 
         protected void DropDownCities_SelectedIndexChanged(object sender, EventArgs e)

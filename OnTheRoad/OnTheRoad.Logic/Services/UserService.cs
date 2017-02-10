@@ -34,8 +34,9 @@ namespace OnTheRoad.Logic.Services
             return user;
         }
 
-        public void UpdateUserInfo(IUser user, string firstName, string lastName, string phoneNumber, string info, ICity city)
+        public void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city)
         {
+            var user = this.userRepository.GetByUserName(username);
             user.FirstName = firstName;
             user.LastName = lastName;
             user.PhoneNumber = phoneNumber;
@@ -43,6 +44,22 @@ namespace OnTheRoad.Logic.Services
             user.City = city;
             
             this.userRepository.Update(user);
+            this.uniOfWork.Commit();
+        }
+
+        public void RemoveFavouriteUser(string username, string userToRemoveUsername)
+        {
+            var userId = this.userRepository.GetByUserName(username).Id;  
+            this.userRepository.RemoveFavouriteUser(userId, userToRemoveUsername);
+
+            this.uniOfWork.Commit();
+        }
+
+        public void AddFafouriteUser(string username, string userToAddUsername)
+        {
+            var userId = this.userRepository.GetByUserName(username).Id;
+            this.userRepository.AddFavouriteUser(userId, userToAddUsername);
+
             this.uniOfWork.Commit();
         }
     }

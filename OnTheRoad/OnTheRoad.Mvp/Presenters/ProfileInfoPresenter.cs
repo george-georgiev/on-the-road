@@ -29,21 +29,25 @@ namespace OnTheRoad.Mvp.Presenters
             this.cityService = cityService;
             this.View.GetProfileInfo += View_GetProfileInfo;
             this.View.UpdateProfileInfo += View_UpdateProfileInfo;
+            this.View.RemoveFavouriteUser += View_RemoveFavouriteUser;
+        }
+
+        private void View_RemoveFavouriteUser(object sender, FavouriteUserEventArgs e)
+        {
+            this.userService.RemoveFavouriteUser(e.CurrentUsername, e.FavouriteUserToRemove);
         }
 
         private void View_UpdateProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            var username = this.Request.QueryString["name"];
-            var user = GetUserFromQueryString();
+            var username = e.Username;
             var city = this.cityService.GetCityById(e.CityId);
 
-            this.userService.UpdateUserInfo(user, e.FirstName, e.LastName, e.PhoneNumber, e.Info, city);
+            this.userService.UpdateUserInfo(username, e.FirstName, e.LastName, e.PhoneNumber, e.Info, city);
         }
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            //var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
-            var user = GetUserFromQueryString();
+            var user = GetCurrentUser(e.Username);
 
             this.View.Model.FavouriteUsers = user.FavouriteUsers;
             this.View.Model.Username = user.Username;
@@ -54,12 +58,12 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
             this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
+            // TODO: Add real image from DB
             //this.View.Model.ImagePath = user.Image.Path;
         }
 
-        private IUser GetUserFromQueryString()
+        private IUser GetCurrentUser(string username)
         {
-            var username = this.Request.QueryString["name"];
             var user = this.userService.GetUserInfo(username);
             if (user == null)
             {

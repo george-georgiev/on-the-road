@@ -53,27 +53,27 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group ">
-                                        <label>първо име</label>
+                                        <label class="input-labels">първо име</label>
                                         <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label>град</label>
-                                        <uc:CitiesDropDown ID="City" runat="server" CurrentSelection="<%# Item.City %>"/>
+                                        <label class="input-labels">град</label>
+                                        <uc:CitiesDropDown ID="City" runat="server" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label>фамилно име</label>
+                                        <label class="input-labels">фамилно име</label>
                                         <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
-                                        <label>тел. номер</label>
+                                        <label class="input-labels">тел. номер</label>
                                         <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>кратка информация</label>
+                                <label class="input-labels">кратка информация</label>
                                 <asp:TextBox ID="Info" TextMode="MultiLine" Rows="4" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
                             </div>
                         </div>
@@ -85,27 +85,43 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-1 col-md-offset-11">
-            <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
-        </div>
-    </div>
+    <%--<div class="row">
+        <div class="col-md-1 col-md-offset-11">--%>
+    <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
+    <%--</div>--%>
+    <%--    </div>--%>
 
     <div class="row">
-        <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12">
-            <h3 class="page-headers">Любими пътешественици</h3>
+        <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
+            <h3 class="page-headers fav-users-header">Любими пътешественици</h3>
             <asp:Repeater runat="server" ID="RepeaterFavouriteUsers"
                 ItemType="OnTheRoad.Domain.Models.IUser">
-                <SeparatorTemplate>
-                </SeparatorTemplate>
                 <ItemTemplate>
                     <asp:HyperLink runat="server"
                         Text="<%#: Item.Username %>"
                         NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
                         ImageUrl="https://truejuggalofamily.com/wp-content/uploads/2016/05/tiwh1.jpg" />
+
+                    <div class="btn-group">
+                        <button type="button" class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <asp:Button
+                                    runat="server"
+                                    Text="премахни"
+                                    ID="ButtonUnfollow"
+                                    CssClass="btn-unfollow"
+                                    CommandArgument="<%#: Item.Username %>"
+                                    OnClick="ButtonUnfollow_Click" />
+                            </li>
+                        </ul>
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
         </asp:Panel>
     </div>
 </asp:Content>
+

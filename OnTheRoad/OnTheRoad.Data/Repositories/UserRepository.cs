@@ -20,7 +20,7 @@ namespace OnTheRoad.Data.Repositories
         protected OnTheRoadIdentityDbContext Context { get; set; }
 
         protected DbSet<User> DbSet { get; set; }
-        
+
         public IEnumerable<IUser> GetAll()
         {
             throw new NotImplementedException();
@@ -49,11 +49,38 @@ namespace OnTheRoad.Data.Repositories
             return mapped;
         }
 
+        public void RemoveFavouriteUser(string userId, string userToRemoveUsername)
+        {
+            var entity = this.DbSet.Local.Where(e => e.Id == userId).FirstOrDefault();
+
+            var userToRemove = entity.FavouriteUsers.FirstOrDefault(x => x.UserName == userToRemoveUsername);
+            if (userToRemove != null)
+            {
+                entity.FavouriteUsers.Remove(userToRemove);
+            }
+
+            var entry = this.Context.Entry(entity);
+            entry.State = EntityState.Modified;
+        }
+
+        public void AddFavouriteUser(string userId, string userToAddUsername)
+        {
+            var entity = this.DbSet.Local.Where(e => e.Id == userId).FirstOrDefault();
+
+            var userToAdd = this.Context.Users.FirstOrDefault(x => x.UserName == userToAddUsername);
+            if (userToAdd != null)
+            {
+                entity.FavouriteUsers.Add(userToAdd);
+            }
+
+            var entry = this.Context.Entry(entity);
+            entry.State = EntityState.Modified;
+        }
+
         public void Update(IUser entity)
         {
             this.SetEntityState(entity, EntityState.Modified);
         }
-
         private void SetEntityState(IUser model, EntityState entityState)
         {
             if (model == null)

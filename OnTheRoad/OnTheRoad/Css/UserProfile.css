@@ -82,5 +82,32 @@ div > #MainContent_ProfileContent_EditButton {
 
 .favUserImage {
     width: 50px;
-    margin-right:30px;
+}
+
+.fav-users-header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.dropdown-menu {
+    top: 30%;
+    min-width: 100px;
+    padding: 0;
+}
+
+/*.dropdown-menu > li > input:hover {
+    background-color: orangered;
+}*/
+
+.btn-dropdown {
+    margin-right: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: -15px;
+}
+
+.btn-unfollow {
+    border:0;
+    background-color:transparent;
+    margin-left:10px;
 }

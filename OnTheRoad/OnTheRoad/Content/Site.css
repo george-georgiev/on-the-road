@@ -43,8 +43,8 @@ input[type="select"] {
 }
 
 .navbar-inverse .navbar-brand {
-    font-size:2em;
-    color:white;
+    font-size: 2em;
+    color: white;
     font-family: HoboStd;
 }
 
@@ -69,4 +69,6 @@ input[type="select"] {
     color: #00B5DB;
 }
 
-
+.input-labels {
+    color: #4aa504;
+}

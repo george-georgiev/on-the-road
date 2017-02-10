@@ -14,8 +14,11 @@ namespace OnTheRoad.Profile
     [PresenterBinding(typeof(ProfileInfoPresenter))]
     public partial class ProfileInfo : MvpPage<ProfileInfoModel>, IProfileInfoView
     {
+        private const string USERNAME = "name";
+
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
+        public event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
 
         public string GetEmail { get; set; }
 
@@ -25,7 +28,7 @@ namespace OnTheRoad.Profile
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs());
+            this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
 
             if (this.GetEmail == null)
@@ -38,7 +41,7 @@ namespace OnTheRoad.Profile
 
             if (this.Request.QueryString["name"] != this.Context.User.Identity.Name)
             {
-               this.EditButton.Visible = false;
+                this.EditButton.Visible = false;
             }
         }
 
@@ -70,11 +73,22 @@ namespace OnTheRoad.Profile
                 LastName = lastName.Text,
                 PhoneNumber = phoneNumber.Text,
                 Info = info.Text,
+                Username = this.Request.QueryString[USERNAME]
             });
 
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
             this.EditButton.Visible = true;
             this.PanelFavouriteUsers.Visible = true;
+        }
+
+        protected void ButtonUnfollow_Click(object sender, EventArgs e)
+        {
+            var favUserToRemove = ((Button)sender).CommandArgument;
+            this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
+            {
+                FavouriteUserToRemove = favUserToRemove,
+                CurrentUsername = this.Request.QueryString[USERNAME]
+            });
         }
     }
 }
