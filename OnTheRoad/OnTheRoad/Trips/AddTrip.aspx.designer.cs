@@ -76,6 +76,15 @@ namespace OnTheRoad.Trips {
         protected global::OnTheRoad.CustomControllers.CategoriesMultiSelect Categories;
         
         /// <summary>
+        /// Tags control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OnTheRoad.CustomControllers.TagsSelect Tags;
+        
+        /// <summary>
         /// CreateTripButton control.
         /// </summary>
         /// <remarks>

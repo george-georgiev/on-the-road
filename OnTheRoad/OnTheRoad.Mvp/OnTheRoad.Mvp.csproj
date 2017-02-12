@@ -70,6 +70,7 @@
     <Compile Include="Models\ProfileInfoModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Models\CategoriesModel.cs" />
+    <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TripModel.cs" />
     <Compile Include="Presenters\AddTripPresenter.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenter.cs" />

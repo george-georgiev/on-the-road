@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddTrip.aspx.cs" Inherits="OnTheRoad.Trips.AddTrip" %>
 
 <%@ Register TagPrefix="uc" TagName="CategoriesMultiSelect" Src="~/CustomControllers/CategoriesMultiSelect.ascx" %>
+<%@ Register TagPrefix="uc" TagName="TagsSelect" Src="~/CustomControllers/TagsSelect.ascx" %>
+
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <p class="text-danger">
@@ -11,7 +13,7 @@
         <h4 class="page-headers">Създай пътешествие</h4>
         <hr />
 
-        <div class="form-group row">
+        <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="TripTitle" CssClass="col-md-2 control-label input-labels">Заглавие</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="TripTitle" CssClass="form-control" TextMode="SingleLine" />
@@ -62,9 +64,16 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Categories" CssClass="col-md-2 control-label">Категории</asp:Label>
             <div class="col-md-10">
-                <uc:CategoriesMultiSelect ID="Categories" runat="server"  CssClass="form-control" 
-                    IsRequired="true" 
+                <uc:CategoriesMultiSelect ID="Categories" runat="server" CssClass="form-control"
+                    IsRequired="true"
                     ErrorMessage="Моля изберете поне една категория." />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Tags" CssClass="col-md-2 control-label">Тагове</asp:Label>
+            <div class="col-md-10">
+                <uc:TagsSelect ID="Tags" runat="server"  CssClass="form-control" />
             </div>
         </div>
 
