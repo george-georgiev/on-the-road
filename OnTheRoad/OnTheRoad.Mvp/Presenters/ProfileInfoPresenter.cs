@@ -1,9 +1,9 @@
 ﻿using System;
+using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
-using WebFormsMvp;
 using OnTheRoad.Mvp.Profile.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
-using OnTheRoad.Mvp.Common;
+using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
 {
@@ -29,28 +29,33 @@ namespace OnTheRoad.Mvp.Presenters
             this.cityService = cityService;
             this.View.GetProfileInfo += View_GetProfileInfo;
             this.View.UpdateProfileInfo += View_UpdateProfileInfo;
-            this.View.CheckIfUserExists += View_CheckIfUserExists;
+            this.View.RemoveFavouriteUser += View_RemoveFavouriteUser;
+            this.View.AddFavouriteUser += View_AddFavouriteUser;
         }
 
-        private void View_CheckIfUserExists(object sender, ProfileInfoEventArgs e)
+        private void View_AddFavouriteUser(object sender, FavouriteUserEventArgs e)
         {
-            this.View.Model.DoesUserExist = this.userService.ChechIfUsernameExists(e.Username);
+            this.userService.AddFafouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
+        }
+
+        private void View_RemoveFavouriteUser(object sender, FavouriteUserEventArgs e)
+        {
+            this.userService.RemoveFavouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
         }
 
         private void View_UpdateProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
-            var user = this.userService.GetUserInfo(userId);
+            var username = e.Username;
             var city = this.cityService.GetCityById(e.CityId);
 
-            this.userService.UpdateUserInfo(user, e.FirstName, e.LastName, e.Username, e.PhoneNumber, e.Info, city);
+            this.userService.UpdateUserInfo(username, e.FirstName, e.LastName, e.PhoneNumber, e.Info, city);
         }
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            var userId = UserInfoUtility.GetCurrentUserId(this.HttpContext.User.Identity);
-            var user = this.userService.GetUserInfo(userId);
+            var user = this.GetCurrentUser(e.Username);
 
+            this.View.Model.FavouriteUsers = user.FavouriteUsers;
             this.View.Model.Username = user.Username;
             this.View.Model.FirstName = user.FirstName;
             this.View.Model.LastName = user.LastName;
@@ -59,8 +64,22 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
             this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
+            // TODO: Add real image from DB
             //this.View.Model.ImagePath = user.Image.Path;
-            //this.View.Model.FavouriteUsers = user.FavouriteUsers;
+        }
+
+        private IUser GetCurrentUser(string username)
+        {
+            var user = this.userService.GetUserInfo(username);
+            if (user == null)
+            {
+                this.Response.Redirect("http://localhost:52612/");
+                return null;
+            }
+            else
+            {
+                return user;
+            }
         }
     }
 }

@@ -27,29 +27,39 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork = uniOfWork;
         }
 
-        public bool ChechIfUsernameExists(string username)
+        public IUser GetUserInfo(string username)
         {
-            bool doesExists = this.userRepository.CheckIfUsernameExists(username);
-            return doesExists;
-        }
-
-        public IUser GetUserInfo(string id)
-        {
-            var user = this.userRepository.GetById(id);
+            var user = this.userRepository.GetByUserName(username);
 
             return user;
         }
 
-        public void UpdateUserInfo(IUser user, string firstName, string lastName, string username, string phoneNumber, string info, ICity city)
+        public void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city)
         {
+            var user = this.userRepository.GetByUserName(username);
             user.FirstName = firstName;
             user.LastName = lastName;
-            user.Username = username;
             user.PhoneNumber = phoneNumber;
             user.Info = info;
             user.City = city;
-
+            
             this.userRepository.Update(user);
+            this.uniOfWork.Commit();
+        }
+
+        public void RemoveFavouriteUser(string username, string userToRemoveUsername)
+        {
+            var userId = this.userRepository.GetByUserName(username).Id;  
+            this.userRepository.RemoveFavouriteUser(userId, userToRemoveUsername);
+
+            this.uniOfWork.Commit();
+        }
+
+        public void AddFafouriteUser(string username, string userToAddUsername)
+        {
+            var userId = this.userRepository.GetByUserName(username).Id;
+            this.userRepository.AddFavouriteUser(userId, userToAddUsername);
+
             this.uniOfWork.Commit();
         }
     }

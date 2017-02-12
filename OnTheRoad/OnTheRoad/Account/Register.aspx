@@ -10,9 +10,9 @@
     <div class="form-horizontal">
         <h4>Create a new account</h4>
         <hr />
-        <asp:ValidationSummary runat="server" CssClass="text-danger" />
+        <%--<asp:ValidationSummary runat="server" CssClass="text-danger" />--%>
          <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label">Име</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="FirstName" CssClass="col-md-2 control-label input-labels">Име</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="FirstName" CssClass="form-control" TextMode="SingleLine" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="FirstName"
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="LastName" CssClass="col-md-2 control-label">Фамилия</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="LastName" CssClass="col-md-2 control-label input-labels">Фамилия</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="LastName" CssClass="form-control" TextMode="SingleLine" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="LastName"
@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Имейл</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label input-labels">Имейл</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Парола</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label input-labels">Парола</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
@@ -44,11 +44,11 @@
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Потвърдете паролата</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label input-labels">Потвърдете паролата</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The confirm password field is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Моля потвърдете паролата. " />
                 <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
                     CssClass="text-danger" Display="Dynamic" ErrorMessage="Паралото не съвпада с горенаписаната." />
             </div>

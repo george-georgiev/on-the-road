@@ -8,17 +8,21 @@ using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.CustomControllers;
 using WebFormsMvp;
 using WebFormsMvp.Web;
+using OnTheRoad.Domain.Models;
+using System.Linq;
 
 namespace OnTheRoad.Profile
 {
     [PresenterBinding(typeof(ProfileInfoPresenter))]
     public partial class ProfileInfo : MvpPage<ProfileInfoModel>, IProfileInfoView
     {
+        private const string USERNAME = "name";
+        private const string FAVOURITE_USERS = "favouriteUsers";
+
         public event EventHandler<ProfileInfoEventArgs> GetProfileInfo;
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
-        public event EventHandler<ProfileInfoEventArgs> CheckIfUserExists;
-
-        public string GetUsername { get; set; }
+        public event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
+        public event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,30 +30,61 @@ namespace OnTheRoad.Profile
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs());
+            this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
             this.FormViewProfileInfo.DataSource = new List<ProfileInfoModel>() { this.Model };
-            //this.FormViewProfileInfo.DataBind();
 
-            if (this.GetUsername == null)
+            this.RepeaterFavouriteUsers.DataSource = this.Model.FavouriteUsers;
+            this.Page.DataBind();
+
+            // add users to sesstion
+            if (this.Request.QueryString[USERNAME] == this.Context.User.Identity.Name)
             {
-                this.GetUsername = this.Model.Username;
+                var favUsers = this.Model.FavouriteUsers.Select(x => x.Username).ToList();
+                this.Session.Add(FAVOURITE_USERS, favUsers);
             }
 
-            this.BulletedListFavouriteUsers.DataSource = this.Model.FavouriteUsers;
-            this.Page.DataBind();
+            // if on different user page -> show or hide follow and unfollow btns
+            if (this.Context.User.Identity.Name != string.Empty &&
+                this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
+            {
+                this.ButtonEdit.Visible = false;
+
+                IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
+                if (favouriteUsers != null)
+                {
+                    var isFollowing = favouriteUsers.Any(x => x == this.Request.QueryString[USERNAME]);
+
+                    if (isFollowing)
+                    {
+                        this.ButtonUnfollow.Visible = true;
+                    }
+                    else
+                    {
+                        this.ButtonFollow.Visible = true;
+                    }
+                }
+                else
+                {
+                    this.ButtonFollow.Visible = true;
+                }
+            }
+
+            this.UpdatePanelFollowingButtons.Update();
         }
 
-        protected void EditButton_Click(object sender, EventArgs e)
+        protected void ButtonEdit_Click(object sender, EventArgs e)
         {
             this.FormViewProfileInfo.ChangeMode(FormViewMode.Edit);
+            this.ButtonEdit.Visible = false;
+            this.PanelFavouriteUsers.Visible = false;
         }
 
-        protected void SaveButton_Click(object sender, EventArgs e)
+        protected void ButtonSave_Click(object sender, EventArgs e)
         {
             TextBox firstName = this.FormViewProfileInfo.FindControl("FirstName") as TextBox;
             TextBox lastName = this.FormViewProfileInfo.FindControl("Lastname") as TextBox;
             CitiesDropDown city = this.FormViewProfileInfo.FindControl("City") as CitiesDropDown;
-            TextBox username = this.FormViewProfileInfo.FindControl("Username") as TextBox;
+            TextBox email = this.FormViewProfileInfo.FindControl("Email") as TextBox;
             TextBox phoneNumber = this.FormViewProfileInfo.FindControl("PhoneNumber") as TextBox;
             TextBox info = this.FormViewProfileInfo.FindControl("Info") as TextBox;
 
@@ -65,42 +100,57 @@ namespace OnTheRoad.Profile
                 LastName = lastName.Text,
                 PhoneNumber = phoneNumber.Text,
                 Info = info.Text,
-                Username = username.Text
+                Username = this.Request.QueryString[USERNAME]
             });
 
-            this.PanelError.Visible = false;
             this.FormViewProfileInfo.ChangeMode(FormViewMode.ReadOnly);
+            this.ButtonEdit.Visible = true;
+            this.PanelFavouriteUsers.Visible = true;
         }
 
-        protected void Username_TextChanged(object sender, EventArgs e)
+        protected void ButtonUnfollow_Click(object sender, EventArgs e)
         {
-            TextBox username = this.FormViewProfileInfo.FindControl("Username") as TextBox;
-            var selectedUsername = username.Text.Trim();
-            if (selectedUsername == string.Empty)
+            var favUserToRemove = this.Request.QueryString[USERNAME];
+            this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
             {
-                this.ShowErrorMessage("Трябва да въведете потребителско име.");
-                (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
-                return;
-            }
+                FavouriteUserUsername = favUserToRemove,
+                CurrentUserUsername = this.Context.User.Identity.Name
+            });
 
-            this.CheckIfUserExists?.Invoke(this, new ProfileInfoEventArgs() { Username = username.Text });
-
-            if (this.Model.DoesUserExist)
-            {
-                this.ShowErrorMessage("Потребителското име вече е заето.");
-                (this.FormViewProfileInfo.FindControl("Username") as TextBox).Focus();
-            }
-            else
-            {
-                this.GetUsername = selectedUsername;
-                this.PanelError.Visible = false;
-            }
+            this.RemoveFavouriteUserFromSession(favUserToRemove);
         }
 
-        private void ShowErrorMessage(string msg)
+        protected void DropdownUnfollow_Click(object sender, EventArgs e)
         {
-            this.FailureText.Text = msg;
-            this.PanelError.Visible = true;
+            var favUserToRemove = ((Button)sender).CommandArgument;
+            this.RemoveFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
+            {
+                FavouriteUserUsername = favUserToRemove,
+                CurrentUserUsername = this.Context.User.Identity.Name
+            });
+
+            this.RemoveFavouriteUserFromSession(favUserToRemove);
+        }
+
+        protected void ButtonFollow_Click(object sender, EventArgs e)
+        {
+            this.AddFavouriteUser?.Invoke(this, new FavouriteUserEventArgs()
+            {
+                CurrentUserUsername = this.Context.User.Identity.Name,
+                FavouriteUserUsername = this.Request.QueryString[USERNAME]
+            });
+
+            ICollection<string> favouriteUsers = this.Session[FAVOURITE_USERS] as ICollection<string>;
+            favouriteUsers.Add(this.Request.QueryString[USERNAME]);
+            this.Session[FAVOURITE_USERS] = favouriteUsers;
+        }
+
+        private void RemoveFavouriteUserFromSession(string favUserToRemove)
+        {
+            ICollection<string> favouriteUsers = this.Session[FAVOURITE_USERS] as ICollection<string>;
+            var userToRemoveFromSession = favouriteUsers.First(x => x == favUserToRemove);
+            favouriteUsers.Remove(userToRemoveFromSession);
+            this.Session[FAVOURITE_USERS] = favouriteUsers;
         }
     }
 }

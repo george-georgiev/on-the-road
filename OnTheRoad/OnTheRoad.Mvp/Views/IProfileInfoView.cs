@@ -11,6 +11,8 @@ namespace OnTheRoad.Mvp.Profile.Contracts
 
         event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
 
-        event EventHandler<ProfileInfoEventArgs> CheckIfUserExists;
+        event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
+
+        event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
     }
 }

@@ -61,21 +61,54 @@
 }
 
 .fa {
-    margin-right:10px;
+    margin-right: 10px;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
     margin-right: 50px;
 }
 
-#MainContent_ProfileContent_FormViewProfileInfo_EditButton {
-    float:right;
-}
-
-#MainContent_ProfileContent_FormViewProfileInfo_SaveButton {
+#MainContent_ProfileContent_ButtonEdit,
+#MainContent_ProfileContent_FormViewProfileInfo_ButtonSave {
     float: right;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_City_DropDownCities {
     max-width: 280px;
+}
+
+.btn-follow {
+    float: left;
+}
+
+.favUserImage {
+    width: 50px;
+}
+
+.fav-users-header {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.dropdown-menu {
+    top: 30%;
+    min-width: 100px;
+    padding: 0;
+}
+
+/*.dropdown-menu > li > input:hover {
+    background-color: orangered;
+}*/
+
+.btn-dropdown {
+    margin-right: 30px;
+    border-radius: 10px;
+    position: relative;
+    top: -15px;
+}
+
+.btn-unfollow {
+    border:0;
+    background-color:transparent;
+    margin-left:10px;
 }

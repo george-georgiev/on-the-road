@@ -22,7 +22,5 @@ namespace OnTheRoad.Mvp.Models
         public string PhoneNumber { get; set; }
 
         public ICollection<IUser> FavouriteUsers { get; set; }
-
-        public bool DoesUserExist { get; set; }
     }
 }

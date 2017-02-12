@@ -13,31 +13,31 @@ namespace OnTheRoad.Profile {
     public partial class ProfileInfo {
         
         /// <summary>
-        /// UpdatePanelResults control.
+        /// UpdatePanelFollowingButtons control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelResults;
+        protected global::System.Web.UI.UpdatePanel UpdatePanelFollowingButtons;
         
         /// <summary>
-        /// PanelError control.
+        /// ButtonFollow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PanelError;
+        protected global::System.Web.UI.WebControls.Button ButtonFollow;
         
         /// <summary>
-        /// FailureText control.
+        /// ButtonUnfollow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FailureText;
+        protected global::System.Web.UI.WebControls.Button ButtonUnfollow;
         
         /// <summary>
         /// FormViewProfileInfo control.
@@ -49,12 +49,30 @@ namespace OnTheRoad.Profile {
         protected global::System.Web.UI.WebControls.FormView FormViewProfileInfo;
         
         /// <summary>
-        /// BulletedListFavouriteUsers control.
+        /// ButtonEdit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.BulletedList BulletedListFavouriteUsers;
+        protected global::System.Web.UI.WebControls.LinkButton ButtonEdit;
+        
+        /// <summary>
+        /// PanelFavouriteUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelFavouriteUsers;
+        
+        /// <summary>
+        /// RepeaterFavouriteUsers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepeaterFavouriteUsers;
     }
 }

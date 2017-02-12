@@ -6,13 +6,16 @@
 
     <div class="row text-center">
         <div class="col-md-12">
-            <asp:UpdatePanel ID="UpdatePanelResults" UpdateMode="Always" runat="server">
+            <asp:UpdatePanel runat="server" ID="UpdatePanelFollowingButtons" EnableViewState="false" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:Panel runat="server" ID="PanelError" Visible="false">
-                        <p class="text-danger">
-                            <asp:Literal runat="server" ID="FailureText" />
-                        </p>
-                    </asp:Panel>
+                    <asp:Button Text="ПОСЛЕДВАЙ" runat="server" Visible="false"
+                        ID="ButtonFollow"
+                        OnClick="ButtonFollow_Click"
+                        CssClass="btn btn-success btn-follow" />
+                    <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server" Visible="false"
+                        ID="ButtonUnfollow"
+                        OnClick="ButtonUnfollow_Click"
+                        CssClass="btn btn-warning btn-sm btn-follow" />
                 </ContentTemplate>
             </asp:UpdatePanel>
 
@@ -20,7 +23,7 @@
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
                     <h2 class="page-headers">
-                        <asp:Literal Text='<%# this.Model.Username %>' runat="server" />
+                        <asp:Literal Text='<%# Item.Username %>' runat="server" />
                     </h2>
                     <br />
                     <div class="row">
@@ -50,7 +53,6 @@
                             </div>
                         </div>
                     </div>
-                    <asp:LinkButton ID="EditButton" runat="server" OnClick="EditButton_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
 
                 </ItemTemplate>
                 <EditItemTemplate>
@@ -60,51 +62,79 @@
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group ">
-                                <label>първо име</label>
-                                <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
-                            </div>
-                            <asp:UpdatePanel runat="server" UpdateMode="Always" ID="upDetails">
-                                <ContentTemplate>
-                                    <div class="form-group">
-                                        <label>потребителско име</label>
-                                        <asp:TextBox ID="Username" OnTextChanged="Username_TextChanged" AutoPostBack="true" Text="<%# this.GetUsername %>" runat="server" CssClass="form-control" />
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group ">
+                                        <label class="input-labels">първо име</label>
+                                        <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
                                     </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                                    <div class="form-group">
+                                        <label class="input-labels">град</label>
+                                        <uc:CitiesDropDown ID="City" runat="server" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="input-labels">фамилно име</label>
+                                        <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="input-labels">тел. номер</label>
+                                        <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="input-labels">кратка информация</label>
+                                <asp:TextBox ID="Info" TextMode="MultiLine" Rows="4" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                            </div>
+                        </div>
+                    </div>
 
-                            <div class="form-group">
-                                <label>град</label>
-                                <uc:CitiesDropDown ID="City" runat="server" />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>фамилно име</label>
-                                <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
-                            </div>
-                            <div class="form-group">
-                                <label>тел. номер</label>
-                                <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>кратка информация</label>
-                        <asp:TextBox ID="Info" TextMode="MultiLine" Rows="10" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
-                    </div>
-                    <asp:LinkButton ID="SaveButton" runat="server" OnClick="SaveButton_Click" Text="ЗАПАЗИ" CssClass="btn btn-success"></asp:LinkButton>
+                    <asp:LinkButton ID="ButtonSave" runat="server"
+                        OnClick="ButtonSave_Click"
+                        Text="ЗАПАЗИ"
+                        CssClass="btn btn-success">
+                    </asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
         </div>
     </div>
 
+    <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
+
     <div class="row">
-        <div class="col-md-12">
-            <asp:BulletedList runat="server" ID="BulletedListFavouriteUsers">
-                   
-            </asp:BulletedList>
-        </div>
+        <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
+            <h3 class="page-headers fav-users-header">Любими пътешественици</h3>
+            <asp:Repeater runat="server" ID="RepeaterFavouriteUsers"
+                ItemType="OnTheRoad.Domain.Models.IUser">
+                <ItemTemplate>
+                    <asp:HyperLink runat="server"
+                        ID="LinkButtonFollowing"
+                        Text="<%#: Item.Username %>"
+                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+
+                    <asp:Image runat="server" CssClass="favUserImage img-circle"
+                        ImageUrl="https://truejuggalofamily.com/wp-content/uploads/2016/05/tiwh1.jpg" />
+
+                    <div class="btn-group">
+                        <button type="button" class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <asp:Button
+                                    runat="server"
+                                    Text="премахни"
+                                    CssClass="btn-unfollow"
+                                    CommandArgument="<%#: Item.Username %>"
+                                    OnClick="DropdownUnfollow_Click" />
+                            </li>
+                        </ul>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </asp:Panel>
     </div>
 </asp:Content>

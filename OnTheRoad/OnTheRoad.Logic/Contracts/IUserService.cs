@@ -1,4 +1,5 @@
-﻿using OnTheRoad.Domain.Models;
+﻿using System.Collections.Generic;
+using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Contracts
 {
@@ -6,8 +7,10 @@ namespace OnTheRoad.Logic.Contracts
     {
         IUser GetUserInfo(string id);
 
-        void UpdateUserInfo(IUser user, string firstName, string lastName, string username, string phoneNumber, string info, ICity city);
+        void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city);
 
-        bool ChechIfUsernameExists(string username);
+        void RemoveFavouriteUser(string username, string userToRemoveUsername);
+
+        void AddFafouriteUser(string username, string userToAddUsername);
     }
 }
