@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="EndDate" CssClass="col-md-2 control-label">Крайна Дата</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="EndDate" CssClass="col-md-2 control-label input-labels">Крайна Дата</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="EndDate" TextMode="Date" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="EndDate"
@@ -62,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Categories" CssClass="col-md-2 control-label">Категории</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Categories" CssClass="col-md-2 control-label input-labels">Категории</asp:Label>
             <div class="col-md-10">
                 <uc:CategoriesMultiSelect ID="Categories" runat="server" CssClass="form-control"
                     IsRequired="true"
@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Tags" CssClass="col-md-2 control-label">Тагове</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Tags" CssClass="col-md-2 control-label input-labels">Тагове</asp:Label>
             <div class="col-md-10">
                 <uc:TagsSelect ID="Tags" runat="server"  CssClass="form-control" />
             </div>
