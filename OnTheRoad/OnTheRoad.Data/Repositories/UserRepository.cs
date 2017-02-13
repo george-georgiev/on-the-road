@@ -120,7 +120,8 @@ namespace OnTheRoad.Data.Repositories
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<IUser, User>().ForMember(x => x.City, opt => opt.Ignore())
+                config.CreateMap<IUser, User>()
+                .ForMember(x => x.City, opt => opt.Ignore())
                 .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
                 config.CreateMap<ISubscribtion, Subscription>();
                 config.CreateMap<IReview, Review>();
