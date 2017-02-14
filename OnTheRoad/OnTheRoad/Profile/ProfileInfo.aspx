@@ -6,6 +6,8 @@
 
     <div class="row text-center">
         <div class="col-md-12">
+            <asp:Label runat="server" ID="LabelErrors" />
+
             <asp:UpdatePanel runat="server" ID="UpdatePanelFollowingButtons" EnableViewState="false" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Button Text="ПОСЛЕДВАЙ" runat="server" Visible="false"
@@ -28,7 +30,9 @@
                     <br />
                     <div class="row">
                         <div class="col-md-4">
-                            <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
+                            <asp:Image ID="ImageUser" runat="server"
+                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>'
+                                CssClass="img-responsive"></asp:Image>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
@@ -60,7 +64,14 @@
                     <br />
                     <div class="row">
                         <div class="col-md-4">
-                            <asp:Image ID="ImageUser" runat="server" ImageUrl="http://klassa.bg/images/pictures/class_bg/img_47303.jpg" CssClass="img-responsive"></asp:Image>
+                            <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>' CssClass="img-responsive"></asp:Image>
+                            <div>
+                                <asp:FileUpload ID="FileUploadImage" runat="server" CssClass="btn-upload" Width="95" />
+                                <asp:Label AssociatedControlID="FileUploadImage" runat="server" CssClass="label-upload btn btn-xs btn-default">
+                                            ИЗБЕРИ СНИМКА
+                                </asp:Label>
+                                <asp:Button runat="server" ID="ButtonUploadImage" Text="КАЧИ" CssClass="btn btn-xs btn-success" OnClick="ButtonUploadImage_Click" />
+                            </div>
                         </div>
                         <div class="col-md-8">
                             <div class="row">
@@ -116,7 +127,7 @@
                         NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
 
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
-                        ImageUrl="https://truejuggalofamily.com/wp-content/uploads/2016/05/tiwh1.jpg" />
+                        ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
 
                     <div class="btn-group">
                         <button type="button" class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -137,4 +148,5 @@
             </asp:Repeater>
         </asp:Panel>
     </div>
+
 </asp:Content>

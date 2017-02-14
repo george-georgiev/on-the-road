@@ -28,7 +28,7 @@ namespace OnTheRoad.Mvp.Presenters
             
             try
             {
-                registerService.CreateUser(e.UserEmail, e.UserPassword, e.FirstName, e.LastName);
+                registerService.CreateUser(e.Username, e.UserEmail, e.UserPassword, e.FirstName, e.LastName);
                 View.Model.HasSucceeded = true;
             }
             catch (ArgumentException err)

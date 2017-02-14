@@ -31,11 +31,17 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.UpdateProfileInfo += View_UpdateProfileInfo;
             this.View.RemoveFavouriteUser += View_RemoveFavouriteUser;
             this.View.AddFavouriteUser += View_AddFavouriteUser;
+            this.View.UpdateProfileImage += View_UpdateProfileImage;
+        }
+
+        private void View_UpdateProfileImage(object sender, ProfileImageEventArgs e)
+        {
+            this.userService.UpdateImage(e.Image, e.UserName);
         }
 
         private void View_AddFavouriteUser(object sender, FavouriteUserEventArgs e)
         {
-            this.userService.AddFafouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
+            this.userService.AddFavouriteUser(e.CurrentUserUsername, e.FavouriteUserUsername);
         }
 
         private void View_RemoveFavouriteUser(object sender, FavouriteUserEventArgs e)
@@ -63,7 +69,8 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Model.City = user.City != null ? user.City.Name : string.Empty;
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
-            this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
+            this.View.Model.Image = user.Image;
+            //this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
             // TODO: Add real image from DB
             //this.View.Model.ImagePath = user.Image.Path;
         }

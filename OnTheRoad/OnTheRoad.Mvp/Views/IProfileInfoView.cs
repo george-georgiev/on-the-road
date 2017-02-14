@@ -14,5 +14,7 @@ namespace OnTheRoad.Mvp.Profile.Contracts
         event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
 
         event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
+
+        event EventHandler<ProfileImageEventArgs> UpdateProfileImage;
     }
 }

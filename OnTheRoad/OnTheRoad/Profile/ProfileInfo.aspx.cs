@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web.UI.WebControls;
+using ImageResizer;
 using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.Profile.Contracts;
@@ -8,8 +11,6 @@ using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.CustomControllers;
 using WebFormsMvp;
 using WebFormsMvp.Web;
-using OnTheRoad.Domain.Models;
-using System.Linq;
 
 namespace OnTheRoad.Profile
 {
@@ -23,6 +24,9 @@ namespace OnTheRoad.Profile
         public event EventHandler<ProfileInfoEventArgs> UpdateProfileInfo;
         public event EventHandler<FavouriteUserEventArgs> RemoveFavouriteUser;
         public event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
+        public event EventHandler<ProfileImageEventArgs> UpdateProfileImage;
+
+        public string FileP { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -36,14 +40,14 @@ namespace OnTheRoad.Profile
             this.RepeaterFavouriteUsers.DataSource = this.Model.FavouriteUsers;
             this.Page.DataBind();
 
-            // add users to sesstion
+            // Add users to sesstion.
             if (this.Request.QueryString[USERNAME] == this.Context.User.Identity.Name)
             {
                 var favUsers = this.Model.FavouriteUsers.Select(x => x.Username).ToList();
                 this.Session.Add(FAVOURITE_USERS, favUsers);
             }
 
-            // if on different user page -> show or hide follow and unfollow btns
+            // If on different user page -> show or hide follow and unfollow buttons.
             if (this.Context.User.Identity.Name != string.Empty &&
                 this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
             {
@@ -151,6 +155,55 @@ namespace OnTheRoad.Profile
             var userToRemoveFromSession = favouriteUsers.First(x => x == favUserToRemove);
             favouriteUsers.Remove(userToRemoveFromSession);
             this.Session[FAVOURITE_USERS] = favouriteUsers;
+        }
+
+        protected void ButtonUploadImage_Click(object sender, EventArgs e)
+        {
+            var fileUpload = this.FormViewProfileInfo.FindControl("fileuploadimage") as FileUpload;
+
+            if (fileUpload.HasFile)
+            {
+                try
+                {
+                    if (fileUpload.PostedFile.ContentType == "image/jpeg" || fileUpload.PostedFile.ContentType == "image/png")
+                    {
+                        if (fileUpload.PostedFile.ContentLength < 4 * 1000 * 1024)
+                        {
+                            string filename = Path.GetFileName(fileUpload.FileName);
+                            Stream fileStream = fileUpload.PostedFile.InputStream;
+                            byte[] imageAsByteArray = null;
+
+                            using (var ms = new MemoryStream())
+                            {
+                                ImageJob i = new ImageJob(fileStream, ms,
+                                    new ImageResizer.Instructions("width=600;format=jpg;mode=max"));
+                                i.Build();
+                                imageAsByteArray = ms.ToArray();
+                            }
+
+                            this.UpdateProfileImage?.Invoke(this, new ProfileImageEventArgs()
+                            {
+                                Image = imageAsByteArray,
+                                UserName = this.Context.User.Identity.Name
+                            });
+                           
+                            this.LabelErrors.Text = "";
+                        }
+                        else
+                        {
+                            this.LabelErrors.Text = "Снимката трябва да е до 4MB!";
+                        }
+                    }
+                    else
+                    {
+                        this.LabelErrors.Text = "Само JPEG И PNG файлове може да бъдат качвани!";
+                    }
+                }
+                catch (Exception)
+                {
+                    this.LabelErrors.Text = "Възникна грешка при качването. Моля опитайте отново.";
+                }
+            }
         }
     }
 }

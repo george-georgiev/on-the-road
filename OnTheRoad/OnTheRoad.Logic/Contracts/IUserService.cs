@@ -10,6 +10,8 @@ namespace OnTheRoad.Logic.Contracts
 
         void RemoveFavouriteUser(string username, string userToRemoveUsername);
 
-        void AddFafouriteUser(string username, string userToAddUsername);
+        void AddFavouriteUser(string username, string userToAddUsername);
+
+        void UpdateImage(byte[] image, string username);
     }
 }

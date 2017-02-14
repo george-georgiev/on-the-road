@@ -75,3 +75,7 @@ input[type="select"] {
 .input-labels {
     color: #4aa504;
 }
+
+.hidden {
+    visibility: hidden;
+}

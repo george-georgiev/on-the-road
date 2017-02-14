@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Data.Models;
+using System.IO;
 
 namespace OnTheRoad.Identity
 {
@@ -19,9 +20,9 @@ namespace OnTheRoad.Identity
 
         private ApplicationSignInManager AppSignInManager { get; set; }
 
-        public void CreateUser(string email, string password, string firstName, string lastName)
+        public void CreateUser(string username, string email, string password, string firstName, string lastName)
         {
-            var user = new User() { UserName = email, Email = email, Info = null, FirstName = firstName, LastName = lastName };
+            var user = new User() { UserName = username, Email = email, Info = null, FirstName = firstName, LastName = lastName };
             IdentityResult result = this.AppUserManager.Create(user, password);
 
             if (result.Succeeded)
@@ -29,6 +30,7 @@ namespace OnTheRoad.Identity
                 // TODO: Add initial User Role
                 // var currentUser = this.AppUserManager.FindByName(email);
                 // this.AppUserManager.AddToRole(currentUser.Id, "Admin");
+                
                 this.AppSignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
             }
             else

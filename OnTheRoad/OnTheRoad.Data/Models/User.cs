@@ -36,10 +36,12 @@ namespace OnTheRoad.Data.Models
 
         public string Info { get; set; }
 
-        [ForeignKey("Image")]
-        public int? ImageId { get; set; }
+        //[ForeignKey("Image")]
+        //public int? ImageId { get; set; }
 
-        public virtual UserImage Image { get; set; }
+        //public virtual UserImage Image { get; set; }
+
+        public byte[] Image { get; set; }
 
         public virtual ICollection<Review> Reviews
         {
