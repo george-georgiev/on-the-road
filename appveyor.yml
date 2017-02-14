@@ -17,6 +17,6 @@ environment:
     secure: VOD5qvGYTFNDTtxhIBw5RAYV/l3SaeFfF2AA1ei8a+KnTESam0J/myF7x7uyLmKZ
 
 after_test: 
-        - OnTheRoad\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]* -[WebFormsMvp]*" -target:"OnTheRoad\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -targetargs:"/domain:single OnTheRoad\OnTheRoad.Tests\bin\Debug\OnTheRoad.Tests.dll" -output:cover.xml
+        - OnTheRoad\packages\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -filter:"+[*]* -[WebFormsMvp]*" -target:"OnTheRoad\packages\NUnit.ConsoleRunner.3.6.0\tools\nunit3-console.exe" -targetargs:"/domain:single OnTheRoad\OnTheRoad.Tests\bin\Debug\OnTheRoad.Tests.dll OnTheRoad\OnTheRoad.Logic.Tests\bin\Debug\OnTheRoad.Logic.Tests.dll" -output:cover.xml
 
         - OnTheRoad\packages\coveralls.io.1.3.4\tools\coveralls.net.exe --opencover cover.xml
