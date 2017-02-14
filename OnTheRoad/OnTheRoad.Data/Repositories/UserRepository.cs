@@ -21,7 +21,6 @@ namespace OnTheRoad.Data.Repositories
 
         protected DbSet<User> DbSet { get; set; }
 
-
         // TODO: Implement
         public IEnumerable<IUser> GetAll()
         {
@@ -31,13 +30,24 @@ namespace OnTheRoad.Data.Repositories
         public IUser GetByUserName(string username)
         {
             this.MapUserToIUser();
-            var found = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
-            if (found == null)
+            var entity = this.DbSet.Where(x => x.UserName == username).FirstOrDefault();
+            if (entity == null)
             {
                 return null;
             }
 
-            var mapped = Mapper.Map<User, IUser>(found);
+            var mapped = Mapper.Map<User, IUser>(entity);
+            if (entity.FavouriteUsers != null)
+            {
+                var updatedFavUsers = new List<IUser>();
+                foreach (var fu in entity.FavouriteUsers)
+                {
+                    var mappedFavUser = Mapper.Map<User, IUser>(fu);
+                    updatedFavUsers.Add(mappedFavUser);
+                }
+
+                mapped.FavouriteUsers = updatedFavUsers;
+            }
 
             return mapped;
         }
@@ -45,45 +55,88 @@ namespace OnTheRoad.Data.Repositories
         public IUser GetById(object id)
         {
             this.MapUserToIUser();
-            var found = this.DbSet.Find(id);
-            var mapped = Mapper.Map<User, IUser>(found);
+            var entity = this.DbSet.Find(id);
+            if (entity == null)
+            {
+                return null;
+            }
+
+            var mapped = Mapper.Map<User, IUser>(entity);
+            if (entity.FavouriteUsers != null)
+            {
+                var updatedFavUsers = new List<IUser>();
+                foreach (var fu in entity.FavouriteUsers)
+                {
+                    var mappedFavUser = Mapper.Map<User, IUser>(fu);
+                    updatedFavUsers.Add(mappedFavUser);
+                }
+
+                mapped.FavouriteUsers = updatedFavUsers;
+            }
 
             return mapped;
         }
 
-        public void RemoveFavouriteUser(string userId, string userToRemoveUsername)
+        public void Update(IUser model)
         {
-            var entity = this.DbSet.Local.Where(e => e.Id == userId).FirstOrDefault();
-
-            var userToRemove = entity.FavouriteUsers.FirstOrDefault(x => x.UserName == userToRemoveUsername);
-            if (userToRemove != null)
+            if (model == null)
             {
-                entity.FavouriteUsers.Remove(userToRemove);
+                throw new ArgumentNullException("model can not be null!");
             }
+
+            this.MapIUserToUser(model);
+            var entity = this.DbSet.Local.Where(e => e.Id == model.Id.ToString()).FirstOrDefault();
+            if (entity == null)
+            {
+                entity = Mapper.Map<IUser, User>(model);
+            }
+            else
+            {
+                entity = Mapper.Map<IUser, User>(model, entity);
+            }
+
+            if (model.FavouriteUsers != null)
+            {
+                var updatedFavUsers = new List<User>();
+                foreach (var fu in model.FavouriteUsers)
+                {
+                    var user = this.Context.Users.Where(e => e.Id == fu.Id.ToString()).Single();
+                    updatedFavUsers.Add(user);
+                }
+
+                entity.FavouriteUsers = updatedFavUsers;
+            }
+
+            //if (model.Reviews != null)
+            //{
+            //    var updatedReviews = new List<Review>();
+            //    foreach (var rev in model.Reviews)
+            //    {
+            //        var r = this.Context.Reviews.Where(e => e.Id == rev.Id).Single();
+            //        updatedReviews.Add(r);
+            //    }
+
+            //    entity.Reviews = updatedReviews;
+            //}
+
+            //if (model.Subscription != null)
+            //{
+            //    var updatedSubscriptions = new List<Subscription>();
+            //    foreach (var subs in model.Subscription)
+            //    {
+            //        var s = this.Context.Subscriptions.Where(e => e.Id == subs.Id).Single();
+            //        updatedSubscriptions.Add(s);
+            //    }
+
+            //    entity.Subscriptions = updatedSubscriptions;
+            //}
 
             var entry = this.Context.Entry(entity);
             entry.State = EntityState.Modified;
+            //this.SetEntityState(entity, EntityState.Modified);
         }
 
-        public void AddFavouriteUser(string userId, string userToAddUsername)
-        {
-            var entity = this.DbSet.Local.Where(e => e.Id == userId).FirstOrDefault();
-
-            var userToAdd = this.Context.Users.FirstOrDefault(x => x.UserName == userToAddUsername);
-            if (userToAdd != null)
-            {
-                entity.FavouriteUsers.Add(userToAdd);
-            }
-
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Modified;
-        }
-
-        public void Update(IUser entity)
-        {
-            this.SetEntityState(entity, EntityState.Modified);
-        }
-
+        // TODO: Delete if not needed.
         private void SetEntityState(IUser model, EntityState entityState)
         {
             if (model == null)
@@ -106,20 +159,12 @@ namespace OnTheRoad.Data.Repositories
             entry.State = entityState;
         }
 
-        public void UpdateImage(byte[] image, string username)
-        {
-            var user = this.DbSet.Where(x => x.UserName == username).Single();
-            user.Image = image;
-
-            var entry = this.Context.Entry(user);
-            entry.State = EntityState.Modified;
-        }
-
         private void MapUserToIUser()
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<User, IUser>();
+                config.CreateMap<User, IUser>()
+                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
                 config.CreateMap<City, ICity>();
                 config.CreateMap<Subscription, ISubscription>();
                 config.CreateMap<Review, IReview>();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Contracts;
 using OnTheRoad.Domain.Repositories;
@@ -30,7 +31,6 @@ namespace OnTheRoad.Logic.Services
         public IUser GetUserInfo(string username)
         {
             var user = this.userRepository.GetByUserName(username);
-
             return user;
         }
 
@@ -42,30 +42,36 @@ namespace OnTheRoad.Logic.Services
             user.PhoneNumber = phoneNumber;
             user.Info = info;
             user.City = city;
-            
+
             this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }
 
         public void RemoveFavouriteUser(string username, string userToRemoveUsername)
         {
-            var userId = this.userRepository.GetByUserName(username).Id;  
-            this.userRepository.RemoveFavouriteUser(userId, userToRemoveUsername);
+            var user = this.userRepository.GetByUserName(username);
+            var userToRemove = user.FavouriteUsers.Where(x => x.Username == userToRemoveUsername).Single();
+            user.FavouriteUsers.Remove(userToRemove);
 
+            this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }
 
         public void AddFavouriteUser(string username, string userToAddUsername)
         {
-            var userId = this.userRepository.GetByUserName(username).Id;
-            this.userRepository.AddFavouriteUser(userId, userToAddUsername);
+            var user = this.userRepository.GetByUserName(username);
+            var userToAdd = this.userRepository.GetByUserName(userToAddUsername);
+            user.FavouriteUsers.Add(userToAdd);
 
+            this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }
 
         public void UpdateImage(byte[] image, string username)
         {
-            this.userRepository.UpdateImage(image, username);
+            var user = this.userRepository.GetByUserName(username);
+            user.Image = image;
+            this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }
     }

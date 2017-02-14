@@ -12,11 +12,5 @@ namespace OnTheRoad.Domain.Repositories
         IUser GetById(object id);
 
         void Update(IUser entity);
-
-        void RemoveFavouriteUser(string userId, string userToRemoveUsername);
-
-        void AddFavouriteUser(string userId, string userToAddUsername);
-
-        void UpdateImage(byte[] image, string username);
     }
 }
