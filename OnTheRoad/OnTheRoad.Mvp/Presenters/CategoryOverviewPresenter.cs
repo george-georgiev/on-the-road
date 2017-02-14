@@ -12,9 +12,9 @@ namespace OnTheRoad.Mvp.Presenters
     public class CategoryOverviewPresenter : Presenter<ICategoryOverviewView>
     {
         private const int TripsCount = 4;
-        private readonly ITripService tripService;
+        private readonly ITripGetService tripService;
 
-        public CategoryOverviewPresenter(ICategoryOverviewView view, ITripService tripService) : base(view)
+        public CategoryOverviewPresenter(ICategoryOverviewView view, ITripGetService tripService) : base(view)
         {
             if (tripService == null)
             {
@@ -29,8 +29,8 @@ namespace OnTheRoad.Mvp.Presenters
         private void View_GetTrips(object sender, CategoryOverviewEventArgs e)
         {
             //var trips = this.tripService.GetTripsOrderedByDateCreated(TripsCount);
-            var trips = new List<ITrip>() { new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1") };
-            this.View.Model.Trips = trips;
+            //var trips = new List<ITrip>() { new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1"), new Trip("Trip 1") };
+            //this.View.Model.Trips = trips;
         }
     }
 }

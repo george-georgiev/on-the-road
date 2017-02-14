@@ -11,13 +11,13 @@ namespace OnTheRoad.CustomControllers
 
         public TagsSelect()
         {
-            if (this.SelectedTags == null)
+            if (this.SelectedTagNames == null)
             {
-                this.SelectedTags = new List<string>();
+                this.SelectedTagNames = new List<string>();
             }
         }
 
-        public IEnumerable<string> SelectedTags
+        public IEnumerable<string> SelectedTagNames
         {
             private set
             {
@@ -37,15 +37,15 @@ namespace OnTheRoad.CustomControllers
         protected void TagSelectButton_Click(object sender, EventArgs e)
         {
             var tagName = this.TagsTextBox.Text;
-            if (tagName != string.Empty && !this.SelectedTags.Contains(tagName))
+            if (tagName != string.Empty && !this.SelectedTagNames.Contains(tagName))
             {
-                var tagNames = this.SelectedTags.ToList();
+                var tagNames = this.SelectedTagNames.ToList();
                 tagNames.Add(tagName);
-                this.SelectedTags = tagNames;
+                this.SelectedTagNames = tagNames;
             }
 
             var tags = new List<TagModel>();
-            foreach (var item in this.SelectedTags)
+            foreach (var item in this.SelectedTagNames)
             {
                 var tag = new TagModel() { Name = item };
                 tags.Add(tag);
