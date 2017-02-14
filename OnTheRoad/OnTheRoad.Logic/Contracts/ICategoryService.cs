@@ -3,16 +3,8 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface ICategoryService
+    public interface ICategoryService : ICategoryModifyService, ICategoryGetService
     {
-        void AddCategory(string name);
-
-        ICategory GetCategoryByName(string name);
-
-        void DeleteCategoryByName(string name);
-
-        IEnumerable<ICategory> GetAllCategories();
-
-        ICategory GetCategoryById(int id);
+        
     }
 }

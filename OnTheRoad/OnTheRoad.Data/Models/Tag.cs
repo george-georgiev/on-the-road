@@ -17,7 +17,7 @@ namespace OnTheRoad.Data.Models
         [MaxLength(10)]
         public string Name { get; set; }
 
-        public virtual ICollection<Trip> Tags
+        public virtual ICollection<Trip> Trips
         {
             get { return this.trip; }
             set { this.trip = value; }

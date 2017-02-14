@@ -29,6 +29,9 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<IUserRepository>()
                 .To<UserRepository>();
+
+            this.Bind<ITagRepository>()
+                .To<TagRepository>();
         }
     }
 }

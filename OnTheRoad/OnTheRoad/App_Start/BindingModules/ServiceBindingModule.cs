@@ -5,11 +5,18 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using OnTheRoad.Logic.Services;
+using OnTheRoad.Logic.Factories;
+using Ninject.Extensions.Factory;
+using OnTheRoad.Domain.Models;
+using OnTheRoad.Logic.Models;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
     public class ServiceBindingModule : NinjectModule
     {
+        private const string TagName = "Tag";
+
         /// <summary>
         /// Binds all services.
         /// </summary>
@@ -23,11 +30,28 @@ namespace OnTheRoad.App_Start.BindingModules
                     .Excluding(typesToExclude)
                     .BindDefaultInterface();
             });
+
+            this.Bind<ITripAddService, ITripGetService>()
+                .To<TripService>();
+
+            this.Bind<ITag>()
+                .To<Tag>()
+                .Named(TagName);
+
+            this.Bind<ITagFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<ITagGetService>()
+                .To<TagService>();
+
+            this.Bind<ICategoryGetService, ICategoryModifyService>()
+                .To<CategoryService>();
         }
 
         private IEnumerable<Type> GetTypesToExclude()
         {
-            return new List<Type>();
+            return new List<Type>() { typeof(Tag) };
         }
     }
 }

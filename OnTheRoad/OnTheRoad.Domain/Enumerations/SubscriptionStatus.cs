@@ -4,7 +4,6 @@
     {
         Interested = 0,
         Attending,
-        Ignored,
         Expired
     }
 }

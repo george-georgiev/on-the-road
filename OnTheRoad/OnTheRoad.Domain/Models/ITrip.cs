@@ -13,12 +13,18 @@ namespace OnTheRoad.Domain.Models
 
         DateTime EndDate { get; set; }
 
+        DateTime CreateDate { get; set; }
+
         string Location { get; set; }
 
         ICollection<ITag> Tags { get; set; }
 
         ICollection<ICategory> Categories { get; set; }
 
-        IImage Image { get; set; }
+        IImage CoverImage { get; set; }
+
+        IUser Organiser { get; set; }
+
+        ICollection<ISubscription> Subscriptions { get; set; }
     }
 }

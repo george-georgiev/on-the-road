@@ -50,6 +50,19 @@ namespace OnTheRoad.Logic.Services
             return categories;
         }
 
+        public IEnumerable<ICategory> GetCategoriesByIdCollection(IEnumerable<int> idCollection)
+        {
+            var result = new List<ICategory>();
+
+            foreach (var id in idCollection)
+            {
+                var category = this.GetCategoryById(id);
+                result.Add(category);
+            }
+
+            return result;
+        }
+
         public ICategory GetCategoryById(int id)
         {
             var category = this.categoryRepository.GetById(id);

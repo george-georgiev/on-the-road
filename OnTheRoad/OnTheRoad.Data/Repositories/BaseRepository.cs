@@ -15,48 +15,49 @@ namespace OnTheRoad.Data.Repositories
     {
         public BaseRepository(OnTheRoadIdentityDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context can not be null!");
+            }
+
             this.Context = context;
             this.DbSet = this.Context.Set<EntityType>();
         }
 
-        protected OnTheRoadIdentityDbContext Context { get; set; }
+        protected OnTheRoadIdentityDbContext Context { get; }
 
-        protected DbSet<EntityType> DbSet { get; set; }
+        protected DbSet<EntityType> DbSet { get; }
 
-        public void Add(DomainType model)
+        public virtual void Add(DomainType model)
         {
             this.SetEntityState(model, EntityState.Added);
         }
 
-        public void Delete(DomainType model)
+        public virtual void Delete(DomainType model)
         {
             this.SetEntityState(model, EntityState.Deleted);
         }
 
-        public IEnumerable<DomainType> GetAll()
+        public virtual IEnumerable<DomainType> GetAll()
         {
-            Mapper.Initialize(config => config.CreateMap<EntityType, DomainType>());
-
             var mapped = new List<DomainType>();
             foreach (var entity in this.DbSet.ToList())
             {
-                mapped.Add(Mapper.Map<EntityType, DomainType>(entity));
+                mapped.Add(this.MapEntityToDomain(entity));
             }
 
             return mapped;
         }
 
-        public DomainType GetById(object id)
+        public virtual DomainType GetById(object id)
         {
-            Mapper.Initialize(config => config.CreateMap<EntityType, DomainType>());
-
             var found = this.DbSet.Find(id);
-            var mapped = Mapper.Map<EntityType, DomainType>(found);
+            var mapped = this.MapEntityToDomain(found);
 
             return mapped;
         }
 
-        public void Update(DomainType model)
+        public virtual void Update(DomainType model)
         {
             this.SetEntityState(model, EntityState.Modified);
         }
@@ -71,12 +72,27 @@ namespace OnTheRoad.Data.Repositories
             var entity = this.DbSet.Local.Where(e => e.Id == model.Id).FirstOrDefault();
             if (entity == null)
             {
-                Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
-                entity = Mapper.Map<DomainType, EntityType>(model);
+                entity = this.MapDomainToEnity(model);
             }
 
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
+        }
+
+        protected virtual EntityType MapDomainToEnity(DomainType domain)
+        {
+            Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
+            var entity = Mapper.Map<DomainType, EntityType>(domain);
+
+            return entity;
+        }
+
+        protected virtual DomainType MapEntityToDomain(EntityType entity)
+        {
+            Mapper.Initialize(config => config.CreateMap<EntityType, DomainType>());
+            var domain = Mapper.Map<EntityType, DomainType>(entity);
+
+            return domain;
         }
     }
 }

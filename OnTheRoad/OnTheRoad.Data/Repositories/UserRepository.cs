@@ -120,7 +120,7 @@ namespace OnTheRoad.Data.Repositories
             {
                 config.CreateMap<User, IUser>();
                 config.CreateMap<City, ICity>();
-                config.CreateMap<Subscription, ISubscribtion>();
+                config.CreateMap<Subscription, ISubscription>();
                 config.CreateMap<Review, IReview>();
                 config.CreateMap<Country, ICountry>();
                 //config.CreateMap<UserImage, IImage>();
@@ -134,7 +134,7 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<IUser, User>()
                 .ForMember(x => x.City, opt => opt.Ignore())
                 .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
-                config.CreateMap<ISubscribtion, Subscription>();
+                config.CreateMap<ISubscription, Subscription>();
                 config.CreateMap<IReview, Review>();
                 config.CreateMap<ICountry, Country>();
                 //config.CreateMap<IImage, UserImage>();

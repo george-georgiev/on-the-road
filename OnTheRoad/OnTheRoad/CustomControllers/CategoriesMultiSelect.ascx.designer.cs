@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnTheRoad {
+namespace OnTheRoad.CustomControllers {
     
     
-    public partial class Trips {
+    public partial class CategoriesMultiSelect {
         
         /// <summary>
-        /// CategoryRepeater control.
+        /// CategoriesListBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CategoryRepeater;
+        protected global::System.Web.UI.WebControls.ListBox CategoriesListBox;
     }
 }

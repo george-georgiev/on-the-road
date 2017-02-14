@@ -11,7 +11,7 @@ namespace OnTheRoad.App_Start
     /// Ninject kernel is guaranteed to be only 
     /// registered once by Ninject itself. (?)
     /// </summary>
-    public sealed class NinjectKernelInstanceProvider
+    internal sealed class NinjectKernelInstanceProvider
     {
         private static volatile IKernel instance;
         private static object syncRoot = new Object();
@@ -21,7 +21,7 @@ namespace OnTheRoad.App_Start
 
         }
 
-        public static IKernel Instance
+        internal static IKernel Instance
         {
             get
             {

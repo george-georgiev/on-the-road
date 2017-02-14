@@ -1,0 +1,24 @@
+﻿using OnTheRoad.Data.Models;
+using System.Data.Entity;
+
+namespace OnTheRoad.Data.Contracts
+{
+    public interface IOnTheRoadDbContext
+    {
+        IDbSet<Category> Categories { get; set; }
+
+        IDbSet<City> Cities { get; set; }
+
+        IDbSet<Review> Reviews { get; set; }
+
+        IDbSet<Subscription> Subscriptions { get; set; }
+
+        IDbSet<Tag> Tags { get; set; }
+
+        IDbSet<Trip> Trips { get; set; }
+
+        IDbSet<TripImage> TripImages { get; set; }
+
+        IDbSet<UserImage> UserImages { get; set; }
+    }
+}

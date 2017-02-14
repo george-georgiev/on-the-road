@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnTheRoad.Data.Models
 {
     public class Trip : BaseEntity
     {
-        private ICollection<TripImage> images;
         private ICollection<Category> categories;
         private ICollection<Tag> tags;
         private ICollection<Subscription> subscription;
 
         public Trip()
         {
-            this.images = new HashSet<TripImage>();
             this.categories = new HashSet<Category>();
             this.tags = new HashSet<Tag>();
             this.subscription = new HashSet<Subscription>();
@@ -26,15 +25,21 @@ namespace OnTheRoad.Data.Models
 
         public DateTime EndDate { get; set; }
 
+        public DateTime CreateDate { get; set; }
+
         public string Description { get; set; }
 
         public string Location { get; set; }
 
-        public virtual ICollection<TripImage> Images
-        {
-            get { return this.images; }
-            set { this.images = value; }
-        }
+        [ForeignKey("CoverImage")]
+        public int? CoverImageId { get; set; }
+
+        public virtual TripImage CoverImage { get; set; }
+
+        [ForeignKey("Organiser")]
+        public string OrganiserId { get; set; }
+
+        public virtual User Organiser { get; set; }
 
         public virtual ICollection<Category> Categories
         {
