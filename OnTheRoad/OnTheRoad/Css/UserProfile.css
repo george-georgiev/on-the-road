@@ -77,12 +77,23 @@
     max-width: 280px;
 }
 
+#MainContent_ProfileContent_ButtonUploadImage {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.btn-upload {
+    z-index: -1;
+    opacity: 0;
+}
+
 .btn-follow {
     float: left;
 }
 
 .favUserImage {
     width: 50px;
+    height:50px;
 }
 
 .fav-users-header {
@@ -96,10 +107,6 @@
     padding: 0;
 }
 
-/*.dropdown-menu > li > input:hover {
-    background-color: orangered;
-}*/
-
 .btn-dropdown {
     margin-right: 30px;
     border-radius: 10px;
@@ -108,7 +115,7 @@
 }
 
 .btn-unfollow {
-    border:0;
-    background-color:transparent;
-    margin-left:10px;
+    border: 0;
+    background-color: transparent;
+    margin-left: 10px;
 }

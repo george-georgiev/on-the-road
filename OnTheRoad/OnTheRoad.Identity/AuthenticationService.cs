@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Data.Models;
+using System.IO;
 
 namespace OnTheRoad.Identity
 {
@@ -29,6 +30,7 @@ namespace OnTheRoad.Identity
                 // TODO: Add initial User Role
                 // var currentUser = this.AppUserManager.FindByName(email);
                 // this.AppUserManager.AddToRole(currentUser.Id, "Admin");
+                
                 this.AppSignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
             }
             else

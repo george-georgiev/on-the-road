@@ -21,6 +21,8 @@ namespace OnTheRoad.Data.Repositories
 
         protected DbSet<User> DbSet { get; set; }
 
+
+        // TODO: Implement
         public IEnumerable<IUser> GetAll()
         {
             throw new NotImplementedException();
@@ -103,6 +105,15 @@ namespace OnTheRoad.Data.Repositories
             entry.State = entityState;
         }
 
+        public void UpdateImage(byte[] image, string username)
+        {
+            var user = this.DbSet.Where(x => x.UserName == username).Single();
+            user.Image = image;
+
+            var entry = this.Context.Entry(user);
+            entry.State = EntityState.Modified;
+        }
+
         private void MapUserToIUser()
         {
             Mapper.Initialize(config =>
@@ -112,7 +123,7 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<Subscription, ISubscribtion>();
                 config.CreateMap<Review, IReview>();
                 config.CreateMap<Country, ICountry>();
-                config.CreateMap<UserImage, IImage>();
+                //config.CreateMap<UserImage, IImage>();
             });
         }
 
@@ -126,7 +137,7 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<ISubscribtion, Subscription>();
                 config.CreateMap<IReview, Review>();
                 config.CreateMap<ICountry, Country>();
-                config.CreateMap<IImage, UserImage>();
+                //config.CreateMap<IImage, UserImage>();
             });
         }
     }

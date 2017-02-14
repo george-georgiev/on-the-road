@@ -55,11 +55,17 @@ namespace OnTheRoad.Logic.Services
             this.uniOfWork.Commit();
         }
 
-        public void AddFafouriteUser(string username, string userToAddUsername)
+        public void AddFavouriteUser(string username, string userToAddUsername)
         {
             var userId = this.userRepository.GetByUserName(username).Id;
             this.userRepository.AddFavouriteUser(userId, userToAddUsername);
 
+            this.uniOfWork.Commit();
+        }
+
+        public void UpdateImage(byte[] image, string username)
+        {
+            this.userRepository.UpdateImage(image, username);
             this.uniOfWork.Commit();
         }
     }

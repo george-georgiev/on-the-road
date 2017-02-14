@@ -18,7 +18,7 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 
         public int CityId { get; set; }
 
-        public string ImagePath { get; set; }
+        //public string ImagePath { get; set; }
 
         public string PhoneNumber { get; set; }
 

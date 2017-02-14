@@ -16,5 +16,7 @@ namespace OnTheRoad.Domain.Repositories
         void RemoveFavouriteUser(string userId, string userToRemoveUsername);
 
         void AddFavouriteUser(string userId, string userToAddUsername);
+
+        void UpdateImage(byte[] image, string username);
     }
 }

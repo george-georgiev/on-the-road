@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface IUser 
+    public interface IUser
     {
         string Id { get; set; }
 
@@ -24,7 +24,9 @@ namespace OnTheRoad.Domain.Models
 
         ICollection<IUser> FavouriteUsers { get; set; }
 
-        IImage Image { get; set; }
+        //IImage Image { get; set; }
+
+        byte[] Image { get; set; }
 
         string PersonalInfo { get; set; }
 

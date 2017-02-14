@@ -22,8 +22,10 @@ namespace OnTheRoad.Logic.Models
 
         public string Id { get; set; }
 
-        public IImage Image { get; set; }
-    
+        //public IImage Image { get; set; }
+
+        public byte[] Image { get; set; }
+
         public string PersonalInfo { get; set; }
 
         public string PhoneNumber { get; set; }
