@@ -206,7 +206,6 @@
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
-    <Content Include="CustomControllers\FileUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -312,13 +311,6 @@
     </Compile>
     <Compile Include="CustomControllers\CitiesDropDown.ascx.designer.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControllers\FileUploader.ascx.cs">
-      <DependentUpon>FileUploader.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="CustomControllers\FileUploader.ascx.designer.cs">
-      <DependentUpon>FileUploader.ascx</DependentUpon>
     </Compile>
     <Compile Include="CustomControllers\TagsSelect.ascx.cs">
       <DependentUpon>TagsSelect.ascx</DependentUpon>
