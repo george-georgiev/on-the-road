@@ -3,6 +3,7 @@ using System;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Domain.Contracts;
+using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Utils
 {
@@ -38,6 +39,13 @@ namespace OnTheRoad.Logic.Utils
             var entity = this.tagRepository.GetTagByName(name);
 
             return entity;
+        }
+
+        public IEnumerable<ITag> GetTagsByNamePrefix(string prefix, int take)
+        {
+            var tags = this.tagRepository.GetTagsByNamePrefix(prefix, take);
+
+            return tags;
         }
     }
 }

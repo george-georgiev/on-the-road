@@ -49,7 +49,9 @@ namespace OnTheRoad.Logic.Services
 
         public IEnumerable<ITag> GetTagsByNamePrefix(string prefix, int take)
         {
-            throw new NotImplementedException();
+            var tags = this.tagDataUtil.GetTagsByNamePrefix(prefix, take);
+
+            return tags;
         }
     }
 }

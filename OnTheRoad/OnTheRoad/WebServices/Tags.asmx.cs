@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using OnTheRoad.App_Start;
+using OnTheRoad.Logic.Contracts;
+using System.Collections.Generic;
 using System.Web.Services;
+using Ninject;
+using System.Linq;
 
 namespace OnTheRoad.WebServices
 {
@@ -9,16 +13,27 @@ namespace OnTheRoad.WebServices
     [WebService(Namespace = WebServiceNamespace)]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
-    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     [System.Web.Script.Services.ScriptService]
-    public class Tags : System.Web.Services.WebService
+    public class Tags : WebService
     {
         private const string WebServiceNamespace = "http://ontheroad.com/webservices/";
+        private readonly ITagService tagService;
+
+        public Tags()
+        {
+            var tagService = NinjectKernelInstanceProvider.Instance.Get<ITagService>();
+            this.tagService = tagService;
+        }
 
         [WebMethod]
         public List<string> GetTagsByPrefix(string prefixText, int count)
         {
-            return new List<string>() { "Alaska", "Alabama", "California", "North Dakota" };
+            var tags = this.tagService
+                .GetTagsByNamePrefix(prefixText, count)
+                .Select(t => t.Name)
+                .ToList();
+
+            return tags;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace OnTheRoad.Domain.Repositories
     {
         ITag GetTagByName(string name);
 
-        IEnumerable<ITag> GetTagsByPrefix(string prefix);
+        IEnumerable<ITag> GetTagsByNamePrefix(string prefix, int take);
     }
 }
