@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface ITripService
+    public interface ITripGetService
     {
         IEnumerable<ITrip> GetTripsByCategoryName(string categoryName);
 

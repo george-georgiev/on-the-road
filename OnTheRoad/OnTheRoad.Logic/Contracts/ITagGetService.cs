@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface ICategoryService : ICategoryModifyService, ICategoryGetService
+    public interface ITagGetService
     {
-        
+        IEnumerable<ITag> GetTagsByNamePrefix(string prefix, int take);
     }
 }
