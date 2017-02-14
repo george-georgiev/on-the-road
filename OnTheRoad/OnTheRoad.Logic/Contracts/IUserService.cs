@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using OnTheRoad.Domain.Models;
+﻿using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Contracts
 {
     public interface IUserService
     {
-        IUser GetUserInfo(string id);
+        IUser GetUserInfo(string username);
 
         void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city);
 

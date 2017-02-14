@@ -30,7 +30,7 @@ namespace OnTheRoad.Logic.Models
 
         public ICollection<IReview> Reviews { get; set; }
 
-        public ICollection<ISubscribtion> Subscription { get; set; }
+        public ICollection<ISubscription> Subscription { get; set; }
 
         public ICollection<IUser> FavouriteUsers { get; set; }
     }

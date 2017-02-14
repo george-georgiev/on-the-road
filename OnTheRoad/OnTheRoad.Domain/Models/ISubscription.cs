@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Domain.Models
 {
-    public interface ISubscribtion : IIdentifiable
+    public interface ISubscription : IIdentifiable
     {
         ITrip Trip { get; set; }
 

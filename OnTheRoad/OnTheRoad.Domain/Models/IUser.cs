@@ -28,7 +28,7 @@ namespace OnTheRoad.Domain.Models
 
         string PersonalInfo { get; set; }
 
-        ICollection<ISubscribtion> Subscription { get; set; }
+        ICollection<ISubscription> Subscription { get; set; }
 
         ICollection<IReview> Reviews { get; set; }
     }

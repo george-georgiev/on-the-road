@@ -7,14 +7,12 @@ namespace OnTheRoad.Data.Models
 {
     public class Trip : BaseEntity
     {
-        private ICollection<TripImage> images;
         private ICollection<Category> categories;
         private ICollection<Tag> tags;
         private ICollection<Subscription> subscription;
 
         public Trip()
         {
-            this.images = new HashSet<TripImage>();
             this.categories = new HashSet<Category>();
             this.tags = new HashSet<Tag>();
             this.subscription = new HashSet<Subscription>();
@@ -33,14 +31,8 @@ namespace OnTheRoad.Data.Models
 
         public string Location { get; set; }
 
-        public virtual ICollection<TripImage> Images
-        {
-            get { return this.images; }
-            set { this.images = value; }
-        }
-
         [ForeignKey("CoverImage")]
-        public int CoverImageId { get; set; }
+        public int? CoverImageId { get; set; }
 
         public virtual TripImage CoverImage { get; set; }
 
