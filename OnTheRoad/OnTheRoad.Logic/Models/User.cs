@@ -18,11 +18,7 @@ namespace OnTheRoad.Logic.Models
 
         public ICity City { get; set; }
          
-        public ICountry Country { get; set; }
-
         public string Id { get; set; }
-
-        //public IImage Image { get; set; }
 
         public byte[] Image { get; set; }
 

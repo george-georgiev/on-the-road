@@ -70,9 +70,6 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
             this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
             this.View.Model.Image = user.Image;
-            //this.View.Model.ImagePath = "http://klassa.bg/images/pictures/class_bg/img_47303.jpg";
-            // TODO: Add real image from DB
-            //this.View.Model.ImagePath = user.Image.Path;
         }
 
         private IUser GetCurrentUser(string username)
@@ -80,7 +77,8 @@ namespace OnTheRoad.Mvp.Presenters
             var user = this.userService.GetUserInfo(username);
             if (user == null)
             {
-                this.Response.Redirect("http://localhost:52612/");
+                // TODO: Redirect to bad request?
+                this.Response.Redirect("/");
                 return null;
             }
             else

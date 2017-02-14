@@ -207,11 +207,13 @@
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
+    <Content Include="ErrorPages\404.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Profile\ProfileInfo.aspx" />
+    <Content Include="Profile\ProfileReviews.aspx" />
     <Content Include="Profile\UserProfile.master" />
     <Content Include="WebServices\Tags.asmx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -335,6 +337,13 @@
     </Compile>
     <Compile Include="Profile\ProfileInfo.aspx.designer.cs">
       <DependentUpon>ProfileInfo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\ProfileReviews.aspx.cs">
+      <DependentUpon>ProfileReviews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile\ProfileReviews.aspx.designer.cs">
+      <DependentUpon>ProfileReviews.aspx</DependentUpon>
     </Compile>
     <Compile Include="Profile\UserProfile.master.cs">
       <DependentUpon>UserProfile.master</DependentUpon>

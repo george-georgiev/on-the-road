@@ -83,6 +83,7 @@ namespace OnTheRoad.Data.Repositories
         {
             this.SetEntityState(entity, EntityState.Modified);
         }
+
         private void SetEntityState(IUser model, EntityState entityState)
         {
             if (model == null)
@@ -122,8 +123,6 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<City, ICity>();
                 config.CreateMap<Subscription, ISubscription>();
                 config.CreateMap<Review, IReview>();
-                config.CreateMap<Country, ICountry>();
-                //config.CreateMap<UserImage, IImage>();
             });
         }
 
@@ -136,8 +135,6 @@ namespace OnTheRoad.Data.Repositories
                 .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
                 config.CreateMap<ISubscription, Subscription>();
                 config.CreateMap<IReview, Review>();
-                config.CreateMap<ICountry, Country>();
-                //config.CreateMap<IImage, UserImage>();
             });
         }
     }

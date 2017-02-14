@@ -16,15 +16,11 @@ namespace OnTheRoad.Domain.Models
 
         string Info { get; set; }
 
-        ICountry Country { get; set; }
-
         ICity City { get; set; }
 
         string PhoneNumber { get; set; }
 
         ICollection<IUser> FavouriteUsers { get; set; }
-
-        //IImage Image { get; set; }
 
         byte[] Image { get; set; }
 

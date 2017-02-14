@@ -50,7 +50,6 @@
     <Compile Include="Enumerations\SubscriptionStatus.cs" />
     <Compile Include="Models\ICategory.cs" />
     <Compile Include="Models\ICity.cs" />
-    <Compile Include="Models\ICountry.cs" />
     <Compile Include="Models\IReview.cs" />
     <Compile Include="Models\ISubscription.cs" />
     <Compile Include="Models\ITag.cs" />

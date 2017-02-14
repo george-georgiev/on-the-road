@@ -26,8 +26,6 @@ namespace OnTheRoad.Profile
         public event EventHandler<FavouriteUserEventArgs> AddFavouriteUser;
         public event EventHandler<ProfileImageEventArgs> UpdateProfileImage;
 
-        public string FileP { get; set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
         }
@@ -159,7 +157,7 @@ namespace OnTheRoad.Profile
 
         protected void ButtonUploadImage_Click(object sender, EventArgs e)
         {
-            var fileUpload = this.FormViewProfileInfo.FindControl("fileuploadimage") as FileUpload;
+            var fileUpload = this.FormViewProfileInfo.FindControl("FileUploadImage") as FileUpload;
 
             if (fileUpload.HasFile)
             {

@@ -7,17 +7,41 @@
     <div class="row text-center">
         <div class="col-md-12">
             <asp:Label runat="server" ID="LabelErrors" />
-
             <asp:UpdatePanel runat="server" ID="UpdatePanelFollowingButtons" EnableViewState="false" UpdateMode="Conditional">
                 <ContentTemplate>
                     <asp:Button Text="ПОСЛЕДВАЙ" runat="server" Visible="false"
                         ID="ButtonFollow"
                         OnClick="ButtonFollow_Click"
-                        CssClass="btn btn-success btn-follow" />
+                        CssClass="btn btn-success btn-sm btn-follow" />
                     <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server" Visible="false"
                         ID="ButtonUnfollow"
                         OnClick="ButtonUnfollow_Click"
                         CssClass="btn btn-warning btn-sm btn-follow" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            <asp:UpdatePanel runat="server" ID="UpdatePanelReviewButton">
+                <ContentTemplate>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Some text in the modal.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
 
@@ -96,9 +120,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="input-labels">кратка информация</label>
-                                <asp:TextBox ID="Info" TextMode="MultiLine" Rows="4" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label class="input-labels">кратка информация</label>
+                                    <asp:TextBox ID="Info" TextMode="MultiLine" Rows="5" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                                </div>
                             </div>
                         </div>
                     </div>
