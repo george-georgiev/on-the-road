@@ -59,6 +59,7 @@
     <Compile Include="EventArgsClasses\AddTripEventArgs.cs" />
     <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
     <Compile Include="EventArgsClasses\FavouriteUserEventArgs.cs" />
+    <Compile Include="EventArgsClasses\ImageUploadEventArgs.cs" />
     <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileImageEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileInfoEventArgs.cs" />
