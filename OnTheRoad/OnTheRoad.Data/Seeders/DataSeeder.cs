@@ -40,5 +40,23 @@ namespace OnTheRoad.Data.Seeders
                 context.Categories.AddOrUpdate(new Category() { Name = category });
             }
         }
+
+        public void SeedCities(IOnTheRoadDbContext context)
+        {
+            var cities = this.DataReader.ReadCities();
+            foreach (var city in cities)
+            {
+                context.Cities.AddOrUpdate(new City() { Name = city });
+            }
+        }
+
+        public void SeedRating(IOnTheRoadDbContext context)
+        {
+            var ratings = this.DataReader.ReadRatings();
+            foreach (var rating in ratings)
+            {
+                context.Ratings.AddOrUpdate(new Rating() { Value = rating });
+            }
+        }
     }
 }

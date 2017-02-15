@@ -1,9 +1,9 @@
-﻿using OnTheRoad.Data.Common;
-using OnTheRoad.Data.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using OnTheRoad.Data.Common;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Readers
 {
@@ -43,6 +43,38 @@ namespace OnTheRoad.Data.Readers
                 while ((line = stream.ReadLine()) != null)
                 {
                     result.AddRange(line.Split(' ').ToList());
+                }
+            }
+
+            return result;
+        }
+
+        public IEnumerable<string> ReadCities()
+        {
+            var result = new List<string>();
+            string fileName = this.ResourcePathResolver.ResolveCitiesFilePath();
+            using (var stream = new StreamReader(fileName))
+            {
+                string line;
+                while ((line = stream.ReadLine()) != null)
+                {
+                    result.Add(line);
+                }
+            }
+
+            return result;
+        }
+
+        public IEnumerable<string> ReadRatings()
+        {
+            var result = new List<string>();
+            string fileName = this.ResourcePathResolver.ResolveRatingsFilePath();
+            using (var stream = new StreamReader(fileName))
+            {
+                string line;
+                while ((line = stream.ReadLine()) != null)
+                {
+                    result.Add(line);
                 }
             }
 

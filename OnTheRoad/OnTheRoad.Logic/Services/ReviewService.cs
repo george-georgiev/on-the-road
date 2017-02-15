@@ -10,7 +10,6 @@ namespace OnTheRoad.Logic.Services
 {
     public class ReviewService : IReviewService
     {
-        // UserSerive(get users), ReviewRepo(add review), UnitOfWork(save review), RatingService(get ratingId)
         private readonly IGetUserService userService;
         private readonly IRatingService ratingService;
         private readonly IReviewRepository reviewRepository;
