@@ -7,8 +7,8 @@ namespace OnTheRoad.Mvp.Views
 {
     public interface IReviewsView: IView<ReviewsModel>
     {
-        event EventHandler<ProfileReviewsEventArgs> GetReviews;
+        event EventHandler<GetUserReviewsEventArgs> GetReviews;
 
-        event EventHandler<ProfileReviewsEventArgs> AddReview;
+        event EventHandler<AddReviewEventArgs> AddReview;
     }
 }

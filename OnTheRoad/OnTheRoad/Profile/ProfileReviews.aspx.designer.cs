@@ -13,6 +13,15 @@ namespace OnTheRoad.Profile {
     public partial class ProfileReviews {
         
         /// <summary>
+        /// ButtonAddComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonAddComment;
+        
+        /// <summary>
         /// TextBoxAddReviewText control.
         /// </summary>
         /// <remarks>
@@ -38,5 +47,23 @@ namespace OnTheRoad.Profile {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonSend;
+        
+        /// <summary>
+        /// ListViewComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListView ListViewComments;
+        
+        /// <summary>
+        /// DataPagerComments control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataPager DataPagerComments;
     }
 }

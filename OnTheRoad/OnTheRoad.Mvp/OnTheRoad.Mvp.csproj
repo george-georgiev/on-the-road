@@ -62,8 +62,9 @@
     <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileImageEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileInfoEventArgs.cs" />
-    <Compile Include="EventArgsClasses\ProfileReviewsEventArgs.cs" />
+    <Compile Include="EventArgsClasses\GetUserReviewsEventArgs.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
+    <Compile Include="EventArgsClasses\AddReviewEventArgs.cs" />
     <Compile Include="Factories\CustomWebFormsMvpPresenterFactory.cs" />
     <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
     <Compile Include="Factories\ICustomPresenterFactory.cs" />

@@ -5,6 +5,7 @@ using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Models;
+using System.Linq;
 
 namespace OnTheRoad.Logic.Services
 {
@@ -56,7 +57,8 @@ namespace OnTheRoad.Logic.Services
 
         public IEnumerable<IReview> GetUserReviews(string username)
         {
-            throw new NotImplementedException();
+            var reviews = this.reviewRepository.GetByToUser(username);
+            return reviews;
         }
     }
 }

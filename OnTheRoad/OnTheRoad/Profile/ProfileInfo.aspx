@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server"
-                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>'
+                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>'
                                 CssClass="img-responsive"></asp:Image>
                         </div>
                         <div class="col-md-8">
@@ -62,7 +62,7 @@
                     <br />
                     <div class="row">
                         <div class="col-md-4">
-                            <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>' CssClass="img-responsive"></asp:Image>
+                            <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' CssClass="img-responsive"></asp:Image>
                             <div>
                                 <asp:FileUpload ID="FileUploadImage" runat="server" CssClass="btn-upload" Width="95" />
                                 <asp:Label AssociatedControlID="FileUploadImage" runat="server" CssClass="label-upload btn btn-xs btn-default">

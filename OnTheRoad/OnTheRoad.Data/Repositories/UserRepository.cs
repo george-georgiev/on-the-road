@@ -49,6 +49,31 @@ namespace OnTheRoad.Data.Repositories
                 mapped.FavouriteUsers = updatedFavUsers;
             }
 
+            this.MapReviewToIReview();
+            if (entity.GivenReviews != null)
+            {
+                var updatedReviews = new List<IReview>();
+                foreach (var gr in entity.GivenReviews)
+                {
+                    var mappedReview = Mapper.Map<Review, IReview>(gr);
+                    updatedReviews.Add(mappedReview);
+                }
+
+                mapped.GivenReviews = updatedReviews;
+            }
+
+            if (entity.ReceivedReviews != null)
+            {
+                var updatedReviews = new List<IReview>();
+                foreach (var gr in entity.ReceivedReviews)
+                {
+                    var mappedReview = Mapper.Map<Review, IReview>(gr);
+                    updatedReviews.Add(mappedReview);
+                }
+
+                mapped.ReceivedReviews = updatedReviews;
+            }
+
             return mapped;
         }
 
@@ -107,17 +132,29 @@ namespace OnTheRoad.Data.Repositories
                 entity.FavouriteUsers = updatedFavUsers;
             }
 
-            //if (model.Reviews != null)
-            //{
-            //    var updatedReviews = new List<Review>();
-            //    foreach (var rev in model.Reviews)
-            //    {
-            //        var r = this.Context.Reviews.Where(e => e.Id == rev.Id).Single();
-            //        updatedReviews.Add(r);
-            //    }
+            if (model.GivenReviews != null)
+            {
+                var updatedReviews = new List<Review>();
+                foreach (var rev in model.GivenReviews)
+                {
+                    var r = this.Context.Reviews.Where(e => e.Id == rev.Id).Single();
+                    updatedReviews.Add(r);
+                }
 
-            //    entity.Reviews = updatedReviews;
-            //}
+                entity.GivenReviews = updatedReviews;
+            }
+
+            if (model.ReceivedReviews != null)
+            {
+                var updatedReviews = new List<Review>();
+                foreach (var rev in model.ReceivedReviews)
+                {
+                    var r = this.Context.Reviews.Where(e => e.Id == rev.Id).Single();
+                    updatedReviews.Add(r);
+                }
+
+                entity.ReceivedReviews = updatedReviews;
+            }
 
             //if (model.Subscription != null)
             //{
@@ -165,13 +202,13 @@ namespace OnTheRoad.Data.Repositories
             {
                 config.CreateMap<City, ICity>();
                 config.CreateMap<Subscription, ISubscription>();
-                config.CreateMap<Review, IReview>()
-                .ForMember(x => x.Rating, opt => opt.Ignore())
-                .ForMember(x => x.FromUser, opt => opt.Ignore())
-                .ForMember(x => x.ToUser, opt => opt.Ignore());
-                config.CreateMap<IRating, Rating>();
+                config.CreateMap<Rating, IRating>();
                 config.CreateMap<User, IUser>()
-                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
+                config.CreateMap<Review, IReview>()
+                    .ForMember(x => x.Rating, opt => opt.Ignore())
+                    .ForMember(x => x.FromUser, opt => opt.Ignore())
+                    .ForMember(x => x.ToUser, opt => opt.Ignore());
             });
         }
 
@@ -180,13 +217,31 @@ namespace OnTheRoad.Data.Repositories
             Mapper.Initialize(config =>
             {
                 config.CreateMap<IUser, User>()
-                .ForMember(x => x.City, opt => opt.Ignore())
-                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
-                .ForMember(x => x.GivenReviews, opt => opt.Ignore())
-                .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
+                    .ForMember(x => x.City, opt => opt.Ignore())
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
                 config.CreateMap<ISubscription, Subscription>();
                 config.CreateMap<IReview, Review>();
-                config.CreateMap<IRating, Rating>();
+                config.CreateMap<Review, IReview>();
+            });
+        }
+
+        protected void MapReviewToIReview()
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Rating, IRating>();
+                config.CreateMap<User, IUser>()
+                    .ForMember(x => x.City, opt => opt.Ignore())
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
+
+                config.CreateMap<Review, IReview>()
+                    .ForMember(x => x.Rating, opt => opt.MapFrom(s => Mapper.Map<Rating, IRating>(s.Rating)))
+                    .ForMember(x => x.FromUser, opt => opt.MapFrom(s => Mapper.Map<User, IUser>(s.FromUser)))
+                    .ForMember(x => x.ToUser, opt => opt.MapFrom(s => Mapper.Map<User, IUser>(s.ToUser)));
             });
         }
     }
