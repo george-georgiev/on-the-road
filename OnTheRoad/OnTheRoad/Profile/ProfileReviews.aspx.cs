@@ -29,12 +29,13 @@ namespace OnTheRoad.Profile
         protected void ButtonSend_Click(object sender, EventArgs e)
         {
             var content = this.TextBoxAddReviewText.Text;
+            this.TextBoxAddReviewText.Text = string.Empty;
             var rating = this.RadioButtonsRating.SelectedValue;
+            this.RadioButtonsRating.ClearSelection();
             var toUser = this.Request.QueryString["name"];
             var fromUser = this.Context.User.Identity.Name;
 
-            this.AddReview?.Invoke(this, new AddReviewEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = rating });
-
+            this.AddReview?.Invoke(this, new AddReviewEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = rating, PostingDate = DateTime.Now });
             this.LoadData();
         }
 

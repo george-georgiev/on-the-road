@@ -44,12 +44,13 @@ namespace OnTheRoad.Logic.Services
             this.unitOfWork = unitOfWork;
         }
 
-        public void AddUserReview(string content, string fromUser, string toUser, string rating)
+        public void AddUserReview(string content, string fromUser, string toUser, string rating, DateTime postingDate)
         {
-            var r = this.ratingService.GetRatingByValue(rating);
+            var givenRating = this.ratingService.GetRatingByValue(rating);
             var fUser = this.userService.GetUserInfo(fromUser);
             var tUser = this.userService.GetUserInfo(toUser);
-            var review = new Review(content, fUser, tUser, r);
+            // TODO: Add factory
+            var review = new Review(content, fUser, tUser, givenRating, postingDate);
             this.reviewRepository.Add(review);
 
             this.unitOfWork.Commit();

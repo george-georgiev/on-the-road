@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnTheRoad.Data.Models
 {
@@ -19,8 +20,10 @@ namespace OnTheRoad.Data.Models
         [ForeignKey("Rating")]
         public int RatingId { get; set; }
 
-        public Rating Rating { get; set; }
+        public virtual Rating Rating { get; set; }
 
         public string ReviewContent { get; set; }
+
+        public DateTime PostingDate { get; set; }
     }
 }

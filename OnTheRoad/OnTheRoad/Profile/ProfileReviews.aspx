@@ -50,9 +50,9 @@
                         </div>
                         <div class="col-md-11 right-wrapper">
                             <div class="comment-header">
-                                <strong class="comment-rating"><%# Item.Rating %></strong>
+                                <strong class="comment-rating"><%# Item.Rating.Value.ToUpper() %></strong>
                                 <span class="from-user">
-                                    <asp:Literal Text='<%# "from " + Item.FromUser.Username %>' runat="server" />
+                                    <asp:Literal Text='<%# "from " + Item.FromUser.Username + " " + Item.PostingDate.ToShortDateString()%>' runat="server" />
                                 </span>
                             </div>
                             <div class="comment-body">

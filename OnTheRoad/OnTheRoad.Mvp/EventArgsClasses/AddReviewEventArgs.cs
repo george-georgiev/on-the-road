@@ -11,5 +11,7 @@ namespace OnTheRoad.Mvp.EventArgsClasses
         public string Rating { get; set; }
 
         public string Content { get; set; }
+
+        public DateTime PostingDate { get; set; }
     }
 }

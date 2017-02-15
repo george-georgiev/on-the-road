@@ -16,7 +16,6 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<IReview> GetByToUser(string toUser)
         {
-            // TODO: Check if it works?
             var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser).ToList();
             Mapper.Initialize(config => config.CreateMap<Review, IReview>());
 
@@ -25,7 +24,6 @@ namespace OnTheRoad.Data.Repositories
             {
                 var review = this.MapEntityToDomain(entity);
 
-                //var review = Mapper.Map<Review, IReview>(entity);
                 reviews.Add(review);
             }
 
@@ -36,7 +34,6 @@ namespace OnTheRoad.Data.Repositories
         {
             Mapper.Initialize(config =>
             {
-                // TODO: remove subscription with     .ForMember( x=> x.Subscriptions, opt => opt.Ignore());
                 config.CreateMap<IRating, Rating>();
                 config.CreateMap<IUser, User>();
                 config.CreateMap<ISubscription, Subscription>();

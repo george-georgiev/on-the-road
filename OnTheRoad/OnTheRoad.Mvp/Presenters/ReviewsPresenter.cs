@@ -1,9 +1,8 @@
 ﻿using System;
 using OnTheRoad.Logic.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.Mvp.Views;
 using WebFormsMvp;
-using OnTheRoad.Domain.Models;
-using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad.Mvp.Presenters
 {
@@ -32,9 +31,7 @@ namespace OnTheRoad.Mvp.Presenters
 
         private void View_AddReview(object sender, AddReviewEventArgs e)
         {
-            this.reviewService.AddUserReview(e.Content, e.FromUser, e.ToUser, e.Rating);
+            this.reviewService.AddUserReview(e.Content, e.FromUser, e.ToUser, e.Rating, e.PostingDate);
         }
-
-       
     }
 }
