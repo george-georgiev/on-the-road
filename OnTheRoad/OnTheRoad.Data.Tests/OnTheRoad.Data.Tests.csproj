@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3333658D-7887-4068-A71A-8A55C98BA5B2}</ProjectGuid>
+    <ProjectGuid>{58A80396-6262-40F8-B8AE-DE54D0722DEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnTheRoad.Logic.Tests</RootNamespace>
-    <AssemblyName>OnTheRoad.Logic.Tests</AssemblyName>
+    <RootNamespace>OnTheRoad.Data.Tests</RootNamespace>
+    <AssemblyName>OnTheRoad.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,6 +39,14 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -48,6 +56,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -62,22 +71,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Builders\TripBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\TagServiceTests.cs" />
+    <Compile Include="Repositories\TagRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">
+      <Project>{95562E63-DC49-42F5-AE33-E32A29EB5997}</Project>
+      <Name>OnTheRoad.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
-      <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
-      <Name>OnTheRoad.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
-      <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>
-      <Name>OnTheRoad.Logic</Name>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
