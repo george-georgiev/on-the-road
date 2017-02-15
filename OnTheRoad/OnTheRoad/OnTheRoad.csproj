@@ -206,6 +206,7 @@
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
+    <Content Include="CustomControllers\ImageUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
     <Content Include="ErrorPages\404.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -313,6 +314,13 @@
     </Compile>
     <Compile Include="CustomControllers\CitiesDropDown.ascx.designer.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControllers\ImageUploader.ascx.cs">
+      <DependentUpon>ImageUploader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\ImageUploader.ascx.designer.cs">
+      <DependentUpon>ImageUploader.ascx</DependentUpon>
     </Compile>
     <Compile Include="CustomControllers\TagsSelect.ascx.cs">
       <DependentUpon>TagsSelect.ascx</DependentUpon>
@@ -435,6 +443,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />

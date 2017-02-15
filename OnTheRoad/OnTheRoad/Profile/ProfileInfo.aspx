@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Profile/UserProfile.master" AutoEventWireup="true" CodeBehind="ProfileInfo.aspx.cs" Inherits="OnTheRoad.Profile.ProfileInfo" %>
 
 <%@ Register TagPrefix="uc" TagName="CitiesDropDown" Src="~/CustomControllers/CitiesDropDown.ascx" %>
+<%@ Register TagPrefix="uc" TagName="ImageUploader" Src="~/CustomControllers/ImageUploader.ascx" %>
 
 <asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
     <div class="row text-center">
@@ -63,13 +64,9 @@
                     <div class="row">
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>' CssClass="img-responsive"></asp:Image>
-                            <div>
-                                <asp:FileUpload ID="FileUploadImage" runat="server" CssClass="btn-upload" Width="95" />
-                                <asp:Label AssociatedControlID="FileUploadImage" runat="server" CssClass="label-upload btn btn-xs btn-default">
-                                            ИЗБЕРИ СНИМКА
-                                </asp:Label>
-                                <asp:Button runat="server" ID="ButtonUploadImage" Text="КАЧИ" CssClass="btn btn-xs btn-success" OnClick="ButtonUploadImage_Click" />
-                            </div>
+                            <uc:ImageUploader ID="ImageUploader" runat="server" 
+                                OnImageUpload="ImageUploader_ImageUpload" 
+                                OnError="ImageUploader_Error" />
                         </div>
                         <div class="col-md-8">
                             <div class="row">

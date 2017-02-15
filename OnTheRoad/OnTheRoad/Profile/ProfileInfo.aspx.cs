@@ -155,53 +155,20 @@ namespace OnTheRoad.Profile
             this.Session[FAVOURITE_USERS] = favouriteUsers;
         }
 
-        protected void ButtonUploadImage_Click(object sender, EventArgs e)
+        protected void ImageUploader_ImageUpload(object sender, ImageUploadEventArgs e)
         {
-            var fileUpload = this.FormViewProfileInfo.FindControl("FileUploadImage") as FileUpload;
-
-            if (fileUpload.HasFile)
+            this.UpdateProfileImage?.Invoke(this, new ProfileImageEventArgs()
             {
-                try
-                {
-                    if (fileUpload.PostedFile.ContentType == "image/jpeg" || fileUpload.PostedFile.ContentType == "image/png")
-                    {
-                        if (fileUpload.PostedFile.ContentLength < 4 * 1000 * 1024)
-                        {
-                            string filename = Path.GetFileName(fileUpload.FileName);
-                            Stream fileStream = fileUpload.PostedFile.InputStream;
-                            byte[] imageAsByteArray = null;
+                Image = e.Image,
+                UserName = this.Context.User.Identity.Name
+            });
+        }
 
-                            using (var ms = new MemoryStream())
-                            {
-                                ImageJob i = new ImageJob(fileStream, ms,
-                                    new ImageResizer.Instructions("width=600;format=jpg;mode=max"));
-                                i.Build();
-                                imageAsByteArray = ms.ToArray();
-                            }
-
-                            this.UpdateProfileImage?.Invoke(this, new ProfileImageEventArgs()
-                            {
-                                Image = imageAsByteArray,
-                                UserName = this.Context.User.Identity.Name
-                            });
-                           
-                            this.LabelErrors.Text = "";
-                        }
-                        else
-                        {
-                            this.LabelErrors.Text = "Снимката трябва да е до 4MB!";
-                        }
-                    }
-                    else
-                    {
-                        this.LabelErrors.Text = "Само JPEG И PNG файлове може да бъдат качвани!";
-                    }
-                }
-                catch (Exception)
-                {
-                    this.LabelErrors.Text = "Възникна грешка при качването. Моля опитайте отново.";
-                }
-            }
+        protected void ImageUploader_Error(object sender, ErrorEventArgs e)
+        {
+            var exception = e.GetException();
+            var message = exception.Message;
+            this.LabelErrors.Text = message;
         }
     }
 }
