@@ -1,5 +1,5 @@
-﻿using OnTheRoad.Domain.Models;
-using System;
+﻿using System;
+using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Models
 {

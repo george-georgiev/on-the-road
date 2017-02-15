@@ -42,6 +42,10 @@ namespace OnTheRoad.App_Start.BindingModules
                 .ToFactory()
                 .InSingletonScope();
 
+            this.Bind<IReviewFactory>()
+               .ToFactory()
+               .InSingletonScope();
+
             this.Bind<ITagGetService>()
                 .To<TagService>();
 

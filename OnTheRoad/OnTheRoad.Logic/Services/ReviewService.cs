@@ -1,65 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using OnTheRoad.Domain.Contracts;
 using OnTheRoad.Domain.Models;
-using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Logic.Models;
-using System.Linq;
+using OnTheRoad.Logic.Factories;
 
 namespace OnTheRoad.Logic.Services
 {
     public class ReviewService : IReviewService
     {
-        private readonly IGetUserService userService;
-        private readonly IRatingService ratingService;
-        private readonly IReviewRepository reviewRepository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IReviewAddHelper reviewAddHelper;
+        private readonly IReviewDataUtils reviewDataUtils;
+        private readonly IReviewFactory reviewFactory;
 
-        public ReviewService(IGetUserService userService, IRatingService ratingService, IReviewRepository reviewRepository, IUnitOfWork unitOfWork)
+        public ReviewService(IReviewAddHelper reviewAddHelper, IReviewDataUtils reviewDataUtils, IReviewFactory reviewFactory)
         {
-            if (userService == null)
+            if (reviewAddHelper == null)
             {
-                throw new ArgumentNullException("userService can not be null!");
+                throw new ArgumentNullException("reviewAddHelper can not be null!");
             }
 
-            if (ratingService == null)
+            if (reviewDataUtils == null)
             {
-                throw new ArgumentNullException("ratingService can not be null!");
+                throw new ArgumentNullException("reviewDataUtils can not be null!");
             }
 
-            if (reviewRepository == null)
+            if (reviewFactory == null)
             {
-                throw new ArgumentNullException("reviewRepository can not be null!");
+                throw new ArgumentNullException("reviewFactory can not be null!");
             }
 
-            if (unitOfWork == null)
-            {
-                throw new ArgumentNullException("uniOfWork can not be null!");
-            }
-
-            this.userService = userService;
-            this.ratingService = ratingService;
-            this.reviewRepository = reviewRepository;
-            this.unitOfWork = unitOfWork;
+            this.reviewAddHelper = reviewAddHelper;
+            this.reviewDataUtils = reviewDataUtils;
+            this.reviewFactory = reviewFactory;
         }
 
         public void AddUserReview(string content, string fromUser, string toUser, string rating, DateTime postingDate)
         {
-            var givenRating = this.ratingService.GetRatingByValue(rating);
-            var fUser = this.userService.GetUserInfo(fromUser);
-            var tUser = this.userService.GetUserInfo(toUser);
-            // TODO: Add factory
-            var review = new Review(content, fUser, tUser, givenRating, postingDate);
-            this.reviewRepository.Add(review);
+            var givenRating = this.reviewAddHelper.GetRatingByValue(rating);
+            var fUser = this.reviewAddHelper.GetUserByUsername(fromUser);
+            var tUser = this.reviewAddHelper.GetUserByUsername(toUser);
+            var review = this.reviewFactory.CreateReview(content, fUser, tUser, givenRating, postingDate);
 
-            this.unitOfWork.Commit();
+            this.reviewDataUtils.AddUserReview(review);
         }
 
         public IEnumerable<IReview> GetUserReviews(string username)
         {
-            var reviews = this.reviewRepository.GetByToUser(username);
-            return reviews;
+            return this.reviewDataUtils.GetUserReviews(username);
         }
     }
 }
