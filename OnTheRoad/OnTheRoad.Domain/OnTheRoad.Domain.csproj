@@ -47,7 +47,6 @@
     <Compile Include="Repositories\IGetRepository.cs" />
     <Compile Include="Repositories\IModifyRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
-    <Compile Include="Enumerations\RatingEnum.cs" />
     <Compile Include="Enumerations\SubscriptionStatus.cs" />
     <Compile Include="Models\ICategory.cs" />
     <Compile Include="Models\ICity.cs" />

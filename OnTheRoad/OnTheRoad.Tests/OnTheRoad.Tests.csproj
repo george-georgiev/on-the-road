@@ -82,6 +82,7 @@
     <Compile Include="EventArgsClasses\RegisterEventArgsTests.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenterTests.cs" />
     <Compile Include="Presenters\LoginPresenterTests.cs" />
+    <Compile Include="Presenters\ProfileInfoPresenterTests.cs" />
     <Compile Include="Presenters\RegisterPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -90,6 +91,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
+      <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
+      <Name>OnTheRoad.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{e4b2c057-17cb-4da4-bd4f-148bf976591c}</Project>
       <Name>OnTheRoad.Logic</Name>
