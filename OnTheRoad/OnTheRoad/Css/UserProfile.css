@@ -126,6 +126,10 @@
 
 /* ProfileReviews page */
 
+#MainContent_ProfileContent_ButtonAddComment {
+    float: right;
+}
+
 #MainContent_ProfileContent_TextBoxAddReviewText {
     min-width: 100%;
 }
@@ -137,18 +141,19 @@
 .review-body {
     padding-bottom: 0;
 }
-.right-wrapper{
-    padding-left:50px;
+
+.right-wrapper {
+    padding-left: 50px;
 }
 
 .comment-wrapper {
-    margin-top:50px;
-    margin-bottom:50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
-.comment-user-image{
-    height:100px;
-    width:100px;
+.comment-user-image {
+    height: 100px;
+    width: 100px;
 }
 
 .comment-header {
@@ -156,6 +161,8 @@
     color: white;
     height: 40px;
     padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .comment-body {
@@ -164,8 +171,8 @@
     padding: 10px;
 }
 
-.from-user{
-    float:right;
+.from-user {
+    float: right;
 }
 
 #MainContent_ProfileContent_DataPagerComments {
@@ -173,7 +180,11 @@
     padding-top: 25px;
 }
 
-#MainContent_ProfileContent_DataPagerComments * {
-    padding: 5px 15px 5px 15px;
-    background: ghostwhite;
+    #MainContent_ProfileContent_DataPagerComments * {
+        padding: 5px 15px 5px 15px;
+        background: ghostwhite;
+    }
+
+#err-label {
+    color: red;
 }

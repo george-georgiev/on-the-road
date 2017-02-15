@@ -5,12 +5,10 @@
         <div class="col-md-12">
             <h2 class="page-headers">Коментари</h2>
 
-            <asp:Button Text="ДОВАВИ КОМЕНТАР" ID="ButtonAddComment" CssClass="btn btn-info" data-toggle="modal" data-target="#myModal" runat="server" />
+            <asp:Button Text="ДОВАВИ КОМЕНТАР" ID="ButtonAddComment" CssClass="btn btn-success" data-toggle="modal" data-target="#myModal" runat="server" />
 
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
-
-                    <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -18,6 +16,7 @@
                         </div>
                         <div class="modal-body review-body">
                             <div class="form-group">
+                                <label id="err-label"></label>
                                 <asp:TextBox runat="server" Rows="6" ID="TextBoxAddReviewText" TextMode="MultiLine" CssClass="form-control" />
                             </div>
                             <div class="form-group text-center">
@@ -29,12 +28,12 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="ОТКАЖИ" />
-                            <asp:Button Text="ИЗПРАТИ" runat="server" ID="ButtonSend" CssClass="btn btn-success"
+                            <input type="button" class="btn btn-default" id="btn-dismiss" data-dismiss="modal" value="ОТКАЖИ" />
+                            <asp:Button Text="" runat="server" ID="ButtonSend" CssClass="hidden"
                                 OnClick="ButtonSend_Click" />
+                            <input type="button" value="ИЗПРАТИ" class="btn btn-success" id="btn-send" />
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -49,7 +48,7 @@
                             <img src='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.FromUser.Image) %>'
                                 alt="Снимка на потребителя" class="comment-user-image img-circle" />
                         </div>
-                        <div class="col-md-10 right-wrapper">
+                        <div class="col-md-11 right-wrapper">
                             <div class="comment-header">
                                 <strong class="comment-rating"><%# Item.Rating %></strong>
                                 <span class="from-user">
@@ -77,4 +76,19 @@
             </asp:DataPager>
         </div>
     </div>
+
+    <script>
+        $('#btn-send').on('click', function () {
+            if ($('#MainContent_ProfileContent_TextBoxAddReviewText').val().trim() == '') {
+                $('#err-label').text('Моля въведете текст!');
+            } else if ($('#MainContent_ProfileContent_RadioButtonsRating_0').is(':checked') == true ||
+                $('#MainContent_ProfileContent_RadioButtonsRating_1').is(':checked') == true ||
+                $('#MainContent_ProfileContent_RadioButtonsRating_2').is(':checked') == true) {
+                $('#MainContent_ProfileContent_ButtonSend').click();
+                $('#btn-dismiss').click();
+            } else {
+                $('#err-label').text('Моля изберете рейтинг!');
+            }
+        });
+    </script>
 </asp:Content>
