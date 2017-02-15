@@ -29,6 +29,11 @@ namespace OnTheRoad.Logic.Services
 
         public IEnumerable<ITag> GetOrCreateTags(IEnumerable<string> tagNames)
         {
+            if (tagNames == null)
+            {
+                throw new ArgumentNullException("tagNames can not be null!");
+            }
+
             var result = new List<ITag>();
             foreach (var tagName in tagNames)
             {
@@ -49,6 +54,11 @@ namespace OnTheRoad.Logic.Services
 
         public IEnumerable<ITag> GetTagsByNamePrefix(string prefix, int take)
         {
+            if (prefix == null)
+            {
+                throw new ArgumentNullException("prefix can not be null!");
+            }
+
             var tags = this.tagDataUtil.GetTagsByNamePrefix(prefix, take);
 
             return tags;
