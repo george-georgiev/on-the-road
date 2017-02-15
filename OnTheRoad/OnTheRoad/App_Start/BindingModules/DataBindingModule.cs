@@ -1,9 +1,11 @@
-﻿using Ninject.Modules;
+﻿using Ninject.Extensions.Conventions;
+using Ninject.Modules;
 using Ninject.Web.Common;
 using OnTheRoad.Data;
-using OnTheRoad.Data.Repositories;
-using OnTheRoad.Domain.Contracts;
-using OnTheRoad.Domain.Repositories;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -11,35 +13,23 @@ namespace OnTheRoad.App_Start.BindingModules
     {
         public override void Load()
         {
-            // TODO: Automatic binding.
+            var typesToExclude = this.GetTypesToExclude();
+            Kernel.Bind(x =>
+            {
+                x.FromAssembliesInPath(Path.GetDirectoryName(Assembly.GetAssembly(typeof(OnTheRoadIdentityDbContext)).Location))
+                    .SelectAllClasses()
+                    .Excluding(typesToExclude)
+                    .BindDefaultInterface();
+            });
 
             this.Bind<OnTheRoadIdentityDbContext>()
                 .ToSelf()
                 .InRequestScope();
+        }
 
-            this.Bind<IUnitOfWork>()
-                .To<UnitOfWork>();
-
-            this.Bind<ICategoryRepository>()
-                .To<CategoryRepository>();
-
-            this.Bind<ITripRepository>()
-                .To<TripRepository>();
-           
-            this.Bind<ICityRepository>()
-                .To<CityRepository>();
-
-            this.Bind<IUserRepository>()
-                .To<UserRepository>();
-
-            this.Bind<ITagRepository>()
-                .To<TagRepository>();
-
-            this.Bind<IRatingRepository>()
-                .To<RatingRepository>();
-
-            this.Bind<IReviewRepository>()
-                .To<ReviewRepository>();
+        private IEnumerable<Type> GetTypesToExclude()
+        {
+            return new List<Type>();
         }
     }
 }
