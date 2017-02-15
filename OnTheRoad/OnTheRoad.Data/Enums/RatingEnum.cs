@@ -1,6 +1,6 @@
 ﻿namespace OnTheRoad.Data.Enums
 {
-    public enum Rating
+    public enum RatingEnum
     {
         Positive = 0,
         Negative = 1,

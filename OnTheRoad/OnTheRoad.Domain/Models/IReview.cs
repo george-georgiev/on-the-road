@@ -1,12 +1,10 @@
-﻿using OnTheRoad.Domain.Enumerations;
-
-namespace OnTheRoad.Domain.Models
+﻿namespace OnTheRoad.Domain.Models
 {
     public interface IReview : IIdentifiable
     {
-        Rating Rating { get; set; }
+        IRating Rating { get; set; }
 
-        string Comment { get; set; }
+        string ReviewContent { get; set; }
 
         IUser FromUser { get; set; }
 

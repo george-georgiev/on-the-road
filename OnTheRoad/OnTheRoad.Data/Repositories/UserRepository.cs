@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using AutoMapper;
+using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
-using OnTheRoad.Data.Models;
 
 namespace OnTheRoad.Data.Repositories
 {
@@ -163,11 +163,15 @@ namespace OnTheRoad.Data.Repositories
         {
             Mapper.Initialize(config =>
             {
-                config.CreateMap<User, IUser>()
-                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
                 config.CreateMap<City, ICity>();
                 config.CreateMap<Subscription, ISubscription>();
-                config.CreateMap<Review, IReview>();
+                config.CreateMap<Review, IReview>()
+                .ForMember(x => x.Rating, opt => opt.Ignore())
+                .ForMember(x => x.FromUser, opt => opt.Ignore())
+                .ForMember(x => x.ToUser, opt => opt.Ignore());
+                config.CreateMap<IRating, Rating>();
+                config.CreateMap<User, IUser>()
+                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
             });
         }
 
@@ -177,9 +181,12 @@ namespace OnTheRoad.Data.Repositories
             {
                 config.CreateMap<IUser, User>()
                 .ForMember(x => x.City, opt => opt.Ignore())
-                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore());
+                .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
                 config.CreateMap<ISubscription, Subscription>();
                 config.CreateMap<IReview, Review>();
+                config.CreateMap<IRating, Rating>();
             });
         }
     }

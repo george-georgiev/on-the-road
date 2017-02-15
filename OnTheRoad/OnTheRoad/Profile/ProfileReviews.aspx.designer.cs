@@ -13,12 +13,30 @@ namespace OnTheRoad.Profile {
     public partial class ProfileReviews {
         
         /// <summary>
-        /// UpdatePanelReviewButton control.
+        /// TextBoxAddReviewText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanelReviewButton;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxAddReviewText;
+        
+        /// <summary>
+        /// RadioButtonsRating control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList RadioButtonsRating;
+        
+        /// <summary>
+        /// ButtonSend control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonSend;
     }
 }

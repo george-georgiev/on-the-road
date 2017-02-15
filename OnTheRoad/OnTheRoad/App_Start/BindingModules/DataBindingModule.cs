@@ -11,6 +11,8 @@ namespace OnTheRoad.App_Start.BindingModules
     {
         public override void Load()
         {
+            // TODO: Automatic binding.
+
             this.Bind<OnTheRoadIdentityDbContext>()
                 .ToSelf()
                 .InRequestScope();
@@ -32,6 +34,12 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ITagRepository>()
                 .To<TagRepository>();
+
+            this.Bind<IRatingRepository>()
+                .To<RatingRepository>();
+
+            this.Bind<IReviewRepository>()
+                .To<ReviewRepository>();
         }
     }
 }

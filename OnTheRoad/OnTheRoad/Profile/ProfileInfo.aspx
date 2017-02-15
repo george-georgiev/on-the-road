@@ -3,7 +3,6 @@
 <%@ Register TagPrefix="uc" TagName="CitiesDropDown" Src="~/CustomControllers/CitiesDropDown.ascx" %>
 
 <asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
-
     <div class="row text-center">
         <div class="col-md-12">
             <asp:Label runat="server" ID="LabelErrors" />

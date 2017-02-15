@@ -47,6 +47,9 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ICategoryGetService, ICategoryModifyService>()
                 .To<CategoryService>();
+
+            this.Bind<IGetUserService>()
+                .To<UserService>();
         }
 
         private IEnumerable<Type> GetTypesToExclude()

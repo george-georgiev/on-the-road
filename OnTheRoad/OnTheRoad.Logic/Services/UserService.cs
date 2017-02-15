@@ -7,7 +7,7 @@ using OnTheRoad.Logic.Contracts;
 
 namespace OnTheRoad.Logic.Services
 {
-    public class UserService : IUserService
+    public class UserService : IUserService, IUpdateUserService, IGetUserService
     {
         private readonly IUnitOfWork uniOfWork;
         private readonly IUserRepository userRepository;

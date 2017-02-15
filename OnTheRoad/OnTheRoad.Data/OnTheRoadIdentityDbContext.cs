@@ -26,8 +26,8 @@ namespace OnTheRoad.Data
         public virtual IDbSet<Trip> Trips { get; set; }
 
         public virtual IDbSet<TripImage> TripImages { get; set; }
-        
-        public virtual IDbSet<UserImage> UserImages { get; set; }
+
+        public virtual IDbSet<Rating> Ratings { get; set; }
 
         public static OnTheRoadIdentityDbContext Create()
         {
@@ -48,6 +48,11 @@ namespace OnTheRoad.Data
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
 
             modelBuilder.Entity<User>().HasMany(m => m.FavouriteUsers).WithMany();
+
+            //modelBuilder.Entity<Review>().HasRequired(m => m.FromUser)
+            //   .WithMany(m => m.GivenReviews).HasForeignKey(m => m.FromUserId);
+            //modelBuilder.Entity<Review>().HasRequired(m => m.ToUser)
+            //          .WithMany(m => m.ReceivedReviews).HasForeignKey(m => m.ToUserId);
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿namespace OnTheRoad.Domain.Enumerations
 {
-    public enum Rating
+    public enum RatingEnum
     {
         Neutral = 0,
-        Positive,
-        Negative
+        Positive = 1,
+        Negative = 2
     }
 }

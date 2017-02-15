@@ -41,12 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\IRating.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\ICityRepository.cs" />
     <Compile Include="Repositories\IGetRepository.cs" />
     <Compile Include="Repositories\IModifyRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
-    <Compile Include="Enumerations\Rating.cs" />
+    <Compile Include="Enumerations\RatingEnum.cs" />
     <Compile Include="Enumerations\SubscriptionStatus.cs" />
     <Compile Include="Models\ICategory.cs" />
     <Compile Include="Models\ICity.cs" />
@@ -57,6 +58,8 @@
     <Compile Include="Models\IImage.cs" />
     <Compile Include="Models\IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRatingRepository.cs" />
+    <Compile Include="Repositories\IReviewRepository.cs" />
     <Compile Include="Repositories\ITagRepository.cs" />
     <Compile Include="Repositories\ITripRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

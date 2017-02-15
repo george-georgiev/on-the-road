@@ -1,17 +1,6 @@
-﻿using OnTheRoad.Domain.Models;
-
-namespace OnTheRoad.Logic.Contracts
+﻿namespace OnTheRoad.Logic.Contracts
 {
-    public interface IUserService
+    public interface IUserService: IUpdateUserService, IGetUserService
     {
-        IUser GetUserInfo(string username);
-
-        void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city);
-
-        void RemoveFavouriteUser(string username, string userToRemoveUsername);
-
-        void AddFavouriteUser(string username, string userToAddUsername);
-
-        void UpdateImage(byte[] image, string username);
     }
 }

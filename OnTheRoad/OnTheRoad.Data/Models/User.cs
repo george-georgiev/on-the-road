@@ -10,13 +10,15 @@ namespace OnTheRoad.Data.Models
 {
     public class User : IdentityUser
     {
-        private ICollection<Review> reviews;
+        private ICollection<Review> givenReviews;
+        private ICollection<Review> receivedReviews;
         private ICollection<User> favouriteUsers;
         private ICollection<Subscription> subscription;
 
         public User()
         {
-            this.reviews = new HashSet<Review>();
+            this.givenReviews = new HashSet<Review>();
+            this.receivedReviews = new HashSet<Review>();
             this.favouriteUsers = new HashSet<User>();
             this.subscription = new HashSet<Subscription>();
         }
@@ -38,10 +40,16 @@ namespace OnTheRoad.Data.Models
 
         public byte[] Image { get; set; }
 
-        public virtual ICollection<Review> Reviews
+        public virtual ICollection<Review> GivenReviews
         {
-            get { return this.reviews; }
-            set { this.reviews = value; }
+            get { return this.givenReviews; }
+            set { this.givenReviews = value; }
+        }
+
+        public virtual ICollection<Review> ReceivedReviews
+        {
+            get { return this.receivedReviews; }
+            set { this.receivedReviews = value; }
         }
 
         public virtual ICollection<User> FavouriteUsers

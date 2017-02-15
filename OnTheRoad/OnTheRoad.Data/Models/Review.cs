@@ -1,22 +1,26 @@
-﻿using OnTheRoad.Data.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OnTheRoad.Data.Models
 {
-    public class Review: BaseEntity
+    public class Review : BaseEntity
     {
-        [ForeignKey("FromUser")]
         public string FromUserId { get; set; }
 
+        [ForeignKey("FromUserId")]
+        [InverseProperty("GivenReviews")]
         public virtual User FromUser { get; set; }
 
-        //[ForeignKey("ToUser")]
-        //public string ToUserId { get; set; }
+        public string ToUserId { get; set; }
 
-        //public virtual User ToUser { get; set; }
+        [ForeignKey("ToUserId")]
+        [InverseProperty("ReceivedReviews")]
+        public virtual User ToUser { get; set; }
+
+        [ForeignKey("Rating")]
+        public int RatingId { get; set; }
 
         public Rating Rating { get; set; }
 
-        public string Comment { get; set; }
+        public string ReviewContent { get; set; }
     }
 }

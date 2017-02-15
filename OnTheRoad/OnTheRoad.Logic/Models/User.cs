@@ -26,9 +26,11 @@ namespace OnTheRoad.Logic.Models
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<IReview> Reviews { get; set; }
+        public ICollection<IReview> GivenReviews { get; set; }
 
-        public ICollection<ISubscription> Subscription { get; set; }
+        public ICollection<IReview> ReceivedReviews { get; set; }
+
+        public ICollection<ISubscription> Subscriptions { get; set; }
 
         public ICollection<IUser> FavouriteUsers { get; set; }
     }
