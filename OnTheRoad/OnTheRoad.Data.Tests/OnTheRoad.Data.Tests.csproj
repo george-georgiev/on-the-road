@@ -72,6 +72,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Fakes\UserRepositoryFake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />

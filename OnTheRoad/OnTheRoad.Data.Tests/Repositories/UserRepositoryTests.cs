@@ -6,6 +6,7 @@ using System.Linq;
 using NUnit.Framework;
 using Moq;
 using OnTheRoad.Data.Models;
+using OnTheRoad.Data.Tests.Fakes;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Models;
 
@@ -339,7 +340,7 @@ namespace OnTheRoad.Data.Tests.Repositories
             var fakeData = new List<User>() { userStub }.AsQueryable();
             this.SetDbSetUserAsQueryable(fakeData);
 
-            var observableCollection = new ObservableCollection<User>();
+            var observableCollection = new ObservableCollection<User>(new List<User>() { userStub });
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             this.contextMock.Setup(x => x.Users).Returns(this.dbSetMock.Object);
@@ -536,19 +537,6 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.Expression).Returns(fakeData.Expression);
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(fakeData.ElementType);
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(fakeData.GetEnumerator());
-        }
-    }
-
-    public class UserRepositoryFake : UserRepository
-    {
-        public UserRepositoryFake(OnTheRoadIdentityDbContext context)
-            : base(context)
-        {
-        }
-
-        protected override void SetEntityState(User entity, EntityState entityState)
-        {
-            // Do nothing.
         }
     }
 }
