@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
@@ -6,7 +7,6 @@ using Moq;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Data.Models;
-using System.Data.Entity;
 
 namespace OnTheRoad.Data.Tests.Repositories
 {
