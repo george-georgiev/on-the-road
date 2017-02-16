@@ -54,20 +54,20 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-main">
                         <li><a runat="server" href="~/">Начало</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
+                        <li><a runat="server" href="~/categories">Видове Пътешествия</a></li>
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled" ID="LoginViews">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Регистрация</a></li>
-                                <li><a runat="server" href="~/Account/Login">Вход</a></li>
+                                <li><a runat="server" href="~/account/register">Регистрация</a></li>
+                                <li><a runat="server" href="~/account/login">Вход</a></li>
                             </ul>
                         </AnonymousTemplate>
                         <LoggedInTemplate>
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <asp:HyperLink runat="server"
-                                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + this.Context.User.Identity.Name%>'>
+                                        NavigateUrl='<%# "~/profile/profileInfo.aspx?name=" + this.Context.User.Identity.Name%>'>
                                         <%: this.Context.User.Identity.Name %>
                                     </asp:HyperLink>
                                 </li>

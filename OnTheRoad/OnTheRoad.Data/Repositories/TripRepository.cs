@@ -22,28 +22,23 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var trips = this.Context.Trips
-                .Where(
-                    t => t.Categories
-                        .Where(c => c.Name == categoryName)
-                        .Any()
-                );
+            var trips = this.GetTripsBy(categoryName);
 
             var mapped = this.MapTrips(trips);
 
             return mapped;
         }
 
-        public IEnumerable<ITrip> GetTripsOrderedByDateCreated(int count, bool isAscending)
+        public IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending)
         {
-            IQueryable<Trip> trips;
+            var trips = this.GetTripsBy(categoryName);
             if (isAscending)
             {
-                trips = this.Context.Trips.OrderBy(t => t.StartDate);
+                trips = trips.OrderBy(t => t.CreateDate);
             }
             else
             {
-                trips = this.Context.Trips.OrderByDescending(t => t.StartDate);
+                trips = trips.OrderByDescending(t => t.CreateDate);
             }
 
             var mapped = this.MapTrips(trips.Take(count));
@@ -97,6 +92,18 @@ namespace OnTheRoad.Data.Repositories
             var entity = Mapper.Map<ITrip, Trip>(domain);
 
             return entity;
+        }
+
+        private IQueryable<Trip> GetTripsBy(string categoryName)
+        {
+            var trips = this.Context.Trips
+                            .Where(
+                                t => t.Categories
+                                    .Where(c => c.Name == categoryName)
+                                    .Any()
+                            );
+
+            return trips;
         }
 
         private IEnumerable<ITrip> MapTrips(IQueryable<Trip> trips)

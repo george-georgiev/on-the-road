@@ -9,6 +9,6 @@ namespace OnTheRoad.Logic.Contracts
 
         IEnumerable<ITrip> GetTripsByCategoryName(string categoryName);
 
-        IEnumerable<ITrip> GetTripsOrderedByDateCreated(int count, bool isAscending);
+        IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending);
     }
 }

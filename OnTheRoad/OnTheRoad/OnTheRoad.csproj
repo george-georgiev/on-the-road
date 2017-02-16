@@ -203,6 +203,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\AddTrip.css" />
+    <Content Include="Css\Categories.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
