@@ -6,6 +6,7 @@ using OnTheRoad.Mvp.EventArgsClasses;
 using WebFormsMvp;
 using OnTheRoad.Mvp.Presenters;
 using System.Linq;
+using System.IO;
 
 namespace OnTheRoad.Trips
 {
@@ -13,8 +14,21 @@ namespace OnTheRoad.Trips
     public partial class AddTrip : MvpPage<TripModel>, IAddTripView
     {
         private const char DateSeparator = '-';
+        private const string ImageSessionKey = "Image";
 
         public event EventHandler<AddTripEventArgs> CreateTrip;
+
+        public byte[] ImageContent
+        {
+            get
+            {
+                return (byte[])this.Session[ImageSessionKey];
+            }
+            set
+            {
+                this.Session[ImageSessionKey] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,10 +56,25 @@ namespace OnTheRoad.Trips
                 StartDate = startDate,
                 EndDate = endDate,
                 SelectedCategoryIds = categoryIds,
-                SelectedTagNames = tagNames
+                SelectedTagNames = tagNames,
+                CoverImageContent = this.ImageContent
             };
 
             this.CreateTrip?.Invoke(this, args);
+        }
+
+        protected void ImageUploader_ImageUpload(object sender, ImageUploadEventArgs e)
+        {
+            this.LabelFileName.Text = e.FileName;
+            this.ImageContent = e.ImageContent;
+        }
+
+        protected void ImageUploader_Error(object sender, ErrorEventArgs e)
+        {
+            var exception = e.GetException();
+            var message = exception.Message;
+            // TODO Implement toaster
+            this.LabelImageErrors.Text = message;
         }
 
         private DateTime ConvertDate(string value)

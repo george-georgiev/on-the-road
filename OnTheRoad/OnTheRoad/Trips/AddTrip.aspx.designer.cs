@@ -85,6 +85,33 @@ namespace OnTheRoad.Trips {
         protected global::OnTheRoad.CustomControllers.TagsSelect Tags;
         
         /// <summary>
+        /// LabelImageErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelImageErrors;
+        
+        /// <summary>
+        /// ImageUploader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OnTheRoad.CustomControllers.ImageUploader ImageUploader;
+        
+        /// <summary>
+        /// LabelFileName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelFileName;
+        
+        /// <summary>
         /// CreateTripButton control.
         /// </summary>
         /// <remarks>

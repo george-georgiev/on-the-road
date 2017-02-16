@@ -25,8 +25,6 @@ namespace OnTheRoad.Data
 
         public virtual IDbSet<Trip> Trips { get; set; }
 
-        public virtual IDbSet<TripImage> TripImages { get; set; }
-
         public virtual IDbSet<Rating> Ratings { get; set; }
 
         public static OnTheRoadIdentityDbContext Create()

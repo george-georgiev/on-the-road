@@ -16,6 +16,7 @@ namespace OnTheRoad.App_Start.BindingModules
     public class ServiceBindingModule : NinjectModule
     {
         private const string TagName = "Tag";
+        private const string ImageName = "Image";
 
         /// <summary>
         /// Binds all services.

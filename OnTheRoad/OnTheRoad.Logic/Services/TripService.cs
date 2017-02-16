@@ -45,9 +45,9 @@ namespace OnTheRoad.Logic.Services
             return trips;
         }
 
-        public IEnumerable<ITrip> GetTripsOrderedByDateCreated(int count, bool isAscending = false)
+        public IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending = false)
         {
-            var trips = this.tripDataUtil.GetTripsOrderedByDateCreated(count, isAscending);
+            var trips = this.tripDataUtil.GetTripsByCategoryNameOrderedByDate(categoryName, count, isAscending);
 
             return trips;
         }

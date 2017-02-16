@@ -31,10 +31,7 @@ namespace OnTheRoad.Data.Models
 
         public string Location { get; set; }
 
-        [ForeignKey("CoverImage")]
-        public int? CoverImageId { get; set; }
-
-        public virtual TripImage CoverImage { get; set; }
+        public byte[] CoverImage { get; set; }
 
         [ForeignKey("Organiser")]
         public string OrganiserId { get; set; }

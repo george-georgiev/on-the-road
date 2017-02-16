@@ -14,7 +14,7 @@ namespace OnTheRoad.Logic.Models
             DateTime endDate,
             ICollection<ICategory> categories,
             ICollection<ITag> tags,
-            IImage coverImage)
+            byte[] coverImage)
         {
             this.Name = name;
             this.Description = description;
@@ -28,7 +28,9 @@ namespace OnTheRoad.Logic.Models
 
         public ICollection<ICategory> Categories { get; set; }
 
-        public IImage CoverImage { get; set; }
+        //public IImage CoverImage { get; set; }
+
+        public byte[] CoverImage { get; set; }
 
         public DateTime CreateDate { get; set; }
 

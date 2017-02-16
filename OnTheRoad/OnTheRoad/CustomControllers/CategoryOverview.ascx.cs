@@ -15,7 +15,7 @@ namespace OnTheRoad.CustomControllers
 
         public event EventHandler<CategoryOverviewEventArgs> GetTrips;
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_PreRender(object sender, EventArgs e)
         {
             this.GetTrips?.Invoke(this, new CategoryOverviewEventArgs() { CategoryName = this.CategoryName });
             this.TripRepeater.DataSource = this.Model.Trips;

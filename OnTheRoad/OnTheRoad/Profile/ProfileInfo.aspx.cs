@@ -159,7 +159,7 @@ namespace OnTheRoad.Profile
         {
             this.UpdateProfileImage?.Invoke(this, new ProfileImageEventArgs()
             {
-                Image = e.Image,
+                Image = e.ImageContent,
                 UserName = this.Context.User.Identity.Name
             });
         }
@@ -168,6 +168,7 @@ namespace OnTheRoad.Profile
         {
             var exception = e.GetException();
             var message = exception.Message;
+            // TODO Implement toaster
             this.LabelErrors.Text = message;
         }
     }

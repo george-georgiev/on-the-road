@@ -2,7 +2,11 @@
 
 <%@ Register TagPrefix="uc" TagName="CategoriesMultiSelect" Src="~/CustomControllers/CategoriesMultiSelect.ascx" %>
 <%@ Register TagPrefix="uc" TagName="TagsSelect" Src="~/CustomControllers/TagsSelect.ascx" %>
+<%@ Register TagPrefix="uc" TagName="ImageUploader" Src="~/CustomControllers/ImageUploader.ascx" %>
 
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderCSSMaster" runat="server">
+    <link href="/Css/AddTrip.css" rel="stylesheet" />
+</asp:Content>
 
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <p class="text-danger">
@@ -73,7 +77,26 @@
         <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Tags" CssClass="col-md-2 control-label input-labels">Тагове</asp:Label>
             <div class="col-md-10">
-                <uc:TagsSelect ID="Tags" runat="server"  CssClass="form-control" />
+                <uc:TagsSelect ID="Tags" runat="server" CssClass="form-control" />
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <asp:Label runat="server" ID="LabelImageErrors" />
+                <div class="form-group">
+                    <asp:Label runat="server" AssociatedControlID="ImageUploader" CssClass="col-md-6 control-label input-labels">Изображение за корица</asp:Label>
+                    <div class="col-md-6">
+                        <uc:ImageUploader ID="ImageUploader" runat="server"
+                            OnImageUpload="ImageUploader_ImageUpload"
+                            OnError="ImageUploader_Error" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <asp:Label runat="server" AssociatedControlID="LabelFileName" CssClass="control-label input-labels">Име на файла:</asp:Label>
+                <asp:Label runat="server" ID="LabelFileName" />
             </div>
         </div>
 

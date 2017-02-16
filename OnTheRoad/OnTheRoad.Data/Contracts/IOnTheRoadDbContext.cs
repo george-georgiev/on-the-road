@@ -17,8 +17,6 @@ namespace OnTheRoad.Data.Contracts
 
         IDbSet<Trip> Trips { get; set; }
 
-        IDbSet<TripImage> TripImages { get; set; }
-
         IDbSet<Rating> Ratings { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace OnTheRoad.Logic.Builders
         private DateTime endDate;
         private ICollection<ICategory> categories;
         private ICollection<ITag> tags;
-        private IImage image;
+        private byte[] image;
 
         public TripBuilder()
         {
@@ -54,7 +54,7 @@ namespace OnTheRoad.Logic.Builders
             return this;
         }
 
-        public ITripBuilder SetImage(IImage image)
+        public ITripBuilder SetImage(byte[] image)
         {
             this.image = image;
             return this;
