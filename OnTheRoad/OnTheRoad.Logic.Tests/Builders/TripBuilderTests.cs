@@ -1,9 +1,9 @@
-﻿using Moq;
+﻿using System;
+using System.Collections.Generic;
+using Moq;
 using NUnit.Framework;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Builders;
-using System;
-using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Tests.Builders
 {

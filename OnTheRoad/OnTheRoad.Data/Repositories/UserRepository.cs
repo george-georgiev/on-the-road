@@ -13,6 +13,11 @@ namespace OnTheRoad.Data.Repositories
     {
         public UserRepository(OnTheRoadIdentityDbContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException("context cannot be null!");
+            }
+
             this.Context = context;
             this.DbSet = this.Context.Set<User>();
         }
@@ -21,10 +26,16 @@ namespace OnTheRoad.Data.Repositories
 
         protected DbSet<User> DbSet { get; set; }
 
-        // TODO: Implement
         public IEnumerable<IUser> GetAll()
         {
-            throw new NotImplementedException();
+            var mapped = new List<IUser>();
+            this.MapUserToIUser();
+            foreach (var entity in this.DbSet.ToList())
+            {
+                mapped.Add(this.GetMappedDomainUser(entity));
+            }
+
+            return mapped;
         }
 
         public IUser GetByUserName(string username)
@@ -36,44 +47,7 @@ namespace OnTheRoad.Data.Repositories
                 return null;
             }
 
-            var mapped = Mapper.Map<User, IUser>(entity);
-            if (entity.FavouriteUsers != null)
-            {
-                var updatedFavUsers = new List<IUser>();
-                foreach (var fu in entity.FavouriteUsers)
-                {
-                    var mappedFavUser = Mapper.Map<User, IUser>(fu);
-                    updatedFavUsers.Add(mappedFavUser);
-                }
-
-                mapped.FavouriteUsers = updatedFavUsers;
-            }
-
-            this.MapReviewToIReview();
-            if (entity.GivenReviews != null)
-            {
-                var updatedReviews = new List<IReview>();
-                foreach (var gr in entity.GivenReviews)
-                {
-                    var mappedReview = Mapper.Map<Review, IReview>(gr);
-                    updatedReviews.Add(mappedReview);
-                }
-
-                mapped.GivenReviews = updatedReviews;
-            }
-
-            if (entity.ReceivedReviews != null)
-            {
-                var updatedReviews = new List<IReview>();
-                foreach (var gr in entity.ReceivedReviews)
-                {
-                    var mappedReview = Mapper.Map<Review, IReview>(gr);
-                    updatedReviews.Add(mappedReview);
-                }
-
-                mapped.ReceivedReviews = updatedReviews;
-            }
-
+            var mapped = this.GetMappedDomainUser(entity);
             return mapped;
         }
 
@@ -86,19 +60,7 @@ namespace OnTheRoad.Data.Repositories
                 return null;
             }
 
-            var mapped = Mapper.Map<User, IUser>(entity);
-            if (entity.FavouriteUsers != null)
-            {
-                var updatedFavUsers = new List<IUser>();
-                foreach (var fu in entity.FavouriteUsers)
-                {
-                    var mappedFavUser = Mapper.Map<User, IUser>(fu);
-                    updatedFavUsers.Add(mappedFavUser);
-                }
-
-                mapped.FavouriteUsers = updatedFavUsers;
-            }
-
+            var mapped = this.GetMappedDomainUser(entity);
             return mapped;
         }
 
@@ -168,32 +130,56 @@ namespace OnTheRoad.Data.Repositories
             //    entity.Subscriptions = updatedSubscriptions;
             //}
 
-            var entry = this.Context.Entry(entity);
-            entry.State = EntityState.Modified;
-            //this.SetEntityState(entity, EntityState.Modified);
+            this.SetEntityState(entity, EntityState.Modified);
         }
 
-        // TODO: Delete if not needed.
-        private void SetEntityState(IUser model, EntityState entityState)
+        protected virtual void SetEntityState(User entity, EntityState entityState)
         {
-            if (model == null)
-            {
-                throw new ArgumentNullException("model can not be null!");
-            }
-
-            this.MapIUserToUser(model);
-            var entity = this.DbSet.Local.Where(e => e.Id == model.Id.ToString()).FirstOrDefault();
-            if (entity == null)
-            {
-                entity = Mapper.Map<IUser, User>(model);
-            }
-            else
-            {
-                entity = Mapper.Map<IUser, User>(model, entity);
-            }
-
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
+        }
+
+        private IUser GetMappedDomainUser(User entity)
+        {
+            var mapped = Mapper.Map<User, IUser>(entity);
+            if (entity.FavouriteUsers != null)
+            {
+                var updatedFavUsers = new List<IUser>();
+                foreach (var fu in entity.FavouriteUsers)
+                {
+                    var mappedFavUser = Mapper.Map<User, IUser>(fu);
+                    updatedFavUsers.Add(mappedFavUser);
+                }
+
+                mapped.FavouriteUsers = updatedFavUsers;
+            }
+
+            this.MapReviewToIReview();
+            if (entity.GivenReviews != null)
+            {
+                var updatedReviews = new List<IReview>();
+                foreach (var gr in entity.GivenReviews)
+                {
+                    var mappedReview = Mapper.Map<Review, IReview>(gr);
+                    updatedReviews.Add(mappedReview);
+                }
+
+                mapped.GivenReviews = updatedReviews;
+            }
+
+            if (entity.ReceivedReviews != null)
+            {
+                var updatedReviews = new List<IReview>();
+                foreach (var gr in entity.ReceivedReviews)
+                {
+                    var mappedReview = Mapper.Map<Review, IReview>(gr);
+                    updatedReviews.Add(mappedReview);
+                }
+
+                mapped.ReceivedReviews = updatedReviews;
+            }
+
+            return mapped;
         }
 
         private void MapUserToIUser()
@@ -227,7 +213,7 @@ namespace OnTheRoad.Data.Repositories
             });
         }
 
-        protected void MapReviewToIReview()
+        private void MapReviewToIReview()
         {
             Mapper.Initialize(config =>
             {

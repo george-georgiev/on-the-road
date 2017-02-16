@@ -95,7 +95,7 @@ namespace OnTheRoad.Tests.Presenters
                      FavouriteUserUsername = userToAdd
                  });
 
-            userServiceMock.Verify(x => x.AddFavouriteUser(currentUser, userToAdd));
+            userServiceMock.Verify(x => x.AddFavouriteUser(currentUser, userToAdd), Times.Once);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace OnTheRoad.Tests.Presenters
                     FavouriteUserUsername = userToRemove
                 });
 
-            userServiceMock.Verify(x => x.RemoveFavouriteUser(currentUser, userToRemove));
+            userServiceMock.Verify(x => x.RemoveFavouriteUser(currentUser, userToRemove), Times.Once);
         }
 
         [Test]
@@ -166,7 +166,7 @@ namespace OnTheRoad.Tests.Presenters
                     Info = info
                 });
 
-            userServiceMock.Verify(x => x.UpdateUserInfo(username, fName, lName, phoneNumber, info, cityMock.Object));
+            userServiceMock.Verify(x => x.UpdateUserInfo(username, fName, lName, phoneNumber, info, cityMock.Object), Times.Once);
         }
 
         [Test]
