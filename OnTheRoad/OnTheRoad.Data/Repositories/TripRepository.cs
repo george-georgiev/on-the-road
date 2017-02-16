@@ -74,7 +74,6 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<Trip, ITrip>()
                     .ForMember(x => x.Tags, opt => opt.Ignore())
                     .ForMember(x => x.Categories, opt => opt.Ignore())
-                    .ForMember(x => x.CoverImage, opt => opt.Ignore())
                     .ForMember(x => x.Subscriptions, opt => opt.Ignore())
                     .ForMember(x => x.Organiser, opt => opt.Ignore());
             });
@@ -91,7 +90,6 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<ITrip, Trip>()
                     .ForMember(x => x.Tags, opt => opt.Ignore())
                     .ForMember(x => x.Categories, opt => opt.Ignore())
-                    .ForMember(x => x.CoverImage, opt => opt.Ignore())
                     .ForMember(x => x.Subscriptions, opt => opt.Ignore())
                     .ForMember(x => x.Organiser, opt => opt.Ignore());
             });

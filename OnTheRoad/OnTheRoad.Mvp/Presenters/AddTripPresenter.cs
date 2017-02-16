@@ -36,6 +36,7 @@ namespace OnTheRoad.Mvp.Presenters
             var location = e.Location;
             var startDate = e.StartDate;
             var endDate = e.EndDate;
+            var coverImage = e.CoverImageContent;
 
             var trip = this.tripBuilder
                 .SetName(name)
@@ -43,6 +44,7 @@ namespace OnTheRoad.Mvp.Presenters
                 .SetLocation(location)
                 .SetStartDate(startDate)
                 .SetEndDate(endDate)
+                .SetImage(coverImage)
                 .Build();
 
             var loggedUsername = e.LoggedUserName;

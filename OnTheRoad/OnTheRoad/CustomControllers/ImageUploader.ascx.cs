@@ -2,10 +2,11 @@
 using OnTheRoad.Mvp.EventArgsClasses;
 using System;
 using System.IO;
+using System.Web.UI;
 
 namespace OnTheRoad.CustomControllers
 {
-    public partial class ImageUploader : System.Web.UI.UserControl
+    public partial class ImageUploader : UserControl
     {
         private const int FourMb = 4 * 1000 * 1024;
         private const string JpegContentType = "image/jpeg";
@@ -75,7 +76,7 @@ namespace OnTheRoad.CustomControllers
 
             this.ImageUpload?.Invoke(this, new ImageUploadEventArgs()
             {
-                Image = imageAsByteArray,
+                ImageContent = imageAsByteArray,
                 FileName = this.FileUploadImage.FileName
             });
 

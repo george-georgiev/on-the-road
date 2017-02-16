@@ -105,12 +105,12 @@ namespace OnTheRoad.Logic.Tests.Builders
         public void SetImage_WhenCalled_ShouldSetTripImageProperty()
         {
             var builder = new TripBuilder();
-            var imageMock = new Mock<IImage>();
+            var coverImage = new byte[10];
 
-            builder.SetImage(imageMock.Object);
+            builder.SetImage(coverImage);
             var trip = builder.Build();
 
-            Assert.AreSame(imageMock.Object, trip.CoverImage);
+            Assert.AreSame(coverImage, trip.CoverImage);
         }
 
         [Test]

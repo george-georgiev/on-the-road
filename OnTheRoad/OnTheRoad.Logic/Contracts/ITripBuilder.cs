@@ -20,7 +20,7 @@ namespace OnTheRoad.Logic.Contracts
 
         ITripBuilder SetTags(ICollection<ITag> tags);
 
-        ITripBuilder SetImage(IImage image);
+        ITripBuilder SetImage(byte[] image);
 
         ITrip Build();
     }

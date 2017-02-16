@@ -20,5 +20,7 @@ namespace OnTheRoad.Mvp.EventArgsClasses
         public IEnumerable<int> SelectedCategoryIds { get; set; }
 
         public IEnumerable<string> SelectedTagNames { get; set; }
+
+        public byte[] CoverImageContent { get; set; }
     }
 }

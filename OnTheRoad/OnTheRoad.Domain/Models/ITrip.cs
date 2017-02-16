@@ -21,7 +21,9 @@ namespace OnTheRoad.Domain.Models
 
         ICollection<ICategory> Categories { get; set; }
 
-        IImage CoverImage { get; set; }
+        //IImage CoverImage { get; set; }
+
+        byte[] CoverImage { get; set; }
 
         IUser Organiser { get; set; }
 

@@ -8,5 +8,6 @@
         runat="server"
         CssClass="label-upload btn btn-xs btn-default">ИЗБЕРИ СНИМКА</asp:Label>
 
-    <asp:Button runat="server" ID="ButtonUploadImage" Text="КАЧИ" CssClass="btn btn-xs btn-success" OnClick="ButtonUploadImage_Click" />
+    <asp:Button runat="server" ID="ButtonUploadImage" Text="КАЧИ"
+        CssClass="btn btn-xs btn-success" OnClick="ButtonUploadImage_Click" CausesValidation="False"/>
 </div>
