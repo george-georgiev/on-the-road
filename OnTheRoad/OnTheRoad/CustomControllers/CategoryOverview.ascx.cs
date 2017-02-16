@@ -9,7 +9,7 @@ using OnTheRoad.Mvp.EventArgsClasses;
 namespace OnTheRoad.CustomControllers
 {
     [PresenterBinding(typeof(CategoryOverviewPresenter))]
-    public partial class CategoryOverview : MvpUserControl<CategoryOverviewModel>, ICategoryOverviewView
+    public partial class CategoryOverview : MvpUserControl<TripsModel>, ICategoryOverviewView
     {
         public string CategoryName { get; set; }
 
@@ -18,8 +18,8 @@ namespace OnTheRoad.CustomControllers
         protected void Page_PreRender(object sender, EventArgs e)
         {
             this.GetTrips?.Invoke(this, new CategoryOverviewEventArgs() { CategoryName = this.CategoryName });
-            this.TripRepeater.DataSource = this.Model.Trips;
-            this.TripRepeater.DataBind();
+            this.ListViewTrips.DataSource = this.Model.Trips;
+            this.ListViewTrips.DataBind();
         }
     }
 }

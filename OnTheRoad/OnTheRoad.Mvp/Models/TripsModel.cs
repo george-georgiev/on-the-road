@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Mvp.Models
 {
-    public class CategoryOverviewModel
+    public class TripsModel
     {
         public IEnumerable<ITrip> Trips { get; set; }
     }

@@ -203,13 +203,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\AddTrip.css" />
-    <Content Include="Css\Categories.css" />
+    <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
     <Content Include="CustomControllers\ImageUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
+    <Content Include="CustomControllers\TripsList.ascx" />
     <Content Include="ErrorPages\404.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -330,6 +331,13 @@
     </Compile>
     <Compile Include="CustomControllers\TagsSelect.ascx.designer.cs">
       <DependentUpon>TagsSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControllers\TripsList.ascx.cs">
+      <DependentUpon>TripsList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\TripsList.ascx.designer.cs">
+      <DependentUpon>TripsList.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

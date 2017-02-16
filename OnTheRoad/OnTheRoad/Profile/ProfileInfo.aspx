@@ -121,7 +121,7 @@
                     <asp:HyperLink runat="server"
                         ID="LinkButtonFollowing"
                         Text="<%#: Item.Username %>"
-                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+                        NavigateUrl='<%# "~/profile/profileInfo.aspx?name=" + Item.Username %>' />
 
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
                         ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />

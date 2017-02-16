@@ -10,7 +10,7 @@
 namespace OnTheRoad.CustomControllers {
     
     
-    public partial class CategoryOverview {
+    public partial class TripsList {
         
         /// <summary>
         /// ListViewTrips control.
