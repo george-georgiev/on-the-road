@@ -1,4 +1,5 @@
 ﻿using System;
+using OnTheRoad.Domain.Enumerations;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Logic.Contracts;
@@ -13,15 +14,15 @@ namespace OnTheRoad.Logic.Services
         {
             if (ratingRepository == null)
             {
-                throw new ArgumentNullException("ratingRepository can not be null!");
+                throw new ArgumentNullException("ratingRepository cannot be null!");
             }
 
             this.ratingRepository = ratingRepository;
         }
 
-        public IRating GetRatingByValue(string value)
+        public IRating GetRatingByValue(RatingEnum value)
         {
-            return this.ratingRepository.GetByValue(value);
+            return this.ratingRepository.GetByValue(value.ToString());
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Moq;
+using OnTheRoad.Domain.Enumerations;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Factories;
@@ -68,16 +69,16 @@ namespace OnTheRoad.Logic.Tests.Services
         public void ReviewAddHelper_WhenAddUserReviewIsCalled_ShouldCallGetRatingByValueExactlyOnce()
         {
             var reviewService = new ReviewService(reviewAddHelperMock.Object, reviewDataUtilsMock.Object, reviewFactoryMock.Object);
-            reviewService.AddUserReview("content", "fromUser", "toUser", "rating", DateTime.Now);
+            reviewService.AddUserReview("content", "fromUser", "toUser", RatingEnum.Positive, DateTime.Now);
 
-            reviewAddHelperMock.Verify(x => x.GetRatingByValue(It.IsAny<string>()), Times.Once);
+            reviewAddHelperMock.Verify(x => x.GetRatingByValue(It.IsAny<RatingEnum>()), Times.Once);
         }
 
         [Test]
         public void ReviewAddHelper_WhenAddUserReviewIsCalled_ShouldCallGetUserByUsernameTwice()
         {
             var reviewService = new ReviewService(reviewAddHelperMock.Object, reviewDataUtilsMock.Object, reviewFactoryMock.Object);
-            reviewService.AddUserReview("content", "fromUser", "toUser", "rating", DateTime.Now);
+            reviewService.AddUserReview("content", "fromUser", "toUser", RatingEnum.Positive, DateTime.Now);
 
             reviewAddHelperMock.Verify(x => x.GetUserByUsername(It.IsAny<string>()), Times.Exactly(2));
         }
@@ -86,7 +87,7 @@ namespace OnTheRoad.Logic.Tests.Services
         public void ReviewFactory_WhenAddUserReviewIsCalled_ShouldCallCreateReviewExactlyOnce()
         {
             var reviewService = new ReviewService(reviewAddHelperMock.Object, reviewDataUtilsMock.Object, reviewFactoryMock.Object);
-            reviewService.AddUserReview("content", "fromUser", "toUser", "rating", DateTime.Now);
+            reviewService.AddUserReview("content", "fromUser", "toUser", RatingEnum.Positive, DateTime.Now);
 
             reviewFactoryMock.Verify(x => x.CreateReview(It.IsAny<string>(), It.IsAny<IUser>(), It.IsAny<IUser>(), It.IsAny<IRating>(), It.IsAny<DateTime>()), Times.Once);
         }
@@ -95,7 +96,7 @@ namespace OnTheRoad.Logic.Tests.Services
         public void ReviewDatUtils_WhenAddUserReviewIsCalled_ShouldCallAddUserReviewExactlyOnce()
         {
             var reviewService = new ReviewService(reviewAddHelperMock.Object, reviewDataUtilsMock.Object, reviewFactoryMock.Object);
-            reviewService.AddUserReview("content", "fromUser", "toUser", "rating", DateTime.Now);
+            reviewService.AddUserReview("content", "fromUser", "toUser", RatingEnum.Positive, DateTime.Now);
 
             reviewDataUtilsMock.Verify(x => x.AddUserReview(It.IsAny<IReview>()), Times.Once);
         }

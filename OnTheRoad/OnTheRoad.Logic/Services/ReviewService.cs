@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Factories;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Logic.Services
 {
@@ -34,7 +35,7 @@ namespace OnTheRoad.Logic.Services
             this.reviewFactory = reviewFactory;
         }
 
-        public void AddUserReview(string content, string fromUser, string toUser, string rating, DateTime postingDate)
+        public void AddUserReview(string content, string fromUser, string toUser, RatingEnum rating, DateTime postingDate)
         {
             var givenRating = this.reviewAddHelper.GetRatingByValue(rating);
             var fUser = this.reviewAddHelper.GetUserByUsername(fromUser);

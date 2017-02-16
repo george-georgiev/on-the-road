@@ -5,6 +5,7 @@ using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Views;
 using WebFormsMvp;
 using WebFormsMvp.Web;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Profile
 {
@@ -31,11 +32,12 @@ namespace OnTheRoad.Profile
             var content = this.TextBoxAddReviewText.Text;
             this.TextBoxAddReviewText.Text = string.Empty;
             var rating = this.RadioButtonsRating.SelectedValue;
+            var ratingAsEnum = (RatingEnum)Enum.Parse(typeof(RatingEnum), rating);
             this.RadioButtonsRating.ClearSelection();
             var toUser = this.Request.QueryString["name"];
             var fromUser = this.Context.User.Identity.Name;
 
-            this.AddReview?.Invoke(this, new AddReviewEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = rating, PostingDate = DateTime.Now });
+            this.AddReview?.Invoke(this, new AddReviewEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = ratingAsEnum, PostingDate = DateTime.Now });
             this.LoadData();
         }
 

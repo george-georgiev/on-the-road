@@ -1,6 +1,7 @@
 ﻿using System;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Domain.Models;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Logic.Utils
 {
@@ -25,7 +26,7 @@ namespace OnTheRoad.Logic.Utils
             this.ratingService = ratingService;
         }
 
-        public IRating GetRatingByValue(string value)
+        public IRating GetRatingByValue(RatingEnum value)
         {
             return this.ratingService.GetRatingByValue(value);
         }

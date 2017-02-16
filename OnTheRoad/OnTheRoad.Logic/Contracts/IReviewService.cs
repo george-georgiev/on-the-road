@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OnTheRoad.Domain.Models;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Logic.Contracts
 {
@@ -8,6 +9,6 @@ namespace OnTheRoad.Logic.Contracts
     {
         IEnumerable<IReview> GetUserReviews(string username);
 
-        void AddUserReview(string content, string fromUser, string toUser, string rating, DateTime postingDate);
+        void AddUserReview(string content, string fromUser, string toUser, RatingEnum rating, DateTime postingDate);
     }
 }
