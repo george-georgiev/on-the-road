@@ -118,6 +118,7 @@ namespace OnTheRoad.Data.Repositories
                 entity.ReceivedReviews = updatedReviews;
             }
 
+            // TODO: do we need it?
             //if (model.Subscription != null)
             //{
             //    var updatedSubscriptions = new List<Subscription>();

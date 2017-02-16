@@ -17,7 +17,7 @@ namespace OnTheRoad.Data.Repositories
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context can not be null!");
+                throw new ArgumentNullException("context cannot be null!");
             }
 
             this.Context = context;
@@ -75,6 +75,11 @@ namespace OnTheRoad.Data.Repositories
                 entity = this.MapDomainToEnity(model);
             }
 
+            this.SetEntityStateHelper(entity, entityState);
+        }
+
+        protected virtual void SetEntityStateHelper(EntityType entity, EntityState entityState)
+        {
             var entry = this.Context.Entry(entity);
             entry.State = entityState;
         }
