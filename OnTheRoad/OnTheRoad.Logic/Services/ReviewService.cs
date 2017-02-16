@@ -16,17 +16,17 @@ namespace OnTheRoad.Logic.Services
         {
             if (reviewAddHelper == null)
             {
-                throw new ArgumentNullException("reviewAddHelper can not be null!");
+                throw new ArgumentNullException("reviewAddHelper cannot be null!");
             }
 
             if (reviewDataUtils == null)
             {
-                throw new ArgumentNullException("reviewDataUtils can not be null!");
+                throw new ArgumentNullException("reviewDataUtils cannot be null!");
             }
 
             if (reviewFactory == null)
             {
-                throw new ArgumentNullException("reviewFactory can not be null!");
+                throw new ArgumentNullException("reviewFactory cannot be null!");
             }
 
             this.reviewAddHelper = reviewAddHelper;
