@@ -5,6 +5,6 @@ namespace OnTheRoad.Domain.Repositories
 {
     public interface IReviewRepository : IGetRepository<IReview>, IModifyRepository<IReview>
     {
-        IEnumerable<IReview> GetByToUser(IUser toUser);
+        IEnumerable<IReview> GetByToUser(string toUser);
     }
 }

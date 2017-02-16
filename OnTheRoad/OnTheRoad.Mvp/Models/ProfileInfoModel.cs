@@ -17,12 +17,10 @@ namespace OnTheRoad.Mvp.Models
 
         public string City { get; set; }
 
-        //public string ImagePath { get; set; }
-
         public byte[] Image { get; set; }
 
         public string PhoneNumber { get; set; }
 
-        public ICollection<IUser> FavouriteUsers { get; set; }
+        public IEnumerable<IUser> FavouriteUsers { get; set; }
     }
 }

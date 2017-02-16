@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server"
-                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>'
+                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>'
                                 CssClass="img-responsive"></asp:Image>
                         </div>
                         <div class="col-md-8">

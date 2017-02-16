@@ -11,22 +11,39 @@ namespace OnTheRoad.Profile
     [PresenterBinding(typeof(ReviewsPresenter))]
     public partial class ProfileReviews : MvpPage<ReviewsModel>, IReviewsView
     {
-        public event EventHandler<ProfileReviewsEventArgs> AddReview;
-        public event EventHandler<ProfileReviewsEventArgs> GetReviews;
+        private const string USERNAME = "name";
+
+        public event EventHandler<AddReviewEventArgs> AddReview;
+        public event EventHandler<GetUserReviewsEventArgs> GetReviews;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (this.Context.User.Identity.Name == this.Request.QueryString[USERNAME])
+            {
+                this.ButtonAddComment.Visible = false;
+            }
 
+            this.LoadData();
         }
 
         protected void ButtonSend_Click(object sender, EventArgs e)
         {
             var content = this.TextBoxAddReviewText.Text;
+            this.TextBoxAddReviewText.Text = string.Empty;
             var rating = this.RadioButtonsRating.SelectedValue;
+            this.RadioButtonsRating.ClearSelection();
             var toUser = this.Request.QueryString["name"];
             var fromUser = this.Context.User.Identity.Name;
 
-            this.AddReview?.Invoke(this, new ProfileReviewsEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = rating });
+            this.AddReview?.Invoke(this, new AddReviewEventArgs() { FromUser = fromUser, ToUser = toUser, Content = content, Rating = rating, PostingDate = DateTime.Now });
+            this.LoadData();
+        }
+
+        private void LoadData()
+        {
+            this.GetReviews?.Invoke(this, new GetUserReviewsEventArgs() { Username = this.Request.QueryString[USERNAME] });
+            this.ListViewComments.DataSource = this.Model.Reviews;
+            this.ListViewComments.DataBind();
         }
     }
 }

@@ -14,16 +14,16 @@ namespace OnTheRoad.Data.Repositories
         {
         }
 
-        public IEnumerable<IReview> GetByToUser(IUser toUser)
+        public IEnumerable<IReview> GetByToUser(string toUser)
         {
-            // TODO: Check if it works?
-            var entities = this.DbSet.Where(x => x.ToUserId == toUser.Id).ToList();
+            var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser).ToList();
             Mapper.Initialize(config => config.CreateMap<Review, IReview>());
 
             List<IReview> reviews = new List<IReview>();
             foreach (var entity in entities)
             {
-                var review = Mapper.Map<Review, IReview>(entity);
+                var review = this.MapEntityToDomain(entity);
+
                 reviews.Add(review);
             }
 
@@ -46,18 +46,28 @@ namespace OnTheRoad.Data.Repositories
             });
 
             var entity = Mapper.Map<IReview, Review>(domain);
-
             return entity;
         }
 
-        //private void MapReviewToIReview()
-        //{
-        //    Mapper.Initialize(config => config.CreateMap<Review, IReview>());
-        //}
+        protected override IReview MapEntityToDomain(Review entity)
+        {
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Rating, IRating>();
+                config.CreateMap<User, IUser>()
+                    .ForMember(x => x.City, opt => opt.Ignore())
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
 
-        //private void MapIReviewToReview(IReview model)
-        //{
-        //    Mapper.Initialize(config => config.CreateMap<IReview, Review>());
-        //}
+                config.CreateMap<Review, IReview>()
+                    .ForMember(x => x.Rating, opt => opt.MapFrom(s => Mapper.Map<Rating, IRating>(s.Rating)))
+                    .ForMember(x => x.FromUser, opt => opt.MapFrom(s => Mapper.Map<User, IUser>(s.FromUser)))
+                    .ForMember(x => x.ToUser, opt => opt.MapFrom(s => Mapper.Map<User, IUser>(s.ToUser)));
+            });
+
+            var domain = Mapper.Map<Review, IReview>(entity);
+            return domain;
+        }
     }
 }

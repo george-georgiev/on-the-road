@@ -47,6 +47,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Moq, Version=4.5.30.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.5.30\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -73,11 +74,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
+    <Compile Include="Repositories\UserRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">
       <Project>{95562E63-DC49-42F5-AE33-E32A29EB5997}</Project>
       <Name>OnTheRoad.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
+      <Project>{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}</Project>
+      <Name>OnTheRoad.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

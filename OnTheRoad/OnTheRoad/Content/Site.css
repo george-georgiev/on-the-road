@@ -67,9 +67,10 @@ input[type="select"] {
     }
 }
 
-.page-headers {
+h2.page-headers, h3.page-headers {
     text-align: center;
     color: #00B5DB;
+    margin-bottom: 50px;
 }
 
 .input-labels {

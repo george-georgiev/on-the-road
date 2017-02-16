@@ -1,5 +1,6 @@
 ﻿using System;
 using OnTheRoad.Logic.Contracts;
+using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.Mvp.Views;
 using WebFormsMvp;
 
@@ -23,14 +24,14 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.GetReviews += View_GetReviews;
         }
 
-        private void View_GetReviews(object sender, EventArgsClasses.ProfileReviewsEventArgs e)
+        private void View_GetReviews(object sender, GetUserReviewsEventArgs e)
         {
-            throw new NotImplementedException();
+            this.View.Model.Reviews = this.reviewService.GetUserReviews(e.Username);
         }
 
-        private void View_AddReview(object sender, EventArgsClasses.ProfileReviewsEventArgs e)
+        private void View_AddReview(object sender, AddReviewEventArgs e)
         {
-            this.reviewService.AddUserReview(e.Content, e.FromUser, e.ToUser, e.Rating);
+            this.reviewService.AddUserReview(e.Content, e.FromUser, e.ToUser, e.Rating, e.PostingDate);
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using OnTheRoad.Data.Models;
-using System.Data.Entity;
+﻿using System.Data.Entity;
+using OnTheRoad.Data.Models;
 
 namespace OnTheRoad.Data.Contracts
 {

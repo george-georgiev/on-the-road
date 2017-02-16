@@ -1,4 +1,6 @@
-﻿namespace OnTheRoad.Domain.Models
+﻿using System;
+
+namespace OnTheRoad.Domain.Models
 {
     public interface IReview : IIdentifiable
     {
@@ -9,5 +11,7 @@
         IUser FromUser { get; set; }
 
         IUser ToUser { get; set; }
+
+        DateTime PostingDate { get; set; }
     }
 }
