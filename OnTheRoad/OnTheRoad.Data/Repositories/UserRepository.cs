@@ -132,13 +132,7 @@ namespace OnTheRoad.Data.Repositories
             //    entity.Subscriptions = updatedSubscriptions;
             //}
 
-            this.SetEntityState(entity, EntityState.Modified);
-        }
-
-        protected virtual void SetEntityState(User entity, EntityState entityState)
-        {
-            var entry = this.Context.Entry(entity);
-            entry.State = entityState;
+            this.Context.SetEntryState(entity, EntityState.Modified);
         }
 
         private IUser GetMappedDomainUser(User entity)
