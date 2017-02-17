@@ -7,19 +7,20 @@ using Moq;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Data.Models;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Tests.Repositories
 {
     [TestFixture]
     public class RatingRepositoryTests
     {
-        private Mock<OnTheRoadIdentityDbContext> contextMock;
+        private Mock<IOnTheRoadDbContext> contextMock;
         private Mock<DbSet<Rating>> dbSetMock;
 
         [SetUp]
         public void SetUpMocks()
         {
-            this.contextMock = new Mock<OnTheRoadIdentityDbContext>();
+            this.contextMock = new Mock<IOnTheRoadDbContext>();
             this.dbSetMock = new Mock<DbSet<Rating>>();
             contextMock.Setup(x => x.Set<Rating>()).Returns(dbSetMock.Object);
         }
@@ -84,33 +85,6 @@ namespace OnTheRoad.Data.Tests.Repositories
 
             var ratingRepository = new RatingRepository(this.contextMock.Object);
             var actual = ratingRepository.GetByValue(value);
-
-            Assert.That(actual, Is.InstanceOf<IRating>());
-        }
-
-        [Test]
-        public void GetAll_WhenCalled_ShouldReturnInstanceOfIEnumerableIRating()
-        {
-            var positiveRating = new Rating() { Value = "Positive" };
-            var neutralRating = new Rating() { Value = "Neutral" };
-            var negativeRating = new Rating() { Value = "Negative" };
-            var fakeData = new List<Rating>() { positiveRating, neutralRating, negativeRating }.AsQueryable();
-            this.SetDbSetUserAsQueryable(fakeData);
-
-            var ratingRepository = new RatingRepository(this.contextMock.Object);
-            var actual = ratingRepository.GetAll();
-
-            Assert.That(actual, Is.InstanceOf<IEnumerable<IRating>>());
-        }
-
-        [Test]
-        public void GetById_WhenIsCalled_ShouldReturnInstanceOfIUser()
-        {
-            var ratingMock = new Mock<Rating>();
-            this.dbSetMock.Setup(x => x.Find(It.IsAny<string>())).Returns(ratingMock.Object);
-
-            var ratingRepository = new RatingRepository(this.contextMock.Object);
-            var actual = ratingRepository.GetById("id");
 
             Assert.That(actual, Is.InstanceOf<IRating>());
         }

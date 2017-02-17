@@ -6,12 +6,13 @@ using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using System.Data.Entity;
 using System;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class TripRepository : BaseRepository<Trip, ITrip>, ITripRepository, IGetRepository<ITrip>, IModifyRepository<ITrip>
     {
-        public TripRepository(OnTheRoadIdentityDbContext context) : base(context)
+        public TripRepository(IOnTheRoadDbContext context) : base(context)
         {
         }
 

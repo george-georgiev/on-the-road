@@ -6,6 +6,7 @@ using AutoMapper;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
@@ -13,7 +14,7 @@ namespace OnTheRoad.Data.Repositories
         where EntityType : BaseEntity
         where DomainType : IIdentifiable
     {
-        public BaseRepository(OnTheRoadIdentityDbContext context)
+        public BaseRepository(IOnTheRoadDbContext context)
         {
             if (context == null)
             {
@@ -24,7 +25,7 @@ namespace OnTheRoad.Data.Repositories
             this.DbSet = this.Context.Set<EntityType>();
         }
 
-        protected OnTheRoadIdentityDbContext Context { get; }
+        protected IOnTheRoadDbContext Context { get; }
 
         protected DbSet<EntityType> DbSet { get; }
 
@@ -75,13 +76,7 @@ namespace OnTheRoad.Data.Repositories
                 entity = this.MapDomainToEnity(model);
             }
 
-            this.SetEntityStateHelper(entity, entityState);
-        }
-
-        protected virtual void SetEntityStateHelper(EntityType entity, EntityState entityState)
-        {
-            var entry = this.Context.Entry(entity);
-            entry.State = entityState;
+            this.Context.SetEntryState(entity, entityState);
         }
 
         protected virtual EntityType MapDomainToEnity(DomainType domain)

@@ -6,12 +6,13 @@ using AutoMapper;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public UserRepository(OnTheRoadIdentityDbContext context)
+        public UserRepository(IOnTheRoadDbContext context)
         {
             if (context == null)
             {
@@ -22,7 +23,7 @@ namespace OnTheRoad.Data.Repositories
             this.DbSet = this.Context.Set<User>();
         }
 
-        protected OnTheRoadIdentityDbContext Context { get; set; }
+        protected IOnTheRoadDbContext Context { get; set; }
 
         protected DbSet<User> DbSet { get; set; }
 

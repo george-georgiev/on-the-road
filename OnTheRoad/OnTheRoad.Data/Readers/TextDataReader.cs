@@ -22,6 +22,7 @@ namespace OnTheRoad.Data.Readers
             {
                 return this.resourcePathResolver;
             }
+
             set
             {
                 if (value == null)

@@ -1,12 +1,13 @@
-﻿using OnTheRoad.Domain.Contracts;
+﻿using OnTheRoad.Data.Contracts;
+using OnTheRoad.Domain.Contracts;
 
 namespace OnTheRoad.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly OnTheRoadIdentityDbContext context;
+        private readonly IOnTheRoadDbContext context;
 
-        public UnitOfWork(OnTheRoadIdentityDbContext context)
+        public UnitOfWork(IOnTheRoadDbContext context)
         {
             this.context = context;
         }

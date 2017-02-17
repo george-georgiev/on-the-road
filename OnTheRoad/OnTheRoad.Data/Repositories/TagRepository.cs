@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
@@ -9,7 +10,7 @@ namespace OnTheRoad.Data.Repositories
 {
     public class TagRepository : BaseRepository<Tag, ITag>, ITagRepository
     {
-        public TagRepository(OnTheRoadIdentityDbContext context) : base(context)
+        public TagRepository(IOnTheRoadDbContext context) : base(context)
         {
         }
 

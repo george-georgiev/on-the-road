@@ -4,12 +4,13 @@ using AutoMapper;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class ReviewRepository : BaseRepository<Review, IReview>, IReviewRepository, IGetRepository<IReview>, IModifyRepository<IReview>
     {
-        public ReviewRepository(OnTheRoadIdentityDbContext context)
+        public ReviewRepository(IOnTheRoadDbContext context)
             : base(context)
         {
         }

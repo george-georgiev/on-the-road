@@ -5,12 +5,13 @@ using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using System;
 using System.Data.Entity;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class RatingRepository : BaseRepository<Rating, IRating>, IRatingRepository
     {
-        public RatingRepository(OnTheRoadIdentityDbContext context)
+        public RatingRepository(IOnTheRoadDbContext context)
             : base(context)
         {
         }
