@@ -105,6 +105,10 @@
     margin-bottom: 50px;
 }
 
+#MainContent_ProfileContent_PanelFavouriteUsers a {
+    margin-right: 30px;
+}
+
 .dropdown-menu {
     top: 30%;
     min-width: 100px;
@@ -112,7 +116,6 @@
 }
 
 .btn-dropdown {
-    margin-right: 30px;
     border-radius: 10px;
     position: relative;
     top: -15px;

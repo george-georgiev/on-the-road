@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.UI.WebControls;
-using ImageResizer;
 using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.Profile.Contracts;
@@ -30,6 +29,10 @@ namespace OnTheRoad.Profile
         {
         }
 
+        protected void Page_Render(object sender, EventArgs e)
+        {
+        }
+
         protected void Page_PreRender(object sender, EventArgs e)
         {
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });
@@ -45,12 +48,12 @@ namespace OnTheRoad.Profile
                 this.Session.Add(FAVOURITE_USERS, favUsers);
             }
 
-            // If on different user page -> show or hide follow and unfollow buttons.
+            // If on different user page -> show or hide follow, unfollow and edit buttons.
             if (this.Context.User.Identity.Name != string.Empty &&
                 this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
             {
                 this.ButtonEdit.Visible = false;
-
+               
                 IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
                 if (favouriteUsers != null)
                 {
@@ -170,6 +173,16 @@ namespace OnTheRoad.Profile
             var message = exception.Message;
             // TODO Implement toaster
             this.LabelErrors.Text = message;
+        }
+
+        protected void RepeaterFavouriteUsers_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (this.Context.User.Identity.Name != string.Empty &&
+               this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
+            {
+                RepeaterItem ri = e.Item;
+                (ri.FindControl("PanelUnfollow") as Panel).Visible = false;
+            }
         }
     }
 }
