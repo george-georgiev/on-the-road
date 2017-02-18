@@ -66,7 +66,7 @@
                             <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>' CssClass="img-responsive"></asp:Image>
                             <uc:ImageUploader ID="ImageUploader" runat="server"
                                 OnImageUpload="ImageUploader_ImageUpload"
-                                OnError="ImageUploader_Error" />
+                                OnImageError="ImageUploader_Error" />
                         </div>
                         <div class="col-md-8">
                             <div class="row">

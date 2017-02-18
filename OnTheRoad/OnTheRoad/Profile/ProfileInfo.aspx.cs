@@ -29,10 +29,6 @@ namespace OnTheRoad.Profile
         {
         }
 
-        protected void Page_Render(object sender, EventArgs e)
-        {
-        }
-
         protected void Page_PreRender(object sender, EventArgs e)
         {
             this.GetProfileInfo?.Invoke(this, new ProfileInfoEventArgs() { Username = this.Request.QueryString[USERNAME] });

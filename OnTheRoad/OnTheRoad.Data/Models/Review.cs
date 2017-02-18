@@ -25,5 +25,7 @@ namespace OnTheRoad.Data.Models
         public string ReviewContent { get; set; }
 
         public DateTime PostingDate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
