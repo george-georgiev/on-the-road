@@ -15,18 +15,34 @@ namespace OnTheRoad.Data.Repositories
         {
         }
 
-        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName)
+        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
             if (categoryName == null)
             {
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var trips = this.GetTripsBy(categoryName);
+            var trips = this.GetTripsBy(categoryName)
+                .OrderByDescending(t => t.CreateDate)
+                .Skip(skip)
+                .Take(take);
 
             var mapped = this.MapTrips(trips);
 
             return mapped;
+        }
+
+        public int GetTripsCountByCategoryName(string categoryName)
+        {
+            if (categoryName == null)
+            {
+                throw new ArgumentNullException("categoryName can not be null!");
+            }
+
+            var count = this.GetTripsBy(categoryName)
+                .Count();
+
+            return count;
         }
 
         public IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending)
@@ -109,9 +125,9 @@ namespace OnTheRoad.Data.Repositories
         private IEnumerable<ITrip> MapTrips(IQueryable<Trip> trips)
         {
             var mapped = new List<ITrip>();
-            foreach (var category in trips)
+            foreach (var trip in trips)
             {
-                mapped.Add(this.MapEntityToDomain(category));
+                mapped.Add(this.MapEntityToDomain(trip));
             }
 
             return mapped;

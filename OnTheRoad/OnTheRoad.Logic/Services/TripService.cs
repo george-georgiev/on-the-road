@@ -38,9 +38,9 @@ namespace OnTheRoad.Logic.Services
             this.tripDataUtil.AddTrip(trip);
         }
 
-        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName)
+        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
-            var trips = this.tripDataUtil.GetTripsByCategoryName(categoryName);
+            var trips = this.tripDataUtil.GetTripsByCategoryName(categoryName, skip, take);
 
             return trips;
         }
@@ -50,6 +50,13 @@ namespace OnTheRoad.Logic.Services
             var trips = this.tripDataUtil.GetTripsByCategoryNameOrderedByDate(categoryName, count, isAscending);
 
             return trips;
+        }
+
+        public int GetTripsCountByCategoryName(string categoryName)
+        {
+            var count = this.tripDataUtil.GetTripsCountByCategoryName(categoryName);
+
+            return count;
         }
     }
 }

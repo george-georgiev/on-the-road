@@ -34,9 +34,9 @@ namespace OnTheRoad.Logic.Utils
             this.unitOfWork.Commit();
         }
 
-        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName)
+        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
-            var trips = this.tripRepository.GetTripsByCategoryName(categoryName);
+            var trips = this.tripRepository.GetTripsByCategoryName(categoryName, skip, take);
 
             return trips;
         }
@@ -46,6 +46,13 @@ namespace OnTheRoad.Logic.Utils
             var trips = this.tripRepository.GetTripsByCategoryNameOrderedByDate(categoryName, count, isAscending);
 
             return trips;
+        }
+
+        public int GetTripsCountByCategoryName(string categoryName)
+        {
+            var count = this.tripRepository.GetTripsCountByCategoryName(categoryName);
+
+            return count;
         }
     }
 }

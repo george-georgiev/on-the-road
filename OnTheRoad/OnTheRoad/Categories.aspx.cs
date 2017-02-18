@@ -5,39 +5,42 @@ using OnTheRoad.Mvp.Views;
 using System;
 using WebFormsMvp;
 using WebFormsMvp.Web;
+using OnTheRoad.Mvp.EventArgsClasses;
 
 namespace OnTheRoad
 {
     [PresenterBinding(typeof(CategoriesPresenter))]
     public partial class Categories : MvpPage<CategoriesModel>, ICategoriesView
     {
-        private const string CategoryName = "categoryname";
+        private const string CategoryNameParam = "categoryName";
 
         private const string CategoryOverviewUserControl = "~/CustomControllers/CategoryOverview.ascx";
-        private const string TripsListUserControl = "~/CustomControllers/TripsList.ascx";
 
-        private string CategoryNameQyeryParam
+        protected const int PageSize = 3;
+
+        protected string CategoryName
         {
             get
             {
-                var categoryName = this.Request.QueryString[CategoryName];
-                return categoryName;
+                return (string)this.RouteData.Values[CategoryNameParam];
             }
         }
 
         public event EventHandler GetCategories;
 
+        public event EventHandler<CategoriesEventArgs> GetTrips;
+
+        public event EventHandler<CategoriesEventArgs> GetTripsTotalCount;
+
         protected void Page_PreRender(object sender, EventArgs e)
         {
-            var categoryName = this.CategoryNameQyeryParam;
-
-            if (categoryName == null)
+            if (this.CategoryName == null)
             {
                 this.ShowCategoryOverviews();
             }
             else
             {
-                this.ShowCategoryTrips(categoryName);
+                this.ShowCategoryTrips(this.CategoryName);
             }
         }
 
@@ -57,13 +60,25 @@ namespace OnTheRoad
 
         private void ShowCategoryTrips(string categoryName)
         {
-            var tripsList = (TripsList)LoadControl(TripsListUserControl);
-            tripsList.CategoryName = categoryName;
-            tripsList.Label = $"Категория {categoryName}";
-            this.PlaceHolderCategoryTrips.Controls.Add(tripsList);
+            if (this.DataPager.Total == null)
+            {
+                this.GetTripsTotalCount(this, new CategoriesEventArgs() { CategoryName = categoryName });
+                var total = this.Model.TripsTotalCount;
+                this.DataPager.Total = total;
+            }
+
+            var skip = (this.DataPager.PageNumber - 1) * PageSize;
+            this.LoadTrips(categoryName, skip, PageSize);
 
             this.DivCategories.Visible = false;
             this.DivCategoryTrips.Visible = true;
+        }
+
+        private void LoadTrips(string categoryName, int skip, int take)
+        {
+            this.GetTrips?.Invoke(this, new CategoriesEventArgs() { CategoryName = categoryName, Skip = skip, Take = take });
+            this.ListViewTrips.DataSource = this.Model.Trips;
+            this.ListViewTrips.DataBind();
         }
     }
 }

@@ -3,7 +3,7 @@
 
 <div class="trips-container text-center">
     <div class="head">
-        <asp:HyperLink NavigateUrl='<%#: "~/categories?categoryname=" + this.CategoryName %>'
+        <asp:HyperLink NavigateUrl='<%#: "~/categories/" + this.CategoryName %>'
             Text="<%#: this.CategoryName %>" runat="server" />
     </div>
 

@@ -10,15 +10,24 @@
 namespace OnTheRoad.CustomControllers {
     
     
-    public partial class TripsList {
+    public partial class DataPager {
         
         /// <summary>
-        /// ListViewTrips control.
+        /// ButtonPrev control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewTrips;
+        protected global::System.Web.UI.WebControls.Button ButtonPrev;
+        
+        /// <summary>
+        /// ButtonNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button ButtonNext;
     }
 }

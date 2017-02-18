@@ -8,8 +8,8 @@ using WebFormsMvp.Web;
 
 namespace OnTheRoad.CustomControllers
 {
-    [PresenterBinding(typeof(CategoriesPresenter))]
-    public partial class CategoriesMultiSelect : MvpUserControl<CategoriesModel>, ICategoriesView
+    [PresenterBinding(typeof(CategoriesMultiSelectPresenter))]
+    public partial class CategoriesMultiSelect : MvpUserControl<CategoriesMultiSelectModel>, ICategoriesMultiSelectView
     {
         public IEnumerable<int> SelecetedCategoryIds
         {
