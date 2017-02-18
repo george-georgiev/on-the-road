@@ -204,6 +204,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Css\AddTrip.css" />
     <Content Include="Css\DataPager.css" />
+    <Content Include="Css\Trips.css" />
     <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
     <Content Include="CustomControllers\CategoryOverview.ascx" />
@@ -221,6 +222,7 @@
     <Content Include="Profile\ProfileInfo.aspx" />
     <Content Include="Profile\ProfileReviews.aspx" />
     <Content Include="Profile\UserProfile.master" />
+    <Content Include="Trips\Default.aspx" />
     <Content Include="WebServices\Tags.asmx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -422,6 +424,13 @@
     </Compile>
     <Compile Include="Trips\AddTrip.aspx.designer.cs">
       <DependentUpon>AddTrip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Trips\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Trips\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

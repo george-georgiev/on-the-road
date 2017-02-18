@@ -5,6 +5,8 @@ namespace OnTheRoad.Logic.Contracts
 {
     public interface ITripGetService
     {
+        ITrip GetTripById(int tripId);
+
         IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take);
 
         int GetTripsCountByCategoryName(string categoryName);

@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
@@ -24,6 +21,18 @@ namespace OnTheRoad
                 "Categories/{categoryName}/",
                 "~/Categories.aspx"
             );
+
+            routes.MapPageRoute(
+                "TripsRoute",
+                "Trips/{tripId}/",
+                "~/Trips/Default.aspx"
+                );
+
+            routes.MapPageRoute(
+                "TripsSearchRoute",
+                "Trips/Search/{pattern}/",
+                "~/Trips/Default.aspx"
+                );
         }
     }
 }

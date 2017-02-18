@@ -16,8 +16,8 @@
             <asp:PlaceHolder runat="server" ID="PlaceHolderCategories" />
         </div>
         <div runat="server" visible="false" id="DivCategoryTrips" class="col-lg-8 col-md-8">
-            <div class="trips-container text-center">
-                <div class="head">
+            <div class="trips-container text-center box-shadow">
+                <div class="head box-shadow">
                     <asp:Label Text='<%#: "Категория " +  this.CategoryName %>' runat="server" />
                 </div>
 

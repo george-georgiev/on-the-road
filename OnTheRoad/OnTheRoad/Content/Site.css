@@ -109,7 +109,7 @@ img.resizable:hover {
 }
 
 .info {
-    color: #c1bfbf;
+    color: #c1bfbf !important;
     font-size: 1.1em;
 }
 
@@ -135,4 +135,18 @@ img.resizable:hover {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+
+i.font-awesome {
+    font-size: 1.5em;
+    color: forestgreen;
+}
+
+.fa {
+    margin-right: 10px;
+}
+
+i.font-awesome {
+    width: 1em;
+    text-align: center;
 }

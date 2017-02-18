@@ -58,5 +58,12 @@ namespace OnTheRoad.Logic.Services
 
             return count;
         }
+
+        public ITrip GetTripById(int tripId)
+        {
+            var trip = this.tripDataUtil.GetTripById(tripId);
+
+            return trip;
+        }
     }
 }

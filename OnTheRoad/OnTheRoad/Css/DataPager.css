@@ -7,21 +7,21 @@
 }
 
 .arrow-right {
-    border-left: 15px solid #228b22;
+    border-left: 35px solid #228b22;
     right: 0;
 }
 
     .arrow-right:hover {
-        border-left: 15px solid #114911;
+        border-left: 35px solid #114911;
     }
 
 .arrow-left {
-    border-right: 15px solid #228b22;
+    border-right: 35px solid #228b22;
     left: 0;
 }
 
     .arrow-left:hover {
-        border-right: 15px solid #114911;
+        border-right: 35px solid #114911;
     }
 
 .pager {

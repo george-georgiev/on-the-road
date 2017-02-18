@@ -34,6 +34,13 @@ namespace OnTheRoad.Logic.Utils
             this.unitOfWork.Commit();
         }
 
+        public ITrip GetTripById(int tripId)
+        {
+            var trip = this.tripRepository.GetById(tripId);
+
+            return trip;
+        }
+
         public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
             var trips = this.tripRepository.GetTripsByCategoryName(categoryName, skip, take);

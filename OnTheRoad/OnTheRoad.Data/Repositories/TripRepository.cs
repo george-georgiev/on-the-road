@@ -84,10 +84,19 @@ namespace OnTheRoad.Data.Repositories
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Trip, ITrip>()
-                    .ForMember(x => x.Tags, opt => opt.Ignore())
-                    .ForMember(x => x.Categories, opt => opt.Ignore())
-                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
-                    .ForMember(x => x.Organiser, opt => opt.Ignore());
+                    .ForMember(x => x.Tags, opt => opt.Ignore());
+
+                config.CreateMap<Category, ICategory>();
+
+                config.CreateMap<Subscription, ISubscription>()
+                    .ForMember(x => x.Trip, opt => opt.Ignore());
+
+                config.CreateMap<User, IUser>()
+                    .ForMember(x => x.City, opt => opt.Ignore())
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore())
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore());
             });
 
             var domain = Mapper.Map<Trip, ITrip>(entity);
@@ -118,7 +127,10 @@ namespace OnTheRoad.Data.Repositories
                                 t => t.Categories
                                     .Where(c => c.Name == categoryName)
                                     .Any()
-                            );
+                            )
+                            .Include(x => x.Categories)
+                            .Include(x => x.Organiser)
+                            .Include(x => x.Subscriptions);
 
             return trips;
         }

@@ -51,17 +51,8 @@
     text-align: left;
 }
 
-.font-awesome {
-    font-size: 1.7em;
-    color: forestgreen;
-}
-
 .horizontal-view {
     display: inline;
-}
-
-.fa {
-    margin-right: 10px;
 }
 
 #MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
