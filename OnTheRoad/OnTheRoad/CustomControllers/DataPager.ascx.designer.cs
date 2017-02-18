@@ -19,7 +19,7 @@ namespace OnTheRoad.CustomControllers {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonPrev;
+        protected global::System.Web.UI.WebControls.LinkButton ButtonPrev;
         
         /// <summary>
         /// ButtonNext control.
@@ -28,6 +28,6 @@ namespace OnTheRoad.CustomControllers {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonNext;
+        protected global::System.Web.UI.WebControls.LinkButton ButtonNext;
     }
 }

@@ -5,6 +5,7 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderCSSMaster" runat="server">
     <link href="/Css/TripsContainer.css" rel="stylesheet" />
+    <link href="/Css/DataPager.css" rel="stylesheet" />
 </asp:Content>
 
 <%@ Import Namespace="OnTheRoad.Domain.Models" %>
