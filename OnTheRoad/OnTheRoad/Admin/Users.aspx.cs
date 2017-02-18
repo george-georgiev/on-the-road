@@ -17,6 +17,7 @@ namespace OnTheRoad.Admin
         private const string ROLES = "roles";
         private const string CITIES = "cities";
         private const string CURRENT_USER_ROLES = "currentUserRoles";
+        private const string CURRENT_USER_CITY = "currentUserCity";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -77,6 +78,15 @@ namespace OnTheRoad.Admin
             return citiesDictionary.Values;
         }
 
+
+        protected void DropDownListCityName_DataBound(object sender, EventArgs e)
+        {
+            var userCity = (string)this.ViewState[CURRENT_USER_CITY];
+
+            var dropDownListCities = (DropDownList)sender;
+            dropDownListCities.Items.FindByValue(userCity).Selected = true;
+        }
+
         public IEnumerable<string> CheckBoxListRoles_GetData()
         {
             var rolesDictionary = (Dictionary<string, string>)this.ViewState[ROLES];
@@ -107,7 +117,7 @@ namespace OnTheRoad.Admin
             string lastName = (row.FindControl("TextBoxLastName") as TextBox).Text;
             string phoneNumber = (row.FindControl("TextBoxPhoneNumber") as TextBox).Text;
             string city = (row.FindControl("DropDownListCityName") as DropDownList).SelectedValue;
-            
+
             var context = new OnTheRoadIdentityDbContext();
             var user = context.Users.Find(userId);
             user.FirstName = firstName;
@@ -155,6 +165,12 @@ namespace OnTheRoad.Admin
                 }
 
                 this.ViewState.Add(CURRENT_USER_ROLES, rolesAsList);
+            }
+
+            var literalCityName = row.FindControl("LiteralCityName") as Literal;
+            if (literalCityName != null)
+            {
+                this.ViewState.Add(CURRENT_USER_CITY, literalCityName.Text);
             }
         }
     }

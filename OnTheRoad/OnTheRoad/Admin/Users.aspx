@@ -18,6 +18,14 @@
         AutoGenerateColumns="False" CellPadding="8" ForeColor="#333333" GridLines="None">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
+            <asp:TemplateField HeaderText="User Id" SortExpression="Id">
+                <EditItemTemplate>
+                    <asp:Literal ID="LiteralUserId" runat="server" Text='<%#Item.Id %>' />
+                </EditItemTemplate>
+                <ItemTemplate>
+                    <asp:Literal ID="LiteralUserId" runat="server" Text='<%# Item.Id %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:TemplateField HeaderText="Username" SortExpression="UserName">
                 <EditItemTemplate>
                     <asp:Literal runat="server" Text='<%# Item.UserName %>' />
@@ -58,44 +66,23 @@
                     <asp:Literal runat="server" Text='<%# Item.PhoneNumber %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="User Id" SortExpression="Id">
-                <EditItemTemplate>
-                    <asp:Literal ID="LiteralUserId" runat="server" Text='<%#Item.Id %>' />
-                </EditItemTemplate>
-                <ItemTemplate>
-                    <asp:Literal ID="LiteralUserId" runat="server" Text='<%# Item.Id %>' />
-                </ItemTemplate>
-            </asp:TemplateField>
             <asp:TemplateField HeaderText="City" SortExpression="City.Name">
                 <EditItemTemplate>
-                    <asp:DropDownList ID="DropDownListCityName" CssClass="form-control" runat="server" SelectMethod="DropDownListCityId_GetData">
+                    <asp:DropDownList ID="DropDownListCityName" CssClass="form-control" runat="server" OnDataBound="DropDownListCityName_DataBound" SelectMethod="DropDownListCityId_GetData">
                     </asp:DropDownList>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Literal runat="server" Text='<%# Item.City.Name %>' />
+                    <asp:Literal ID="LiteralCityName" runat="server" Text='<%# Item.City.Name %>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Role">
                 <EditItemTemplate>
-                    <%--<asp:UpdatePanel runat="server">
-                        <ContentTemplate>
-                            <asp:Button Text="ИЗБЕРИ РОЛИ" runat="server" ID="ButtonRoles" OnClick="ButtonRoles_Click" />
-                            <asp:PlaceHolder ID="PlaceholderRoles" runat="server" />
-                        </ContentTemplate>
-                    </asp:UpdatePanel>--%>
-                    
-                          <asp:CheckBoxList runat="server" ID="CheckBoxListRoles" OnDataBound="CheckBoxListRoles_DataBound" SelectMethod="CheckBoxListRoles_GetData">
+                    <asp:CheckBoxList runat="server" ID="CheckBoxListRoles" OnDataBound="CheckBoxListRoles_DataBound" SelectMethod="CheckBoxListRoles_GetData">
                     </asp:CheckBoxList>
-                    <%--<asp:ListBox SelectionMode="Multiple" ID="ListBoxRole" runat="server" SelectMethod="DropDownListRole_GetData"></asp:ListBox>--%>
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:BulletedList runat="server" ID="BulletedListRoles" DataSource="<%# GetRolesAsNames(Item.Roles.Select(x => x.RoleId)) %>">
                     </asp:BulletedList>
-                   <%-- <asp:ListView runat="server" ID="ListViewRoles" DataSource="<%# Item.Roles %>">
-                        <ItemTemplate>
-                            <asp:Literal Text='<%# GetRoleName(Eval("RoleId").ToString()) %>' runat="server" />
-                        </ItemTemplate>
-                    </asp:ListView>--%>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Given Reviews">
