@@ -6,7 +6,7 @@ using OnTheRoad.Data.Models;
 
 namespace OnTheRoad.Admin
 {
-    public class GetUseReviews
+    public class ManageUserReviews
     {
         public static IEnumerable<Review> GetUserReviews(string userId)
         {

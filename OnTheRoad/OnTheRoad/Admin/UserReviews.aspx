@@ -77,13 +77,12 @@
         <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
     </asp:GridView>
 
-    <asp:ObjectDataSource ID="ObjectDataSourceReviews" runat="server" SelectMethod="GetUserReviews" TypeName="OnTheRoad.Admin.GetUseReviews" UpdateMethod="UpdateUserReviews">
+    <asp:ObjectDataSource ID="ObjectDataSourceReviews" runat="server" SelectMethod="GetUserReviews" TypeName="OnTheRoad.Admin.ManageUserReviews" UpdateMethod="UpdateUserReviews">
         <SelectParameters>
             <asp:QueryStringParameter Name="userId" QueryStringField="Id" Type="String" />
         </SelectParameters>
 
         <UpdateParameters>
-            <%--<asp:ControlParameter Name="IsDeleted" ControlID="CheckBoxChecked" Type="Boolean" />--%>
         </UpdateParameters>
 
     </asp:ObjectDataSource>

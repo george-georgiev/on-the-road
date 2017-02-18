@@ -17,7 +17,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<IReview> GetByToUser(string toUser)
         {
-            var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser).ToList();
+            var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser && x.IsDeleted == false).ToList();
             Mapper.Initialize(config => config.CreateMap<Review, IReview>());
 
             List<IReview> reviews = new List<IReview>();

@@ -11,7 +11,7 @@
                 <div>
                     <ul class="nav navbar-nav">
                         <li><a href="/admin/users">Потребители</a></li>
-                        <li><a href="/">Пътешествия</a></li>
+                        <li><a href="/admin/trips">Пътешествия</a></li>
                     </ul>
                 </div>
             </nav>

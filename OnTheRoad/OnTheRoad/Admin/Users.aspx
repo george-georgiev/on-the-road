@@ -7,6 +7,7 @@
         SelectMethod="GridViewUsers_GetData"
         UpdateMethod="GridViewUsers_UpdateItem"
         OnRowUpdated="GridViewUsers_RowUpdated"
+        OnRowCommand="GridViewUsers_RowCommand"
         ItemType="OnTheRoad.Data.Models.User"
         DataKeyNames="Id"
         PageSize="10"
@@ -62,7 +63,7 @@
                     <asp:Literal ID="LiteralUserId" runat="server" Text='<%#Item.Id %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Literal runat="server" Text='<%# Item.Id %>' />
+                    <asp:Literal ID="LiteralUserId" runat="server" Text='<%# Item.Id %>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="City" SortExpression="City.Name">
@@ -76,19 +77,30 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Role">
                 <EditItemTemplate>
-                    <asp:ListBox SelectionMode="Multiple" ID="ListBoxRole" runat="server" SelectMethod="DropDownListRole_GetData"></asp:ListBox>
+                    <%--<asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <asp:Button Text="ИЗБЕРИ РОЛИ" runat="server" ID="ButtonRoles" OnClick="ButtonRoles_Click" />
+                            <asp:PlaceHolder ID="PlaceholderRoles" runat="server" />
+                        </ContentTemplate>
+                    </asp:UpdatePanel>--%>
+                    
+                          <asp:CheckBoxList runat="server" ID="CheckBoxListRoles" OnDataBound="CheckBoxListRoles_DataBound" SelectMethod="CheckBoxListRoles_GetData">
+                    </asp:CheckBoxList>
+                    <%--<asp:ListBox SelectionMode="Multiple" ID="ListBoxRole" runat="server" SelectMethod="DropDownListRole_GetData"></asp:ListBox>--%>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:ListView runat="server" ID="ListViewRoles" DataSource="<%# Item.Roles.ToList() %>">
+                    <asp:BulletedList runat="server" ID="BulletedListRoles" DataSource="<%# GetRolesAsNames(Item.Roles.Select(x => x.RoleId)) %>">
+                    </asp:BulletedList>
+                   <%-- <asp:ListView runat="server" ID="ListViewRoles" DataSource="<%# Item.Roles %>">
                         <ItemTemplate>
                             <asp:Literal Text='<%# GetRoleName(Eval("RoleId").ToString()) %>' runat="server" />
                         </ItemTemplate>
-                    </asp:ListView>
+                    </asp:ListView>--%>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField>
+            <asp:TemplateField HeaderText="Given Reviews">
                 <ItemTemplate>
-                    <asp:LinkButton Text="КОМЕНТАРИ" PostBackUrl='<%# "/admin/userreviews?name=" + Item.UserName + "&id=" + Item.Id %>' runat="server" />
+                    <asp:LinkButton Text="go to reviews" PostBackUrl='<%# "/admin/userreviews?name=" + Item.UserName + "&id=" + Item.Id %>' runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

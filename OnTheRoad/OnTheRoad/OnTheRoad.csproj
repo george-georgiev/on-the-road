@@ -207,6 +207,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Account\Lockout.aspx" />
+    <Content Include="Admin\Trips.aspx" />
     <Content Include="Admin\UserReviews.aspx" />
     <Content Include="Admin\Users.aspx" />
     <Content Include="Content\bootstrap.css" />
@@ -320,7 +321,14 @@
     <Compile Include="Admin\Admin.master.designer.cs">
       <DependentUpon>Admin.master</DependentUpon>
     </Compile>
-    <Compile Include="Admin\GetUseReviews.cs" />
+    <Compile Include="Admin\ManageUserReviews.cs" />
+    <Compile Include="Admin\Trips.aspx.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Trips.aspx.designer.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\UserReviews.aspx.cs">
       <DependentUpon>UserReviews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

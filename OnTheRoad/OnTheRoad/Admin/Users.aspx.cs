@@ -1,10 +1,14 @@
-﻿using OnTheRoad.Data;
-using OnTheRoad.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Web;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity.Owin;
+using OnTheRoad.Data;
+using OnTheRoad.Data.Models;
+using OnTheRoad.Identity;
+using Microsoft.AspNet.Identity;
 
 namespace OnTheRoad.Admin
 {
@@ -12,6 +16,7 @@ namespace OnTheRoad.Admin
     {
         private const string ROLES = "roles";
         private const string CITIES = "cities";
+        private const string CURRENT_USER_ROLES = "currentUserRoles";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,7 +31,7 @@ namespace OnTheRoad.Admin
                     rolesDict.Add(roles[i].Id, roles[i].Name);
                 }
 
-                this.Session.Add(ROLES, rolesDict);
+                this.ViewState.Add(ROLES, rolesDict);
 
                 var cities = context.Cities.ToList();
                 var citiesDict = new Dictionary<int, string>();
@@ -35,15 +40,24 @@ namespace OnTheRoad.Admin
                     citiesDict.Add(cities[i].Id, cities[i].Name);
                 }
 
-                this.Session.Add(CITIES, citiesDict);
+                this.ViewState.Add(CITIES, citiesDict);
             }
         }
 
-        public string GetRoleName(string id)
+        public IEnumerable<string> GetRolesAsNames(IEnumerable<string> userRoles)
         {
-            var roles = (IDictionary<string, string>)this.Session[ROLES];
+            var roles = (IDictionary<string, string>)this.ViewState[ROLES];
+            var ids = userRoles.Intersect(roles.Keys);
+            var rolesToReturn = new List<string>();
+            foreach (var userRoleId in userRoles)
+            {
+                if (roles.Keys.Contains(userRoleId))
+                {
+                    rolesToReturn.Add(roles[userRoleId]);
+                }
+            }
 
-            return roles[id];
+            return rolesToReturn;
         }
 
         public IQueryable<User> GridViewUsers_GetData()
@@ -59,17 +73,30 @@ namespace OnTheRoad.Admin
 
         public IEnumerable<string> DropDownListCityId_GetData()
         {
-            var citiesDictionary = (Dictionary<int, string>)this.Session[CITIES];
+            var citiesDictionary = (Dictionary<int, string>)this.ViewState[CITIES];
             return citiesDictionary.Values;
         }
 
-        public IEnumerable<string> DropDownListRole_GetData()
+        public IEnumerable<string> CheckBoxListRoles_GetData()
         {
-            var rolesDictionary = (Dictionary<string, string>)this.Session[ROLES];
+            var rolesDictionary = (Dictionary<string, string>)this.ViewState[ROLES];
             return rolesDictionary.Values;
         }
 
-        // The id parameter name should match the DataKeyNames value set on the control
+        protected void CheckBoxListRoles_DataBound(object sender, EventArgs e)
+        {
+            var userRoles = (IEnumerable<string>)this.ViewState[CURRENT_USER_ROLES];
+
+            var checkBoxList = (CheckBoxList)sender;
+            for (int i = 0; i < checkBoxList.Items.Count; i++)
+            {
+                if (userRoles.Contains(checkBoxList.Items[i].Text))
+                {
+                    checkBoxList.Items[i].Selected = true;
+                }
+            }
+        }
+
         public void GridViewUsers_UpdateItem()
         {
             int index = this.GridViewUsers.EditIndex;
@@ -80,15 +107,7 @@ namespace OnTheRoad.Admin
             string lastName = (row.FindControl("TextBoxLastName") as TextBox).Text;
             string phoneNumber = (row.FindControl("TextBoxPhoneNumber") as TextBox).Text;
             string city = (row.FindControl("DropDownListCityName") as DropDownList).SelectedValue;
-            var listBoxRoles = (row.FindControl("ListBoxRole") as ListBox);
-            var roles = listBoxRoles.GetSelectedIndices();
-            var selectedRoles = new List<string>();
-            foreach (int i in roles)
-            {
-                var value = listBoxRoles.Items[i].Value;
-                selectedRoles.Add(value);
-            }
-
+            
             var context = new OnTheRoadIdentityDbContext();
             var user = context.Users.Find(userId);
             user.FirstName = firstName;
@@ -96,23 +115,47 @@ namespace OnTheRoad.Admin
             user.PhoneNumber = phoneNumber;
             user.City.Name = city;
 
-            //user.Roles.Clear();
-
-            //foreach (string r in selectedRoles)
-            //{
-            //    user.Roles.Add(context.Roles.Where(x => x.Name == r).Single());
-            //}
-
             var entry = context.Entry(user);
             entry.State = EntityState.Modified;
             context.SaveChanges();
 
-            
+            var checkBoxListRoles = (row.FindControl("CheckBoxListRoles") as CheckBoxList);
+            var selectedRoles = new List<string>();
+            foreach (ListItem role in checkBoxListRoles.Items)
+            {
+                if (role.Selected)
+                {
+                    selectedRoles.Add(role.Text);
+                }
+            }
+
+            var owinContex = this.Context.GetOwinContext();
+            var appUserManager = owinContex.GetUserManager<ApplicationUserManager>();
+            appUserManager.RemoveFromRoles(userId, appUserManager.GetRoles(userId).ToArray());
+            appUserManager.AddToRoles(userId, selectedRoles.ToArray());
         }
 
         protected void GridViewUsers_RowUpdated(object sender, GridViewUpdatedEventArgs e)
         {
             this.GridViewUsers.EditIndex = -1;
+        }
+
+        protected void GridViewUsers_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = int.Parse(e.CommandArgument.ToString());
+            GridViewRow row = this.GridViewUsers.Rows[index];
+            var bulletedListRoles = row.FindControl("BulletedListRoles") as BulletedList;
+            if (bulletedListRoles != null)
+            {
+                var userRoles = bulletedListRoles.Items;
+                var rolesAsList = new List<string>();
+                foreach (ListItem role in userRoles)
+                {
+                    rolesAsList.Add(role.Text);
+                }
+
+                this.ViewState.Add(CURRENT_USER_ROLES, rolesAsList);
+            }
         }
     }
 }
