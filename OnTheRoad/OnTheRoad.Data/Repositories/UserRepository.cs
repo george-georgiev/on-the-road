@@ -6,12 +6,13 @@ using AutoMapper;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public UserRepository(OnTheRoadIdentityDbContext context)
+        public UserRepository(IOnTheRoadDbContext context)
         {
             if (context == null)
             {
@@ -22,7 +23,7 @@ namespace OnTheRoad.Data.Repositories
             this.DbSet = this.Context.Set<User>();
         }
 
-        protected OnTheRoadIdentityDbContext Context { get; set; }
+        protected IOnTheRoadDbContext Context { get; set; }
 
         protected DbSet<User> DbSet { get; set; }
 
@@ -118,6 +119,7 @@ namespace OnTheRoad.Data.Repositories
                 entity.ReceivedReviews = updatedReviews;
             }
 
+            // TODO: do we need it?
             //if (model.Subscription != null)
             //{
             //    var updatedSubscriptions = new List<Subscription>();
@@ -130,13 +132,7 @@ namespace OnTheRoad.Data.Repositories
             //    entity.Subscriptions = updatedSubscriptions;
             //}
 
-            this.SetEntityState(entity, EntityState.Modified);
-        }
-
-        protected virtual void SetEntityState(User entity, EntityState entityState)
-        {
-            var entry = this.Context.Entry(entity);
-            entry.State = entityState;
+            this.Context.SetEntryState(entity, EntityState.Modified);
         }
 
         private IUser GetMappedDomainUser(User entity)

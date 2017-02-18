@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Moq;
+using OnTheRoad.Domain.Enumerations;
+using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Views;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.EventArgsClasses;
-using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Tests.Presenters
 {
@@ -71,7 +72,7 @@ namespace OnTheRoad.Tests.Presenters
             var presenter = new ReviewsPresenter(reviewsViewMock.Object, reviewServiceMock.Object);
             reviewsViewMock.Raise(x => x.AddReview += null, null, new AddReviewEventArgs());
 
-            reviewServiceMock.Verify(x => x.AddUserReview(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<DateTime>()), Times.Once);
+            reviewServiceMock.Verify(x => x.AddUserReview(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<RatingEnum>(), It.IsAny<DateTime>()), Times.Once);
         }
     }
 }

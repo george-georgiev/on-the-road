@@ -3,12 +3,13 @@ using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using System.Linq;
 using AutoMapper;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
     public class CategoryRepository : BaseRepository<Category, ICategory>, ICategoryRepository, IGetRepository<ICategory>
     {
-        public CategoryRepository(OnTheRoadIdentityDbContext context) : base(context)
+        public CategoryRepository(IOnTheRoadDbContext context) : base(context)
         {
         }
 

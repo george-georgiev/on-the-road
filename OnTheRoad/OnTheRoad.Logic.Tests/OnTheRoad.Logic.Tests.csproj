@@ -64,7 +64,11 @@
   <ItemGroup>
     <Compile Include="Builders\TripBuilderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CityServiceTests.cs" />
+    <Compile Include="Services\RatingServiceTests.cs" />
+    <Compile Include="Services\ReviewServiceTests.cs" />
     <Compile Include="Services\TagServiceTests.cs" />
+    <Compile Include="Services\UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

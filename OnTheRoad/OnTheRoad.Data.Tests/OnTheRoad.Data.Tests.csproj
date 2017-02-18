@@ -73,6 +73,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\TextDataReaderTests.cs" />
+    <Compile Include="Repositories\BaseRepositoryTests.cs" />
+    <Compile Include="Repositories\RatingRepositoryTests.cs" />
+    <Compile Include="Repositories\ReviewRepositoryTests.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
   </ItemGroup>

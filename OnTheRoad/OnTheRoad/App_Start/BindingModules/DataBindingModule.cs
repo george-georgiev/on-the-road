@@ -2,6 +2,7 @@
 using Ninject.Modules;
 using Ninject.Web.Common;
 using OnTheRoad.Data;
+using OnTheRoad.Data.Contracts;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,8 +23,12 @@ namespace OnTheRoad.App_Start.BindingModules
                     .BindDefaultInterface();
             });
 
-            this.Bind<OnTheRoadIdentityDbContext>()
-                .ToSelf()
+            //this.Bind<OnTheRoadIdentityDbContext>()
+            //    .ToSelf()
+            //    .InRequestScope();
+
+            this.Bind<IOnTheRoadDbContext>()
+                .To<OnTheRoadIdentityDbContext>()
                 .InRequestScope();
         }
 

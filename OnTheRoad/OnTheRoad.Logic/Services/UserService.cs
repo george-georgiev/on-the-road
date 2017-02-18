@@ -16,12 +16,12 @@ namespace OnTheRoad.Logic.Services
         {
             if (userRepository == null)
             {
-                throw new ArgumentNullException("repository can not be null!");
+                throw new ArgumentNullException("userRepository cannot be null!");
             }
 
             if (uniOfWork == null)
             {
-                throw new ArgumentNullException("uniOfWork can not be null!");
+                throw new ArgumentNullException("unitOfWork cannot be null!");
             }
 
             this.userRepository = userRepository;

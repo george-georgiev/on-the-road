@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using NUnit.Framework;
 using Moq;
+using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Models;
@@ -14,13 +15,13 @@ namespace OnTheRoad.Data.Tests.Repositories
     [TestFixture]
     public class UserRepositoryTests
     {
-        private Mock<OnTheRoadIdentityDbContext> contextMock;
+        private Mock<IOnTheRoadDbContext> contextMock;
         private Mock<DbSet<User>> dbSetMock;
 
         [SetUp]
         public void SetUpMocks()
         {
-            this.contextMock = new Mock<OnTheRoadIdentityDbContext>();
+            this.contextMock = new Mock<IOnTheRoadDbContext>();
             this.dbSetMock = new Mock<DbSet<User>>();
             contextMock.Setup(x => x.Set<User>()).Returns(dbSetMock.Object);
         }
@@ -315,13 +316,28 @@ namespace OnTheRoad.Data.Tests.Repositories
         }
 
         [Test]
+        public void Context_WhenUpdateIsCalled_ShouldCallSetEntryStateExactlyOnce()
+        {
+            var iuserMock = new Mock<IUser>();
+            var observableCollection = new ObservableCollection<User>();
+            this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
+
+            var userRepository = new UserRepository(this.contextMock.Object);
+            userRepository.Update(iuserMock.Object);
+
+            contextMock.Verify(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>()), Times.Once);
+        }
+
+        [Test]
         public void InjectedIUserObject_WhenItsFavouriteUsersAreNullAndUpdateIsCalled_ShouldCallFavouriteUsersExactlyOnce()
         {
             var iuserMock = new Mock<IUser>();
             var observableCollection = new ObservableCollection<User>();
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.FavouriteUsers, Times.Once);
@@ -339,12 +355,13 @@ namespace OnTheRoad.Data.Tests.Repositories
             var fakeData = new List<User>() { userStub }.AsQueryable();
             this.SetDbSetUserAsQueryable(fakeData);
 
-            var observableCollection = new ObservableCollection<User>();
+            var observableCollection = new ObservableCollection<User>(new List<User>() { userStub });
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             this.contextMock.Setup(x => x.Users).Returns(this.dbSetMock.Object);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.FavouriteUsers, Times.Exactly(2));
@@ -366,8 +383,9 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             this.contextMock.Setup(x => x.Users).Returns(this.dbSetMock.Object);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             this.contextMock.Verify(x => x.Users, Times.Once);
@@ -379,8 +397,9 @@ namespace OnTheRoad.Data.Tests.Repositories
             var iuserMock = new Mock<IUser>();
             var observableCollection = new ObservableCollection<User>();
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.FavouriteUsers, Times.Once);
@@ -401,8 +420,9 @@ namespace OnTheRoad.Data.Tests.Repositories
 
             var observableCollection = new ObservableCollection<User>();
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.GivenReviews, Times.Exactly(2));
@@ -431,8 +451,9 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             this.contextMock.Setup(x => x.Reviews).Returns(dbSetReviewMock.Object);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             this.contextMock.Verify(x => x.Reviews, Times.Once);
@@ -444,8 +465,9 @@ namespace OnTheRoad.Data.Tests.Repositories
             var iuserMock = new Mock<IUser>();
             var observableCollection = new ObservableCollection<User>();
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.FavouriteUsers, Times.Once);
@@ -466,8 +488,9 @@ namespace OnTheRoad.Data.Tests.Repositories
 
             var observableCollection = new ObservableCollection<User>();
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             iuserMock.Verify(x => x.ReceivedReviews, Times.Exactly(2));
@@ -496,8 +519,9 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             this.contextMock.Setup(x => x.Reviews).Returns(dbSetReviewMock.Object);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<User>(), It.IsAny<EntityState>())).Verifiable();
 
-            var userRepository = new UserRepositoryFake(this.contextMock.Object);
+            var userRepository = new UserRepository(this.contextMock.Object);
             userRepository.Update(iuserMock.Object);
 
             this.contextMock.Verify(x => x.Reviews, Times.Once);
@@ -536,19 +560,6 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.Expression).Returns(fakeData.Expression);
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(fakeData.ElementType);
             this.dbSetMock.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(fakeData.GetEnumerator());
-        }
-    }
-
-    public class UserRepositoryFake : UserRepository
-    {
-        public UserRepositoryFake(OnTheRoadIdentityDbContext context)
-            : base(context)
-        {
-        }
-
-        protected override void SetEntityState(User entity, EntityState entityState)
-        {
-            // Do nothing.
         }
     }
 }

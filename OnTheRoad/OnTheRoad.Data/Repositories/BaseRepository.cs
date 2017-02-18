@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using OnTheRoad.Domain.Repositories;
+using System.Linq;
 using AutoMapper;
-using OnTheRoad.Domain.Models;
 using OnTheRoad.Data.Models;
-using System;
+using OnTheRoad.Domain.Models;
+using OnTheRoad.Domain.Repositories;
+using OnTheRoad.Data.Contracts;
 
 namespace OnTheRoad.Data.Repositories
 {
@@ -13,18 +14,18 @@ namespace OnTheRoad.Data.Repositories
         where EntityType : BaseEntity
         where DomainType : IIdentifiable
     {
-        public BaseRepository(OnTheRoadIdentityDbContext context)
+        public BaseRepository(IOnTheRoadDbContext context)
         {
             if (context == null)
             {
-                throw new ArgumentNullException("context can not be null!");
+                throw new ArgumentNullException("context cannot be null!");
             }
 
             this.Context = context;
             this.DbSet = this.Context.Set<EntityType>();
         }
 
-        protected OnTheRoadIdentityDbContext Context { get; }
+        protected IOnTheRoadDbContext Context { get; }
 
         protected DbSet<EntityType> DbSet { get; }
 
@@ -75,8 +76,7 @@ namespace OnTheRoad.Data.Repositories
                 entity = this.MapDomainToEnity(model);
             }
 
-            var entry = this.Context.Entry(entity);
-            entry.State = entityState;
+            this.Context.SetEntryState(entity, entityState);
         }
 
         protected virtual EntityType MapDomainToEnity(DomainType domain)

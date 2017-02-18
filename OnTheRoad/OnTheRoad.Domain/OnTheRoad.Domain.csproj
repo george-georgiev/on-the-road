@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enumerations\RatingEnum.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\IRating.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />

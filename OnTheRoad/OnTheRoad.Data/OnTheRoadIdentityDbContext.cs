@@ -3,6 +3,8 @@ using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System;
+using System.Data.Entity.Infrastructure;
 
 namespace OnTheRoad.Data
 {
@@ -47,10 +49,17 @@ namespace OnTheRoad.Data
 
             modelBuilder.Entity<User>().HasMany(m => m.FavouriteUsers).WithMany();
 
+            // TODO: Delete if not needed
             //modelBuilder.Entity<Review>().HasRequired(m => m.FromUser)
             //   .WithMany(m => m.GivenReviews).HasForeignKey(m => m.FromUserId);
             //modelBuilder.Entity<Review>().HasRequired(m => m.ToUser)
             //          .WithMany(m => m.ReceivedReviews).HasForeignKey(m => m.ToUserId);
+        }
+
+        public void SetEntryState(object entity, EntityState entityState)
+        {
+            var entry = this.Entry(entity);
+            entry.State = entityState;
         }
     }
 }

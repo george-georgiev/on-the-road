@@ -1,4 +1,5 @@
 ﻿using System;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Mvp.EventArgsClasses
 {
@@ -8,7 +9,7 @@ namespace OnTheRoad.Mvp.EventArgsClasses
 
         public string ToUser { get; set; }
 
-        public string Rating { get; set; }
+        public RatingEnum Rating { get; set; }
 
         public string Content { get; set; }
 

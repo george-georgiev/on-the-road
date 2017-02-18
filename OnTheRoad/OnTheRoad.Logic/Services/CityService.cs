@@ -14,7 +14,7 @@ namespace OnTheRoad.Logic.Services
         {
             if (cityRepository == null)
             {
-                throw new ArgumentNullException("cityRepository cannot be null.");
+                throw new ArgumentNullException("cityRepository cannot be null!");
             }
 
             this.cityRepository = cityRepository;
