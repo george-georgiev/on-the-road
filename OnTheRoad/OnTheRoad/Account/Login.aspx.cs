@@ -41,7 +41,7 @@ namespace OnTheRoad.Account
                         break;
                     case LoginStatus.Failure:
                     default:
-                        this.FailureText.Text = "Invalid login attempt";
+                        this.FailureText.Text = "Невалиден имейл или парола!";
                         this.ErrorMessage.Visible = true;
                         break;
                 }
