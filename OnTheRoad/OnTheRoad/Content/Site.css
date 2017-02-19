@@ -74,6 +74,12 @@ h2.page-headers, h3.page-headers {
     margin-bottom: 50px;
 }
 
+.error-headers {
+    text-align: center;
+    color: #00B5DB;
+    font-size: 5em;
+}
+
 .input-labels {
     color: #4aa504;
 }
