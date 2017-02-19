@@ -106,6 +106,7 @@ img.resizable:hover {
 
 .meta-image {
     overflow: hidden;
+    max-height: 13em;
 }
 
 .info {
