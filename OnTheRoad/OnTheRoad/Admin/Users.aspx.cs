@@ -78,13 +78,14 @@ namespace OnTheRoad.Admin
             return citiesDictionary.Values;
         }
 
-
         protected void DropDownListCityName_DataBound(object sender, EventArgs e)
         {
             var userCity = (string)this.ViewState[CURRENT_USER_CITY];
-
             var dropDownListCities = (DropDownList)sender;
-            dropDownListCities.Items.FindByValue(userCity).Selected = true;
+            if (dropDownListCities.Items.FindByValue(userCity) != null)
+            {
+                dropDownListCities.Items.FindByValue(userCity).Selected = true;
+            }
         }
 
         public IEnumerable<string> CheckBoxListRoles_GetData()
@@ -123,6 +124,10 @@ namespace OnTheRoad.Admin
             user.FirstName = firstName;
             user.LastName = lastName;
             user.PhoneNumber = phoneNumber;
+            if (user.City == null)
+            {
+                user.City = new City();
+            }
             user.City.Name = city;
 
             var entry = context.Entry(user);

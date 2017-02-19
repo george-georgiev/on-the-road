@@ -72,7 +72,7 @@
                     </asp:DropDownList>
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:Literal ID="LiteralCityName" runat="server" Text='<%# Item.City.Name %>' />
+                    <asp:Literal ID="LiteralCityName" runat="server" Text='<%# Item.City?.Name  %>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Role">

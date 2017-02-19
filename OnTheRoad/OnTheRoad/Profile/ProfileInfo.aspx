@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
-                                <asp:Literal Text='<%# Item.City %>' runat="server" />
+                                <asp:Literal ID="LiteralCityName" Text='<%# Item.City %>' runat="server" />
                             </div>
                             <div class="form-group">
                                 <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">град</label>
-                                        <uc:CitiesDropDown ID="City" runat="server" />
+                                        <uc:CitiesDropDown ID="City" SelectCityName="<%# Item.City %>" runat="server" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -118,7 +118,7 @@
             <asp:Repeater runat="server" ID="RepeaterFavouriteUsers" OnItemDataBound="RepeaterFavouriteUsers_ItemDataBound"
                 ItemType="OnTheRoad.Domain.Models.IUser">
                 <ItemTemplate>
-                      <asp:Image runat="server" CssClass="favUserImage img-circle"
+                    <asp:Image runat="server" CssClass="favUserImage img-circle"
                         ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
                     <asp:Panel runat="server" ID="PanelUnfollow" class="btn-group">
                         <button type="button"

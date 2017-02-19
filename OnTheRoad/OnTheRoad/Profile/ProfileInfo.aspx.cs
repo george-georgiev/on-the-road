@@ -49,7 +49,7 @@ namespace OnTheRoad.Profile
                 this.Context.User.Identity.Name != this.Request.QueryString[USERNAME])
             {
                 this.ButtonEdit.Visible = false;
-               
+
                 IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
                 if (favouriteUsers != null)
                 {
