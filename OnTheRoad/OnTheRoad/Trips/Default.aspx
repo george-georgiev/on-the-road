@@ -46,8 +46,11 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown" runat="server" OnSelectedIndexChanged="DropDownListAttendance_SelectedIndexChanged">
-                                <asp:ListItem Text="Ще присъствам" Value="WillParticipate" />
+                            <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown"
+                                runat="server" OnSelectedIndexChanged="DropDownListAttendance_SelectedIndexChanged"
+                                AutoPostBack="true">
+                                <asp:ListItem Text="Не мога да ида" Value="None" />
+                                <asp:ListItem Text="Ще присъствам" Value="Attending" />
                                 <asp:ListItem Text="Интересувам се" Value="Interested" />
                             </asp:DropDownList>
                         </div>

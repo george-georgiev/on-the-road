@@ -104,7 +104,7 @@ namespace OnTheRoad.Data.Repositories
             return domain;
         }
 
-        protected override Trip MapDomainToEnity(ITrip domain)
+        protected override void InitializeDomainToEnityMapper()
         {
             Mapper.Initialize(config =>
             {
@@ -114,10 +114,6 @@ namespace OnTheRoad.Data.Repositories
                     .ForMember(x => x.Subscriptions, opt => opt.Ignore())
                     .ForMember(x => x.Organiser, opt => opt.Ignore());
             });
-
-            var entity = Mapper.Map<ITrip, Trip>(domain);
-
-            return entity;
         }
 
         private IQueryable<Trip> GetTripsBy(string categoryName)
@@ -130,7 +126,12 @@ namespace OnTheRoad.Data.Repositories
                             )
                             .Include(x => x.Categories)
                             .Include(x => x.Organiser)
-                            .Include(x => x.Subscriptions);
+                            .Include(x => x.Subscriptions)
+                            .Include
+                            (
+                                x => x.Subscriptions
+                                    .Select(s => s.User)
+                            );
 
             return trips;
         }

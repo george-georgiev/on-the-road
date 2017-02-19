@@ -7,10 +7,10 @@ namespace OnTheRoad.Logic.Utils
 {
     public class ReviewAddHelper : IReviewAddHelper
     {
-        private readonly IGetUserService userService;
+        private readonly IUserGetService userService;
         private readonly IRatingService ratingService;
 
-        public ReviewAddHelper(IGetUserService userService, IRatingService ratingService)
+        public ReviewAddHelper(IUserGetService userService, IRatingService ratingService)
         {
             if (userService == null)
             {

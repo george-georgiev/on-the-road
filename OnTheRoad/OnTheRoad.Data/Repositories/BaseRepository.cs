@@ -63,7 +63,7 @@ namespace OnTheRoad.Data.Repositories
             this.SetEntityState(model, EntityState.Modified);
         }
 
-        private void SetEntityState(DomainType model, EntityState entityState)
+        protected virtual void SetEntityState(DomainType model, EntityState entityState)
         {
             if (model == null)
             {
@@ -75,16 +75,33 @@ namespace OnTheRoad.Data.Repositories
             {
                 entity = this.MapDomainToEnity(model);
             }
+            else
+            {
+                entity = this.MapDomainToEnity(model, entity);
+            }
 
             this.Context.SetEntryState(entity, entityState);
         }
 
-        protected virtual EntityType MapDomainToEnity(DomainType domain)
+        private EntityType MapDomainToEnity(DomainType domain)
         {
-            Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
+            this.InitializeDomainToEnityMapper();
             var entity = Mapper.Map<DomainType, EntityType>(domain);
 
             return entity;
+        }
+
+        private EntityType MapDomainToEnity(DomainType domain, EntityType entity)
+        {
+            this.InitializeDomainToEnityMapper();
+            var mapped = Mapper.Map<DomainType, EntityType>(domain, entity);
+
+            return mapped;
+        }
+
+        protected virtual void InitializeDomainToEnityMapper()
+        {
+            Mapper.Initialize(config => config.CreateMap<DomainType, EntityType>());
         }
 
         protected virtual DomainType MapEntityToDomain(EntityType entity)

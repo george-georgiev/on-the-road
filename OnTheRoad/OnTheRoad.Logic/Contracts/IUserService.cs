@@ -1,6 +1,6 @@
 ﻿namespace OnTheRoad.Logic.Contracts
 {
-    public interface IUserService: IUpdateUserService, IGetUserService
+    public interface IUserService: IUpdateUserService, IUserGetService
     {
     }
 }

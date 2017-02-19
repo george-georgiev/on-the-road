@@ -1,4 +1,5 @@
-﻿using OnTheRoad.Domain.Models;
+﻿using OnTheRoad.Domain.Enumerations;
+using OnTheRoad.Domain.Models;
 using System.Collections.Generic;
 
 namespace OnTheRoad.Mvp.Models
@@ -10,5 +11,9 @@ namespace OnTheRoad.Mvp.Models
         public int TripsTotalCount { get; set; }
 
         public ITrip Trip { get; set; }
+
+        public SubscriptionStatus SubscriptionStatus { get; set; }
+
+        public bool IsOrganiser { get; set; }
     }
 }
