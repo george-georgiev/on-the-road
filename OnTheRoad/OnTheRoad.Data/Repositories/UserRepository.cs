@@ -119,18 +119,17 @@ namespace OnTheRoad.Data.Repositories
                 entity.ReceivedReviews = updatedReviews;
             }
 
-            // TODO: do we need it?
-            //if (model.Subscription != null)
-            //{
-            //    var updatedSubscriptions = new List<Subscription>();
-            //    foreach (var subs in model.Subscription)
-            //    {
-            //        var s = this.Context.Subscriptions.Where(e => e.Id == subs.Id).Single();
-            //        updatedSubscriptions.Add(s);
-            //    }
+            if (model.Subscriptions != null)
+            {
+                var updatedSubscriptions = new List<Subscription>();
+                foreach (var subs in model.Subscriptions)
+                {
+                    var s = this.Context.Subscriptions.Where(e => e.Id == subs.Id).Single();
+                    updatedSubscriptions.Add(s);
+                }
 
-            //    entity.Subscriptions = updatedSubscriptions;
-            //}
+                entity.Subscriptions = updatedSubscriptions;
+            }
 
             this.Context.SetEntryState(entity, EntityState.Modified);
         }
@@ -214,8 +213,18 @@ namespace OnTheRoad.Data.Repositories
                     .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
                     .ForMember(x => x.GivenReviews, opt => opt.Ignore())
                     .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
-                config.CreateMap<ISubscription, Subscription>();
+
+                config.CreateMap<ISubscription, Subscription>()
+                    .ForMember(x => x.User, opt => opt.Ignore());
+
+                config.CreateMap<ITrip, Trip>()
+                    .ForMember(x => x.Tags, opt => opt.Ignore())
+                    .ForMember(x => x.Categories, opt => opt.Ignore())
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
+                    .ForMember(x => x.Organiser, opt => opt.Ignore());
+
                 config.CreateMap<IReview, Review>();
+
                 config.CreateMap<Review, IReview>();
             });
         }
