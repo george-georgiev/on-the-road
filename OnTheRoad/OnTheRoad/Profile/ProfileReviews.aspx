@@ -12,7 +12,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Добави коментар на <strong class="input-labels"><%# this.Request.QueryString["name"] %></strong></h4>
+                            <h4 class="modal-title">Добави коментар на <strong class="input-labels"><%#: this.Request.QueryString["name"] %></strong></h4>
                         </div>
                         <div class="modal-body review-body">
                             <div class="form-group">
@@ -45,12 +45,12 @@
                 <ItemTemplate>
                     <div class="row comment-wrapper">
                         <div class="col-md-1">
-                            <img src='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.FromUser.Image) %>'
+                            <img src='<%#: "data:image/jpeg;base64," + Convert.ToBase64String(Item.FromUser.Image) %>'
                                 alt="Снимка на потребителя" class="comment-user-image img-circle" />
                         </div>
                         <div class="col-md-11 right-wrapper">
                             <div class="comment-header">
-                                <strong class="comment-rating"><%# Item.Rating.Value.ToUpper() %></strong>
+                                <strong class="comment-rating"><%#: Item.Rating.Value.ToUpper() %></strong>
                                 <span class="from-user">
                                     <asp:Literal Text='<%# "from " + Item.FromUser.Username + " " + Item.PostingDate.ToShortDateString()%>' runat="server" />
                                 </span>

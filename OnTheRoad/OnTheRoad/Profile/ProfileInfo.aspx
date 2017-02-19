@@ -73,7 +73,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group ">
                                         <label class="input-labels">първо име</label>
-                                        <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="FirstName" Text='<%#: Item.FirstName%>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">град</label>
@@ -83,18 +83,18 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="input-labels">фамилно име</label>
-                                        <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="LastName" Text='<%#: Item.LastName %>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">тел. номер</label>
-                                        <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="PhoneNumber" Text='<%#: Item.PhoneNumber%>' runat="server" CssClass="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
                                     <label class="input-labels">кратка информация</label>
-                                    <asp:TextBox ID="Info" TextMode="MultiLine" Rows="5" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                                    <asp:TextBox ID="Info" TextMode="MultiLine" Rows="5" Text='<%#: Item.Info %>' runat="server" CssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
                 ItemType="OnTheRoad.Domain.Models.IUser">
                 <ItemTemplate>
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
-                        ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
+                        ImageUrl='<%#: "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
                     <asp:Panel runat="server" ID="PanelUnfollow" class="btn-group">
                         <button type="button"
                             class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -139,7 +139,7 @@
                     <asp:HyperLink runat="server"
                         ID="LinkButtonFollowing"
                         Text="<%#: Item.Username %>"
-                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+                        NavigateUrl='<%#: "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
                 </ItemTemplate>
             </asp:Repeater>
         </asp:Panel>
