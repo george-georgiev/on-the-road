@@ -14,6 +14,8 @@ namespace OnTheRoad.CustomControllers
 
         public string SelectedCityName { get; set; }
 
+        public string SelectCityName { get; set; }
+
         public int SelectedCityId { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +28,14 @@ namespace OnTheRoad.CustomControllers
             this.GetCities?.Invoke(this, new EventArgs());
             this.DropDownCities.DataSource = this.Model.Cities;
             this.DropDownCities.DataBind();
+
+            // TODO: .......
+            //if (this.SelectCityName != null)
+            //{
+            //    this.Session.Add("city", this.SelectCityName);
+            //}
+
+            //this.DropDownCities.Items.FindByText(this.SelectCityName).Selected = true;
         }
 
         protected void DropDownCities_SelectedIndexChanged(object sender, EventArgs e)

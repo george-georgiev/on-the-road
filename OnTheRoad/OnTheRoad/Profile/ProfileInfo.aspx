@@ -44,7 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
-                                <asp:Literal Text='<%# Item.City %>' runat="server" />
+                                <asp:Literal ID="LiteralCityName" Text='<%# Item.City %>' runat="server" />
                             </div>
                             <div class="form-group">
                                 <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
@@ -64,9 +64,9 @@
                     <div class="row">
                         <div class="col-md-4">
                             <asp:Image ID="ImageUser" runat="server" ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Image) %>' CssClass="img-responsive"></asp:Image>
-                            <uc:ImageUploader ID="ImageUploader" runat="server" 
-                                OnImageUpload="ImageUploader_ImageUpload" 
-                                OnError="ImageUploader_Error" />
+                            <uc:ImageUploader ID="ImageUploader" runat="server"
+                                OnImageUpload="ImageUploader_ImageUpload"
+                                OnImageError="ImageUploader_Error" />
                         </div>
                         <div class="col-md-8">
                             <div class="row">
@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">град</label>
-                                        <uc:CitiesDropDown ID="City" runat="server" />
+                                        <uc:CitiesDropDown ID="City" SelectCityName="<%# Item.City %>" runat="server" />
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -115,19 +115,14 @@
     <div class="row">
         <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
             <h3 class="page-headers fav-users-header">Любими пътешественици</h3>
-            <asp:Repeater runat="server" ID="RepeaterFavouriteUsers"
+            <asp:Repeater runat="server" ID="RepeaterFavouriteUsers" OnItemDataBound="RepeaterFavouriteUsers_ItemDataBound"
                 ItemType="OnTheRoad.Domain.Models.IUser">
                 <ItemTemplate>
-                    <asp:HyperLink runat="server"
-                        ID="LinkButtonFollowing"
-                        Text="<%#: Item.Username %>"
-                        NavigateUrl='<%# "~/profile/profileInfo.aspx?name=" + Item.Username %>' />
-
                     <asp:Image runat="server" CssClass="favUserImage img-circle"
                         ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
-
-                    <div class="btn-group">
-                        <button type="button" class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <asp:Panel runat="server" ID="PanelUnfollow" class="btn-group">
+                        <button type="button"
+                            class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
@@ -140,7 +135,11 @@
                                     OnClick="DropdownUnfollow_Click" />
                             </li>
                         </ul>
-                    </div>
+                    </asp:Panel>
+                    <asp:HyperLink runat="server"
+                        ID="LinkButtonFollowing"
+                        Text="<%#: Item.Username %>"
+                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
                 </ItemTemplate>
             </asp:Repeater>
         </asp:Panel>

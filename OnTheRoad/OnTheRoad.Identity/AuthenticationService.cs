@@ -28,9 +28,9 @@ namespace OnTheRoad.Identity
             if (result.Succeeded)
             {
                 // TODO: Add initial User Role
-                // var currentUser = this.AppUserManager.FindByName(email);
-                // this.AppUserManager.AddToRole(currentUser.Id, "Admin");
-                
+                var currentUser = this.AppUserManager.FindByName(username);
+                this.AppUserManager.AddToRole(currentUser.Id, "User");
+
                 this.AppSignInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
             }
             else

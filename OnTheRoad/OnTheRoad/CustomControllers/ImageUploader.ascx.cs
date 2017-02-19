@@ -20,7 +20,7 @@ namespace OnTheRoad.CustomControllers
         private const string InstructionsQueryString = "width=600;format=jpg;mode=max";
 
         public event EventHandler<ImageUploadEventArgs> ImageUpload;
-        public event EventHandler<ErrorEventArgs> Error;
+        public event EventHandler<ErrorEventArgs> ImageError;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,7 +57,7 @@ namespace OnTheRoad.CustomControllers
         private void RaiseErrorEvent(string errorMessage)
         {
             var exception = new InvalidOperationException(errorMessage);
-            this.Error?.Invoke(this, new ErrorEventArgs(exception));
+            this.ImageError?.Invoke(this, new ErrorEventArgs(exception));
         }
 
         private void RaiseImageUploadEvent()

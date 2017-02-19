@@ -90,7 +90,7 @@
                     <div class="col-md-6">
                         <uc:ImageUploader ID="ImageUploader" runat="server"
                             OnImageUpload="ImageUploader_ImageUpload"
-                            OnError="ImageUploader_Error" />
+                            OnImageError="ImageUploader_Error" />
                     </div>
                 </div>
             </div>
