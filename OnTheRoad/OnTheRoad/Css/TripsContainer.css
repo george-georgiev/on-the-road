@@ -2,6 +2,7 @@
     border-top: solid #cf4d35 2px;
     background-color: #f9f9f9;
     margin-top: 3em;
+    min-width: 15em;
 }
 
 .trip-item {
@@ -9,8 +10,16 @@
     background-color: white;
 }
 
+.overview-item {
+    min-height: 30em;
+}
+
 .main {
     padding: 1em;
+}
+
+.trip-name {
+    margin-top: 1em;
 }
 
 .head {
@@ -22,7 +31,8 @@
 
 img.resizable {
     margin: auto;
-    max-height: 13em;
+    width: 100%;
+    max-width: 30em;
 }
 
 .category-wrapper {
@@ -37,6 +47,6 @@ img.resizable {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 }
 
-.hyperlink:hover {
-    color: #cf4d35;
+.col {
+    padding: 0;
 }

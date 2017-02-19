@@ -9,8 +9,10 @@ namespace OnTheRoad.Mvp.Views
     {
         event EventHandler<TripsEventArgs> GetTrips;
 
-        event EventHandler<TripsEventArgs> GetTripById;
+        event EventHandler<TripsEventArgs> GetTrip;
 
         event EventHandler<TripsEventArgs> GetTripsBySearchPattern;
+
+        event EventHandler<TripsEventArgs> Subscribe;
     }
 }

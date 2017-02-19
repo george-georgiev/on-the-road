@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="TripItem.ascx.cs" Inherits="OnTheRoad.CustomControllers.TripItem" %>
 
 <div class="trip-item row trips-wrapper box-shadow">
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col col-md-6 col-sm-6 col-xs-12">
         <asp:HyperLink NavigateUrl='<%# "/trips/" + this.Trip.Id %>' runat="server">
             <div class="meta-image text-center">
                 <asp:Image ID="ImageTrip" runat="server"

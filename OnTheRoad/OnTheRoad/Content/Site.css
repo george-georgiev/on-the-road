@@ -112,6 +112,7 @@ img.resizable:hover {
 
 .meta-image {
     overflow: hidden;
+    max-height: 13em;
 }
 
 .info {
@@ -155,4 +156,8 @@ i.font-awesome {
 i.font-awesome {
     width: 1em;
     text-align: center;
+}
+
+.hyperlink:hover {
+    color: #cf4d35;
 }

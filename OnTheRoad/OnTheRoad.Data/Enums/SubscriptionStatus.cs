@@ -1,4 +1,4 @@
-﻿namespace OnTheRoad.Domain.Enumerations
+﻿namespace OnTheRoad.Data.Enums
 {
     public enum SubscriptionStatus
     {

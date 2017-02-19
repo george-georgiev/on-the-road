@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Mvp.EventArgsClasses
 {
@@ -15,5 +11,9 @@ namespace OnTheRoad.Mvp.EventArgsClasses
         public int Skip { get; set; }
 
         public int TripId { get; set; }
+
+        public string CurrentUserName { get; set; }
+
+        public SubscriptionStatus SubscriptionStatus { get; set; }
     }
 }

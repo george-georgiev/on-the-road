@@ -36,7 +36,7 @@ namespace OnTheRoad.Data.Repositories
             return reviews;
         }
 
-        protected override Review MapDomainToEnity(IReview domain)
+        protected override void InitializeDomainToEnityMapper()
         {
             Mapper.Initialize(config =>
             {
@@ -50,9 +50,6 @@ namespace OnTheRoad.Data.Repositories
                 .ForMember(x => x.FromUser, opt => opt.Ignore())
                 .ForMember(x => x.ToUser, opt => opt.Ignore());
             });
-
-            var entity = Mapper.Map<IReview, Review>(domain);
-            return entity;
         }
 
         protected override IReview MapEntityToDomain(Review entity)

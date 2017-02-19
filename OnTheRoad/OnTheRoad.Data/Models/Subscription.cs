@@ -7,7 +7,7 @@ namespace OnTheRoad.Data.Models
     public class Subscription : BaseEntity
     {
         [Required]
-        public TripStatus Status { get; set; }
+        public SubscriptionStatus Status { get; set; }
 
         [Required]
         [ForeignKey("Trip")]

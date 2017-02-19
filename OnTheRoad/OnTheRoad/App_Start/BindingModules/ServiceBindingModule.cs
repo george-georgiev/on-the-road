@@ -47,13 +47,17 @@ namespace OnTheRoad.App_Start.BindingModules
                .ToFactory()
                .InSingletonScope();
 
+            this.Bind<ISubscriptionFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
             this.Bind<ITagGetService>()
                 .To<TagService>();
 
             this.Bind<ICategoryGetService, ICategoryModifyService>()
                 .To<CategoryService>();
 
-            this.Bind<IGetUserService>()
+            this.Bind<IUserGetService>()
                 .To<UserService>();
         }
 

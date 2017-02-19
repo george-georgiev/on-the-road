@@ -11,14 +11,14 @@
         <asp:ListView ID="ListViewTrips" runat="server" ItemType="ITrip">
             <ItemTemplate>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="trip-item category-wrapper box-shadow">
+                    <div class="trip-item category-wrapper box-shadow overview-item">
                         <asp:HyperLink NavigateUrl='<%# "/trips/" + Item.Id %>' runat="server">
                             <div class="meta-image text-center">
                                 <asp:Image ID="ImageTrip" runat="server"
                                     ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.CoverImage) %>'
                                     CssClass="img-responsive resizable"></asp:Image>
                             </div>
-                            <h4>
+                            <h4 class="trip-name">
                                 <asp:HyperLink NavigateUrl='<%# "/trips/" + Item.Id %>' Text="<%#: Item.Name %>" runat="server" />
                             </h4>
                         </asp:HyperLink>

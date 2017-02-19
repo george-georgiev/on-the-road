@@ -17,18 +17,27 @@
             <asp:PlaceHolder runat="server" ID="PlaceHolderTrip" Visible="false">
                 <div class="trip-container box-shadow">
                     <div class="trip-head text-center">
-                        <h1><%#: this.Trip.Name %></h1>
+                        <div class="categories">
+                            <asp:ListView runat="server" DataSource="<%# this.Model.Trip.Categories %>" ItemType="ICategory">
+                                <ItemTemplate>
+                                    <asp:HyperLink CssClass="info" NavigateUrl='<%#: "~/categories/" + Item.Name %>' runat="server">
+                                        <asp:label CssClass="hyperlink" text=<%#: Item.Name %> runat="server" />
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:ListView>
+                        </div>
+                        <h1><%#: this.Model.Trip.Name %></h1>
                         <asp:Image ID="ImageTrip" runat="server"
-                            ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Trip.CoverImage) %>'
+                            ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Trip.CoverImage) %>'
                             CssClass="img-responsive image-trip box-shadow"></asp:Image>
                         <div class="meta-image-organiser">
                             <asp:Image ID="ImageOrganiser" runat="server"
-                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Trip.Organiser.Image) %>'
+                                ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(this.Model.Trip.Organiser.Image) %>'
                                 CssClass="img-responsive image-organiser"></asp:Image>
                         </div>
                         <div>
-                            <asp:HyperLink CssClass="organiser-name" NavigateUrl='<%# "~/profile/profileInfo.aspx?name=" + this.Trip.Organiser.Username %>'
-                                Text='<%#: this.Trip.Organiser.FirstName + " " +  this.Trip.Organiser.LastName %>'
+                            <asp:HyperLink CssClass="organiser-name" NavigateUrl='<%# "~/profile/profileInfo.aspx?name=" + this.Model.Trip.Organiser.Username %>'
+                                Text='<%#: this.Model.Trip.Organiser.FirstName + " " +  this.Model.Trip.Organiser.LastName %>'
                                 runat="server" />
                         </div>
                     </div>
@@ -36,21 +45,27 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="trip-info">
                                 <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
-                                <%#: this.Trip.Location %>
+                                <%#: this.Model.Trip.Location %>
                             </div>
                             <hr />
                             <div class="trip-info ">
                                 <i class="fa fa-clock-o font-awesome" aria-hidden="true"></i>
-                                <asp:Label Text='<%#: "Начало: " + this.Trip.StartDate.ToString("dd.MM.yyyy")%>' runat="server" />
-                                <asp:Label CssClass="end-date" Text='<%#:  "Край: " + this.Trip.EndDate.ToString("dd.MM.yyyy") %>' runat="server" />
+                                <asp:Label Text='<%#: "Начало: " + this.Model.Trip.StartDate.ToString("dd.MM.yyyy")%>' runat="server" />
+                                <asp:Label CssClass="end-date" Text='<%#:  "Край: " + this.Model.Trip.EndDate.ToString("dd.MM.yyyy") %>' runat="server" />
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown" runat="server" OnSelectedIndexChanged="DropDownListAttendance_SelectedIndexChanged">
-                                <asp:ListItem Text="Ще присъствам" Value="WillParticipate" />
+                            <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown"
+                                runat="server" OnSelectedIndexChanged="DropDownListAttendance_SelectedIndexChanged"
+                                AutoPostBack="true">
+                                <asp:ListItem Text="Не мога да ида" Value="None" />
+                                <asp:ListItem Text="Ще присъствам" Value="Attending" />
                                 <asp:ListItem Text="Интересувам се" Value="Interested" />
                             </asp:DropDownList>
                         </div>
+                    </div>
+                    <div class="trip-description">
+                        <%#: this.Model.Trip.Description %>
                     </div>
                 </div>
             </asp:PlaceHolder>

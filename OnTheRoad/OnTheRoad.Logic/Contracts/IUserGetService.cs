@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface IGetUserService
+    public interface IUserGetService
     {
         IUser GetUserInfo(string username);
     }
