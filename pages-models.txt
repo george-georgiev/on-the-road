@@ -72,8 +72,8 @@ Models
 
 Remaining issues(18.02):
     1.Admin stuff - DONE
-    2.Page access
-    3.Error pages
+    2.Page access - DONE
+    3.Error pages - DONE
     4.Sitemaps
 
     1.Trip Subscribtions

@@ -68,6 +68,23 @@ input[type="select"] {
     }
 }
 
+.navbar-fixed-top {
+    min-height: 60px;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 60px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;}
+}
+
 h2.page-headers, h3.page-headers {
     text-align: center;
     color: #00B5DB;
@@ -160,4 +177,11 @@ i.font-awesome {
 
 .hyperlink:hover {
     color: #cf4d35;
+}
+
+.sitemap-wrapper {
+    margin: 30px 0 20px 0;
+    background-color: white;
+    padding: 15px;
+    color: #444444;
 }
