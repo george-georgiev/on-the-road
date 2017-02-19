@@ -59,3 +59,14 @@
     cursor: pointer;
     cursor: hand;
 }
+
+.trip-description {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 1.2em;
+    margin-top: 3em;
+}
+
+.categories {
+    font-size: 1.1em;
+}

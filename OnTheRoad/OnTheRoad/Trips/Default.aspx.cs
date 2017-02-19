@@ -3,7 +3,6 @@ using OnTheRoad.Mvp.Views;
 using System;
 using WebFormsMvp.Web;
 using OnTheRoad.Mvp.EventArgsClasses;
-using OnTheRoad.Domain.Models;
 using WebFormsMvp;
 using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Domain.Enumerations;
@@ -31,17 +30,14 @@ namespace OnTheRoad.Trips
             }
         }
 
-        public ITrip Trip { get; private set; }
-
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
             if (this.TripId != null)
             {
                 var currentUserName = this.Context.User.Identity.Name;
                 this.GetTrip(this, new TripsEventArgs() { TripId = int.Parse(this.TripId), CurrentUserName = currentUserName });
-                this.Trip = this.Model.Trip;
 
-                this.HandleAttendanceDropDown();
+                this.HandleAttendanceDropDown(currentUserName);
 
                 this.PlaceHolderTrip.Visible = true;
                 this.PlaceHolderTripsResult.Visible = false;
@@ -56,9 +52,9 @@ namespace OnTheRoad.Trips
             this.Subscribe?.Invoke(this, new TripsEventArgs() { CurrentUserName = currentUserName, TripId = int.Parse(this.TripId), SubscriptionStatus = subscriptionStatus });
         }
 
-        private void HandleAttendanceDropDown()
+        private void HandleAttendanceDropDown(string currentUserName)
         {
-            if (this.Model.IsOrganiser)
+            if (string.IsNullOrEmpty(currentUserName) || this.Model.IsOrganiser)
             {
                 this.DropDownListAttendance.Visible = false;
             }
