@@ -17,6 +17,11 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<IReview> GetByToUser(string toUser)
         {
+            if (!this.Context.Users.Any( u=> u.UserName == toUser))
+            {
+                return null;
+            }
+
             var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser && x.IsDeleted == false).ToList();
             Mapper.Initialize(config => config.CreateMap<Review, IReview>());
 

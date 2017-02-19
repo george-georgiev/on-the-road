@@ -1,8 +1,7 @@
 ﻿using System;
-using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Mvp.Profile.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
+using OnTheRoad.Mvp.Profile.Contracts;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters

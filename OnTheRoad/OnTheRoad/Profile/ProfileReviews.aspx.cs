@@ -43,7 +43,17 @@ namespace OnTheRoad.Profile
 
         private void LoadData()
         {
+            if (this.Request.QueryString[USERNAME] == null)
+            {
+                this.Response.Redirect("/");
+            }
+
             this.GetReviews?.Invoke(this, new GetUserReviewsEventArgs() { Username = this.Request.QueryString[USERNAME] });
+            if (this.Model.Reviews == null)
+            {
+                this.Response.Redirect("/");
+            }
+
             this.ListViewComments.DataSource = this.Model.Reviews;
             this.ListViewComments.DataBind();
         }
