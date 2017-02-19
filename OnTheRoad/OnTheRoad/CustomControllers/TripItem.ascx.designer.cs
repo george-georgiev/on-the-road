@@ -10,15 +10,15 @@
 namespace OnTheRoad.CustomControllers {
     
     
-    public partial class CategoryOverview {
+    public partial class TripItem {
         
         /// <summary>
-        /// ListViewTrips control.
+        /// ImageTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewTrips;
+        protected global::System.Web.UI.WebControls.Image ImageTrip;
     }
 }

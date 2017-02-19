@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Mvp.Models
 {
-    public class CategoryOverviewModel
+    public class CategoriesMultiSelectModel
     {
-        public IEnumerable<ITrip> Trips { get; set; }
+        public IEnumerable<ICategory> Categories { get; set; }
     }
 }

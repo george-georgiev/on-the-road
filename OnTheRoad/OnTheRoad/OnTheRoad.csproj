@@ -216,10 +216,14 @@
     <Content Include="Css\AddTrip.css" />
     <Content Include="Css\Admin.css" />
     <Content Include="Css\Categories.css" />
+    <Content Include="Css\DataPager.css" />
+    <Content Include="Css\Trips.css" />
+    <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
     <Content Include="CustomControllers\CategoryOverview.ascx" />
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
+    <Content Include="CustomControllers\DataPager.ascx" />
     <Content Include="CustomControllers\ImageUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
     <Content Include="DynamicData\EntityTemplates\Default.ascx" />
@@ -258,6 +262,7 @@
     <Content Include="Profile\ProfileInfo.aspx" />
     <Content Include="Profile\ProfileReviews.aspx" />
     <Content Include="Profile\UserProfile.master" />
+    <Content Include="Trips\Default.aspx" />
     <Content Include="WebServices\Tags.asmx" />
     <Content Include="Admin\Admin.master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -389,6 +394,13 @@
     <Compile Include="CustomControllers\CitiesDropDown.ascx.designer.cs">
       <DependentUpon>CitiesDropDown.ascx</DependentUpon>
     </Compile>
+    <Compile Include="CustomControllers\DataPager.ascx.cs">
+      <DependentUpon>DataPager.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\DataPager.ascx.designer.cs">
+      <DependentUpon>DataPager.ascx</DependentUpon>
+    </Compile>
     <Compile Include="CustomControllers\ImageUploader.ascx.cs">
       <DependentUpon>ImageUploader.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -402,6 +414,13 @@
     </Compile>
     <Compile Include="CustomControllers\TagsSelect.ascx.designer.cs">
       <DependentUpon>TagsSelect.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControllers\TripItem.ascx.cs">
+      <DependentUpon>TripItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CustomControllers\TripItem.ascx.designer.cs">
+      <DependentUpon>TripItem.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -673,6 +692,13 @@
     </Compile>
     <Compile Include="Trips\AddTrip.aspx.designer.cs">
       <DependentUpon>AddTrip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Trips\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Trips\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

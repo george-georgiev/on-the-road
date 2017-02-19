@@ -57,6 +57,7 @@
     <Compile Include="Common\UserInfoUtility.cs" />
     <Compile Include="Enums\LoginStatus.cs" />
     <Compile Include="EventArgsClasses\AddTripEventArgs.cs" />
+    <Compile Include="EventArgsClasses\CategoriesEventArgs.cs" />
     <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
     <Compile Include="EventArgsClasses\FavouriteUserEventArgs.cs" />
     <Compile Include="EventArgsClasses\ImageUploadEventArgs.cs" />
@@ -66,10 +67,12 @@
     <Compile Include="EventArgsClasses\GetUserReviewsEventArgs.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
     <Compile Include="EventArgsClasses\AddReviewEventArgs.cs" />
+    <Compile Include="EventArgsClasses\TripsEventArgs.cs" />
     <Compile Include="Factories\CustomWebFormsMvpPresenterFactory.cs" />
     <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
     <Compile Include="Factories\ICustomPresenterFactory.cs" />
-    <Compile Include="Models\CategoryOverviewModel.cs" />
+    <Compile Include="Models\CategoriesMultiSelectModel.cs" />
+    <Compile Include="Models\TripsModel.cs" />
     <Compile Include="Models\CitiesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\ProfileInfoModel.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\TripModel.cs" />
     <Compile Include="Presenters\AddTripPresenter.cs" />
+    <Compile Include="Presenters\CategoriesMultiSelectPresenter.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenter.cs" />
     <Compile Include="Presenters\CitiesPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
@@ -86,8 +90,10 @@
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Presenters\CategoriesPresenter.cs" />
     <Compile Include="Presenters\ReviewsPresenter.cs" />
+    <Compile Include="Presenters\TripsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\IAddTripView.cs" />
+    <Compile Include="Views\ICategoriesMultiSelectView.cs" />
     <Compile Include="Views\ICategoryOverviewView.cs" />
     <Compile Include="Views\ICitiesView.cs" />
     <Compile Include="Views\ILoginView.cs" />
@@ -95,6 +101,7 @@
     <Compile Include="Views\IRegisterView.cs" />
     <Compile Include="Views\ICategoriesView.cs" />
     <Compile Include="Views\IReviewsView.cs" />
+    <Compile Include="Views\ITripsView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">

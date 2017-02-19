@@ -7,37 +7,55 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OnTheRoad {
+namespace OnTheRoad.Trips {
     
     
-    public partial class Categories {
+    public partial class Default {
         
         /// <summary>
-        /// DivCategories control.
+        /// PlaceHolderTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivCategories;
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderTrip;
         
         /// <summary>
-        /// PlaceHolderCategories control.
+        /// ImageTrip control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderCategories;
+        protected global::System.Web.UI.WebControls.Image ImageTrip;
         
         /// <summary>
-        /// DivCategoryTrips control.
+        /// ImageOrganiser control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivCategoryTrips;
+        protected global::System.Web.UI.WebControls.Image ImageOrganiser;
+        
+        /// <summary>
+        /// DropDownListAttendance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListAttendance;
+        
+        /// <summary>
+        /// PlaceHolderTripsResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolderTripsResult;
         
         /// <summary>
         /// ListViewTrips control.

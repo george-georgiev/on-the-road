@@ -68,3 +68,23 @@ Models
     --Comment (string)
     --FromUser (User)
     --ToUser (User)
+
+
+Remaining issues(18.02):
+    1.Admin stuff
+    2.Page access
+    3.Error pages
+    4.Sitemaps
+
+    1.Trip Subscribtions
+    2.Trip search
+    3.Site panel
+
+    1.Home page
+    2.Test - Galin and George
+    3.User Subscribtions visualization - Galin
+    4.Trip edit from owner
+
+Private pages:
+    -Adimn pages
+    -trips/addtrip

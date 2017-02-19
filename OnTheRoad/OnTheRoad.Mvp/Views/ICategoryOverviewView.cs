@@ -5,7 +5,7 @@ using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.CustomControllers.Contracts
 {
-    public interface ICategoryOverviewView : IView<CategoryOverviewModel>
+    public interface ICategoryOverviewView : IView<TripsModel>
     {
         event EventHandler<CategoryOverviewEventArgs> GetTrips;
     }

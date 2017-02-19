@@ -16,18 +16,34 @@ namespace OnTheRoad.Data.Repositories
         {
         }
 
-        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName)
+        public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
             if (categoryName == null)
             {
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var trips = this.GetTripsBy(categoryName);
+            var trips = this.GetTripsBy(categoryName)
+                .OrderByDescending(t => t.CreateDate)
+                .Skip(skip)
+                .Take(take);
 
             var mapped = this.MapTrips(trips);
 
             return mapped;
+        }
+
+        public int GetTripsCountByCategoryName(string categoryName)
+        {
+            if (categoryName == null)
+            {
+                throw new ArgumentNullException("categoryName can not be null!");
+            }
+
+            var count = this.GetTripsBy(categoryName)
+                .Count();
+
+            return count;
         }
 
         public IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending)
@@ -68,10 +84,19 @@ namespace OnTheRoad.Data.Repositories
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Trip, ITrip>()
-                    .ForMember(x => x.Tags, opt => opt.Ignore())
-                    .ForMember(x => x.Categories, opt => opt.Ignore())
-                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
-                    .ForMember(x => x.Organiser, opt => opt.Ignore());
+                    .ForMember(x => x.Tags, opt => opt.Ignore());
+
+                config.CreateMap<Category, ICategory>();
+
+                config.CreateMap<Subscription, ISubscription>()
+                    .ForMember(x => x.Trip, opt => opt.Ignore());
+
+                config.CreateMap<User, IUser>()
+                    .ForMember(x => x.City, opt => opt.Ignore())
+                    .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.GivenReviews, opt => opt.Ignore())
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore())
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore());
             });
 
             var domain = Mapper.Map<Trip, ITrip>(entity);
@@ -102,7 +127,10 @@ namespace OnTheRoad.Data.Repositories
                                 t => t.Categories
                                     .Where(c => c.Name == categoryName)
                                     .Any()
-                            );
+                            )
+                            .Include(x => x.Categories)
+                            .Include(x => x.Organiser)
+                            .Include(x => x.Subscriptions);
 
             return trips;
         }
@@ -110,9 +138,9 @@ namespace OnTheRoad.Data.Repositories
         private IEnumerable<ITrip> MapTrips(IQueryable<Trip> trips)
         {
             var mapped = new List<ITrip>();
-            foreach (var category in trips)
+            foreach (var trip in trips)
             {
-                mapped.Add(this.MapEntityToDomain(category));
+                mapped.Add(this.MapEntityToDomain(trip));
             }
 
             return mapped;
