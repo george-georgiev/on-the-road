@@ -4,11 +4,11 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using OnTheRoad.Data;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Identity;
-using Microsoft.AspNet.Identity;
 
 namespace OnTheRoad.Admin
 {
@@ -18,6 +18,7 @@ namespace OnTheRoad.Admin
         private const string CITIES = "cities";
         private const string CURRENT_USER_ROLES = "currentUserRoles";
         private const string CURRENT_USER_CITY = "currentUserCity";
+        private const string EDIT_COMMAND_NAME = "Edit";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -157,11 +158,12 @@ namespace OnTheRoad.Admin
 
         protected void GridViewUsers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = int.Parse(e.CommandArgument.ToString());
-            GridViewRow row = this.GridViewUsers.Rows[index];
-            var bulletedListRoles = row.FindControl("BulletedListRoles") as BulletedList;
-            if (bulletedListRoles != null)
+            if (e.CommandName == EDIT_COMMAND_NAME)
             {
+                int index = int.Parse(e.CommandArgument.ToString());
+                GridViewRow row = this.GridViewUsers.Rows[index];
+                var bulletedListRoles = row.FindControl("BulletedListRoles") as BulletedList;
+
                 var userRoles = bulletedListRoles.Items;
                 var rolesAsList = new List<string>();
                 foreach (ListItem role in userRoles)
@@ -170,11 +172,9 @@ namespace OnTheRoad.Admin
                 }
 
                 this.ViewState.Add(CURRENT_USER_ROLES, rolesAsList);
-            }
 
-            var literalCityName = row.FindControl("LiteralCityName") as Literal;
-            if (literalCityName != null)
-            {
+                var literalCityName = row.FindControl("LiteralCityName") as Literal;
+
                 this.ViewState.Add(CURRENT_USER_CITY, literalCityName.Text);
             }
         }
