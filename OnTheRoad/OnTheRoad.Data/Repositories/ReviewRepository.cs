@@ -17,7 +17,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<IReview> GetByToUser(string toUser)
         {
-            if (!this.Context.Users.Any( u=> u.UserName == toUser))
+            if (!this.Context.Users.Any(u => u.UserName == toUser))
             {
                 return null;
             }
@@ -41,14 +41,15 @@ namespace OnTheRoad.Data.Repositories
             Mapper.Initialize(config =>
             {
                 config.CreateMap<IRating, Rating>();
-                config.CreateMap<IUser, User>();
-                config.CreateMap<ISubscription, Subscription>();
                 config.CreateMap<ICity, City>();
+                config.CreateMap<IUser, User>()
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore());
+
 
                 config.CreateMap<IReview, Review>()
-                .ForMember(x => x.Rating, opt => opt.Ignore())
-                .ForMember(x => x.FromUser, opt => opt.Ignore())
-                .ForMember(x => x.ToUser, opt => opt.Ignore());
+                    .ForMember(x => x.Rating, opt => opt.Ignore())
+                    .ForMember(x => x.FromUser, opt => opt.Ignore())
+                    .ForMember(x => x.ToUser, opt => opt.Ignore());
             });
         }
 
@@ -60,6 +61,7 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<User, IUser>()
                     .ForMember(x => x.City, opt => opt.Ignore())
                     .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
                     .ForMember(x => x.GivenReviews, opt => opt.Ignore())
                     .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
 

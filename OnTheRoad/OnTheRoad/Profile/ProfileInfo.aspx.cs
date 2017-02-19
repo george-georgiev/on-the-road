@@ -161,14 +161,17 @@ namespace OnTheRoad.Profile
                 this.ButtonEdit.Visible = false;
 
                 IEnumerable<string> favouriteUsers = this.Session[FAVOURITE_USERS] as IEnumerable<string>;
-                var isFollowing = favouriteUsers.Any(x => x == this.Request.QueryString[USERNAME]);
-                if (isFollowing)
+                if (favouriteUsers != null)
                 {
-                    this.ButtonUnfollow.Visible = true;
-                }
-                else
-                {
-                    this.ButtonFollow.Visible = true;
+                    var isFollowing = favouriteUsers.Any(x => x == this.Request.QueryString[USERNAME]);
+                    if (isFollowing)
+                    {
+                        this.ButtonUnfollow.Visible = true;
+                    }
+                    else
+                    {
+                        this.ButtonFollow.Visible = true;
+                    }
                 }
             }
 
