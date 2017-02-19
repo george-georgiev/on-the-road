@@ -75,6 +75,10 @@ namespace OnTheRoad
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
+            if (!this.Context.User.IsInRole("Admin"))
+            {
+                this.HyperLinkAdminPage.Visible = false;
+            }
             this.Page.DataBind();
         }
 
