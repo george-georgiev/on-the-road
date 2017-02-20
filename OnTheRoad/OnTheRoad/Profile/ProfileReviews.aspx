@@ -52,7 +52,11 @@
                             <div class="comment-header">
                                 <strong class="comment-rating"><%#: Item.Rating.Value.ToUpper() %></strong>
                                 <span class="from-user">
-                                    <asp:Literal Text='<%# "from " + Item.FromUser.Username + " " + Item.PostingDate.ToShortDateString()%>' runat="server" />
+                                    <span>От: </span>
+                                    <asp:HyperLink NavigateUrl='<%#: "~/profile/profileInfo.aspx?name=" + Item.FromUser.Username %>'
+                                        ID="HyperLinkFromUser"
+                                        Text='<%# Item.FromUser.Username %>' runat="server" />
+                                    <asp:Literal Text='<%# Item.PostingDate.ToShortDateString()%>' runat="server" />
                                 </span>
                             </div>
                             <div class="comment-body">

@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="uc" TagName="CitiesDropDown" Src="~/CustomControllers/CitiesDropDown.ascx" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceholderAdmin" ID="ContentUsers" runat="server">
+    <h2 class="page-headers">Всички потребители</h2>
     <asp:GridView runat="server" ID="GridViewUsers"
         SelectMethod="GridViewUsers_GetData"
         UpdateMethod="GridViewUsers_UpdateItem"
