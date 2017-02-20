@@ -80,7 +80,7 @@ Remaining issues(18.02):
     2.Trip search
     3.Site panel
 
-    1.Home page
+    1.Home page - DONE
     2.Test - Galin and George
     3.User Subscribtions visualization - Galin
     4.Trip edit from owner

@@ -46,13 +46,10 @@
 }
 
 .attend-dropdown {
-    width: 135px;
-    height: 30px;
     background-color: #f0f0f0;
     float: right;
-    border-radius: 2px;
     cursor: pointer;
-    cursor: hand;
+    width: 50%;
 }
 
 .trip-description {
@@ -64,4 +61,9 @@
 
 .categories {
     font-size: 1.1em;
+}
+
+#MainContent_MainContent_ImageOrganiser {
+    min-height: 7em;
+    min-width: 7em;
 }

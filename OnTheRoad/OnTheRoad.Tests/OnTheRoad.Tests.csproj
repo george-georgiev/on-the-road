@@ -82,6 +82,7 @@
     <Compile Include="EventArgsClasses\LoginEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgsTests.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenterTests.cs" />
+    <Compile Include="Presenters\HomePresenterTests.cs" />
     <Compile Include="Presenters\LoginPresenterTests.cs" />
     <Compile Include="Presenters\ProfileInfoPresenterTests.cs" />
     <Compile Include="Presenters\RegisterPresenterTests.cs" />

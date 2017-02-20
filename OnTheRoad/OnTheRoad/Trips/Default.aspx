@@ -52,8 +52,8 @@
                         <asp:Label CssClass="end-date" Text='<%#:  "Край: " + this.Model.Trip?.EndDate.ToString("dd.MM.yyyy") %>' runat="server" />
                     </div>
                 </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown"
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    <asp:DropDownList ID="DropDownListAttendance" CssClass="attend-dropdown form-control"
                         runat="server" OnSelectedIndexChanged="DropDownListAttendance_SelectedIndexChanged"
                         AutoPostBack="true">
                         <asp:ListItem Text="Не мога да ида" Value="None" />

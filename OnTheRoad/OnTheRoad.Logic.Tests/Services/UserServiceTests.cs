@@ -313,5 +313,14 @@ namespace OnTheRoad.Logic.Tests.Services
 
             unitOfWorkMock.Verify(x => x.Commit(), Times.Once);
         }
+
+        [Test]
+        public void UserRepository_WhenGetAllUsersCountIsCalle_ShouldCallGetAllUsersCountExactlyOnce()
+        {
+            var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
+            userService.GetAllUsersCount();
+
+            userRepositoryMock.Verify(x => x.GetAllUsersCount(), Times.Once);
+        }
     }
 }

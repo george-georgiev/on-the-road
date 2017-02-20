@@ -12,5 +12,7 @@ namespace OnTheRoad.Domain.Repositories
         IUser GetById(object id);
 
         void Update(IUser entity);
+
+        int GetAllUsersCount();
     }
 }

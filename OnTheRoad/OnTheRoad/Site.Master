@@ -53,7 +53,6 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-main">
-                        <li><a runat="server" href="~/">Начало</a></li>
                         <li><a runat="server" href="~/categories">Пътешествия</a></li>
                         <li><a runat="server" visible="<%# this.Context.User.Identity.Name != string.Empty %>" href="~/trips/addtrip">Добави Пътешествие</a></li>
                         <li>
@@ -84,6 +83,10 @@
                 </div>
             </div>
         </div>
+
+        <asp:ContentPlaceHolder ID="MainImage" runat="server">
+
+        </asp:ContentPlaceHolder>
         <div class="container body-content">
             <div class="sitemap-wrapper">
                 <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server"

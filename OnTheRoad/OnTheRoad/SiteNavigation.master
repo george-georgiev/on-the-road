@@ -8,10 +8,12 @@
 
 <%@ Import Namespace="OnTheRoad.Domain.Models" %>
 
-<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ContentPlaceHolderID="MainImage" runat="server">
     <asp:ContentPlaceHolder ID="ContentPlaceHolderHeading" runat="server">
     </asp:ContentPlaceHolder>
+</asp:Content>
 
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">

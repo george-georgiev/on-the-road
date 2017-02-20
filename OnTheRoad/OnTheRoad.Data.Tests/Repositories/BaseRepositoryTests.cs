@@ -138,8 +138,9 @@ namespace OnTheRoad.Data.Tests.Repositories
         public void Context_WhenIsCalledUpdate_ShouldCallSetEntryStateExactlyOnce()
         {
             var ratingMock = new Mock<IRating>();
+            var rating = new Rating();
             this.contextMock.Setup(x => x.SetEntryState(It.IsAny<Rating>(), It.IsAny<EntityState>())).Verifiable();
-            var observableCollection = new ObservableCollection<Rating>();
+            var observableCollection = new ObservableCollection<Rating>() { rating };
             this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
 
             var ratingRepository = new RatingRepository(this.contextMock.Object);

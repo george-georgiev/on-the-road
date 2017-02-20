@@ -10,11 +10,11 @@
     line-height: 50px;
 }
 
-.left-side-nav > li > a {
-    padding: 0 15px;
-    font-family:Roboto;
-    color: #555555;
-}
+    .left-side-nav > li > a {
+        padding: 0 15px;
+        font-family: Roboto;
+        color: #555555;
+    }
 
 .navbar-default .navbar-nav a {
     color: white;
@@ -168,6 +168,10 @@
     border-top-left-radius: 5px;
 }
 
+    .comment-header a {
+        color: white;
+    }
+
 .comment-body {
     background-color: ghostwhite;
     min-height: 80px;
@@ -192,5 +196,3 @@
 #err-label {
     color: red;
 }
-
-

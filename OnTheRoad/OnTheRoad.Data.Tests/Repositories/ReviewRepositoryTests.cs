@@ -4,22 +4,24 @@ using System.Data.Entity;
 using System.Linq;
 using NUnit.Framework;
 using Moq;
+using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Data.Repositories;
 using OnTheRoad.Domain.Models;
+using System.Collections.ObjectModel;
 
 namespace OnTheRoad.Data.Tests.Repositories
 {
     [TestFixture]
     public class ReviewRepositoryTests
     {
-        private Mock<OnTheRoadIdentityDbContext> contextMock;
+        private Mock<IOnTheRoadDbContext> contextMock;
         private Mock<DbSet<Review>> dbSetMock;
 
         [SetUp]
         public void SetUpMocks()
         {
-            this.contextMock = new Mock<OnTheRoadIdentityDbContext>();
+            this.contextMock = new Mock<IOnTheRoadDbContext>();
             this.dbSetMock = new Mock<DbSet<Review>>();
             contextMock.Setup(x => x.Set<Review>()).Returns(dbSetMock.Object);
         }
@@ -106,6 +108,20 @@ namespace OnTheRoad.Data.Tests.Repositories
             Assert.That(actual.ReviewContent.Equals(reviewContent));
             Assert.That(actual.PostingDate.Equals(postDate));
             Assert.That(actual.Rating.Value.Equals(ratingValue));
+        }
+
+        [Test]
+        public void Context_WhenIsCalledAdd_ShouldCallSetEntryStateExactlyOnce()
+        {
+            var reviewMock = new Mock<IReview>();
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<Review>(), It.IsAny<EntityState>())).Verifiable();
+            var observableCollection = new ObservableCollection<Review>();
+            this.dbSetMock.Setup(x => x.Local).Returns(observableCollection);
+
+            var reviewRepository = new ReviewRepository(this.contextMock.Object);
+            reviewRepository.Add(reviewMock.Object);
+
+            this.contextMock.Verify(x => x.SetEntryState(It.IsAny<Review>(), It.IsAny<EntityState>()), Times.Once);
         }
 
         private void SetDbSetReviewAsQueryable(IQueryable<Review> fakeData)
