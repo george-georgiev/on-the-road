@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
-  <siteMapNode url="~/Default" title="Начало"  description="">
+  <siteMapNode url="~/Default" title="Начало"  description="Home">
     <siteMapNode url="~/Admin/Trips" title="Всички пътешествия" roles="Admin" />
     <siteMapNode url="~/Admin/UserReviews" title="Ревюта" roles="Admin"/>
     <siteMapNode url="~/Admin/Users" title="Всички потребители" roles="Admin" />

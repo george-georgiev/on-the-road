@@ -74,7 +74,7 @@ Remaining issues(18.02):
     1.Admin stuff - DONE
     2.Page access - DONE
     3.Error pages - DONE
-    4.Sitemaps
+    4.Sitemaps - DONE
 
     1.Trip Subscribtions
     2.Trip search

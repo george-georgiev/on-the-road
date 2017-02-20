@@ -54,7 +54,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-main">
                         <li><a runat="server" href="~/">Начало</a></li>
-                        <li><a runat="server" href="~/categories">Видове Пътешествия</a></li>
+                        <li><a runat="server" href="~/categories">Пътешествия</a></li>
                         <li>
                             <asp:HyperLink ID="HyperLinkAdminPage" NavigateUrl="~/admin/users" runat="server" Text="Админ" /></li>
                     </ul>

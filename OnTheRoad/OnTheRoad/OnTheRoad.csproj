@@ -209,6 +209,7 @@
     <Content Include="Css\Admin.css" />
     <Content Include="Css\Categories.css" />
     <Content Include="Css\DataPager.css" />
+    <Content Include="Css\LoginRegister.css" />
     <Content Include="Css\Trips.css" />
     <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
