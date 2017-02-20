@@ -13,6 +13,10 @@ namespace OnTheRoad.Domain.Repositories
 
         int GetTripsCountBySearchPattern(string pattern);
 
+        IEnumerable<ITrip> GetTrips(int skip, int take);
+
+        int GetTripsCount();
+
         IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending);
     }
 }

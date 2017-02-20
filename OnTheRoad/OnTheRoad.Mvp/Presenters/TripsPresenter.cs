@@ -3,10 +3,7 @@ using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
 using OnTheRoad.Mvp.Views;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
@@ -35,6 +32,22 @@ namespace OnTheRoad.Mvp.Presenters
             this.View.Subscribe += View_Subscribe;
             this.View.GetTripsBySearchPattern += View_GetTripsBySearchPattern;
             this.View.GetTripsSearchTotalCount += View_GetTripsSearchTotalCount;
+            this.View.GetTrips += View_GetTrips;
+            this.View.GetTripsTotalCount += View_GetTripsTotalCount;
+        }
+
+        private void View_GetTripsTotalCount(object sender, GetTripsEventArgs e)
+        {
+            var count = this.tripGetService.GetTripsCount();
+            this.View.Model.TripsTotalCount = count;
+        }
+
+        private void View_GetTrips(object sender, GetTripsEventArgs e)
+        {
+            var skip = e.Skip;
+            var take = e.Take;
+            var trips = this.tripGetService.GetTrips(skip, take);
+            this.View.Model.Trips = trips;
         }
 
         private void View_GetTripsBySearchPattern(object sender, SearchTripsEventArgs e)

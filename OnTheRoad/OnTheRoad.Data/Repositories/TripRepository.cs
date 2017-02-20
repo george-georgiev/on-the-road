@@ -82,6 +82,25 @@ namespace OnTheRoad.Data.Repositories
             return count;
         }
 
+        public IEnumerable<ITrip> GetTrips(int skip, int take)
+        {
+            var trips = this.GetTrips()
+                .OrderByDescending(t => t.CreateDate)
+                .Skip(skip)
+                .Take(take);
+
+            var mapped = this.MapTrips(trips);
+
+            return mapped;
+        }
+
+        public int GetTripsCount()
+        {
+            var count = this.GetTrips().Count();
+
+            return count;
+        }
+
         public override void Add(ITrip model)
         {
             base.Add(model);
@@ -212,6 +231,20 @@ namespace OnTheRoad.Data.Repositories
                 var tag = this.Context.Tags.Find(item.Id);
                 trip.Tags.Add(tag);
             }
+        }
+
+        private IQueryable<Trip> GetTrips()
+        {
+            var trips = this.Context.Trips
+                            .Include(x => x.Categories)
+                            .Include(x => x.Organiser)
+                            .Include(x => x.Subscriptions)
+                            .Include(
+                                x => x.Subscriptions
+                                    .Select(s => s.User)
+                            );
+
+            return trips;
         }
     }
 }

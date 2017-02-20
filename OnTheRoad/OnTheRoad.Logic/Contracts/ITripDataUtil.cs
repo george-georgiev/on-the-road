@@ -18,5 +18,9 @@ namespace OnTheRoad.Logic.Contracts
         int GetTripsCountBySearchPattern(string pattern);
 
         IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending);
+
+        IEnumerable<ITrip> GetTrips(int skip, int take);
+
+        int GetTripsCount();
     }
 }

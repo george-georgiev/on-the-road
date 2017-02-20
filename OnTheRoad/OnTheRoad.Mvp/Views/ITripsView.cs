@@ -9,6 +9,8 @@ namespace OnTheRoad.Mvp.Views
     {
         event EventHandler<GetTripsEventArgs> GetTrips;
 
+        event EventHandler<GetTripsEventArgs> GetTripsTotalCount;
+
         event EventHandler<GetTripEventArgs> GetTrip;
 
         event EventHandler<SearchTripsEventArgs> GetTripsBySearchPattern;

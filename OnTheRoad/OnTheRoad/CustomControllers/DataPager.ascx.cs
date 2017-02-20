@@ -20,7 +20,7 @@ namespace OnTheRoad.CustomControllers
 
                 return (int)this.ViewState[PageKey];
             }
-            set
+            private set
             {
                 this.ViewState[PageKey] = value;
             }

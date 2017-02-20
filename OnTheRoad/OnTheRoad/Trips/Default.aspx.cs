@@ -16,12 +16,15 @@ namespace OnTheRoad.Trips
         private const string TripIdParam = "tripId";
         private const string SearchParam = "pattern";
         private const string TripsUrl = "/trips/";
+        private const string TripsAllResultTitle = "Всички пътешествия";
+        private const string TripsSearchResultTitle = "Резултати от търсенето за: ";
 
         public event EventHandler<GetTripEventArgs> GetTrip;
         public event EventHandler<GetTripsEventArgs> GetTrips;
         public event EventHandler<SearchTripsEventArgs> GetTripsBySearchPattern;
         public event EventHandler<SubscribeEventArgs> Subscribe;
         public event EventHandler<SearchTripsEventArgs> GetTripsSearchTotalCount;
+        public event EventHandler<GetTripsEventArgs> GetTripsTotalCount;
 
         public string TripId
         {
@@ -53,7 +56,11 @@ namespace OnTheRoad.Trips
             }
             else if (this.SearchPattern != null)
             {
-                PrepairTripsSearchView();
+                this.PrepairTripsSearchView();
+            }
+            else
+            {
+                this.PrepareTripsAllView();
             }
         }
 
@@ -65,22 +72,46 @@ namespace OnTheRoad.Trips
             this.Subscribe?.Invoke(this, new SubscribeEventArgs() { CurrentUserName = currentUserName, TripId = int.Parse(this.TripId), SubscriptionStatus = subscriptionStatus });
         }
 
-        private void PrepairTripsSearchView()
+        private void PrepareTripsAllView()
         {
             if (this.DataPager.Total == null)
             {
-                this.GetTripsSearchTotalCount(this, new SearchTripsEventArgs() { SearchPattern = this.SearchPattern });
+                this.GetTripsTotalCount?.Invoke(this, new GetTripsEventArgs());
                 var total = this.Model.TripsTotalCount;
                 this.DataPager.Total = total;
             }
 
             var skip = (this.DataPager.PageNumber - 1) * PageSize;
+            this.GetTrips?.Invoke(this, new GetTripsEventArgs() { Skip = skip, Take = PageSize });
+
+            var title = TripsAllResultTitle;
+            this.PrepareTripsResultComponents(title);
+        }
+
+        private void PrepairTripsSearchView()
+        {
+            if (this.DataPager.Total == null)
+            {
+                this.GetTripsSearchTotalCount?.Invoke(this, new SearchTripsEventArgs() { SearchPattern = this.SearchPattern });
+                var total = this.Model.TripsTotalCount;
+                this.DataPager.Total = total;
+            }
+            
+            var skip = (this.DataPager.PageNumber - 1) * PageSize;
             this.GetTripsBySearchPattern?.Invoke(this, new SearchTripsEventArgs() { SearchPattern = this.SearchPattern, Skip = skip, Take = PageSize });
 
+
+            var title = TripsSearchResultTitle + this.SearchPattern;
+            this.PrepareTripsResultComponents(title);
+        }
+
+        private void PrepareTripsResultComponents(string title)
+        {
             this.ListViewTrips.DataSource = this.Model.Trips;
             this.ListViewTrips.DataBind();
 
-            this.TripsResultsTitle = $"Резултати от търсенето за: {this.SearchPattern}";
+            this.TripsResultsTitle = title;
+
             this.PlaceHolderTrip.Visible = false;
             this.PlaceHolderTripsResult.Visible = true;
         }
@@ -89,7 +120,7 @@ namespace OnTheRoad.Trips
         {
             var currentUserName = this.Context.User.Identity.Name;
             var tripId = this.ParseTripIdOrRedirect();
-            this.GetTrip(this, new GetTripEventArgs() { TripId = tripId, CurrentUserName = currentUserName });
+            this.GetTrip?.Invoke(this, new GetTripEventArgs() { TripId = tripId, CurrentUserName = currentUserName });
 
             this.HandleAttendanceDropDown(currentUserName);
 

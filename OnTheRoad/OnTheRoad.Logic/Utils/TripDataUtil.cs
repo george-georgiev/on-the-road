@@ -41,6 +41,13 @@ namespace OnTheRoad.Logic.Utils
             return trip;
         }
 
+        public IEnumerable<ITrip> GetTrips(int skip, int take)
+        {
+            var trips = this.tripRepository.GetTrips(skip, take);
+
+            return trips;
+        }
+
         public IEnumerable<ITrip> GetTripsByCategoryName(string categoryName, int skip, int take)
         {
             var trips = this.tripRepository.GetTripsByCategoryName(categoryName, skip, take);
@@ -60,6 +67,13 @@ namespace OnTheRoad.Logic.Utils
             var trips = this.tripRepository.GetTripsBySearchPattern(pattern, skip, take);
 
             return trips;
+        }
+
+        public int GetTripsCount()
+        {
+            var count = this.tripRepository.GetTripsCount();
+
+            return count;
         }
 
         public int GetTripsCountByCategoryName(string categoryName)
