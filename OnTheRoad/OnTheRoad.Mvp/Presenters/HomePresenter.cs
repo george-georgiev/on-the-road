@@ -17,12 +17,12 @@ namespace OnTheRoad.Mvp.Presenters
         {
             if (tripsService == null)
             {
-                throw new ArgumentNullException("tripsService Factory cannot be null");
+                throw new ArgumentNullException("tripsService cannot be null!");
             }
 
             if (usersService == null)
             {
-                throw new ArgumentNullException("usersService Factory cannot be null");
+                throw new ArgumentNullException("usersService cannot be null!");
             }
 
             this.tripsService = tripsService;
