@@ -7,12 +7,14 @@ namespace OnTheRoad.Mvp.Views
 {
     public interface ITripsView : IView<TripsModel>
     {
-        event EventHandler<TripsEventArgs> GetTrips;
+        event EventHandler<GetTripsEventArgs> GetTrips;
 
-        event EventHandler<TripsEventArgs> GetTrip;
+        event EventHandler<GetTripEventArgs> GetTrip;
 
-        event EventHandler<TripsEventArgs> GetTripsBySearchPattern;
+        event EventHandler<SearchTripsEventArgs> GetTripsBySearchPattern;
 
-        event EventHandler<TripsEventArgs> Subscribe;
+        event EventHandler<SubscribeEventArgs> Subscribe;
+
+        event EventHandler<SearchTripsEventArgs> GetTripsSearchTotalCount;
     }
 }

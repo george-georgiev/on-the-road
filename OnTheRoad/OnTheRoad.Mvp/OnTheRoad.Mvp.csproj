@@ -60,6 +60,7 @@
     <Compile Include="EventArgsClasses\CategoriesEventArgs.cs" />
     <Compile Include="EventArgsClasses\CategoryOverviewEventArgs.cs" />
     <Compile Include="EventArgsClasses\FavouriteUserEventArgs.cs" />
+    <Compile Include="EventArgsClasses\GetTripEventArgs.cs" />
     <Compile Include="EventArgsClasses\ImageUploadEventArgs.cs" />
     <Compile Include="EventArgsClasses\LoginEventArgs.cs" />
     <Compile Include="EventArgsClasses\ProfileImageEventArgs.cs" />
@@ -67,7 +68,9 @@
     <Compile Include="EventArgsClasses\GetUserReviewsEventArgs.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgs.cs" />
     <Compile Include="EventArgsClasses\AddReviewEventArgs.cs" />
-    <Compile Include="EventArgsClasses\TripsEventArgs.cs" />
+    <Compile Include="EventArgsClasses\SearchTripsEventArgs.cs" />
+    <Compile Include="EventArgsClasses\SubscribeEventArgs.cs" />
+    <Compile Include="EventArgsClasses\GetTripsEventArgs.cs" />
     <Compile Include="Factories\CustomWebFormsMvpPresenterFactory.cs" />
     <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
     <Compile Include="Factories\ICustomPresenterFactory.cs" />

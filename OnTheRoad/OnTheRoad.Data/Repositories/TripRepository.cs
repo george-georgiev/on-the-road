@@ -23,7 +23,7 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var trips = this.GetTripsBy(categoryName)
+            var trips = this.GetByCategoryName(categoryName)
                 .OrderByDescending(t => t.CreateDate)
                 .Skip(skip)
                 .Take(take);
@@ -40,7 +40,7 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var count = this.GetTripsBy(categoryName)
+            var count = this.GetByCategoryName(categoryName)
                 .Count();
 
             return count;
@@ -48,7 +48,7 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending)
         {
-            var trips = this.GetTripsBy(categoryName);
+            var trips = this.GetByCategoryName(categoryName);
             if (isAscending)
             {
                 trips = trips.OrderBy(t => t.CreateDate);
@@ -61,6 +61,25 @@ namespace OnTheRoad.Data.Repositories
             var mapped = this.MapTrips(trips.Take(count));
 
             return mapped;
+        }
+
+        public IEnumerable<ITrip> GetTripsBySearchPattern(string pattern, int skip, int take)
+        {
+            var trips = this.GetBySearchPattern(pattern)
+                .OrderByDescending(x => x.CreateDate)
+                .Skip(skip)
+                .Take(take);
+
+            var mapped = this.MapTrips(trips);
+
+            return mapped;
+        }
+
+        public int GetTripsCountBySearchPattern(string pattern)
+        {
+            var count = this.GetBySearchPattern(pattern).Count();
+
+            return count;
         }
 
         public override void Add(ITrip model)
@@ -116,7 +135,7 @@ namespace OnTheRoad.Data.Repositories
             });
         }
 
-        private IQueryable<Trip> GetTripsBy(string categoryName)
+        private IQueryable<Trip> GetByCategoryName(string categoryName)
         {
             var trips = this.Context.Trips
                             .Where(
@@ -127,11 +146,30 @@ namespace OnTheRoad.Data.Repositories
                             .Include(x => x.Categories)
                             .Include(x => x.Organiser)
                             .Include(x => x.Subscriptions)
-                            .Include
-                            (
+                            .Include(
                                 x => x.Subscriptions
                                     .Select(s => s.User)
                             );
+
+            return trips;
+        }
+
+        private IQueryable<Trip> GetBySearchPattern(string pattern)
+        {
+            var patternToLower = pattern.ToLower();
+            var trips = this.Context.Trips
+                            .Where(
+                                x => x.Tags
+                                    .Where(t => t.Name.ToLower().Contains(patternToLower))
+                                    .Any()
+                                )
+                                .Include(x => x.Categories)
+                                .Include(x => x.Organiser)
+                                .Include(x => x.Subscriptions)
+                                .Include(
+                                    x => x.Subscriptions
+                                        .Select(s => s.User)
+                                );
 
             return trips;
         }

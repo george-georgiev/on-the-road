@@ -1,0 +1,32 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SiteNavigation.master.cs" Inherits="OnTheRoad.SiteNavigation" %>
+
+<asp:Content ContentPlaceHolderID="ContentPlaceHolderCSSMaster" runat="server">
+    <link href="/Css/SiteNavigation.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderCSSMaster" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nav-area">
+            <div class="search-container box-shadow">
+                <div class="search-head text-center box-shadow">
+                    <asp:Label Text="Търсене" runat="server" />
+                </div>
+                <div class="search-body text-center">
+                    <asp:Panel runat="server" DefaultButton="LinkButtonSearch">
+                        <asp:TextBox ID="TextBoxSearch" CssClass="search-box" runat="server" />
+                        <asp:LinkButton ID="LinkButtonSearch" OnClick="LinkButtonSearch_Click"
+                            CssClass="search-button text-center" runat="server">
+                            <i class="fa fa-search"></i>
+                        </asp:LinkButton>
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>

@@ -65,5 +65,19 @@ namespace OnTheRoad.Logic.Services
 
             return trip;
         }
+
+        public IEnumerable<ITrip> GetTripsBySearchPattern(string pattern, int skip, int take)
+        {
+            var trips = this.tripDataUtil.GetTripsBySearchPattern(pattern, skip, take);
+
+            return trips;
+        }
+
+        public int GetTripsCountBySearchPattern(string pattern)
+        {
+            var count = this.tripDataUtil.GetTripsCountBySearchPattern(pattern);
+
+            return count;
+        }
     }
 }

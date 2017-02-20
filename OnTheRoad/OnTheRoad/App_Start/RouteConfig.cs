@@ -23,20 +23,26 @@ namespace OnTheRoad
             );
 
             routes.MapPageRoute(
+                "TripsRoute",
+                "Trips/",
+                "~/Trips/Default.aspx"
+                );
+
+            routes.MapPageRoute(
                 "TripsAddRoute",
                 "Trips/AddTrip/",
                 "~/Trips/AddTrip.aspx"
                 );
 
             routes.MapPageRoute(
-                "TripsRoute",
-                "Trips/{tripId}/",
+                "TripsSearchRoute",
+                "Trips/Search/{pattern}/",
                 "~/Trips/Default.aspx"
                 );
 
             routes.MapPageRoute(
-                "TripsSearchRoute",
-                "Trips/Search/{pattern}/",
+                "TripDetailsRoute",
+                "Trips/{tripId}/",
                 "~/Trips/Default.aspx"
                 );
         }

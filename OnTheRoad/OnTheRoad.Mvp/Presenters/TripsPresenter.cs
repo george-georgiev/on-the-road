@@ -33,9 +33,27 @@ namespace OnTheRoad.Mvp.Presenters
 
             this.View.GetTrip += View_GetTripById;
             this.View.Subscribe += View_Subscribe;
+            this.View.GetTripsBySearchPattern += View_GetTripsBySearchPattern;
+            this.View.GetTripsSearchTotalCount += View_GetTripsSearchTotalCount;
         }
 
-        private void View_Subscribe(object sender, TripsEventArgs e)
+        private void View_GetTripsBySearchPattern(object sender, SearchTripsEventArgs e)
+        {
+            var pattern = e.SearchPattern;
+            var skip = e.Skip;
+            var take = e.Take;
+            var trips = this.tripGetService.GetTripsBySearchPattern(pattern, skip, take);
+            this.View.Model.Trips = trips;
+        }
+
+        private void View_GetTripsSearchTotalCount(object sender, SearchTripsEventArgs e)
+        {
+            var pattern = e.SearchPattern;
+            var count = this.tripGetService.GetTripsCountBySearchPattern(pattern);
+            this.View.Model.TripsTotalCount = count;
+        }
+
+        private void View_Subscribe(object sender, SubscribeEventArgs e)
         {
             var currentUserName = e.CurrentUserName;
             var tripId = e.TripId;
@@ -43,7 +61,7 @@ namespace OnTheRoad.Mvp.Presenters
             this.subscriptionAddService.AddOrUpdateSubscription(currentUserName, tripId, subscriptionStatus);
         }
 
-        private void View_GetTripById(object sender, TripsEventArgs e)
+        private void View_GetTripById(object sender, GetTripEventArgs e)
         {
             var tripId = e.TripId;
             var trip = this.tripGetService.GetTripById(tripId);
@@ -54,7 +72,6 @@ namespace OnTheRoad.Mvp.Presenters
                 .Where(s => s.User.Username == currentUsername)
                 .SingleOrDefault();
             var subscriptionStatus = subscription != null ? subscription.Status : SubscriptionStatus.None;
-
             this.View.Model.SubscriptionStatus = subscriptionStatus;
 
             var isOrganiser = trip.Organiser.Username == currentUsername;

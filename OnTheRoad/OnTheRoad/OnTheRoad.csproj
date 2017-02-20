@@ -209,6 +209,7 @@
     <Content Include="Css\Admin.css" />
     <Content Include="Css\Categories.css" />
     <Content Include="Css\DataPager.css" />
+    <Content Include="Css\SiteNavigation.css" />
     <Content Include="Css\Trips.css" />
     <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
@@ -216,6 +217,7 @@
     <Content Include="Css\UserProfile.css" />
     <Content Include="CustomControllers\CitiesDropDown.ascx" />
     <Content Include="CustomControllers\DataPager.ascx" />
+    <Content Include="CustomControllers\TripItem.ascx" />
     <Content Include="CustomControllers\ImageUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
     <Content Include="ErrorPages\404.html" />
@@ -275,6 +277,7 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="SiteNavigation.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -431,6 +434,13 @@
     </Compile>
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
+    </Compile>
+    <Compile Include="SiteNavigation.master.cs">
+      <DependentUpon>SiteNavigation.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteNavigation.master.designer.cs">
+      <DependentUpon>SiteNavigation.master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Account\Login.aspx.cs">
