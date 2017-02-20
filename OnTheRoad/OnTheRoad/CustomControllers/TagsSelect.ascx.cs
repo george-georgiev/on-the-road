@@ -9,6 +9,8 @@ namespace OnTheRoad.CustomControllers
     {
         private const string SelectedTagsKey = "SelectedTags";
 
+        public string TagsLabel { get; set; }
+
         public TagsSelect()
         {
             if (this.SelectedTagNames == null)

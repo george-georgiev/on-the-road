@@ -8,10 +8,11 @@ namespace OnTheRoad.Mvp.Presenters
 {
     public class AddTripPresenter : Presenter<IAddTripView>
     {
+        private  readonly IImageService imageService;
         private readonly ITripAddService tripAddService;
         private readonly ITripBuilder tripBuilder;
 
-        public AddTripPresenter(IAddTripView view, ITripAddService tripAddService, ITripBuilder tripBuilder) : base(view)
+        public AddTripPresenter(IAddTripView view, ITripAddService tripAddService, ITripBuilder tripBuilder, IImageService imageService) : base(view)
         {
             if (tripAddService == null)
             {
@@ -23,10 +24,23 @@ namespace OnTheRoad.Mvp.Presenters
                 throw new ArgumentNullException("tripBuilder can not be null!");
             }
 
+            if (imageService == null)
+            {
+                throw new ArgumentNullException("imageService can not be null!");
+            }
+
             this.tripAddService = tripAddService;
             this.tripBuilder = tripBuilder;
+            this.imageService = imageService;
 
             this.View.CreateTrip += View_CreateTrip;
+            this.View.GetTripsDefaultImage += View_GetTripsDefaultImage;
+        }
+
+        private void View_GetTripsDefaultImage(object sender, EventArgs e)
+        {
+            var image = this.imageService.LoadResizedTripsImage();
+            this.View.Model.ImageContent = image;
         }
 
         private void View_CreateTrip(object sender, AddTripEventArgs e)

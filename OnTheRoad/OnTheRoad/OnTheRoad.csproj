@@ -41,6 +41,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=16.1.1.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
@@ -204,6 +205,7 @@
     <Content Include="Admin\Users.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\OnTheRoad.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Css\AddTrip.css" />
     <Content Include="Css\Admin.css" />
@@ -329,6 +331,7 @@
       <DependentUpon>Lockout.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BindingModules\AuthenticationBindingModule.cs" />
+    <Compile Include="App_Start\BindingModules\WebBindingModule.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -344,6 +347,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
+    <Compile Include="Common\CustomImageResizer.cs" />
     <Compile Include="CustomControllers\CategoriesMultiSelect.ascx.cs">
       <DependentUpon>CategoriesMultiSelect.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

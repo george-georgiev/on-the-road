@@ -14,25 +14,31 @@ namespace OnTheRoad.Trips
     public partial class AddTrip : MvpPage<TripModel>, IAddTripView
     {
         private const char DateSeparator = '-';
-        private const string ImageSessionKey = "Image";
+        private const string ImageKey = "Image";
+        private const string TripsUrl = "/trips/";
 
         public event EventHandler<AddTripEventArgs> CreateTrip;
+        public event EventHandler GetTripsDefaultImage;
 
         public byte[] ImageContent
         {
             get
             {
-                return (byte[])this.Session[ImageSessionKey];
+                return (byte[])this.Session[ImageKey];
             }
             set
             {
-                this.Session[ImageSessionKey] = value;
+                this.Session[ImageKey] = value;
             }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (this.ImageContent == null)
+            {
+                this.GetTripsDefaultImage?.Invoke(this, new EventArgs());
+                this.ImageContent = this.Model.ImageContent;
+            }
         }
 
         protected void CreateTripButton_Click(object sender, EventArgs e)
@@ -61,11 +67,12 @@ namespace OnTheRoad.Trips
             };
 
             this.CreateTrip?.Invoke(this, args);
+
+            this.Response.Redirect(TripsUrl);
         }
 
         protected void ImageUploader_ImageUpload(object sender, ImageUploadEventArgs e)
         {
-            this.LabelFileName.Text = e.FileName;
             this.ImageContent = e.ImageContent;
         }
 

@@ -55,9 +55,11 @@
                     <ul class="nav navbar-nav navbar-main">
                         <li><a runat="server" href="~/">Начало</a></li>
                         <li><a runat="server" href="~/categories">Пътешествия</a></li>
+                        <li><a runat="server" visible="<%# this.Context.User.Identity.Name != string.Empty %>" href="~/trips/addtrip">Добави Пътешествие</a></li>
                         <li>
                             <asp:HyperLink ID="HyperLinkAdminPage" NavigateUrl="~/admin/users" runat="server" Text="Админ" /></li>
                     </ul>
+                    
                     <asp:LoginView runat="server" ViewStateMode="Disabled" ID="LoginViews">
                         <AnonymousTemplate>
                             <ul class="nav navbar-nav navbar-right">
@@ -85,7 +87,7 @@
         <div class="container body-content">
             <div class="sitemap-wrapper">
                 <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server"
-                     PathSeparator=" » " 
+                    PathSeparator=" » "
                     CurrentNodeStyle-Font-Bold="true" />
             </div>
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
