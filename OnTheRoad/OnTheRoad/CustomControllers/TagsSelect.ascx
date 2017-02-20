@@ -23,7 +23,7 @@
                 ServiceMethod="GetTagsByPrefix"
                 TargetControlID="TagsTextBox"
                 MinimumPrefixLength="1"
-                CompletionInterval="100" EnableCaching="false" CompletionSetCount="10"
+                CompletionInterval="500" EnableCaching="false" CompletionSetCount="10"
                 runat="server">
             </ajax:AutoCompleteExtender>
         </ContentTemplate>

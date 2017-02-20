@@ -75,6 +75,7 @@
     <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
     <Compile Include="Factories\ICustomPresenterFactory.cs" />
     <Compile Include="Models\CategoriesMultiSelectModel.cs" />
+    <Compile Include="Models\SiteNavigationModel.cs" />
     <Compile Include="Models\TripsModel.cs" />
     <Compile Include="Models\CitiesModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Presenters\RegisterPresenter.cs" />
     <Compile Include="Presenters\CategoriesPresenter.cs" />
     <Compile Include="Presenters\ReviewsPresenter.cs" />
+    <Compile Include="Presenters\SiteNavigationPresenter.cs" />
     <Compile Include="Presenters\TripsPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\IAddTripView.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Views\IRegisterView.cs" />
     <Compile Include="Views\ICategoriesView.cs" />
     <Compile Include="Views\IReviewsView.cs" />
+    <Compile Include="Views\ISiteNavigationView.cs" />
     <Compile Include="Views\ITripsView.cs" />
   </ItemGroup>
   <ItemGroup>

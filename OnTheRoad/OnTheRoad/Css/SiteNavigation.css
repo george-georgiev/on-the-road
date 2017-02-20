@@ -4,7 +4,7 @@
     /*padding-left: 5em;*/
 }
 
-.search-head {
+.nav-head {
     background-color: white;
     font-size: 1.3em;
     height: 3em;
@@ -49,3 +49,39 @@ i.fa {
 .display-none {
     display: none;
 }
+
+.nav-categories-container {
+    margin-top: 2em;
+}
+
+.nav-categories-body {
+    background-color: #f9f9f9;
+}
+
+    .nav-categories-body a {
+        display: block;
+        font-size: 1.2em;
+        height: 3em;
+        padding: 1em;
+        -webkit-transition: all .2s ease-in-out;
+        -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+        -o-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out;
+    }
+
+.nav-category-item {
+    border-right: 2px solid red;
+}
+
+    .nav-category-item:hover {
+        background-color: red;
+    }
+
+.nav-category-item-alt {
+    border-right: 2px solid green;
+}
+
+    .nav-category-item-alt:hover {
+        background-color: green;
+    }

@@ -48,7 +48,7 @@ namespace OnTheRoad.Trips
 
         protected string TripsResultsTitle { get; set; }
 
-        protected void Page_LoadComplete(object sender, EventArgs e)
+        protected void Page_PreRender(object sender, EventArgs e)
         {
             if (this.TripId != null)
             {
@@ -99,7 +99,6 @@ namespace OnTheRoad.Trips
             
             var skip = (this.DataPager.PageNumber - 1) * PageSize;
             this.GetTripsBySearchPattern?.Invoke(this, new SearchTripsEventArgs() { SearchPattern = this.SearchPattern, Skip = skip, Take = PageSize });
-
 
             var title = TripsSearchResultTitle + this.SearchPattern;
             this.PrepareTripsResultComponents(title);

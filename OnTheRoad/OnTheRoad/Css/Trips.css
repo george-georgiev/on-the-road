@@ -1,5 +1,4 @@
 ﻿.trip-container {
-    margin-top: 3em;
     background-color: white;
     padding: 3em;
 }
@@ -7,10 +6,6 @@
 .trip-head {
     padding-top: 0.5em;
 }
-
-    .trip-head h1 {
-        /*margin: 1em;*/
-    }
 
 .image-trip {
     width: 70%;

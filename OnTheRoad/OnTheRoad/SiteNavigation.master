@@ -6,7 +6,12 @@
     </asp:ContentPlaceHolder>
 </asp:Content>
 
+<%@ Import Namespace="OnTheRoad.Domain.Models" %>
+
 <asp:Content ContentPlaceHolderID="MainContent" runat="server">
+    <asp:ContentPlaceHolder ID="ContentPlaceHolderHeading" runat="server">
+    </asp:ContentPlaceHolder>
+
     <div class="row">
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
@@ -14,7 +19,7 @@
         </div>
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 nav-area">
             <div class="search-container box-shadow">
-                <div class="search-head text-center box-shadow">
+                <div class="nav-head text-center box-shadow">
                     <asp:Label Text="Търсене" runat="server" />
                 </div>
                 <div class="search-body text-center">
@@ -25,6 +30,25 @@
                             <i class="fa fa-search"></i>
                         </asp:LinkButton>
                     </asp:Panel>
+                </div>
+            </div>
+            <div class="nav-categories-container box-shadow">
+                <div class="nav-head text-center box-shadow">
+                    <asp:Label Text="Видове пътешествия" runat="server" />
+                </div>
+                <div class="nav-categories-body box-shadow">
+                    <asp:ListView ID="ListViewCategories" runat="server" ItemType="ICategory">
+                        <ItemTemplate>
+                            <div class="">
+                                <asp:HyperLink CssClass="nav-category-item" Text="<%#: Item.Name %>" NavigateUrl='<%#: "/categories/" + Item.Name %>' runat="server" />
+                            </div>
+                        </ItemTemplate>
+                        <AlternatingItemTemplate>
+                            <div class="">
+                                <asp:HyperLink CssClass="nav-category-item-alt" Text="<%#: Item.Name %>" NavigateUrl='<%#: "/categories/" + Item.Name %>' runat="server" />
+                            </div>
+                        </AlternatingItemTemplate>
+                    </asp:ListView>
                 </div>
             </div>
         </div>
