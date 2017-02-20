@@ -63,25 +63,33 @@ i.fa {
         font-size: 1.2em;
         height: 3em;
         padding: 1em;
-        -webkit-transition: all .2s ease-in-out;
-        -moz-transition: all .2s ease-in-out;
-        -ms-transition: all .2s ease-in-out;
-        -o-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
     }
 
 .nav-category-item {
-    border-right: 2px solid red;
+    border-left: 2px solid #cf4d35;
+    background: linear-gradient(to left, #f9f9f9 50%, #cf4d35 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
 }
 
     .nav-category-item:hover {
-        background-color: red;
+        background-position: left bottom;
+        color: white;
     }
 
 .nav-category-item-alt {
-    border-right: 2px solid green;
+    border-left: 2px solid #4aa504;
+    background: linear-gradient(to left, #f9f9f9 50%, #4aa504 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
 }
 
     .nav-category-item-alt:hover {
-        background-color: green;
+        background-position: left bottom;
+        color: white;
     }
