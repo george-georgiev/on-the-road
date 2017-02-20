@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="uc" TagName="ImageUploader" Src="~/CustomControllers/ImageUploader.ascx" %>
 
 <asp:Content ContentPlaceHolderID="ProfileContent" ID="ProfileInfo" runat="server">
-    <div class="row text-center">
+    <div class="row  back-container box-shadow">
         <div class="col-md-12">
             <asp:Label runat="server" ID="LabelErrors" />
             <asp:UpdatePanel runat="server" ID="UpdatePanelFollowingButtons" EnableViewState="false" UpdateMode="Conditional">
@@ -12,18 +12,18 @@
                     <asp:Button Text="ПОСЛЕДВАЙ" runat="server" Visible="false"
                         ID="ButtonFollow"
                         OnClick="ButtonFollow_Click"
-                        CssClass="btn btn-success btn-sm btn-follow" />
+                        CssClass="btn btn-success btn-follow" />
                     <asp:Button Text="ПРЕМАХНИ ОТ СЛЕДВАНИ" runat="server" Visible="false"
                         ID="ButtonUnfollow"
                         OnClick="ButtonUnfollow_Click"
-                        CssClass="btn btn-warning btn-sm btn-follow" />
+                        CssClass="btn btn-warning btn-follow" />
                 </ContentTemplate>
             </asp:UpdatePanel>
 
             <asp:FormView ID="FormViewProfileInfo" runat="server"
                 ItemType="OnTheRoad.Mvp.Models.ProfileInfoModel">
                 <ItemTemplate>
-                    <h2 class="page-headers">
+                    <h2 class="page-headers username-header text-center">
                         <asp:Literal Text='<%# Item.Username %>' runat="server" />
                     </h2>
                     <br />
@@ -73,7 +73,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group ">
                                         <label class="input-labels">първо име</label>
-                                        <asp:TextBox ID="FirstName" Text='<%# Item.FirstName%>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="FirstName" Text='<%#: Item.FirstName%>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">град</label>
@@ -83,18 +83,18 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="input-labels">фамилно име</label>
-                                        <asp:TextBox ID="LastName" Text='<%# Item.LastName %>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="LastName" Text='<%#: Item.LastName %>' runat="server" CssClass="form-control" />
                                     </div>
                                     <div class="form-group">
                                         <label class="input-labels">тел. номер</label>
-                                        <asp:TextBox ID="PhoneNumber" Text='<%#Item.PhoneNumber%>' runat="server" CssClass="form-control" />
+                                        <asp:TextBox ID="PhoneNumber" Text='<%#: Item.PhoneNumber%>' runat="server" CssClass="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12 form-group">
                                     <label class="input-labels">кратка информация</label>
-                                    <asp:TextBox ID="Info" TextMode="MultiLine" Rows="5" Text='<%# Item.Info %>' runat="server" CssClass="form-control" />
+                                    <asp:TextBox ID="Info" TextMode="MultiLine" Rows="5" Text='<%#: Item.Info %>' runat="server" CssClass="form-control" />
                                 </div>
                             </div>
                         </div>
@@ -107,39 +107,42 @@
                     </asp:LinkButton>
                 </EditItemTemplate>
             </asp:FormView>
+            <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-warning"></asp:LinkButton>
         </div>
     </div>
 
-    <asp:LinkButton ID="ButtonEdit" runat="server" OnClick="ButtonEdit_Click" Text="ПРОМЕНИ" CssClass="btn btn-default"></asp:LinkButton>
+    <br />
 
-    <div class="row">
+    <div class="row back-container ">
         <asp:Panel runat="server" ID="PanelFavouriteUsers" CssClass="col-md-12 fav-users">
             <h3 class="page-headers fav-users-header">Любими пътешественици</h3>
             <asp:Repeater runat="server" ID="RepeaterFavouriteUsers" OnItemDataBound="RepeaterFavouriteUsers_ItemDataBound"
                 ItemType="OnTheRoad.Domain.Models.IUser">
                 <ItemTemplate>
-                    <asp:Image runat="server" CssClass="favUserImage img-circle"
-                        ImageUrl='<%# "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
-                    <asp:Panel runat="server" ID="PanelUnfollow" class="btn-group">
-                        <button type="button"
-                            class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <asp:Button
-                                    runat="server"
-                                    Text="премахни"
-                                    CssClass="btn-unfollow"
-                                    CommandArgument="<%#: Item.Username %>"
-                                    OnClick="DropdownUnfollow_Click" />
-                            </li>
-                        </ul>
-                    </asp:Panel>
-                    <asp:HyperLink runat="server"
-                        ID="LinkButtonFollowing"
-                        Text="<%#: Item.Username %>"
-                        NavigateUrl='<%# "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+                    <div class="fav-user-wrapper">
+                        <asp:Image runat="server" CssClass="favUserImage img-circle"
+                            ImageUrl='<%#: "data:image/jpeg;base64," + Convert.ToBase64String(Item.Image) %>' />
+                        <asp:Panel runat="server" ID="PanelUnfollow" class="btn-group">
+                            <button type="button"
+                                class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <asp:Button
+                                        runat="server"
+                                        Text="премахни"
+                                        CssClass="btn-unfollow"
+                                        CommandArgument="<%#: Item.Username %>"
+                                        OnClick="DropdownUnfollow_Click" />
+                                </li>
+                            </ul>
+                        </asp:Panel>
+                        <asp:HyperLink runat="server"
+                            ID="LinkButtonFollowing"
+                            Text="<%#: Item.Username %>"
+                            NavigateUrl='<%#: "~/Profile/ProfileInfo.aspx?name=" + Item.Username %>' />
+                    </div>
                 </ItemTemplate>
             </asp:Repeater>
         </asp:Panel>

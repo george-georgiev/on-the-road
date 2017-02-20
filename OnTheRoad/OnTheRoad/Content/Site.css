@@ -44,6 +44,7 @@ input[type="select"] {
 .navbar-inverse .navbar-main > li > a,
 .navbar-inverse .navbar-nav > li > a {
     color: white;
+    font-size: 1.2em;
 }
 
 .navbar-inverse .navbar-brand {
@@ -55,6 +56,15 @@ input[type="select"] {
 
 .btn {
     font-family: Roboto, Arial;
+    border-radius: 0;
+}
+
+.btn-warning {
+    background-color: #DD890B;
+}
+
+.btn-success {
+    background-color: #71bf38;
 }
 
 /* Responsive: Portrait tablets and up */
@@ -68,10 +78,34 @@ input[type="select"] {
     }
 }
 
+.navbar-fixed-top {
+    min-height: 60px;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 60px;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+        line-height: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+
 h2.page-headers, h3.page-headers {
     text-align: center;
-    color: #00B5DB;
+    color: rgb(12, 197, 241);
     margin-bottom: 50px;
+}
+
+.error-headers {
+    text-align: center;
+    color: #00B5DB;
+    font-size: 5em;
 }
 
 .input-labels {
@@ -154,6 +188,14 @@ i.font-awesome {
 
 .hyperlink:hover {
     color: #cf4d35;
+}
+
+.sitemap-wrapper {
+    margin: 2em 0 1.5em 0;
+    background-color: white;
+    padding: 15px;
+    color: #555555;
+    box-shadow: 0 2px 1px #E3E3E5;
 }
 
 .box-shadow {

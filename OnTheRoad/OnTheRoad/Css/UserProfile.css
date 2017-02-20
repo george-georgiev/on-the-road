@@ -1,21 +1,23 @@
-﻿.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
+﻿.navbar-default .left-side-nav > li > a:hover,
+.navbar-default .left-side-nav > li > a:focus {
     color: forestgreen;
+    background-color: white;
     /*Sets the text hover color on navbar*/
+}
+
+.left-side-nav {
+    text-align: left;
+    line-height: 50px;
+}
+
+.left-side-nav > li > a {
+    padding: 0 15px;
+    font-family:Roboto;
+    color: #555555;
 }
 
 .navbar-default .navbar-nav a {
     color: white;
-}
-
-.navbar {
-    margin: 0;
-    display: inline-block;
-}
-
-.column {
-    text-align: center;
-    float: none;
 }
 
 .navbar-default {
@@ -23,29 +25,28 @@
     border-color: #030033;*/
     border-radius: 0;
     border: 0;
-    /*box-shadow: 0 2px 1px #888888;*/
+    box-shadow: 0 2px 1px #E3E3E5;
     background-color: white;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2em;
-}
-
-.nav > li > a:hover,
-.nav > li > a:focus {
-    text-decoration: underline;
 }
 
 #navbar-user {
-    padding: 0;
-}
-
-.navbar-hr {
-    width: 35%;
-    margin-top: 0;
-    border-color: RGBA(72, 149, 14, 0.85);
+    padding: 0 1em 0 1em;
+    text-align: center;
 }
 
 /* ProfileInfo page */
+.back-container {
+    background-color: white;
+    min-width: 15em;
+    box-shadow: 0 2px 1px #E3E3E5;
+    padding: 1.5em;
+    margin-right: 0px;
+}
+
+.username-header {
+    margin: 0;
+}
+
 #MainContent_ProfileContent_FormViewProfileInfo {
     display: inline-block;
     text-align: left;
@@ -59,7 +60,7 @@
     margin-right: 50px;
 }
 
-#MainContent_ProfileContent_ButtonEdit,
+/*#MainContent_ProfileContent_ButtonEdit,*/
 #MainContent_ProfileContent_FormViewProfileInfo_ButtonSave {
     float: right;
 }
@@ -83,7 +84,7 @@
 }
 
 .btn-follow {
-    float: left;
+    float: right;
 }
 
 .favUserImage {
@@ -92,8 +93,12 @@
 }
 
 .fav-users-header {
-    margin-top: 50px;
     margin-bottom: 50px;
+}
+
+.fav-user-wrapper {
+    display: inline-block;
+    margin-bottom: 2em;
 }
 
 #MainContent_ProfileContent_PanelFavouriteUsers a {
@@ -120,8 +125,12 @@
 
 /* ProfileReviews page */
 
-#MainContent_ProfileContent_ButtonAddComment {
-    float: right;
+.reviews-container {
+    padding-top: 0;
+}
+
+.review-user-image {
+    margin-right: 0px;
 }
 
 #MainContent_ProfileContent_TextBoxAddReviewText {
@@ -136,8 +145,8 @@
     padding-bottom: 0;
 }
 
-.right-wrapper {
-    padding-left: 50px;
+.text-wrapper {
+    padding-left: 5em;
 }
 
 .comment-wrapper {
@@ -145,24 +154,25 @@
     margin-bottom: 50px;
 }
 
-.comment-user-image {
+.image-wrapper {
     height: 100px;
     width: 100px;
+    margin-bottom: 1em;
 }
 
 .comment-header {
-    background-color: #00B5DB;
+    background-color: rgb(12, 197, 241);
     color: white;
-    height: 40px;
+    height: 3em;
     padding: 10px;
     border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
 }
 
 .comment-body {
     background-color: ghostwhite;
     min-height: 80px;
     padding: 10px;
+    border-bottom-left-radius: 5px;
 }
 
 .from-user {
@@ -182,3 +192,5 @@
 #err-label {
     color: red;
 }
+
+

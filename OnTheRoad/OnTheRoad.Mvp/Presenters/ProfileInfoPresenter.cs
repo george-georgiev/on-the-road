@@ -1,8 +1,7 @@
 ﻿using System;
-using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Mvp.Profile.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
+using OnTheRoad.Mvp.Profile.Contracts;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
@@ -59,31 +58,18 @@ namespace OnTheRoad.Mvp.Presenters
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)
         {
-            var user = this.GetCurrentUser(e.Username);
-
-            this.View.Model.FavouriteUsers = user.FavouriteUsers;
-            this.View.Model.Username = user.Username;
-            this.View.Model.FirstName = user.FirstName;
-            this.View.Model.LastName = user.LastName;
-            this.View.Model.Email = user.Email;
-            this.View.Model.City = user.City != null ? user.City.Name : string.Empty;
-            this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
-            this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
-            this.View.Model.Image = user.Image;
-        }
-
-        private IUser GetCurrentUser(string username)
-        {
-            var user = this.userService.GetUserInfo(username);
-            if (user == null)
+            var user = this.userService.GetUserInfo(e.Username);
+            if (user != null)
             {
-                // TODO: Redirect to bad request?
-                this.Response.Redirect("/");
-                return null;
-            }
-            else
-            {
-                return user;
+                this.View.Model.FavouriteUsers = user.FavouriteUsers;
+                this.View.Model.Username = user.Username;
+                this.View.Model.FirstName = user.FirstName;
+                this.View.Model.LastName = user.LastName;
+                this.View.Model.Email = user.Email;
+                this.View.Model.City = user.City != null ? user.City.Name : string.Empty;
+                this.View.Model.PhoneNumber = user.PhoneNumber != null ? user.PhoneNumber : string.Empty;
+                this.View.Model.Info = user.Info != null ? user.Info : string.Empty;
+                this.View.Model.Image = user.Image;
             }
         }
     }

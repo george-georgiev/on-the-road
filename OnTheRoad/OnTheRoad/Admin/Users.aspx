@@ -31,12 +31,12 @@
                     <asp:Literal runat="server" Text='<%# Item.UserName %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
-                    <asp:HyperLink NavigateUrl='<%# "/profile/profileinfo?name=" + Item.UserName %>' Text="<%# Item.UserName %>" runat="server" />
+                    <asp:HyperLink NavigateUrl='<%#: "/profile/profileinfo?name=" + Item.UserName %>' Text="<%#: Item.UserName %>" runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="First Name" SortExpression="FirstName">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBoxFirstName" CssClass="form-control" runat="server" Text='<%#Item.FirstName %>' />
+                    <asp:TextBox ID="TextBoxFirstName" CssClass="form-control" runat="server" Text='<%#: Item.FirstName %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Literal runat="server" Text='<%# Item.FirstName %>' />
@@ -44,7 +44,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Last Name" SortExpression="LastName">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBoxLastName" CssClass="form-control" runat="server" Text='<%#Item.LastName %>' />
+                    <asp:TextBox ID="TextBoxLastName" CssClass="form-control" runat="server" Text='<%#: Item.LastName %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Literal runat="server" Text='<%# Item.LastName %>' />
@@ -60,7 +60,7 @@
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Phone Number" SortExpression="PhoneNumber">
                 <EditItemTemplate>
-                    <asp:TextBox ID="TextBoxPhoneNumber" CssClass="form-control" runat="server" Text='<%#Item.PhoneNumber %>' />
+                    <asp:TextBox ID="TextBoxPhoneNumber" CssClass="form-control" runat="server" Text='<%#: Item.PhoneNumber %>' />
                 </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Literal runat="server" Text='<%# Item.PhoneNumber %>' />

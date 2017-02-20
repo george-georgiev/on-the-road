@@ -210,6 +210,7 @@
     <Content Include="Css\Categories.css" />
     <Content Include="Css\DataPager.css" />
     <Content Include="Css\SiteNavigation.css" />
+    <Content Include="Css\LoginRegister.css" />
     <Content Include="Css\Trips.css" />
     <Content Include="Css\TripsContainer.css" />
     <Content Include="CustomControllers\CategoriesMultiSelect.ascx" />
@@ -220,7 +221,9 @@
     <Content Include="CustomControllers\TripItem.ascx" />
     <Content Include="CustomControllers\ImageUploader.ascx" />
     <Content Include="CustomControllers\TagsSelect.ascx" />
-    <Content Include="ErrorPages\404.html" />
+    <Content Include="ErrorPages\400.html" />
+    <Content Include="ErrorPages\404.aspx" />
+    <Content Include="ErrorPages\500.html" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -284,6 +287,7 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\Admin.master.cs">
@@ -395,6 +399,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPages\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPages\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
