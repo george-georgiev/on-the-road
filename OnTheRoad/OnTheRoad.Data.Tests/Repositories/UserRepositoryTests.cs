@@ -527,6 +527,34 @@ namespace OnTheRoad.Data.Tests.Repositories
             this.contextMock.Verify(x => x.Reviews, Times.Once);
         }
 
+        [Test]
+        public void GetAllUsersCount_WhenThereIsOneUser_ShouldReturnOne()
+        {
+            var expected = 1;
+            var userStub = new User();
+            var fakeData = new List<User>() { userStub }.AsQueryable();
+            this.SetDbSetUserAsQueryable(fakeData);
+
+            var userRepository = new UserRepository(this.contextMock.Object);
+            var actual = userRepository.GetAllUsersCount();
+
+            Assert.That(actual == expected);
+        }
+
+        [Test]
+        public void GetAllUsersCount_WhenThereAreFourUsers_ShouldReturnFour()
+        {
+            var expected = 4;
+            var userStub = new User();
+            var fakeData = new List<User>() { userStub, userStub, userStub, userStub }.AsQueryable();
+            this.SetDbSetUserAsQueryable(fakeData);
+
+            var userRepository = new UserRepository(this.contextMock.Object);
+            var actual = userRepository.GetAllUsersCount();
+
+            Assert.That(actual == expected);
+        }
+
         private void AddReceivedRevies(User userStub, int receivedReviewsCount)
         {
             for (int i = 0; i < receivedReviewsCount; i++)
