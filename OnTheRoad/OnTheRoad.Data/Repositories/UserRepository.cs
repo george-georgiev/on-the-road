@@ -65,6 +65,12 @@ namespace OnTheRoad.Data.Repositories
             return mapped;
         }
 
+        public int GetAllUsersCount()
+        {
+            int usersCount = this.DbSet.Count();
+            return usersCount;
+        }
+
         public void Update(IUser model)
         {
             if (model == null)

@@ -207,8 +207,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Css\AddTrip.css" />
     <Content Include="Css\Admin.css" />
-    <Content Include="Css\Categories.css" />
     <Content Include="Css\DataPager.css" />
+    <Content Include="Css\Home.css" />
     <Content Include="Css\SiteNavigation.css" />
     <Content Include="Css\LoginRegister.css" />
     <Content Include="Css\Trips.css" />

@@ -82,6 +82,10 @@
                 </div>
             </div>
         </div>
+
+        <asp:ContentPlaceHolder ID="MainImage" runat="server">
+
+        </asp:ContentPlaceHolder>
         <div class="container body-content">
             <div class="sitemap-wrapper">
                 <asp:SiteMapPath ID="SiteMapPathBreadcrump" runat="server"

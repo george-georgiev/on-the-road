@@ -74,5 +74,10 @@ namespace OnTheRoad.Logic.Services
             this.userRepository.Update(user);
             this.uniOfWork.Commit();
         }
+
+        public int GetAllUsersCount()
+        {
+            return this.userRepository.GetAllUsersCount();
+        }
     }
 }
