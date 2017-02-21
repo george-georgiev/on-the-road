@@ -6,7 +6,6 @@ using OnTheRoad.Common;
 namespace OnTheRoad.App_Start.Interceptors
 {
     public class TripServiceCachingInterceptor : IInterceptor
-
     {
         public void Intercept(IInvocation invocation)
         {

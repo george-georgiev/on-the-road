@@ -79,6 +79,7 @@
     <Compile Include="Repositories\RatingRepositoryTests.cs" />
     <Compile Include="Repositories\ReviewRepositoryTests.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
+    <Compile Include="Repositories\TripRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
   </ItemGroup>
   <ItemGroup>

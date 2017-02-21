@@ -9,7 +9,6 @@
     <siteMapNode url="~/Profile/ProfileReviews" title="Ревюта на потребителя" roles="User"/>
 
     <siteMapNode url="~/Trips/AddTrip" title="Довави пътешествие" roles="User" />
-    
     <siteMapNode url="~/Categories" title="Категории" roles="User" />
     
     <siteMapNode url="~/Account/Login" title="Вход" />
