@@ -13,7 +13,7 @@
     <div class="img-wrapper container">
         <div class="row">
             <div class="col-md-12 col-img">
-                <asp:Image CssClass="main-img img-responsive" ImageUrl="~/files/main-image.jpg" runat="server" />
+                <asp:Image CssClass="main-img img-responsive" ImageUrl="~/Content/Images/main-image.jpg" runat="server" />
             </div>
         </div>
     </div>
