@@ -14,12 +14,12 @@ namespace OnTheRoad.Logic.Utils
         {
             if (userService == null)
             {
-                throw new ArgumentNullException("userService can not be null!");
+                throw new ArgumentNullException("userService cannot be null!");
             }
 
             if (ratingService == null)
             {
-                throw new ArgumentNullException("ratingService can not be null!");
+                throw new ArgumentNullException("ratingService cannot be null!");
             }
 
             this.userService = userService;

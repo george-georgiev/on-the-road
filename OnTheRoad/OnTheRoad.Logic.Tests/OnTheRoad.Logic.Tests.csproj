@@ -70,6 +70,7 @@
     <Compile Include="Services\ReviewServiceTests.cs" />
     <Compile Include="Services\TagServiceTests.cs" />
     <Compile Include="Services\UserServiceTests.cs" />
+    <Compile Include="Utils\ReviewAddHelperTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
