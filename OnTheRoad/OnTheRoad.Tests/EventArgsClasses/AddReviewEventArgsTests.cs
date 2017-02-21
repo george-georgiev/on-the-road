@@ -28,6 +28,17 @@ namespace OnTheRoad.Tests.EventArgsClasses
         }
 
         [Test]
+        public void VerifyThatFromUserReturnsInstanceOfString()
+        {
+            var addReviewEventArgs = new AddReviewEventArgs();
+            var user = "user";
+
+            addReviewEventArgs.FromUser = user;
+
+            Assert.That(addReviewEventArgs.FromUser, Is.InstanceOf<string>());
+        }
+
+        [Test]
         public void VerifyThatToUserCanBeGettedSetted()
         {
             var addReviewEventArgs = new AddReviewEventArgs();
@@ -36,6 +47,17 @@ namespace OnTheRoad.Tests.EventArgsClasses
             addReviewEventArgs.ToUser = user;
 
             Assert.That(addReviewEventArgs.ToUser.Equals(user));
+        }
+
+        [Test]
+        public void VerifyThatToUserReturnsInstanceOfString()
+        {
+            var addReviewEventArgs = new AddReviewEventArgs();
+            var user = "user";
+
+            addReviewEventArgs.ToUser = user;
+
+            Assert.That(addReviewEventArgs.ToUser, Is.InstanceOf<string>());
         }
 
         [Test]
@@ -69,6 +91,17 @@ namespace OnTheRoad.Tests.EventArgsClasses
             addReviewEventArgs.Content = content;
 
             Assert.That(addReviewEventArgs.Content.Equals(content));
+        }
+
+        [Test]
+        public void VerifyThatContentReturnsInstanceOfString()
+        {
+            var addReviewEventArgs = new AddReviewEventArgs();
+            var content = "content";
+
+            addReviewEventArgs.Content = content;
+
+            Assert.That(addReviewEventArgs.Content, Is.InstanceOf<string>());
         }
 
         [Test]
