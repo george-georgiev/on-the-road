@@ -9,7 +9,7 @@ namespace OnTheRoad.App_Start.Interceptors
     {
         public void Intercept(IInvocation invocation)
         {
-            var cache = CacheWrapper.Instance;
+            var cache = CacheInstanceProvider.Instance;
             var callingMethodName = invocation.Request.Method.Name;
             var cachedValue = cache[callingMethodName];
             if (cachedValue == null)

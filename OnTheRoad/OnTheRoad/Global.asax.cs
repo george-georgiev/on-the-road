@@ -23,7 +23,7 @@ namespace OnTheRoad
             var customPresenterFactory = NinjectKernelInstanceProvider.Instance.Get<IPresenterFactory>();
             PresenterBinder.Factory = customPresenterFactory;
 
-            CacheWrapper.Instance = this.Context.Cache;
+            CacheInstanceProvider.Instance = this.Context.Cache;
         }
     }
 }
