@@ -78,6 +78,7 @@
     <Compile Include="Repositories\BaseRepositoryTests.cs" />
     <Compile Include="Repositories\RatingRepositoryTests.cs" />
     <Compile Include="Repositories\ReviewRepositoryTests.cs" />
+    <Compile Include="Repositories\SubscriptionRepositoryTests.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
     <Compile Include="Seeders\DataSeederTests.cs" />

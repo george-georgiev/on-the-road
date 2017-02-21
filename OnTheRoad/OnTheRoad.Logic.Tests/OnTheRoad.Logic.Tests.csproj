@@ -68,6 +68,7 @@
     <Compile Include="Services\CityServiceTests.cs" />
     <Compile Include="Services\RatingServiceTests.cs" />
     <Compile Include="Services\ReviewServiceTests.cs" />
+    <Compile Include="Services\SubscriptionServiceTests.cs" />
     <Compile Include="Services\TagServiceTests.cs" />
     <Compile Include="Services\UserServiceTests.cs" />
     <Compile Include="Utils\ReviewAddHelperTests.cs" />

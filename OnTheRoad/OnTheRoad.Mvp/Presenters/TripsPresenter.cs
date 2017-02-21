@@ -11,9 +11,9 @@ namespace OnTheRoad.Mvp.Presenters
     public class TripsPresenter : Presenter<ITripsView>
     {
         private readonly ITripGetService tripGetService;
-        private readonly ISubscriptionAddService subscriptionAddService;
+        private readonly ISubscriptionService subscriptionAddService;
 
-        public TripsPresenter(ITripsView view, ITripGetService tripGetService, ISubscriptionAddService subscriptionAddService) : base(view)
+        public TripsPresenter(ITripsView view, ITripGetService tripGetService, ISubscriptionService subscriptionAddService) : base(view)
         {
             if (tripGetService == null)
             {

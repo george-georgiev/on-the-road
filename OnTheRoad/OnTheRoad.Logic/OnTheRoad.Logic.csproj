@@ -64,7 +64,7 @@
     <Compile Include="Contracts\IReviewDataUtils.cs" />
     <Compile Include="Contracts\IReviewService.cs" />
     <Compile Include="Contracts\ISubscriptionAddHelper.cs" />
-    <Compile Include="Contracts\ISubscriptionAddService.cs" />
+    <Compile Include="Contracts\ISubscriptionService.cs" />
     <Compile Include="Contracts\ISubscriptionDataUtil.cs" />
     <Compile Include="Contracts\ITagGetService.cs" />
     <Compile Include="Contracts\ITripAddService.cs" />
@@ -98,7 +98,7 @@
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\RatingService.cs" />
     <Compile Include="Services\ReviewService.cs" />
-    <Compile Include="Services\SubscriptionAddService.cs" />
+    <Compile Include="Services\SubscriptionService.cs" />
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\TripService.cs" />
     <Compile Include="Services\UserService.cs" />

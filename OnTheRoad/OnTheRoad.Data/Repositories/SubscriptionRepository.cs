@@ -1,10 +1,10 @@
-﻿using OnTheRoad.Data.Models;
+﻿using System.Data.Entity;
+using System.Linq;
+using AutoMapper;
+using OnTheRoad.Data.Contracts;
+using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
-using System.Linq;
-using OnTheRoad.Data.Contracts;
-using AutoMapper;
-using System.Data.Entity;
 
 namespace OnTheRoad.Data.Repositories
 {
