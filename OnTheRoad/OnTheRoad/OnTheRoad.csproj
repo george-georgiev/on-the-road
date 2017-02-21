@@ -234,6 +234,7 @@
     <Content Include="Trips\Default.aspx" />
     <Content Include="WebServices\Tags.asmx" />
     <Content Include="Admin\Admin.master" />
+    <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
