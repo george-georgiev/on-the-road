@@ -70,6 +70,8 @@
     <Compile Include="Contracts\IResourcePathResolver.cs" />
     <Compile Include="Enums\RatingEnum.cs" />
     <Compile Include="Enums\SubscriptionStatus.cs" />
+    <Compile Include="Factories\Contracts\IFileReaderFactory.cs" />
+    <Compile Include="Factories\FileReaderFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Readers\TextDataReader.cs" />
