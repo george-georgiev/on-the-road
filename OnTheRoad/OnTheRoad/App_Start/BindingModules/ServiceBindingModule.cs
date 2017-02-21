@@ -10,6 +10,9 @@ using OnTheRoad.Logic.Factories;
 using Ninject.Extensions.Factory;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Models;
+using OnTheRoad.Mvp.Presenters;
+using Ninject.Extensions.Interception.Infrastructure.Language;
+using OnTheRoad.App_Start.Interceptors;
 
 namespace OnTheRoad.App_Start.BindingModules
 {
@@ -34,6 +37,12 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<ITripAddService, ITripGetService>()
                 .To<TripService>();
+
+            this.Bind<ITripGetService>()
+                .To<TripService>()
+                .WhenInjectedExactlyInto<HomePresenter>()
+                .Intercept()
+                .With<TripServiceCachingInterceptor>();
 
             this.Bind<ITag>()
                 .To<Tag>()
