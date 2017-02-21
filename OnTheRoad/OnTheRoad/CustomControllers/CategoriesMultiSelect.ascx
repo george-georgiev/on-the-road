@@ -3,6 +3,7 @@
 <asp:ListBox runat="server" ID="CategoriesListBox" CssClass="form-control"
     SelectionMode="Multiple"
     DataTextField="Name"
+    Rows="6"
     DataValueField="Id"></asp:ListBox>
 
 <asp:RequiredFieldValidator runat="server" ControlToValidate="CategoriesListBox" Enabled="<%# this.IsRequired %>"
