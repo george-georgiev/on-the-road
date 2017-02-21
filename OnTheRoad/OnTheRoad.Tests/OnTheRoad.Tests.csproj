@@ -79,6 +79,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CustomWebFormsMvpPresenterFactoryTests.cs" />
+    <Compile Include="EventArgsClasses\AddReviewEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\LoginEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\ProfileInfoEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgsTests.cs" />

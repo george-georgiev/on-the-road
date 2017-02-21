@@ -9,7 +9,7 @@ namespace OnTheRoad.Tests.EventArgsClasses
     public class ProfileInfoEventArgsTests
     {
         [Test]
-        public void WhenProfileInfoEventArgsTestsIsInitializes_InstanceShouldBeReturned()
+        public void WhenProfileInfoEventArgsIsInitializes_InstanceShouldBeReturned()
         {
             var actualInstance = new ProfileInfoEventArgs();
 
