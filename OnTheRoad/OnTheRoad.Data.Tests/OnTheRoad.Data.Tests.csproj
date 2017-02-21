@@ -80,6 +80,7 @@
     <Compile Include="Repositories\ReviewRepositoryTests.cs" />
     <Compile Include="Repositories\TagRepositoryTests.cs" />
     <Compile Include="Repositories\UserRepositoryTests.cs" />
+    <Compile Include="Seeders\DataSeederTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnTheRoad.Data\OnTheRoad.Data.csproj">

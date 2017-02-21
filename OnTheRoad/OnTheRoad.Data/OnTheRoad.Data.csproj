@@ -63,7 +63,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AddOrUpdateHelper.cs" />
     <Compile Include="Common\ResourcePathResolver.cs" />
+    <Compile Include="Contracts\IAddOrUpdateHelper.cs" />
     <Compile Include="Contracts\IDataReader.cs" />
     <Compile Include="Contracts\IDataSeeder.cs" />
     <Compile Include="Contracts\IOnTheRoadDbContext.cs" />
