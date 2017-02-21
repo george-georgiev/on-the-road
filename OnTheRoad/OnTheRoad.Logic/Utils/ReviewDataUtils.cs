@@ -16,12 +16,12 @@ namespace OnTheRoad.Logic.Utils
         {
             if (reviewRepository == null)
             {
-                throw new ArgumentNullException("reviewRepository can not be null!");
+                throw new ArgumentNullException("reviewRepository cannot be null!");
             }
 
             if (unitOfWork == null)
             {
-                throw new ArgumentNullException("unitOfWork can not be null!");
+                throw new ArgumentNullException("unitOfWork cannot be null!");
             }
 
             this.reviewRepository = reviewRepository;

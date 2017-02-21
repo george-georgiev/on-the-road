@@ -71,6 +71,7 @@
     <Compile Include="Services\TagServiceTests.cs" />
     <Compile Include="Services\UserServiceTests.cs" />
     <Compile Include="Utils\ReviewAddHelperTests.cs" />
+    <Compile Include="Utils\ReviewDataUtilsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
