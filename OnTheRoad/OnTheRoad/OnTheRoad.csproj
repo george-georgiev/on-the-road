@@ -355,11 +355,13 @@
     </Compile>
     <Compile Include="App_Start\BindingModules\MVPBindingsModule.cs" />
     <Compile Include="App_Start\Interceptors\TripServiceCachingInterceptor.cs" />
+    <Compile Include="App_Start\Interceptors\UserServiceCachingInterceptor.cs" />
     <Compile Include="App_Start\NinjectKernelInstanceProvider.cs" />
     <Compile Include="App_Start\NinjectWeb.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\CacheWrapper.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
     <Compile Include="Common\CustomImageResizer.cs" />
     <Compile Include="CustomControllers\CategoriesMultiSelect.ascx.cs">

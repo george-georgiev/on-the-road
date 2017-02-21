@@ -24,6 +24,7 @@ namespace OnTheRoad.Data.Migrations
             {
                 return this.dataSeeder;
             }
+
             set
             {
                 if (value == null)
@@ -51,19 +52,6 @@ namespace OnTheRoad.Data.Migrations
             {
                 this.dataSeeder.SeedRating(context);
             }
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
         }
     }
 }

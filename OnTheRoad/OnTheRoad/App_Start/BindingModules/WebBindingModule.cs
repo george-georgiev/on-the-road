@@ -12,9 +12,9 @@ namespace OnTheRoad.App_Start.BindingModules
             this.Bind<IImageResizer>()
                 .To<CustomImageResizer>();
 
-            this.Bind<Cache>()
-                .ToSelf()
-                .InSingletonScope();
+            //this.Bind<Cache>()
+            //    .ToSelf()
+            //    .InSingletonScope();
         }
     }
 }

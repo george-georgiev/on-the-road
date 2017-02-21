@@ -68,6 +68,12 @@ namespace OnTheRoad.App_Start.BindingModules
 
             this.Bind<IUserGetService>()
                 .To<UserService>();
+
+            this.Bind<IUserGetService>()
+                .To<UserService>()
+                .WhenInjectedExactlyInto<HomePresenter>()
+                .Intercept()
+                .With<TripServiceCachingInterceptor>();
         }
 
         private IEnumerable<Type> GetTypesToExclude()
