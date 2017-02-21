@@ -14,7 +14,7 @@ namespace OnTheRoad.Mvp.Presenters
         {
             if (cityService == null)
             {
-                throw new ArgumentNullException("cityService cannot be null.");
+                throw new ArgumentNullException("cityService cannot be null!");
             }
 
             this.cityService = cityService;
