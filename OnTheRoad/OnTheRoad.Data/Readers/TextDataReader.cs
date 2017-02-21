@@ -1,19 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using OnTheRoad.Data.Common;
 using OnTheRoad.Data.Contracts;
+using OnTheRoad.Data.Factories;
+using OnTheRoad.Data.Factories.Contracts;
 
 namespace OnTheRoad.Data.Readers
 {
     public class TextDataReader : IDataReader
     {
         private IResourcePathResolver resourcePathResolver;
+        private IFileReaderFactory fileReaderFactory;
+
 
         public TextDataReader()
         {
             this.ResourcePathResolver = new ResourcePathResolver();
+            this.FileReaderFactory = new FileReaderFactory();
+        }
+
+        public IFileReaderFactory FileReaderFactory
+        {
+            get
+            {
+                return this.fileReaderFactory;
+            }
+
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("fileReaderFactory cannot be null!");
+                }
+
+                this.fileReaderFactory = value;
+            }
         }
 
         public IResourcePathResolver ResourcePathResolver
@@ -27,7 +49,7 @@ namespace OnTheRoad.Data.Readers
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("resourcePathResolver can not be null!");
+                    throw new ArgumentNullException("resourcePathResolver cannot be null!");
                 }
 
                 this.resourcePathResolver = value;
@@ -38,12 +60,12 @@ namespace OnTheRoad.Data.Readers
         {
             var result = new List<string>();
             string fileName = this.ResourcePathResolver.ResolveCategoriesFilePath();
-            using (var stream = new StreamReader(fileName))
+            using (var stream = this.FileReaderFactory.GetStreamReader(fileName))
             {
                 string line;
                 while ((line = stream.ReadLine()) != null)
                 {
-                    result.AddRange(line.Split(' ').ToList());
+                    result.Add(line);
                 }
             }
 
@@ -54,7 +76,7 @@ namespace OnTheRoad.Data.Readers
         {
             var result = new List<string>();
             string fileName = this.ResourcePathResolver.ResolveCitiesFilePath();
-            using (var stream = new StreamReader(fileName))
+            using (var stream = this.FileReaderFactory.GetStreamReader(fileName))
             {
                 string line;
                 while ((line = stream.ReadLine()) != null)
@@ -70,7 +92,7 @@ namespace OnTheRoad.Data.Readers
         {
             var result = new List<string>();
             string fileName = this.ResourcePathResolver.ResolveRatingsFilePath();
-            using (var stream = new StreamReader(fileName))
+            using (var stream = this.FileReaderFactory.GetStreamReader(fileName))
             {
                 string line;
                 while ((line = stream.ReadLine()) != null)

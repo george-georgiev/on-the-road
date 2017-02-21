@@ -79,9 +79,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CustomWebFormsMvpPresenterFactoryTests.cs" />
+    <Compile Include="EventArgsClasses\AddReviewEventArgsTests.cs" />
+    <Compile Include="EventArgsClasses\FavouriteUserEventArgsTests.cs" />
+    <Compile Include="EventArgsClasses\GetHomePageInfoEventArgsTests.cs" />
+    <Compile Include="EventArgsClasses\GetUserReviewsEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\LoginEventArgsTests.cs" />
+    <Compile Include="EventArgsClasses\ProfileImageEventArgsTests.cs" />
+    <Compile Include="EventArgsClasses\ProfileInfoEventArgsTests.cs" />
     <Compile Include="EventArgsClasses\RegisterEventArgsTests.cs" />
     <Compile Include="Presenters\CategoryOverviewPresenterTests.cs" />
+    <Compile Include="Presenters\CitiesPresenterTests.cs" />
     <Compile Include="Presenters\HomePresenterTests.cs" />
     <Compile Include="Presenters\LoginPresenterTests.cs" />
     <Compile Include="Presenters\ProfileInfoPresenterTests.cs" />

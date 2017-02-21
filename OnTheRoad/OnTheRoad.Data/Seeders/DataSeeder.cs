@@ -1,18 +1,20 @@
-﻿using OnTheRoad.Data.Contracts;
+﻿using System;
+using OnTheRoad.Data.Common;
+using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Data.Readers;
-using System;
-using System.Data.Entity.Migrations;
 
 namespace OnTheRoad.Data.Seeders
 {
     public class DataSeeder : IDataSeeder
     {
         private IDataReader dataReader;
+        private IAddOrUpdateHelper addOrUpdateHelper;
 
         public DataSeeder()
         {
             this.DataReader = new TextDataReader();
+            this.AddOrUpdateHelper = new AddOrUpdateHelper();
         }
 
         public IDataReader DataReader
@@ -25,10 +27,27 @@ namespace OnTheRoad.Data.Seeders
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("dataReader can not be null!");
+                    throw new ArgumentNullException("dataReader cannot be null!");
                 }
 
                 this.dataReader = value;
+            }
+        }
+
+        public IAddOrUpdateHelper AddOrUpdateHelper
+        {
+            get
+            {
+                return this.addOrUpdateHelper;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException("addOrUpdateHelper cannot be null!");
+                }
+
+                this.addOrUpdateHelper = value;
             }
         }
 
@@ -37,7 +56,7 @@ namespace OnTheRoad.Data.Seeders
             var categories = this.DataReader.ReadCategories();
             foreach (var category in categories)
             {
-                context.Categories.AddOrUpdate(new Category() { Name = category });
+                this.AddOrUpdateHelper.AddOrUpdateEntity<Category>(context, new Category() { Name = category });
             }
         }
 
@@ -46,7 +65,7 @@ namespace OnTheRoad.Data.Seeders
             var cities = this.DataReader.ReadCities();
             foreach (var city in cities)
             {
-                context.Cities.AddOrUpdate(new City() { Name = city });
+                this.AddOrUpdateHelper.AddOrUpdateEntity<City>(context, new City() { Name = city });
             }
         }
 
@@ -55,7 +74,7 @@ namespace OnTheRoad.Data.Seeders
             var ratings = this.DataReader.ReadRatings();
             foreach (var rating in ratings)
             {
-                context.Ratings.AddOrUpdate(new Rating() { Value = rating });
+                this.AddOrUpdateHelper.AddOrUpdateEntity<Rating>(context, new Rating() { Value = rating });
             }
         }
     }

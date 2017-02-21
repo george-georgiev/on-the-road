@@ -2,7 +2,7 @@
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface ISubscriptionAddService
+    public interface ISubscriptionService
     {
         void AddOrUpdateSubscription(string username, int tripId, SubscriptionStatus status);
     }

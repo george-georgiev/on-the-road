@@ -1,5 +1,5 @@
-﻿using OnTheRoad.Mvp.Models;
-using System;
+﻿using System;
+using OnTheRoad.Mvp.Models;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.CustomControllers.Contracts

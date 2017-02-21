@@ -23,10 +23,6 @@ namespace OnTheRoad.App_Start.BindingModules
                     .BindDefaultInterface();
             });
 
-            //this.Bind<OnTheRoadIdentityDbContext>()
-            //    .ToSelf()
-            //    .InRequestScope();
-
             this.Bind<IOnTheRoadDbContext>()
                 .To<OnTheRoadIdentityDbContext>()
                 .InRequestScope();

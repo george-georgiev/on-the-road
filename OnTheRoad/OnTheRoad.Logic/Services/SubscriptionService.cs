@@ -1,31 +1,31 @@
-﻿using OnTheRoad.Logic.Contracts;
-using System;
-using OnTheRoad.Domain.Enumerations;
+﻿using System;
+using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Factories;
+using OnTheRoad.Domain.Enumerations;
 
 namespace OnTheRoad.Logic.Services
 {
-    public class SubscriptionAddService : ISubscriptionAddService
+    public class SubscriptionService : ISubscriptionService
     {
         private readonly ISubscriptionAddHelper subscriptionAddHelper;
         private readonly ISubscriptionDataUtil subscriptionDataUtil;
         private readonly ISubscriptionFactory subscriptionFactory;
 
-        public SubscriptionAddService(ISubscriptionDataUtil subscriptionDataUtil, ISubscriptionAddHelper subscriptionAddHelper, ISubscriptionFactory subscriptionFactory)
+        public SubscriptionService(ISubscriptionDataUtil subscriptionDataUtil, ISubscriptionAddHelper subscriptionAddHelper, ISubscriptionFactory subscriptionFactory)
         {
             if (subscriptionDataUtil == null)
             {
-                throw new ArgumentNullException("subscriptionDataUtil can not be null!");
+                throw new ArgumentNullException("subscriptionDataUtil cannot be null!");
             }
 
             if (subscriptionAddHelper == null)
             {
-                throw new ArgumentNullException("subscriptionAddHelper can not be null!");
+                throw new ArgumentNullException("subscriptionAddHelper cannot be null!");
             }
 
             if (subscriptionFactory == null)
             {
-                throw new ArgumentNullException("subscriptionFactory can not be null!");
+                throw new ArgumentNullException("subscriptionFactory cannot be null!");
             }
 
             this.subscriptionDataUtil = subscriptionDataUtil;
