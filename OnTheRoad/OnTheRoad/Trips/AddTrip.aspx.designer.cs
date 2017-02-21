@@ -22,6 +22,33 @@ namespace OnTheRoad.Trips {
         protected global::System.Web.UI.WebControls.Literal ErrorMessage;
         
         /// <summary>
+        /// ImageUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImageUser;
+        
+        /// <summary>
+        /// LabelImageErrors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelImageErrors;
+        
+        /// <summary>
+        /// ImageUploader control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OnTheRoad.CustomControllers.ImageUploader ImageUploader;
+        
+        /// <summary>
         /// TripTitle control.
         /// </summary>
         /// <remarks>
@@ -29,15 +56,6 @@ namespace OnTheRoad.Trips {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TripTitle;
-        
-        /// <summary>
-        /// Description control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Description;
         
         /// <summary>
         /// Location control.
@@ -85,31 +103,13 @@ namespace OnTheRoad.Trips {
         protected global::OnTheRoad.CustomControllers.TagsSelect Tags;
         
         /// <summary>
-        /// LabelImageErrors control.
+        /// Description control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelImageErrors;
-        
-        /// <summary>
-        /// ImageUploader control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::OnTheRoad.CustomControllers.ImageUploader ImageUploader;
-        
-        /// <summary>
-        /// LabelFileName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelFileName;
+        protected global::System.Web.UI.WebControls.TextBox Description;
         
         /// <summary>
         /// CreateTripButton control.

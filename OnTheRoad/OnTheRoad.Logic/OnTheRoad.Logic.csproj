@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -40,7 +41,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,6 +55,10 @@
     <Compile Include="Builders\TripBuilder.cs" />
     <Compile Include="Contracts\ICategoryModifyService.cs" />
     <Compile Include="Contracts\ICategoryGetService.cs" />
+    <Compile Include="Contracts\IImageLoader.cs" />
+    <Compile Include="Contracts\IImagePathResolver.cs" />
+    <Compile Include="Contracts\IImageResizer.cs" />
+    <Compile Include="Contracts\IImageService.cs" />
     <Compile Include="Contracts\IUserGetService.cs" />
     <Compile Include="Contracts\IRatingService.cs" />
     <Compile Include="Contracts\IReviewDataUtils.cs" />
@@ -88,12 +95,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\RatingService.cs" />
     <Compile Include="Services\ReviewService.cs" />
     <Compile Include="Services\SubscriptionAddService.cs" />
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\TripService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\ImageLoader.cs" />
+    <Compile Include="Utils\ImagePathResolver.cs" />
     <Compile Include="Utils\ReviewAddHelper.cs" />
     <Compile Include="Utils\ReviewDataUtils.cs" />
     <Compile Include="Utils\SubscriptionAddHelper.cs" />

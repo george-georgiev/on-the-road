@@ -197,3 +197,21 @@ i.font-awesome {
 .box-shadow {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
 }
+
+input.tags-select-textbox {
+    display: inline-block;
+}
+
+.tags-select-item {
+    display: inline-block;
+    height: 2em;
+    border: 1px solid #cf4d35;
+    border-radius: 5px;
+    color: #cf4d35;
+    padding: 0.3em;
+    margin: 0.5em;
+}
+
+    .tags-select-item:before {
+        content: "#";
+    }
