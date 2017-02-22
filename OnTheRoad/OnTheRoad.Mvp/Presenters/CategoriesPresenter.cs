@@ -14,12 +14,12 @@ namespace OnTheRoad.Mvp.Presenters
         {
             if (categoryService == null)
             {
-                throw new ArgumentNullException("categoryService can not be null!");
+                throw new ArgumentNullException("categoryService cannot be null!");
             }
 
             if (tripGetService == null)
             {
-                throw new ArgumentNullException("tripGetService can not be null!");
+                throw new ArgumentNullException("tripGetService cannot be null!");
             }
 
             this.categoryService = categoryService;

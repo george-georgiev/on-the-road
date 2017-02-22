@@ -1,7 +1,7 @@
-﻿using OnTheRoad.Logic.Contracts;
+﻿using System;
+using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Mvp.CustomControllers.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
-using System;
 using WebFormsMvp;
 
 namespace OnTheRoad.Mvp.Presenters
