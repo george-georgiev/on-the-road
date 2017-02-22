@@ -93,7 +93,7 @@ namespace OnTheRoad.Tests.Presenters
             var presenter = new AddTripPresenter(viewMock.Object, tripsAddService.Object, tripBuilderMock.Object, imageServiceMock.Object);
             viewMock.Raise(x => x.GetTripsDefaultImage += null, null, new EventArgs());
 
-            imageServiceMock.Verify(x => x.LoadResizedTripsImage(), Times.Once);
+            imageServiceMock.Verify(x => x.LoadTripsImage(), Times.Once);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace OnTheRoad.Tests.Presenters
             var tripBuilderMock = new Mock<ITripBuilder>();
             var imageServiceMock = new Mock<IImageService>();
             var image = new byte[1];
-            imageServiceMock.Setup(x => x.LoadResizedTripsImage()).Returns(image);
+            imageServiceMock.Setup(x => x.LoadTripsImage()).Returns(image);
             var modelMock = new Mock<TripModel>();
             viewMock.Setup(x => x.Model).Returns(modelMock.Object);
 

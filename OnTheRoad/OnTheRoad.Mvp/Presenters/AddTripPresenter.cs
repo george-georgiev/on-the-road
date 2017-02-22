@@ -39,7 +39,7 @@ namespace OnTheRoad.Mvp.Presenters
 
         private void View_GetTripsDefaultImage(object sender, EventArgs e)
         {
-            var image = this.imageService.LoadResizedTripsImage();
+            var image = this.imageService.LoadTripsImage();
             this.View.Model.ImageContent = image;
         }
 

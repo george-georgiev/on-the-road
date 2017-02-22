@@ -7,9 +7,8 @@ namespace OnTheRoad.Logic.Services
     {
         private readonly IImageLoader imageLoader;
         private readonly IImagePathResolver imagePathResolver;
-        private readonly IImageResizer imageResizer;
 
-        public ImageService(IImageLoader imageLoader, IImagePathResolver imagePathResolver, IImageResizer imageResizer)
+        public ImageService(IImageLoader imageLoader, IImagePathResolver imagePathResolver)
         {
             if (imageLoader == null)
             {
@@ -21,23 +20,16 @@ namespace OnTheRoad.Logic.Services
                 throw new ArgumentNullException("imagePathResolver can noe be null!");
             }
 
-            if (imageResizer == null)
-            {
-                throw new ArgumentNullException("imageResizer can not be null!");
-            }
-
             this.imageLoader = imageLoader;
             this.imagePathResolver = imagePathResolver;
-            this.imageResizer = imageResizer;
         }
-        public byte[] LoadResizedTripsImage()
+
+        public byte[] LoadTripsImage()
         {
             var path = this.imagePathResolver.ResolveTripsImageFilePath();
             var image = this.imageLoader.LoadImage(path);
 
-            var resized = this.imageResizer.ResizeImage(image);
-
-            return resized;
+            return image;
         }
     }
 }

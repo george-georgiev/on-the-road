@@ -354,6 +354,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BindingModules\MVPBindingsModule.cs" />
+    <Compile Include="App_Start\Interceptors\ImageServiceResizeInterceptor.cs" />
     <Compile Include="App_Start\Interceptors\TripServiceCachingInterceptor.cs" />
     <Compile Include="App_Start\Interceptors\UserServiceCachingInterceptor.cs" />
     <Compile Include="App_Start\NinjectKernelInstanceProvider.cs" />

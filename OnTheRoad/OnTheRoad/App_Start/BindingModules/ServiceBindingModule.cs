@@ -74,11 +74,16 @@ namespace OnTheRoad.App_Start.BindingModules
                 .WhenInjectedExactlyInto<HomePresenter>()
                 .Intercept()
                 .With<TripServiceCachingInterceptor>();
+
+            this.Bind<IImageService>()
+                .To<ImageService>()
+                .Intercept()
+                .With<ImageServiceResizeInterceptor>();
         }
 
         private IEnumerable<Type> GetTypesToExclude()
         {
-            return new List<Type>() { typeof(Tag) };
+            return new List<Type>() { typeof(Tag), typeof(ImageService) };
         }
     }
 }

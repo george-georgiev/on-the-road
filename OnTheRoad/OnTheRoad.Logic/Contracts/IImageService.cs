@@ -2,6 +2,6 @@
 {
     public interface IImageService
     {
-        byte[] LoadResizedTripsImage();
+        byte[] LoadTripsImage();
     }
 }
