@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OnTheRoad.Logic.Contracts
 {
-    public interface ICategoryService : ICategoryModifyService, ICategoryGetService
+    public interface ICategoryService : ICategoryGetService
     {
         
     }

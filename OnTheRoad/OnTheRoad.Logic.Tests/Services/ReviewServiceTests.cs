@@ -17,7 +17,6 @@ namespace OnTheRoad.Logic.Tests.Services
         private Mock<IReviewDataUtils> reviewDataUtilsMock;
         private Mock<IReviewAddHelper> reviewAddHelperMock;
 
-
         [SetUp]
         public void SetUpMocks()
         {
