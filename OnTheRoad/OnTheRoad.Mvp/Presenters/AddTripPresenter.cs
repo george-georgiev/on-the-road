@@ -16,17 +16,17 @@ namespace OnTheRoad.Mvp.Presenters
         {
             if (tripAddService == null)
             {
-                throw new ArgumentNullException("tripAddService can not be null!");
+                throw new ArgumentNullException("tripAddService cannot be null!");
             }
 
             if (tripBuilder == null)
             {
-                throw new ArgumentNullException("tripBuilder can not be null!");
+                throw new ArgumentNullException("tripBuilder cannot be null!");
             }
 
             if (imageService == null)
             {
-                throw new ArgumentNullException("imageService can not be null!");
+                throw new ArgumentNullException("imageService cannot be null!");
             }
 
             this.tripAddService = tripAddService;
