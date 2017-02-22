@@ -63,7 +63,7 @@ namespace OnTheRoad.App_Start.BindingModules
             this.Bind<ITagGetService>()
                 .To<TagService>();
 
-            this.Bind<ICategoryGetService, ICategoryModifyService>()
+            this.Bind<ICategoryGetService>()
                 .To<CategoryService>();
 
             this.Bind<IUserGetService>()

@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builders\TripBuilder.cs" />
-    <Compile Include="Contracts\ICategoryModifyService.cs" />
     <Compile Include="Contracts\ICategoryGetService.cs" />
     <Compile Include="Contracts\IImageLoader.cs" />
     <Compile Include="Contracts\IImagePathResolver.cs" />
