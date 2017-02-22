@@ -207,7 +207,7 @@ namespace OnTheRoad.Data.Repositories
         private void AddOrganiserToTrip(Trip trip, IUser user)
         {
             var userEntity = this.Context.Users.Where(u => u.UserName == user.Username).FirstOrDefault();
-            if (user == null)
+            if (userEntity == null)
             {
                 throw new ArgumentException("user not found!");
             }

@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OnTheRoad.Data.Contracts;
 using OnTheRoad.Data.Models;
 using OnTheRoad.Data.Repositories;
+using OnTheRoad.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -857,6 +858,241 @@ namespace OnTheRoad.Data.Tests.Repositories
             Assert.AreEqual(names[0], result[0].Name);
             Assert.AreEqual(names[1], result[1].Name);
             Assert.AreEqual(names[2], result[2].Name);
+        }
+
+        [TestCase(0, "SomeTrip1", "SomeTrip2", "SomeTrip3")]
+        [TestCase(1, "OtherTrip1", "OtherTrip2", "OtherTrip3")]
+        [TestCase(2, "ThirdTrip1", "ThirdTrip2", "ThirdTrip3")]
+        public void GetTrips_ShouldReturnCorrectSkippedTrips(int skip, params string[] names)
+        {
+            var trips = names.Select(name => new Trip() { Name = name }).AsQueryable();
+            this.SetupTripDbSet(trips);
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+            var take = 1;
+
+
+            var result = tripRepository.GetTrips(skip, take).ToList();
+
+
+            Assert.AreEqual(names[skip], result[0].Name);
+        }
+
+        [TestCase(1, "SomeTrip1", "SomeTrip2", "SomeTrip3")]
+        [TestCase(2, "OtherTrip1", "OtherTrip2", "OtherTrip3")]
+        [TestCase(3, "ThirdTrip1", "ThirdTrip2", "ThirdTrip3")]
+        public void GetTrips_ShouldTakeCoorectNumberOfTrips(int take, params string[] names)
+        {
+            var trips = names.Select(name => new Trip() { Name = name }).AsQueryable();
+            this.SetupTripDbSet(trips);
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+            var skip = 0;
+
+
+            var result = tripRepository.GetTrips(skip, take);
+
+
+            Assert.GreaterOrEqual(take, result.Count());
+        }
+
+        [TestCase(new int[] { 0, 1, 2 }, "SomeTrip1", "SomeTrip2", "SomeTrip3")]
+        [TestCase(new int[] { 0, 1, 2 }, "OtherTrip1", "OtherTrip2", "OtherTrip3")]
+        public void GetTrips_ShouldReturnTripsOrderedByDateCreated(int[] hours, params string[] names)
+        {
+            var now = DateTime.Now;
+            var trips = names.Select(name => new Trip() { Name = name }).ToList();
+            for (int i = 0; i < hours.Length; i++)
+            {
+                var createDate = now.AddHours(hours[i]);
+                trips[i].CreateDate = createDate;
+            }
+
+            this.SetupTripDbSet(trips.AsQueryable());
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+            var skip = 0;
+            var take = trips.Count();
+
+
+            var result = tripRepository.GetTrips(skip, take).ToList();
+
+
+            Assert.AreEqual(result[0].CreateDate, now.AddHours(hours[2]));
+            Assert.AreEqual(result[1].CreateDate, now.AddHours(hours[1]));
+            Assert.AreEqual(result[2].CreateDate, now.AddHours(hours[0]));
+        }
+
+        [Test]
+        public void GetTrips_ShouldReturnCorrectlyMappedTrips()
+        {
+            var tripName = "TripName";
+            var location = "Location";
+            var description = "Description";
+            var startDate = DateTime.Now;
+            var endDate = DateTime.Now.AddDays(1);
+            var createDate = DateTime.Now;
+            var categoryName = "CategoryName";
+            var coverImage = new byte[0];
+
+            var user = new User()
+            {
+                FirstName = "FirstName",
+                LastName = "LastName",
+                Email = "Email",
+                Id = "Id",
+                UserName = "UserName"
+            };
+
+            var categories = new List<Category>()
+            {
+                new Category() { Name = categoryName }
+            };
+
+            var trips = new List<Trip>()
+            {
+                new Trip()
+                {
+                    Name = tripName,
+                    Location = location,
+                    Description = description,
+                    StartDate = startDate,
+                    EndDate = endDate,
+                    CreateDate = createDate,
+                    Categories = categories,
+                    CoverImage = coverImage,
+                    Organiser = user
+                }
+            }
+            .AsQueryable();
+
+            this.SetupTripDbSet(trips);
+
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+            var skip = 0;
+            var take = 1;
+
+
+            var result = tripRepository.GetTrips(skip, take).ToList();
+
+
+            var trip = result[0];
+            Assert.AreEqual(tripName, trip.Name);
+            Assert.AreEqual(location, trip.Location);
+            Assert.AreEqual(description, trip.Description);
+            Assert.AreEqual(startDate, trip.StartDate);
+            Assert.AreEqual(endDate, trip.EndDate);
+            Assert.AreEqual(createDate, trip.CreateDate);
+            Assert.AreEqual(coverImage, trip.CoverImage);
+            Assert.AreEqual(categoryName, trip.Categories.ToList()[0].Name);
+
+            Assert.AreEqual(user.UserName, trip.Organiser.Username);
+            Assert.AreEqual(user.Id, trip.Organiser.Id);
+            Assert.AreEqual(user.FirstName, trip.Organiser.FirstName);
+            Assert.AreEqual(user.LastName, trip.Organiser.LastName);
+            Assert.AreEqual(user.Email, trip.Organiser.Email);
+        }
+
+        [Test]
+        public void GetTripsCount_WhenNoTripsExist_ShouldReturnZero()
+        {
+            var trips = new List<Trip>().AsQueryable();
+            this.SetupTripDbSet(trips);
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+            var tripRepository = new TripRepository(this.contextMock.Object);
+
+            var count = tripRepository.GetTripsCount();
+
+            Assert.AreEqual(0, count);
+        }
+
+        [TestCase(2)]
+        [TestCase(3)]
+        public void GetTripsCount_WhenTripsExist_ShouldReturnCorrectCount(int count)
+        {
+            var trips = new List<Trip>();
+            for (int i = 0; i < count; i++)
+            {
+                trips.Add(new Trip());
+            }
+
+            this.SetupTripDbSet(trips.AsQueryable());
+            this.contextMock.SetupGet(x => x.Trips).Returns(this.tripDbSetMock.Object);
+            var tripRepository = new TripRepository(this.contextMock.Object);
+
+
+            var result = tripRepository.GetTripsCount();
+
+
+            Assert.AreEqual(count, result);
+        }
+
+        [Test]
+        public void Add_ShouldSetCorrectEntryState()
+        {
+            var trip = new Trip() { Categories = new List<Category>(), Tags = new List<Tag>() };
+            var trips = new ObservableCollection<Trip>() { trip };
+            this.tripDbSetMock.Setup(x => x.Local).Returns(trips);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<Trip>(), It.IsAny<EntityState>()));
+
+            var model = new Mock<ITrip>();
+            var organiser = new Mock<IUser>();
+            const string username = "username";
+            organiser.Setup(x => x.Username).Returns(username);
+            model.Setup(x => x.Organiser).Returns(organiser.Object);
+            model.Setup(x => x.Categories).Returns(new List<ICategory>());
+            model.Setup(x => x.Tags).Returns(new List<ITag>());
+
+            var userDbSetMock = new Mock<DbSet<User>>();
+            var users = new List<User>() { new User() { UserName = username } }.AsQueryable();
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(users.ElementType);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
+            this.contextMock.SetupGet(x => x.Users).Returns(userDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+
+
+            tripRepository.Add(model.Object);
+
+
+            this.contextMock.Verify(x => x.SetEntryState(It.Is<Trip>(t => t.Equals(trip)), It.Is<EntityState>(n => n == EntityState.Added)), Times.Once);
+        }
+
+        [Test]
+        public void Add_WhenOrganiserIsNotFound_ShouldThrow()
+        {
+            var trip = new Trip() { Categories = new List<Category>(), Tags = new List<Tag>() };
+            var trips = new ObservableCollection<Trip>() { trip };
+            this.tripDbSetMock.Setup(x => x.Local).Returns(trips);
+            this.contextMock.Setup(x => x.SetEntryState(It.IsAny<Trip>(), It.IsAny<EntityState>()));
+
+            var model = new Mock<ITrip>();
+            var organiser = new Mock<IUser>();
+            const string username = "username";
+            organiser.Setup(x => x.Username).Returns(username);
+            model.Setup(x => x.Organiser).Returns(organiser.Object);
+            model.Setup(x => x.Categories).Returns(new List<ICategory>());
+            model.Setup(x => x.Tags).Returns(new List<ITag>());
+
+            var userDbSetMock = new Mock<DbSet<User>>();
+            var users = new List<User>() { new User() { UserName = "otherUsername" } }.AsQueryable();
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.Provider).Returns(users.Provider);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.Expression).Returns(users.Expression);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.ElementType).Returns(users.ElementType);
+            userDbSetMock.As<IQueryable<User>>().Setup(m => m.GetEnumerator()).Returns(users.GetEnumerator());
+            this.contextMock.SetupGet(x => x.Users).Returns(userDbSetMock.Object);
+
+            var tripRepository = new TripRepository(this.contextMock.Object);
+
+
+            Assert.Throws<ArgumentException>(() => tripRepository.Add(model.Object));
         }
 
         private void SetupTripDbSet(IQueryable<Trip> trips)
