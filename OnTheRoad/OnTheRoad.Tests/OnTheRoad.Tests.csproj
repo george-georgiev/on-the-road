@@ -96,6 +96,7 @@
     <Compile Include="Presenters\ProfileInfoPresenterTests.cs" />
     <Compile Include="Presenters\RegisterPresenterTests.cs" />
     <Compile Include="Presenters\ReviewPresenterTests.cs" />
+    <Compile Include="Presenters\TripsPresenterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
