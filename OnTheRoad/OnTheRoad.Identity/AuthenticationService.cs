@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Data.Models;
-using System.IO;
+using OnTheRoad.Logic.Enums;
 
 namespace OnTheRoad.Identity
 {
@@ -38,10 +38,12 @@ namespace OnTheRoad.Identity
             }
         }
 
-        public string LoginUser(string username, string password, bool rememberMe)
+        public LoginStatus LoginUser(string username, string password, bool rememberMe)
         {
             SignInStatus result = this.AppSignInManager.PasswordSignIn(username, password, rememberMe, shouldLockout: true);
-            return result.ToString();
+            var loginStatus = (LoginStatus)Enum.Parse(typeof(LoginStatus), result.ToString(), true);
+
+            return loginStatus;
         }
     }
 }

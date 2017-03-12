@@ -7,11 +7,11 @@ using Ninject.Modules;
 
 using Microsoft.AspNet.Identity.Owin;
 
-using OnTheRoad.Logic.Contracts;
-using OnTheRoad.Mvp.Factories;
 using OnTheRoad.Identity;
+using OnTheRoad.Logic.Contracts;
+using OnTheRoad.MVC.Factories;
 
-namespace OnTheRoad.App_Start.BindingModules
+namespace OnTheRoad.MVC.App_Start.BindingModules
 {
     public class AuthenticationBindingModule : NinjectModule
     {

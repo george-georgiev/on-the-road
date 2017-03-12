@@ -1,4 +1,4 @@
-﻿using OnTheRoad.Mvp.Enums;
+﻿using OnTheRoad.Logic.Enums;
 
 namespace OnTheRoad.Mvp.Models
 {

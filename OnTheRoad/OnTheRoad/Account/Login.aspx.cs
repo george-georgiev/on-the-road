@@ -7,7 +7,7 @@ using OnTheRoad.Mvp.Presenters;
 using OnTheRoad.Mvp.Models;
 using OnTheRoad.Mvp.Account.Contracts;
 using OnTheRoad.Mvp.EventArgsClasses;
-using OnTheRoad.Mvp.Enums;
+using OnTheRoad.Logic.Enums;
 
 namespace OnTheRoad.Account
 {

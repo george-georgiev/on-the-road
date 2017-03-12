@@ -1,7 +1,9 @@
-﻿namespace OnTheRoad.Logic.Contracts
+﻿using OnTheRoad.Logic.Enums;
+
+namespace OnTheRoad.Logic.Contracts
 {
     public interface ILoginService
     {
-        string LoginUser(string username, string password, bool rememberMe);
+        LoginStatus LoginUser(string username, string password, bool rememberMe);
     }
 }
