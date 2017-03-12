@@ -1,0 +1,41 @@
+﻿.add-trip-container {
+    background-color: white;
+    padding: 2em;
+    min-width: 20em;
+}
+
+.btn-upload {
+    display: none !important;
+}
+
+.add-trip-image-container {
+    margin: auto;
+    margin-bottom: 2em;
+    max-width: 35em;
+    min-width: 15em;
+    padding: 3em;
+    padding-bottom: 1em;
+    background-color: #f9f9f9;
+}
+
+.add-trip-image {
+    max-width: 100%;
+    margin-bottom: 2em;
+}
+
+.add-trip-description {
+    margin-top: 1.5em;
+}
+
+div.add-trip-description div textarea {
+    min-width: 50%;
+}
+
+select.form-control {
+    padding: 0;
+}
+
+.add-trip-tags {
+    margin-top: 2.5em;
+    padding-left: 1em;
+}

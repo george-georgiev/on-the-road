@@ -1,0 +1,48 @@
+﻿.trips-container {
+    border-top: solid #cf4d35 2px;
+    background-color: #f9f9f9;
+    margin-bottom: 3em;
+    min-width: 15em;
+}
+
+.trip-item {
+    margin: 0.5em;
+    background-color: white;
+}
+
+.overview-item {
+    min-height: 30em;
+}
+
+.main {
+    padding: 1em;
+}
+
+.trip-name {
+    margin-top: 1em;
+}
+
+.head {
+    background-color: white;
+    font-size: 1.5em;
+    height: 2.5em;
+    padding-top: 0.5em;
+}
+
+img.resizable {
+    margin: auto;
+    width: 100%;
+    max-width: 30em;
+}
+
+.category-wrapper {
+    padding-bottom: 1em;
+}
+
+.trips-wrapper {
+    margin-bottom: 1.5em;
+}
+
+.col {
+    padding: 0;
+}

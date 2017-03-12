@@ -1,0 +1,198 @@
+﻿.navbar-default .left-side-nav > li > a:hover,
+.navbar-default .left-side-nav > li > a:focus {
+    color: forestgreen;
+    background-color: white;
+    /*Sets the text hover color on navbar*/
+}
+
+.left-side-nav {
+    text-align: left;
+    line-height: 50px;
+}
+
+    .left-side-nav > li > a {
+        padding: 0 15px;
+        font-family: Roboto;
+        color: #555555;
+    }
+
+.navbar-default .navbar-nav a {
+    color: white;
+}
+
+.navbar-default {
+    /*background-color: transparent;
+    border-color: #030033;*/
+    border-radius: 0;
+    border: 0;
+    box-shadow: 0 2px 1px #E3E3E5;
+    background-color: white;
+}
+
+#navbar-user {
+    padding: 0 1em 0 1em;
+    text-align: center;
+}
+
+/* ProfileInfo page */
+.back-container {
+    background-color: white;
+    min-width: 15em;
+    box-shadow: 0 2px 1px #E3E3E5;
+    padding: 1.5em;
+    margin-right: 0px;
+}
+
+.username-header {
+    margin: 0;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo {
+    display: inline-block;
+    text-align: left;
+}
+
+.horizontal-view {
+    display: inline;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_ImageUser {
+    margin-right: 50px;
+}
+
+/*#MainContent_ProfileContent_ButtonEdit,*/
+#MainContent_ProfileContent_FormViewProfileInfo_ButtonSave {
+    float: right;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_City_DropDownCities {
+    max-width: 280px;
+}
+
+#MainContent_ProfileContent_ButtonUploadImage {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#MainContent_ProfileContent_FormViewProfileInfo_Info {
+    max-width: 100%;
+}
+
+.btn-upload {
+    z-index: -1;
+    opacity: 0;
+}
+
+.btn-follow {
+    float: right;
+}
+
+.favUserImage {
+    width: 50px;
+    height: 50px;
+}
+
+.fav-users-header {
+    margin-bottom: 50px;
+}
+
+.fav-user-wrapper {
+    display: inline-block;
+    margin-bottom: 2em;
+}
+
+#MainContent_ProfileContent_PanelFavouriteUsers a {
+    margin-right: 30px;
+}
+
+.dropdown-menu {
+    top: 30%;
+    min-width: 100px;
+    padding: 0;
+}
+
+.btn-dropdown {
+    border-radius: 10px;
+    position: relative;
+    top: -15px;
+}
+
+.btn-unfollow {
+    border: 0;
+    background-color: transparent;
+    margin-left: 10px;
+}
+
+/* ProfileReviews page */
+
+.reviews-container {
+    padding-top: 0;
+}
+
+.review-user-image {
+    margin-right: 0px;
+}
+
+#MainContent_ProfileContent_TextBoxAddReviewText {
+    min-width: 100%;
+}
+
+.radio-btns-review {
+    font-size: 1.2em;
+}
+
+.review-body {
+    padding-bottom: 0;
+}
+
+.text-wrapper {
+    padding-left: 5em;
+}
+
+.comment-wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.image-wrapper {
+    height: 100px;
+    width: 100px;
+    margin-bottom: 1em;
+}
+
+.comment-header {
+    background-color: rgb(12, 197, 241);
+    color: white;
+    height: 3em;
+    padding: 10px;
+    border-top-left-radius: 5px;
+}
+
+    .comment-header a {
+        color: white;
+    }
+
+.comment-body {
+    background-color: ghostwhite;
+    min-height: 80px;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+}
+
+.from-user {
+    float: right;
+}
+
+#MainContent_ProfileContent_DataPagerComments {
+    display: block;
+    padding-top: 25px;
+}
+
+    #MainContent_ProfileContent_DataPagerComments * {
+        padding: 5px 15px 5px 15px;
+        background: ghostwhite;
+    }
+
+#err-label {
+    color: red;
+}

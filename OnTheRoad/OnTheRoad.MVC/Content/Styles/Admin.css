@@ -1,0 +1,40 @@
+﻿.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: forestgreen;
+    /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav a {
+    color: white;
+}
+
+.navbar {
+    margin: 0;
+    display: inline-block;
+}
+
+.column {
+    text-align: center;
+    float: none;
+}
+
+.navbar-default {
+    /*background-color: transparent;
+    border-color: #030033;*/
+    border-radius: 0;
+    border: 0;
+    /*box-shadow: 0 2px 1px #888888;*/
+    background-color: white;
+    padding: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+    text-decoration: underline;
+}
+
+#navbar-user {
+    padding: 0;
+}
