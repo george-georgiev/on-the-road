@@ -1,0 +1,33 @@
+﻿@model OnTheRoad.Domain.Models.ITrip
+
+<div class="trip-item row trips-wrapper box-shadow">
+    <div class="col col-md-6 col-sm-6 col-xs-12">
+        <a href="/trips/@this.Model.Id">
+            <div class="meta-image text-center">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.CoverImage)" class="img-responsive resizable" />
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <h4>
+            <a href="/trips/@this.Model.Id">
+                @this.Model.Name
+            </a>
+        </h4>
+
+        <div class="info">
+            @Resources.TripItemPartial.LocationLbl:
+            <span>@this.Model.Location</span>
+        </div>
+        <div class="info">
+            @Resources.TripItemPartial.StartDateLbl:
+            <span>@this.Model.StartDate.ToString("dd.MM.yyyy")</span>
+        </div>
+        <a href="/profile/profileInfo?name=@this.Model.Organiser.Username">
+            <div class="info">
+                @Resources.TripItemPartial.OrganizerLbl:
+                <span class="hyperlink">@this.Model.Organiser.FirstName @this.Model.Organiser.LastName</span>
+            </div>
+        </a>
+    </div>
+</div>

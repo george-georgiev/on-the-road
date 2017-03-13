@@ -23,9 +23,21 @@ namespace OnTheRoad.MVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/Content/Scripts/js").Include(
+                      "~/Content/Scripts/SiteNavigation.js"));
+
+            bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
+                      "~/Content/Styles/bootstrap.css",
+                      "~/Content/Styles/site.css",
+                      "~/Content/Styles/AddTrip.css",
+                      "~/Content/Styles/Admin.css",
+                      "~/Content/Styles/DataPager.css",
+                      "~/Content/Styles/Home.css",
+                      "~/Content/Styles/LoginRegister.css",
+                      "~/Content/Styles/SiteNavigation.css",
+                      "~/Content/Styles/Trips.css",
+                      "~/Content/Styles/TripsContainer.css",
+                      "~/Content/Styles/UserProfile.css"));
         }
     }
 }

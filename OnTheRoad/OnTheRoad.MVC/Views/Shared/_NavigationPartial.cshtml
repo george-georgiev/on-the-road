@@ -1,0 +1,45 @@
+﻿@model NavigationPartialViewModel
+
+<div class="nav-area">
+    <div class="search-container box-shadow">
+        <div class="nav-head text-center box-shadow">
+            <span>@Resources.NavigationPartial.SearchLbl</span>
+        </div>
+        <div class="search-body text-center">
+            <div>
+                <input id="search-box" type="text" class="search-box" />
+                <a id="search-btn" class="search-button text-center">
+                    <i class="fa fa-search"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="nav-categories-container box-shadow">
+        <div class="nav-head text-center box-shadow">
+            <span>@Resources.NavigationPartial.TripsCategoriesLbl</span>
+        </div>
+        <div class="nav-categories-body box-shadow">
+            @{
+                var alt = false;
+            }
+
+            @foreach (var category in this.Model.Categories)
+            {
+                if (alt)
+                {
+                    <div>
+                        @Html.ActionLink(Html.Encode(category.Name), "ByName", "Categories", new { categoryName = Html.Encode(category.Name) }, new { @class = "nav-category-item-alt" })
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        @Html.ActionLink(Html.Encode(category.Name), "ByName", "Categories", new { categoryName = Html.Encode(category.Name) }, new { @class = "nav-category-item" })
+                    </div>
+                }
+
+                alt = !alt;
+            }
+        </div>
+    </div>
+</div>
