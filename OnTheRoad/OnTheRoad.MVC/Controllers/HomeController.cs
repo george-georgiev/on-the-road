@@ -11,31 +11,31 @@ namespace OnTheRoad.MVC.Controllers
     public class HomeController : Controller
     {
         private const int RecentTripsCount = 4;
-        private readonly ITripGetService tripsService;
-        private readonly IUserGetService usersService;
+        private readonly ITripGetService tripService;
+        private readonly IUserGetService userService;
 
-        public HomeController(ITripGetService tripsService, IUserGetService usersService)
+        public HomeController(ITripGetService tripService, IUserGetService userService)
         {
-            if (tripsService == null)
+            if (tripService == null)
             {
-                throw new ArgumentNullException("tripsService cannot be null!");
+                throw new ArgumentNullException("tripService cannot be null!");
             }
 
-            if (usersService == null)
+            if (userService == null)
             {
-                throw new ArgumentNullException("usersService cannot be null!");
+                throw new ArgumentNullException("userService cannot be null!");
             }
 
-            this.tripsService = tripsService;
-            this.usersService = usersService;
+            this.tripService = tripService;
+            this.userService = userService;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            var recentTrips = this.tripsService.GetTrips(0, RecentTripsCount);
-            var usersCount = this.usersService.GetAllUsersCount();
-            var tripsCount = this.tripsService.GetTripsCount();
+            var recentTrips = this.tripService.GetTrips(0, RecentTripsCount);
+            var usersCount = this.userService.GetAllUsersCount();
+            var tripsCount = this.tripService.GetTripsCount();
 
             var model = new HomeViewModel() { Trips = recentTrips, AllUsersCount = usersCount, AllTripsCount = tripsCount };
 
