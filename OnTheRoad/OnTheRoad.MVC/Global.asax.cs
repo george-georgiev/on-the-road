@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using OnTheRoad.Infrastructure.Mapping;
+using System.Reflection;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
@@ -15,6 +17,14 @@ namespace OnTheRoad.MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            this.RegisterMapper();
+        }
+
+        private void RegisterMapper()
+        {
+            var autoMapperConfig = new AutoMapperConfig();
+            autoMapperConfig.Execute(Assembly.GetExecutingAssembly());
         }
     }
 }

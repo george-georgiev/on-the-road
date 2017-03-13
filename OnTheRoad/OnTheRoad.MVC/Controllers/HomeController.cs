@@ -1,4 +1,5 @@
 ﻿using OnTheRoad.Logic.Contracts;
+using OnTheRoad.MVC.Common;
 using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -34,10 +35,17 @@ namespace OnTheRoad.MVC.Controllers
         public ActionResult Index()
         {
             var recentTrips = this.tripService.GetTrips(0, RecentTripsCount);
+            var mappedTrips = new List<TripViewModel>();
+            foreach (var trip in recentTrips)
+            {
+                var mappedTrip = MapperProvider.Mapper.Map<TripViewModel>(trip);
+                mappedTrips.Add(mappedTrip);
+            }
+
             var usersCount = this.userService.GetAllUsersCount();
             var tripsCount = this.tripService.GetTripsCount();
 
-            var model = new HomeViewModel() { Trips = recentTrips, AllUsersCount = usersCount, AllTripsCount = tripsCount };
+            var model = new HomeViewModel() { Trips = mappedTrips, AllUsersCount = usersCount, AllTripsCount = tripsCount };
 
             return this.View(model);
         }

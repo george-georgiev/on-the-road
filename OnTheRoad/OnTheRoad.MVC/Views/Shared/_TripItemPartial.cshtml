@@ -1,4 +1,4 @@
-﻿@model OnTheRoad.Domain.Models.ITrip
+﻿@model TripViewModel
 
 <div class="trip-item row trips-wrapper box-shadow">
     <div class="col col-md-6 col-sm-6 col-xs-12">
@@ -23,10 +23,10 @@
             @Resources.TripItemPartial.StartDateLbl:
             <span>@this.Model.StartDate.ToString("dd.MM.yyyy")</span>
         </div>
-        <a href="/profile/profileInfo?name=@this.Model.Organiser.Username">
+        <a href="/profile/profileInfo?name=@this.Model.OrganiserUsername">
             <div class="info">
                 @Resources.TripItemPartial.OrganizerLbl:
-                <span class="hyperlink">@this.Model.Organiser.FirstName @this.Model.Organiser.LastName</span>
+                <span class="hyperlink">@this.Model.OrganiserFirstName @this.Model.OrganiserLastName</span>
             </div>
         </a>
     </div>

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=5.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Castle.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
       <Private>True</Private>
@@ -233,8 +237,10 @@
     <Compile Include="Areas\Administration\Controllers\ManageTripsController.cs" />
     <Compile Include="Common\CustomImageResizer.cs" />
     <Compile Include="Common\IdentityHelper.cs" />
+    <Compile Include="Common\MapperProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CategoryOverviewPartialController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NavigationPartialController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
@@ -242,11 +248,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CategoryOverviewViewModel.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\NavigationPartialViewModel.cs" />
     <Compile Include="Models\RegisterViewModel.cs" />
-    <Compile Include="Models\TripItemViewModel.cs" />
+    <Compile Include="Models\TripViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -315,12 +323,12 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Categories\ByName.cshtml" />
     <Content Include="Views\Shared\_TripItemPartial.cshtml" />
+    <Content Include="Views\Shared\_CategoryOverviewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Views\Index\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -342,6 +350,10 @@
     <ProjectReference Include="..\OnTheRoad.Identity\OnTheRoad.Identity.csproj">
       <Project>{af550f2b-b00a-4835-8df7-995fc7f863cf}</Project>
       <Name>OnTheRoad.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Infrastructure\OnTheRoad.Infrastructure.csproj">
+      <Project>{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}</Project>
+      <Name>OnTheRoad.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{e4b2c057-17cb-4da4-bd4f-148bf976591c}</Project>

@@ -11,14 +11,14 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Constructor_ShouldReturnTripItemViewModelInstance()
         {
             // Arrange & Act & Assert
-            Assert.IsInstanceOf<TripItemViewModel>(new TripItemViewModel());
+            Assert.IsInstanceOf<TripViewModel>(new TripViewModel());
         }
 
         [Test]
         public void Id_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var id = 5;
 
             // Act
@@ -32,7 +32,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Name_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var name = "Some Name";
 
             // Act
@@ -46,7 +46,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void CoverImage_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var coverImage = new byte[0];
 
             // Act
@@ -60,7 +60,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Location_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var location = "Some Location";
 
             // Act
@@ -74,7 +74,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void StartDate_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var startDate = DateTime.Now;
 
             // Act
@@ -88,42 +88,42 @@ namespace OnTheRoad.MVC.Tests.Models
         public void OrganiserUserName_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var userName = "Some UserName";
 
             // Act
-            tripItemViewModel.OrganiserUserName = userName;
+            tripItemViewModel.OrganiserUsername = userName;
 
             // Assert
-            Assert.AreEqual(userName, tripItemViewModel.OrganiserUserName);
+            Assert.AreEqual(userName, tripItemViewModel.OrganiserUsername);
         }
 
         [Test]
         public void OrganizerFirstName_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var fisrstName = "Some First Name";
 
             // Act
-            tripItemViewModel.OrganizerFirstName = fisrstName;
+            tripItemViewModel.OrganiserFirstName = fisrstName;
 
             // Assert
-            Assert.AreEqual(fisrstName, tripItemViewModel.OrganizerFirstName);
+            Assert.AreEqual(fisrstName, tripItemViewModel.OrganiserFirstName);
         }
 
         [Test]
         public void OrganizerLastName_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var tripItemViewModel = new TripItemViewModel();
+            var tripItemViewModel = new TripViewModel();
             var lastName = "Some Last Name";
 
             // Act
-            tripItemViewModel.OrganizerLastName = lastName;
+            tripItemViewModel.OrganiserLastName = lastName;
 
             // Assert
-            Assert.AreEqual(lastName, tripItemViewModel.OrganizerLastName);
+            Assert.AreEqual(lastName, tripItemViewModel.OrganiserLastName);
         }
     }
 }

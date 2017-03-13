@@ -7,6 +7,8 @@ using Moq;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.MVC.Models;
+using AutoMapper;
+using OnTheRoad.MVC.Common;
 
 namespace OnTheRoad.MVC.Tests.Controllers
 {
@@ -70,7 +72,8 @@ namespace OnTheRoad.MVC.Tests.Controllers
             var tripServiceMock = new Mock<ITripGetService>();
             var skip = 0;
             var take = 4;
-            tripServiceMock.Setup(x => x.GetTrips(It.Is<int>(o => o == skip), It.Is<int>(o => o == take))).Returns(It.IsAny<IEnumerable<ITrip>>());
+            var trips = new List<ITrip>();
+            tripServiceMock.Setup(x => x.GetTrips(It.Is<int>(o => o == skip), It.Is<int>(o => o == take))).Returns(trips);
             var userServiceMock = new Mock<IUserService>();
             var homeController = new HomeController(tripServiceMock.Object, userServiceMock.Object);
 
@@ -117,11 +120,18 @@ namespace OnTheRoad.MVC.Tests.Controllers
         public void Index_WhenCalled_ShouldSetCorrectTripsToViewModel()
         {
             // Arrange
+            var tripViewModelMock = new Mock<TripViewModel>();
+            var autoMapperMock = new Mock<IMapper>();
+            autoMapperMock.Setup(x => x.Map<TripViewModel>(It.IsAny<ITrip>())).Returns(tripViewModelMock.Object);
+            MapperProvider.Mapper = autoMapperMock.Object;
+
             var tripServiceMock = new Mock<ITripGetService>();
             var tripMock = new Mock<ITrip>();
             var trips = new List<ITrip>() { tripMock.Object };
             tripServiceMock.Setup(x => x.GetTrips(It.IsAny<int>(), It.IsAny<int>())).Returns(trips);
+
             var userServiceMock = new Mock<IUserService>();
+
             var homeController = new HomeController(tripServiceMock.Object, userServiceMock.Object);
 
             // Act
@@ -129,7 +139,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
             var model = result.Model as HomeViewModel;
 
             // Assert
-            Assert.AreSame(tripMock.Object, (model.Trips as List<ITrip>)[0]);
+            Assert.AreSame(tripViewModelMock.Object, (model.Trips as List<TripViewModel>)[0]);
         }
 
         [Test]

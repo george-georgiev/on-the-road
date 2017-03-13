@@ -1,1 +1,13 @@
-﻿
+﻿@model IEnumerable<CategoryViewModel>
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        @foreach (var category in this.Model)
+        {
+            Html.RenderAction("Index", "CategoryOverviewPartial", new { categoryName = category.Name });
+        }
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        @{Html.RenderAction("Index", "NavigationPartial");}
+    </div>
+</div>

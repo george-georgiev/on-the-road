@@ -20,7 +20,7 @@ namespace OnTheRoad.MVC.Tests.Models
         {
             // Arrange
             var homeViewModel = new HomeViewModel();
-            var trips = new List<ITrip>();
+            var trips = new List<TripViewModel>();
 
             // Act
             homeViewModel.Trips = trips;

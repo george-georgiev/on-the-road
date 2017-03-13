@@ -5,7 +5,7 @@ namespace OnTheRoad.MVC.Models
 {
     public class HomeViewModel
     {
-        public IEnumerable<ITrip> Trips { get; set; }
+        public IEnumerable<TripViewModel> Trips { get; set; }
 
         public int AllTripsCount { get; set; }
 

@@ -1,0 +1,46 @@
+﻿@model CategoryOverviewViewModel
+
+<div class="trips-container text-center box-shadow">
+    <div class="head box-shadow">
+        <a href="/categories/@this.Model.Name">
+            @this.Model.Name
+        </a>
+    </div>
+
+    <div class="main row">
+        @foreach (var trip in this.Model.Trips)
+        {
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="trip-item category-wrapper box-shadow overview-item">
+                    <a href="/trips/@trip.Id">
+                        <div class="meta-image text-center">
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(trip.CoverImage)" class="img-responsive resizable" />
+                        </div>
+                    </a>
+                    <h4 class="trip-name">
+                        <a href="/trips/@trip.Id">@trip.Name</a>
+                    </h4>
+
+                    <div class="info">
+                        @Resources.TripItemPartial.LocationLbl:
+                        <span>@trip.Location</span>
+                    </div>
+                    <div class="info">
+                        @Resources.TripItemPartial.StartDateLbl:
+                        <span>@trip.StartDate.ToString("dd.MM.yyyy")</span>
+                    </div>
+                    <a href="/profile/profileInfo?name=@trip.OrganiserUsername" >
+                        <div class="info">
+                            @Resources.TripItemPartial.OrganizerLbl:
+                            <span class="hyperlink">@trip.OrganiserFirstName @trip.OrganiserLastName</span>
+                        </div>
+                    </a>
+
+                    <div class="oveflow-ellipsis-row-3">
+                        @trip.Description
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

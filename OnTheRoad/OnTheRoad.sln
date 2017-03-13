@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.MVC", "OnTheRoad.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.MVC.Tests", "OnTheRoad.MVC.Tests\OnTheRoad.MVC.Tests.csproj", "{D4711563-2ECA-49FA-A061-3AD638A30E93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Infrastructure", "OnTheRoad.Infrastructure\OnTheRoad.Infrastructure.csproj", "{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{D4711563-2ECA-49FA-A061-3AD638A30E93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4711563-2ECA-49FA-A061-3AD638A30E93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4711563-2ECA-49FA-A061-3AD638A30E93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
