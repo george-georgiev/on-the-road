@@ -23,13 +23,15 @@ namespace OnTheRoad.MVC.Controllers
             this.tripGetService = tripGetService;
         }
 
+        [HttpGet]
         public ActionResult Index(string categoryName)
         {
             var mappedTrips = new List<TripViewModel>();
             var trips = this.tripGetService.GetTripsByCategoryNameOrderedByDate(categoryName, TripsCount);
             foreach (var trip in trips)
             {
-                var mappedTrip = MapperProvider.Mapper.Map<TripViewModel>(trip);
+                var mapper = MapperProvider.Mapper;
+                var mappedTrip = mapper.Map<TripViewModel>(trip);
                 mappedTrips.Add(mappedTrip);
             }
 

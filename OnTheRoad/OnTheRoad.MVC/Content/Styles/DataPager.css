@@ -31,3 +31,23 @@
     position: relative;
     width: 5em;
 }
+
+.arrow.disabled {
+    cursor: default;
+}
+
+.arrow-right.disabled {
+    border-left: 35px solid #708e70;
+}
+
+    .arrow-right.disabled:hover {
+        border-left: 35px solid #708e70;
+    }
+
+.arrow-left.disabled {
+    border-right: 35px solid #708e70;
+}
+
+    .arrow-left.disabled:hover {
+        border-right: 35px solid #708e70;
+    }

@@ -1,5 +1,9 @@
 ﻿@model NavigationPartialViewModel
 
+@{
+    Layout = null;
+}
+
 <div class="nav-area">
     <div class="search-container box-shadow">
         <div class="nav-head text-center box-shadow">
@@ -28,13 +32,17 @@
                 if (alt)
                 {
                     <div>
-                        @Html.ActionLink(Html.Encode(category.Name), "ByName", "Categories", new { categoryName = Html.Encode(category.Name) }, new { @class = "nav-category-item-alt" })
+                        <a href="/categories/details/@category.Name" class = "nav-category-item-alt">
+                            @category.Name
+                        </a>
                     </div>
                 }
                 else
                 {
                     <div>
-                        @Html.ActionLink(Html.Encode(category.Name), "ByName", "Categories", new { categoryName = Html.Encode(category.Name) }, new { @class = "nav-category-item" })
+                        <a href="/categories/details/@category.Name" class="nav-category-item">
+                            @category.Name
+                        </a>
                     </div>
                 }
 

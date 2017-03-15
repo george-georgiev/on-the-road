@@ -1,4 +1,5 @@
-﻿using OnTheRoad.Logic.Contracts;
+﻿using OnTheRoad.Domain.Models;
+using OnTheRoad.Logic.Contracts;
 using OnTheRoad.MVC.Common;
 using OnTheRoad.MVC.Models;
 using System;
@@ -9,6 +10,8 @@ namespace OnTheRoad.MVC.Controllers
 {
     public class CategoriesController : Controller
     {
+        private const int Take = 3;
+
         private readonly ICategoryService categoryService;
         private readonly ITripGetService tripGetService;
 
@@ -43,9 +46,67 @@ namespace OnTheRoad.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult ByName(string categoryName)
+        public ActionResult Details(string categoryName, int page = 1)
         {
-            return this.View();
+            page = page > 0 ? page : 1;
+            var skip = (page - 1) * Take;
+            var trips = this.GetTrips(categoryName, skip, Take);
+
+            var mappedTrips = this.MapTrips(trips);
+
+            var total = this.GetTripsTotal(categoryName);
+
+            var categoryModel = new CategoryDetailsViewModel();
+            categoryModel.Trips = mappedTrips;
+            categoryModel.Total = total;
+            categoryModel.Name = categoryName;
+            categoryModel.Page = page;
+            categoryModel.Take = Take;
+
+            return this.View(categoryModel);
+        }
+
+        private List<TripViewModel> MapTrips(IEnumerable<ITrip> trips)
+        {
+            var mappedTrips = new List<TripViewModel>();
+            foreach (var trip in trips)
+            {
+                var mapper = MapperProvider.Mapper;
+                var mappedTrip = mapper.Map<TripViewModel>(trip);
+                mappedTrips.Add(mappedTrip);
+            }
+
+            return mappedTrips;
+        }
+
+        private IEnumerable<ITrip> GetTrips(string categoryName, int skip, int take)
+        {
+            IEnumerable<ITrip> trips;
+            if (categoryName == null)
+            {
+                trips = this.tripGetService.GetTrips(skip, take);
+            }
+            else
+            {
+                trips = this.tripGetService.GetTripsByCategoryName(categoryName, skip, take);
+            }
+
+            return trips;
+        }
+
+        private int GetTripsTotal(string categoryName)
+        {
+            int total;
+            if (categoryName == null)
+            {
+                total = this.tripGetService.GetTripsCount();
+            }
+            else
+            {
+                total = this.tripGetService.GetTripsCountByCategoryName(categoryName);
+            }
+
+            return total;
         }
     }
 }

@@ -38,7 +38,8 @@ namespace OnTheRoad.MVC.Controllers
             var mappedTrips = new List<TripViewModel>();
             foreach (var trip in recentTrips)
             {
-                var mappedTrip = MapperProvider.Mapper.Map<TripViewModel>(trip);
+                var mapper = MapperProvider.Mapper;
+                var mappedTrip = mapper.Map<TripViewModel>(trip);
                 mappedTrips.Add(mappedTrip);
             }
 

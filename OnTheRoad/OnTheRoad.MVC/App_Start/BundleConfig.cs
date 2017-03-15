@@ -23,6 +23,16 @@ namespace OnTheRoad.MVC
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/microsoft-ajax").Include(
+                      "~/Scripts/MicrosoftAjax.js",
+                      "~/Scripts/MicrosoftMvcAjax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/microsoft-validation").Include(
+                      "~/Scripts/MicrosoftMvcValidation.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery.unobtrusive").Include(
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+
             bundles.Add(new ScriptBundle("~/Content/Scripts/js").Include(
                       "~/Content/Scripts/SiteNavigation.js"));
 
