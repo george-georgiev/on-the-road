@@ -7,8 +7,6 @@ using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace OnTheRoad.MVC.Tests.Controllers
@@ -50,6 +48,18 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Assert
             Assert.AreEqual(partialViewName, result.ViewName);
+        }
+
+        [Test]
+        public void Index_ShouldBeDecoratedWithHttpGetAttribute()
+        {
+            // Arrange
+            var categoryServiceMock = new Mock<ICategoryService>();
+            var navigationPartialController = new NavigationPartialController(categoryServiceMock.Object);
+            var attributes = navigationPartialController.GetType().GetMethod("Index").GetCustomAttributes(typeof(HttpGetAttribute), true);
+
+            // Act & Assert
+            Assert.IsTrue(attributes.Any());
         }
 
         [Test]

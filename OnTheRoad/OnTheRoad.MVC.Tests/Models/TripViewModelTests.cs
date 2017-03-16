@@ -5,7 +5,7 @@ using System;
 namespace OnTheRoad.MVC.Tests.Models
 {
     [TestFixture]
-    public class TripItemViewModelTests
+    public class TripViewModelTests
     {
         [Test]
         public void Constructor_ShouldReturnTripItemViewModelInstance()

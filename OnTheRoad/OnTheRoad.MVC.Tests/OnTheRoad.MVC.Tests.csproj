@@ -106,11 +106,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CategoriesControllerTests.cs" />
     <Compile Include="Controllers\CategoryOverviewPartialControllerTests.cs" />
     <Compile Include="Controllers\NavigationPartialControllerTests.cs" />
+    <Compile Include="Models\CategoryDetailsViewModelTests.cs" />
+    <Compile Include="Models\CategoryViewModelTests.cs" />
     <Compile Include="Models\HomeViewModelTests.cs" />
     <Compile Include="Models\NavigationPartialViewModelTests.cs" />
-    <Compile Include="Models\TripItemViewModelTests.cs" />
+    <Compile Include="Models\TripViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
   </ItemGroup>

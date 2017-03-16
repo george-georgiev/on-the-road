@@ -8,6 +8,7 @@ using OnTheRoad.MVC.Controllers;
 using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace OnTheRoad.MVC.Tests.Controllers
@@ -23,7 +24,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
         }
 
         [Test]
-        public void Index_WhenCalled_ShouldReturnPartialViewInstance()
+        public void Index_WhenCalled_ShouldReturnPartialViewResultInstance()
         {
             // Arrange
             var tripServiceMock = new Mock<ITripGetService>();
@@ -38,7 +39,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
         }
 
         [Test]
-        public void Index_WhenCalled_ShouldReturnCorrectVPartialView()
+        public void Index_WhenCalled_ShouldReturnCorrectPartialView()
         {
             // Arrange
             var tripServiceMock = new Mock<ITripGetService>();
@@ -50,6 +51,18 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Assert
             Assert.AreEqual("_CategoryOverviewPartial", result.ViewName);
+        }
+
+        [Test]
+        public void Index_ShouldBeDecoratedWithHttpGetAttribute()
+        {
+            // Arrange
+            var tripServiceMock = new Mock<ITripGetService>();
+            var categoryOverviewPartialController = new CategoryOverviewPartialController(tripServiceMock.Object);
+            var attributes = categoryOverviewPartialController.GetType().GetMethod("Index").GetCustomAttributes(typeof(HttpGetAttribute), true);
+
+            // Act & Assert
+            Assert.IsTrue(attributes.Any());
         }
 
         [Test]

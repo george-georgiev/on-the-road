@@ -12,10 +12,10 @@ namespace OnTheRoad.MVC.Controllers
     {
         private const int Take = 3;
 
-        private readonly ICategoryService categoryService;
+        private readonly ICategoryGetService categoryService;
         private readonly ITripGetService tripGetService;
 
-        public CategoriesController(ICategoryService categoryService, ITripGetService tripGetService)
+        public CategoriesController(ICategoryGetService categoryService, ITripGetService tripGetService)
         {
             if (categoryService == null)
             {
@@ -35,14 +35,15 @@ namespace OnTheRoad.MVC.Controllers
         public ActionResult Index()
         {
             var categories = this.categoryService.GetAllCategories();
-            var categoriesModel = new List<CategoryViewModel>();
+            var mappedCategories = new List<CategoryViewModel>();
             foreach (var category in categories)
             {
-                var mappedCategory = MapperProvider.Mapper.Map<CategoryViewModel>(category);
-                categoriesModel.Add(mappedCategory);
+                var mapper = MapperProvider.Mapper;
+                var mappedCategory = mapper.Map<CategoryViewModel>(category);
+                mappedCategories.Add(mappedCategory);
             }
 
-            return this.View(categoriesModel);
+            return this.View(mappedCategories);
         }
 
         [HttpGet]

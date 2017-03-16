@@ -9,6 +9,7 @@ using OnTheRoad.Domain.Models;
 using OnTheRoad.MVC.Models;
 using AutoMapper;
 using OnTheRoad.MVC.Common;
+using System.Linq;
 
 namespace OnTheRoad.MVC.Tests.Controllers
 {
@@ -63,6 +64,19 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Assert
             Assert.AreEqual(string.Empty, result.ViewName);
+        }
+
+        [Test]
+        public void Index_ShouldBeDecoratedWithHttpGetAttribute()
+        {
+            // Arrange
+            var tripServiceMock = new Mock<ITripGetService>();
+            var userServiceMock = new Mock<IUserService>();
+            var homeController = new HomeController(tripServiceMock.Object, userServiceMock.Object);
+            var attributes = homeController.GetType().GetMethod("Index").GetCustomAttributes(typeof(HttpGetAttribute), true);
+
+            // Act & Assert
+            Assert.IsTrue(attributes.Any());
         }
 
         [Test]
