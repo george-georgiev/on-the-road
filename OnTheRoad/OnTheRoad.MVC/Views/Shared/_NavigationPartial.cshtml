@@ -7,7 +7,7 @@
 <div class="nav-area">
     <div class="search-container box-shadow">
         <div class="nav-head text-center box-shadow">
-            <span>@Resources.NavigationPartial.SearchLbl</span>
+            <span>@Resources.Labels.Search</span>
         </div>
         <div class="search-body text-center">
             <div>
@@ -20,34 +20,17 @@
     </div>
     <div class="nav-categories-container box-shadow">
         <div class="nav-head text-center box-shadow">
-            <span>@Resources.NavigationPartial.TripsCategoriesLbl</span>
+            <span>@Resources.Labels.TripsCategories</span>
         </div>
         <div class="nav-categories-body box-shadow">
-            @{
-                var alt = false;
-            }
-
-            @foreach (var category in this.Model.Categories)
-            {
-                if (alt)
+            <div>
+                @foreach (var category in this.Model.Categories)
                 {
-                    <div>
-                        <a href="/categories/details/@category.Name" class = "nav-category-item-alt">
-                            @category.Name
-                        </a>
-                    </div>
+                    <a href="/categories/details/@category.Name" class="nav-category-item">
+                        @category.Name
+                    </a>
                 }
-                else
-                {
-                    <div>
-                        <a href="/categories/details/@category.Name" class="nav-category-item">
-                            @category.Name
-                        </a>
-                    </div>
-                }
-
-                alt = !alt;
-            }
+            </div>
         </div>
     </div>
 </div>

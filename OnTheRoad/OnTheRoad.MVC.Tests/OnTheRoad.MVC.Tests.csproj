@@ -109,7 +109,7 @@
     <Compile Include="Controllers\CategoriesControllerTests.cs" />
     <Compile Include="Controllers\CategoryOverviewPartialControllerTests.cs" />
     <Compile Include="Controllers\NavigationPartialControllerTests.cs" />
-    <Compile Include="Models\CategoryDetailsViewModelTests.cs" />
+    <Compile Include="Models\TripsWithPagingViewModelTests.cs" />
     <Compile Include="Models\CategoryViewModelTests.cs" />
     <Compile Include="Models\HomeViewModelTests.cs" />
     <Compile Include="Models\NavigationPartialViewModelTests.cs" />

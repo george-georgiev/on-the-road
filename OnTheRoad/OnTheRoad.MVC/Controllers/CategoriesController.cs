@@ -38,8 +38,7 @@ namespace OnTheRoad.MVC.Controllers
             var mappedCategories = new List<CategoryViewModel>();
             foreach (var category in categories)
             {
-                var mapper = MapperProvider.Mapper;
-                var mappedCategory = mapper.Map<CategoryViewModel>(category);
+                var mappedCategory = MapperProvider.Mapper.Map<CategoryViewModel>(category);
                 mappedCategories.Add(mappedCategory);
             }
 
@@ -53,37 +52,25 @@ namespace OnTheRoad.MVC.Controllers
             var skip = (page - 1) * Take;
             var trips = this.GetTrips(categoryName, skip, Take);
 
-            var mappedTrips = this.MapTrips(trips);
+            var mappedTrips = MapperProvider.Mapper.Map<IEnumerable<TripViewModel>>(trips);
 
             var total = this.GetTripsTotal(categoryName);
 
-            var categoryModel = new CategoryDetailsViewModel();
+            var categoryModel = new TripsWithPagingViewModel();
             categoryModel.Trips = mappedTrips;
             categoryModel.Total = total;
-            categoryModel.Name = categoryName;
+            categoryModel.Heading = $"{Resources.Labels.Category} {categoryName}";
+            categoryModel.PageHyperLink = $"/categories/details/{categoryName}/";
             categoryModel.Page = page;
             categoryModel.Take = Take;
 
-            return this.View(categoryModel);
-        }
-
-        private List<TripViewModel> MapTrips(IEnumerable<ITrip> trips)
-        {
-            var mappedTrips = new List<TripViewModel>();
-            foreach (var trip in trips)
-            {
-                var mapper = MapperProvider.Mapper;
-                var mappedTrip = mapper.Map<TripViewModel>(trip);
-                mappedTrips.Add(mappedTrip);
-            }
-
-            return mappedTrips;
+            return this.View("_TripsWithPaging", categoryModel);
         }
 
         private IEnumerable<ITrip> GetTrips(string categoryName, int skip, int take)
         {
             IEnumerable<ITrip> trips;
-            if (categoryName == null)
+            if (string.IsNullOrEmpty(categoryName) || string.IsNullOrWhiteSpace(categoryName))
             {
                 trips = this.tripGetService.GetTrips(skip, take);
             }
@@ -98,7 +85,7 @@ namespace OnTheRoad.MVC.Controllers
         private int GetTripsTotal(string categoryName)
         {
             int total;
-            if (categoryName == null)
+            if (string.IsNullOrEmpty(categoryName) || string.IsNullOrWhiteSpace(categoryName))
             {
                 total = this.tripGetService.GetTripsCount();
             }

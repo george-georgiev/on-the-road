@@ -9,7 +9,7 @@
         var searchPattern = searchBox.val();
         console.log(searchPattern);
         if (searchPattern && $.trim(searchPattern).length > 0) {
-            window.location.href = '/trips/' + searchPattern;
+            window.location.href = '/trips/search/' + searchPattern;
         }
         else {
             searchBox.val('');

@@ -117,13 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LocationLbl" xml:space="preserve">
+  <data name="AddTrip" xml:space="preserve">
+    <value>Добави пътешествие</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="Begining" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>Здравей</value>
+  </data>
+  <data name="LastAddedTrips" xml:space="preserve">
+    <value>Последно Добавени Пътешествия</value>
+  </data>
+  <data name="Location" xml:space="preserve">
     <value>Място</value>
   </data>
-  <data name="OrganizerLbl" xml:space="preserve">
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LogOff" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="Organizer" xml:space="preserve">
     <value>Потребител</value>
   </data>
-  <data name="StartDateLbl" xml:space="preserve">
+  <data name="Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisteredUsers" xml:space="preserve">
+    <value>Регистрирани протребители</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Търсене</value>
+  </data>
+  <data name="SearchResultsFor" xml:space="preserve">
+    <value>Резултати от търсенето за</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
     <value>Начало</value>
+  </data>
+  <data name="Trips" xml:space="preserve">
+    <value>Пътешествия</value>
+  </data>
+  <data name="TripsCategories" xml:space="preserve">
+    <value>Видове пътешествия</value>
+  </data>
+  <data name="UploadedTrips" xml:space="preserve">
+    <value>Качени пътешествия</value>
   </data>
 </root>

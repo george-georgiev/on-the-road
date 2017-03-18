@@ -9,8 +9,6 @@ using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace OnTheRoad.MVC.Tests.Controllers
@@ -18,6 +16,20 @@ namespace OnTheRoad.MVC.Tests.Controllers
     [TestFixture]
     public class CategoriesControllerTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            var autoMapperMock = new Mock<IMapper>();
+            autoMapperMock.Setup(x => x.Map<IEnumerable<TripViewModel>>(It.IsAny<IEnumerable<ITrip>>())).Returns(new List<TripViewModel>());
+            MapperProvider.Mapper = autoMapperMock.Object;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            MapperProvider.Mapper = null;
+        }
+
         [Test]
         public void Constructor_WhenCategoryServiceIsNull_ShouldThrow()
         {
@@ -139,7 +151,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
         }
 
         [Test]
-        public void Details_WhenCalled_ShouldReturnDefaultView()
+        public void Details_WhenCalled_ShouldReturnCorrectView()
         {
             // Arrange
             var categoryServiceMock = new Mock<ICategoryGetService>();
@@ -152,7 +164,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
             var result = categoriesController.Details(categoryName, page) as ViewResult;
 
             // Assert
-            Assert.AreEqual(string.Empty, result.ViewName);
+            Assert.AreEqual("_TripsWithPaging", result.ViewName);
         }
 
         [Test]
@@ -323,12 +335,13 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             var autoMapperMock = new Mock<IMapper>();
             var tripModelMock = new Mock<TripViewModel>();
-            autoMapperMock.Setup(x => x.Map<TripViewModel>(It.Is<ITrip>(o => o.Equals(tripMock.Object)))).Returns(tripModelMock.Object);
+            var tripModels = new List<TripViewModel>() { tripModelMock.Object };
+            autoMapperMock.Setup(x => x.Map<IEnumerable<TripViewModel>>(It.Is<IEnumerable<ITrip>>(o => o.Equals(trips)))).Returns(tripModels);
             MapperProvider.Mapper = autoMapperMock.Object;
 
             // Act
             var result = categoriesController.Details(categoryName, page) as ViewResult;
-            var model = result.Model as CategoryDetailsViewModel;
+            var model = result.Model as TripsWithPagingViewModel;
 
             // Assert
             Assert.AreSame(tripModelMock.Object, (model.Trips as List<TripViewModel>)[0]);
@@ -352,7 +365,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Act
             var result = categoriesController.Details(categoryName, page) as ViewResult;
-            var model = result.Model as CategoryDetailsViewModel;
+            var model = result.Model as TripsWithPagingViewModel;
 
             // Assert
             Assert.AreEqual(total, model.Total);
@@ -362,7 +375,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
         [TestCase("", 1)]
         [TestCase("SomeName", -5)]
         [TestCase("OtherName", 0)]
-        public void Details_WhenCalled_ShouldSetCorrectNamePropertyToModel(string categoryName, int page)
+        public void Details_WhenCalled_ShouldSetCorrectHeadingPropertyToModel(string categoryName, int page)
         {
             // Arrange
             var categoryServiceMock = new Mock<ICategoryGetService>();
@@ -371,10 +384,31 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Act
             var result = categoriesController.Details(categoryName, page) as ViewResult;
-            var model = result.Model as CategoryDetailsViewModel;
+            var model = result.Model as TripsWithPagingViewModel;
 
             // Assert
-            Assert.AreEqual(categoryName, model.Name);
+            var heading = $"{Resources.Labels.Category} {categoryName}";
+            Assert.AreEqual(heading, model.Heading);
+        }
+
+        [TestCase(null, 5)]
+        [TestCase("", 1)]
+        [TestCase("SomeName", -5)]
+        [TestCase("OtherName", 0)]
+        public void Details_WhenCalled_ShouldSetCorrectPageHyperLinkPropertyToModel(string categoryName, int page)
+        {
+            // Arrange
+            var categoryServiceMock = new Mock<ICategoryGetService>();
+            var tripGetServiceMock = new Mock<ITripGetService>();
+            var categoriesController = new CategoriesController(categoryServiceMock.Object, tripGetServiceMock.Object);
+
+            // Act
+            var result = categoriesController.Details(categoryName, page) as ViewResult;
+            var model = result.Model as TripsWithPagingViewModel;
+
+            // Assert
+            var pageHyperLink = $"/categories/details/{categoryName}/";
+            Assert.AreEqual(pageHyperLink, model.PageHyperLink);
         }
 
         [TestCase(null, 5)]
@@ -390,7 +424,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Act
             var result = categoriesController.Details(categoryName, page) as ViewResult;
-            var model = result.Model as CategoryDetailsViewModel;
+            var model = result.Model as TripsWithPagingViewModel;
 
             // Assert
             var expectedPage = page > 0 ? page : 1;
@@ -410,7 +444,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
 
             // Act
             var result = categoriesController.Details(categoryName, page) as ViewResult;
-            var model = result.Model as CategoryDetailsViewModel;
+            var model = result.Model as TripsWithPagingViewModel;
 
             // Assert
             var take = 3;

@@ -30,8 +30,7 @@ namespace OnTheRoad.MVC.Controllers
             var trips = this.tripGetService.GetTripsByCategoryNameOrderedByDate(categoryName, TripsCount);
             foreach (var trip in trips)
             {
-                var mapper = MapperProvider.Mapper;
-                var mappedTrip = mapper.Map<TripViewModel>(trip);
+                var mappedTrip = MapperProvider.Mapper.Map<TripViewModel>(trip);
                 mappedTrips.Add(mappedTrip);
             }
 

@@ -83,14 +83,14 @@ i.fa {
         color: white;
     }
 
-.nav-category-item-alt {
-    border-left: 2px solid #4aa504;
-    background: linear-gradient(to left, #f9f9f9 50%, #4aa504 50%);
-    background-size: 200% 100%;
-    background-position: right bottom;
-}
-
-    .nav-category-item-alt:hover {
-        background-position: left bottom;
-        color: white;
+    .nav-category-item:nth-child(even) {
+        border-left: 2px solid #4aa504;
+        background: linear-gradient(to left, #f9f9f9 50%, #4aa504 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
     }
+
+        .nav-category-item:nth-child(even):hover {
+            background-position: left bottom;
+            color: white;
+        }

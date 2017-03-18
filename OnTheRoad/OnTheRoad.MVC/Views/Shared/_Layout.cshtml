@@ -24,9 +24,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink(Resources.Layout.TripsLbl, "Index", "Categories")</li>
-                    <li>@Html.ActionLink(Resources.Layout.AddTripLbl, "AddTrip", "Trips")</li>
-                    <li>@Html.ActionLink(Resources.Layout.AdminLbl, "Index", "ManageTrips", new { Area = "Administration" }, new { })</li>
+                    <li>@Html.ActionLink(Resources.Labels.Trips, "Index", "Categories")</li>
+                    <li>@Html.ActionLink(Resources.Labels.AddTrip, "AddTrip", "Trips")</li>
+                    <li>@Html.ActionLink(Resources.Labels.Admin, "Index", "ManageTrips", new { Area = "Administration" }, new { })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

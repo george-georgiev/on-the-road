@@ -1,10 +1,10 @@
-﻿@model CategoryDetailsViewModel
+﻿@model TripsWithPagingViewModel
 
 <div class="row">
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         <div class="trips-container text-center box-shadow">
             <div class="head box-shadow">
-                <span>@Resources.Common.CategoryLbl @this.Model.Name</span>
+                <span>@this.Model.Heading</span>
             </div>
 
             <div class="main">
@@ -20,7 +20,7 @@
                     }
                     else
                     {
-                        <a id="prev-page" class="arrow arrow-left" href="/categories/details/@this.Model.Name/@(this.Model.Page - 1)"></a>
+                        <a id="prev-page" class="arrow arrow-left" href="@this.Model.PageHyperLink@(this.Model.Page - 1)"></a>
                     }
 
                     @if ((this.Model.Page * this.Model.Take) >= this.Model.Total)
@@ -29,7 +29,7 @@
                     }
                     else
                     {
-                        <a id="next-page" class="arrow arrow-right" href="/categories/details/@this.Model.Name/@(this.Model.Page + 1)"></a>
+                        <a id="next-page" class="arrow arrow-right" href="@this.Model.PageHyperLink@(this.Model.Page + 1)"></a>
                     }
                 </div>
             </div>

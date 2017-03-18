@@ -5,34 +5,48 @@ using System.Collections.Generic;
 namespace OnTheRoad.MVC.Tests.Models
 {
     [TestFixture]
-    public class CategoryDetailsViewModelTests
+    public class TripsWithPagingViewModelTests
     {
         [Test]
-        public void Constructor_ShouldReturnCategoryDetailsViewModelInstance()
+        public void Constructor_ShouldReturnTripsWithPagingViewModelInstance()
         {
             // Arrange & Act & Assert
-            Assert.IsInstanceOf<CategoryDetailsViewModel>(new CategoryDetailsViewModel());
+            Assert.IsInstanceOf<TripsWithPagingViewModel>(new TripsWithPagingViewModel());
         }
 
         [Test]
-        public void Name_ShouldGetSetCorrectValue()
+        public void Heading_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var categoryDetailsModel = new CategoryDetailsViewModel();
-            var name = "SomeName";
+            var categoryDetailsModel = new TripsWithPagingViewModel();
+            var heading = "Heading";
 
             // Act
-            categoryDetailsModel.Name = name;
+            categoryDetailsModel.Heading = heading;
 
             // Assert
-            Assert.AreEqual(name, categoryDetailsModel.Name);
+            Assert.AreEqual(heading, categoryDetailsModel.Heading);
+        }
+
+        [Test]
+        public void PageHyperLink_ShouldGetSetCorrectValue()
+        {
+            // Arrange
+            var categoryDetailsModel = new TripsWithPagingViewModel();
+            var pageHyperLink = "PageHyperLynk";
+
+            // Act
+            categoryDetailsModel.PageHyperLink = pageHyperLink;
+
+            // Assert
+            Assert.AreEqual(pageHyperLink, categoryDetailsModel.PageHyperLink);
         }
 
         [Test]
         public void Trips_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var categoryDetailsModel = new CategoryDetailsViewModel();
+            var categoryDetailsModel = new TripsWithPagingViewModel();
             var trips = new List<TripViewModel>();
 
             // Act
@@ -46,7 +60,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Take_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var categoryDetailsModel = new CategoryDetailsViewModel();
+            var categoryDetailsModel = new TripsWithPagingViewModel();
             var take = 5;
 
             // Act
@@ -60,7 +74,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Page_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var categoryDetailsModel = new CategoryDetailsViewModel();
+            var categoryDetailsModel = new TripsWithPagingViewModel();
             var page = 5;
 
             // Act
@@ -74,7 +88,7 @@ namespace OnTheRoad.MVC.Tests.Models
         public void Total_ShouldGetSetCorrectValue()
         {
             // Arrange
-            var categoryDetailsModel = new CategoryDetailsViewModel();
+            var categoryDetailsModel = new TripsWithPagingViewModel();
             var total = 5;
 
             // Act
