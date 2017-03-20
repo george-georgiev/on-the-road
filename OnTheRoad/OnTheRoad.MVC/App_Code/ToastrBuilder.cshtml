@@ -1,0 +1,19 @@
+﻿@using OnTheRoad.Infrastructure.Wrappers
+@helper ShowToastMessages(Toastr toastr)
+{
+    if (toastr != null)
+    {
+            <script>
+                $(document).ready(function () {
+                    toastr.options.closeButton = '@toastr.ShowCloseButton';
+                    toastr.options.newestOnTop = '@toastr.ShowNewestOnTop';
+
+                    @foreach (ToastMessage message in toastr.ToastMessages)
+                    {
+                        string toastTypeValue = message.ToastType.ToString("F").ToLower();
+                        @:toastr['@toastTypeValue']('@message.Message', '@message.Title');
+                    }
+                });
+            </script>
+    }
+}

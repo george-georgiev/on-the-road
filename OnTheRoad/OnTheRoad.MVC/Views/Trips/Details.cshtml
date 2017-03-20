@@ -1,1 +1,88 @@
-﻿
+﻿@model TripDetailsViewModel
+
+<div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="trip-container box-shadow">
+            <div class="trip-head text-center">
+                <div class="categories">
+                    @foreach (var category in this.Model.Categories)
+                    {
+                        <a class="info" href="/categories/details/@category.Name">
+                            <span class="hyperlink">
+                                @category.Name
+                            </span>
+                        </a>
+                    }
+                </div>
+                <h1>@this.Model.Name</h1>
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.CoverImage)" class="img-responsive image-trip box-shadow" />
+                <div class="meta-image-organiser">
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.OrganiserImage)" class="img-responsive image-organiser" />
+                </div>
+                <div>
+                    <a class="organiser-name" href="/profile/profileInfo?name=@this.Model.OrganiserUsername">
+                        @this.Model.OrganiserFirstName @this.Model.OrganiserLastName
+                    </a>
+                </div>
+            </div>
+            <div class="row trip-details">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="trip-info">
+                        <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
+                        @this.Model.Location
+                    </div>
+                    <hr />
+                    <div class="trip-info ">
+                        <i class="fa fa-clock-o font-awesome" aria-hidden="true"></i>
+                        <span>
+                            @Resources.Labels.Begining: @this.Model.StartDate.ToString("dd.MM.yyyy")
+                        </span>
+                        <span class="end-date">
+                            @Resources.Labels.Ending: @this.Model.EndDate.ToString("dd.MM.yyyy")
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+                    @if (this.Model.CanSubscribe)
+                    {
+                        <select id="subscription" class="attend-dropdown form-control" trip-id="@this.Model.Id">
+                            @if (this.Model.IsNone)
+                            {
+                                <option value="None" selected>@Resources.Labels.CantGo</option>
+                            }
+                            else
+                            {
+                                <option value="None">@Resources.Labels.CantGo</option>
+                            }
+
+                            @if (this.Model.IsAttending)
+                            {
+                                <option value="Attending" selected>@Resources.Labels.Attending</option>
+                            }
+                            else
+                            {
+                                <option value="Attending">@Resources.Labels.Attending</option>
+                            }
+
+                            @if (this.Model.IsInterested)
+                            {
+                                <option value="Interested" selected>@Resources.Labels.Interested</option>
+                            }
+                            else
+                            {
+                                <option value="Interested">@Resources.Labels.Interested</option>
+                            }
+                        </select>
+                    }
+                </div>
+            </div>
+            <div class="trip-description">
+                @this.Model.Description
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        @{Html.RenderAction("Index", "NavigationPartial");}
+    </div>
+</div>
+

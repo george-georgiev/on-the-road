@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     @Styles.Render("~/Content/Styles/css")
+    @Styles.Render("~/Content/toastr")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -45,11 +46,14 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery.unobtrusive")
     @Scripts.Render("~/bundles/microsoft-ajax")
     @Scripts.Render("~/bundles/microsoft-validation")
     @Scripts.Render("~/Content/Scripts/js")
     @RenderSection("scripts", required: false)
+
+    @Html.Partial("_Toastr")
 </body>
 </html>

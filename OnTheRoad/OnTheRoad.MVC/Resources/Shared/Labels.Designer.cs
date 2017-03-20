@@ -79,11 +79,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ще присъствам.
+        /// </summary>
+        public static string Attending {
+            get {
+                return ResourceManager.GetString("Attending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начало.
         /// </summary>
         public static string Begining {
             get {
                 return ResourceManager.GetString("Begining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Не мога да ида.
+        /// </summary>
+        public static string CantGo {
+            get {
+                return ResourceManager.GetString("CantGo", resourceCulture);
             }
         }
         
@@ -97,11 +115,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Край.
+        /// </summary>
+        public static string Ending {
+            get {
+                return ResourceManager.GetString("Ending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Здравей.
         /// </summary>
         public static string Hello {
             get {
                 return ResourceManager.GetString("Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Интересувам се.
+        /// </summary>
+        public static string Interested {
+            get {
+                return ResourceManager.GetString("Interested", resourceCulture);
             }
         }
         

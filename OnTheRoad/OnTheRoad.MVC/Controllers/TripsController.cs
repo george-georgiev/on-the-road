@@ -1,4 +1,6 @@
-﻿using OnTheRoad.Domain.Models;
+﻿using OnTheRoad.Domain.Enumerations;
+using OnTheRoad.Infrastructure.Enums;
+using OnTheRoad.Infrastructure.Json;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.MVC.Common;
 using OnTheRoad.MVC.Models;
@@ -13,16 +15,22 @@ namespace OnTheRoad.MVC.Controllers
         private const int Take = 3;
 
         private readonly ITripGetService tripGetService;
+        private readonly ISubscriptionService subscriptionService;
 
-        public TripsController(ITripGetService tripGetService)
+        public TripsController(ITripGetService tripGetService, ISubscriptionService subscriptionService)
         {
             if (tripGetService == null)
             {
                 throw new ArgumentNullException("tripGetService cannot be null!");
             }
 
-            this.tripGetService = tripGetService;
+            if (subscriptionService == null)
+            {
+                throw new ArgumentNullException("subscriptionAddService can not be null!");
+            }
 
+            this.tripGetService = tripGetService;
+            this.subscriptionService = subscriptionService;
         }
 
         [HttpGet]
@@ -56,9 +64,49 @@ namespace OnTheRoad.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return this.View();
+            var trip = this.tripGetService.GetTripById(id);
+
+            var model = MapperProvider.Mapper.Map<TripDetailsViewModel>(trip);
+
+            var userName = this.User.Identity.Name;
+            var isOrganiser = userName == trip.Organiser.Username;
+            var isAvailable = this.Request.IsAuthenticated && !isOrganiser;
+            model.CanSubscribe = isAvailable;
+
+            var subscriptionStatus = this.subscriptionService.GetUserSubscriptionStatus(trip, userName);
+            model.IsNone = subscriptionStatus == SubscriptionStatus.None;
+            model.IsAttending = subscriptionStatus == SubscriptionStatus.Attending;
+            model.IsInterested = subscriptionStatus == SubscriptionStatus.Interested;
+
+            return this.View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Subscribe(int tripId, string statusValue)
+        {
+            if (!this.Request.IsAjaxRequest())
+            {
+                throw new InvalidOperationException("Ajax request is required!");
+            }
+
+            Result result;
+            try
+            {
+                var status = (SubscriptionStatus)Enum.Parse(typeof(SubscriptionStatus), statusValue);
+                var userName = this.User.Identity.Name;
+                this.subscriptionService.AddOrUpdateSubscription(userName, tripId, status);
+
+                result = new Result(Resources.Messages.SubscriptionSuccess, ResponseStatus.Success);
+            }
+            catch (Exception)
+            {
+                result = new Result(Resources.Messages.SubscriptionError, ResponseStatus.Error);
+            }
+
+            return this.Json(result);
         }
 
         [Authorize]

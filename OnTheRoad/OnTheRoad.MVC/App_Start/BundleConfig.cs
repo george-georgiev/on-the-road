@@ -33,8 +33,15 @@ namespace OnTheRoad.MVC
             bundles.Add(new ScriptBundle("~/bundles/jquery.unobtrusive").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
 
+            bundles.Add(new StyleBundle("~/content/toastr")
+                .Include("~/Content/toastr.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/toastr")
+                            .Include("~/Scripts/toastr.js"));
+
             bundles.Add(new ScriptBundle("~/Content/Scripts/js").Include(
-                      "~/Content/Scripts/SiteNavigation.js"));
+                      "~/Content/Scripts/SiteNavigation.js",
+                      "~/Content/Scripts/Trips.js"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",
@@ -47,7 +54,8 @@ namespace OnTheRoad.MVC
                       "~/Content/Styles/SiteNavigation.css",
                       "~/Content/Styles/Trips.css",
                       "~/Content/Styles/TripsContainer.css",
-                      "~/Content/Styles/UserProfile.css"));
+                      "~/Content/Styles/UserProfile.css",
+                      "~/Content/Styles/Loader.css"));
         }
     }
 }

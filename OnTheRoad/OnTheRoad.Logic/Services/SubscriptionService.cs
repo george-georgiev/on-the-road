@@ -2,6 +2,8 @@
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.Logic.Factories;
 using OnTheRoad.Domain.Enumerations;
+using OnTheRoad.Domain.Models;
+using System.Linq;
 
 namespace OnTheRoad.Logic.Services
 {
@@ -48,6 +50,17 @@ namespace OnTheRoad.Logic.Services
                 this.subscriptionAddHelper.SetSubscriptionTripById(subscription, tripId);
                 this.subscriptionDataUtil.AddSubscription(subscription);
             }
+        }
+
+        public SubscriptionStatus GetUserSubscriptionStatus(ITrip trip, string userName)
+        {
+            var subscription = trip.Subscriptions
+                .Where(s => s.User.Username == userName)
+                .SingleOrDefault();
+
+            var subscriptionStatus = subscription != null ? subscription.Status : SubscriptionStatus.None;
+
+            return subscriptionStatus;
         }
     }
 }

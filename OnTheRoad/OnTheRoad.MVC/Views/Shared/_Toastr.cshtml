@@ -1,0 +1,7 @@
+﻿@using OnTheRoad.Infrastructure.Wrappers
+@using OnTheRoad.Infrastructure.Common
+@if (TempData.ContainsKey(GlobalConstants.Toastr))
+{
+    Toastr toastr = TempData[GlobalConstants.Toastr] as Toastr;
+    @ToastrBuilder.ShowToastMessages(toastr);
+}

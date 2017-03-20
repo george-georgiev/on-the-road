@@ -215,3 +215,7 @@ input.tags-select-textbox {
     .tags-select-item:before {
         content: "#";
     }
+
+div.toast:first-child {
+    margin-top: 4em !important;
+}
