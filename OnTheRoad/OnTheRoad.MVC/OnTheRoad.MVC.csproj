@@ -240,6 +240,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\NavigationPartialController.cs" />
+    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Factories\IAuthenticationServiceFactory.cs" />
@@ -291,6 +292,7 @@
     <Content Include="Content\Images\main-image.jpg" />
     <Content Include="Content\Scripts\ImageUploader.js" />
     <Content Include="Content\Scripts\SiteNavigation.js" />
+    <Content Include="Content\Scripts\TagsSelect.js" />
     <Content Include="Content\Scripts\Trips.js" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
@@ -424,11 +426,13 @@
     <Content Include="Views\Trips\EditorTemplates\Description.cshtml" />
     <Content Include="Views\Trips\EditorTemplates\Categories.cshtml" />
     <Content Include="Views\Shared\_ImageUploaderPartial.cshtml" />
+    <Content Include="Views\Shared\_TagsSelectPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Views\Tags\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

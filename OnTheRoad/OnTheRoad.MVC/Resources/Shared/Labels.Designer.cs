@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Добави.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Добави Пътешествие.
         /// </summary>
         public static string AddTrip {
@@ -237,6 +246,15 @@ namespace Resources {
         public static string StartDate {
             get {
                 return ResourceManager.GetString("StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тагове.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
             }
         }
         

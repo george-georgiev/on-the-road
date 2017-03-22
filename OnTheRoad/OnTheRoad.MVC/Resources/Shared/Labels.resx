@@ -183,8 +183,14 @@
   <data name="UploadedTrips" xml:space="preserve">
     <value>Качени пътешествия</value>
   </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добави</value>
+  </data>
   <data name="ChooseImage" xml:space="preserve">
     <value>ИЗБЕРИ СНИМКА</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Тагове</value>
   </data>
   <data name="UploadImage" xml:space="preserve">
     <value>КАЧИ</value>

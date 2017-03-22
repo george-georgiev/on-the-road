@@ -36,16 +36,23 @@ namespace OnTheRoad.MVC
             bundles.Add(new StyleBundle("~/content/toastr")
                 .Include("~/Content/toastr.css"));
 
+            bundles.Add(new StyleBundle("~/content/jquery-ui")
+                .Include("~/Content/themes/base/theme.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/toastr")
                             .Include("~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery.form")
                             .Include("~/Scripts/jquery.form*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui")
+                            .Include("~/Scripts/jquery-ui*"));
+
             bundles.Add(new ScriptBundle("~/Content/Scripts/js").Include(
                       "~/Content/Scripts/SiteNavigation.js",
                       "~/Content/Scripts/Trips.js",
-                      "~/Content/Scripts/ImageUploader.js"));
+                      "~/Content/Scripts/ImageUploader.js",
+                      "~/Content/Scripts/TagsSelect.js"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",

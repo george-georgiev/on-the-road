@@ -31,5 +31,7 @@ namespace OnTheRoad.MVC.Models
         public IEnumerable<string> CategoryIds { get; set; }
 
         public IEnumerable<SelectListItem> AllCategories { get; set; }
+
+        public IEnumerable<string> TagNames { get; set; }
     }
 }
