@@ -109,6 +109,7 @@
     <Compile Include="Controllers\CategoriesControllerTests.cs" />
     <Compile Include="Controllers\CategoryOverviewPartialControllerTests.cs" />
     <Compile Include="Controllers\NavigationPartialControllerTests.cs" />
+    <Compile Include="Controllers\TripsControllerTests.cs" />
     <Compile Include="Models\TripsWithPagingViewModelTests.cs" />
     <Compile Include="Models\CategoryViewModelTests.cs" />
     <Compile Include="Models\HomeViewModelTests.cs" />
@@ -127,6 +128,10 @@
     <ProjectReference Include="..\OnTheRoad.Domain\OnTheRoad.Domain.csproj">
       <Project>{c7b621ab-03d3-42f6-b2df-92fa0b0af86e}</Project>
       <Name>OnTheRoad.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnTheRoad.Infrastructure\OnTheRoad.Infrastructure.csproj">
+      <Project>{D57449C6-5B6D-4B85-B71C-0B3646EF38C0}</Project>
+      <Name>OnTheRoad.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnTheRoad.Logic\OnTheRoad.Logic.csproj">
       <Project>{E4B2C057-17CB-4DA4-BD4F-148BF976591C}</Project>

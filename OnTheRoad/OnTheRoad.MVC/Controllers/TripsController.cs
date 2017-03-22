@@ -24,15 +24,15 @@ namespace OnTheRoad.MVC.Controllers
         private readonly ITripBuilder tripBuilder;
 
         public TripsController(
-            ITripService tripGetService,
+            ITripService tripService,
             ISubscriptionService subscriptionService,
             ICategoryService categoryService,
             IImageService imageService,
             ITripBuilder tripBuilder)
         {
-            if (tripGetService == null)
+            if (tripService == null)
             {
-                throw new ArgumentNullException("tripGetService cannot be null!");
+                throw new ArgumentNullException("tripService cannot be null!");
             }
 
             if (subscriptionService == null)
@@ -55,7 +55,7 @@ namespace OnTheRoad.MVC.Controllers
                 throw new ArgumentNullException("tripBuilder cannot be null!");
             }
 
-            this.tripService = tripGetService;
+            this.tripService = tripService;
             this.subscriptionService = subscriptionService;
             this.categoryService = categoryService;
             this.imageService = imageService;
@@ -99,9 +99,9 @@ namespace OnTheRoad.MVC.Controllers
 
             var model = MapperProvider.Mapper.Map<TripDetailsViewModel>(trip);
 
-            var userName = this.User.Identity.Name;
+            var userName = ControllerUtilProvider.ControllerUtil.LoggedUserName;
             var isOrganiser = userName == trip.Organiser.Username;
-            var isAvailable = this.Request.IsAuthenticated && !isOrganiser;
+            var isAvailable = ControllerUtilProvider.ControllerUtil.IsAuthenticated && !isOrganiser;
             model.CanSubscribe = isAvailable;
 
             var subscriptionStatus = this.subscriptionService.GetUserSubscriptionStatus(trip, userName);
@@ -121,7 +121,7 @@ namespace OnTheRoad.MVC.Controllers
             try
             {
                 var status = (SubscriptionStatus)Enum.Parse(typeof(SubscriptionStatus), statusValue);
-                var userName = this.User.Identity.Name;
+                var userName = ControllerUtilProvider.ControllerUtil.LoggedUserName;
                 this.subscriptionService.AddOrUpdateSubscription(userName, tripId, status);
 
                 result = new Result(Resources.Messages.SubscriptionSuccess, ResponseStatus.Ok);
@@ -129,7 +129,7 @@ namespace OnTheRoad.MVC.Controllers
             catch (Exception)
             {
                 result = new Result(Resources.Messages.SubscriptionError, ResponseStatus.ServerError);
-                this.Response.StatusCode = (int)ResponseStatus.ServerError;
+                ControllerUtilProvider.ControllerUtil.SetResponseStatusCode(ResponseStatus.ServerError);
             }
 
             return this.Json(result);
@@ -181,7 +181,7 @@ namespace OnTheRoad.MVC.Controllers
                 .SetImage(coverImage)
                 .Build();
 
-            var loggedUsername = this.User.Identity.Name;
+            var loggedUsername = ControllerUtilProvider.ControllerUtil.LoggedUserName;
 
             var categoryIds = model.CategoryIds.Select(int.Parse);
             var tagNames = model.TagNames.Distinct().Select(x => x.Trim());

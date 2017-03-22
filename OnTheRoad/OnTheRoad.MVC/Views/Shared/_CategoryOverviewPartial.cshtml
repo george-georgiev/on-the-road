@@ -22,16 +22,16 @@
                     </h4>
 
                     <div class="info">
-                        @Resources.TripItemPartial.LocationLbl:
+                        @Resources.Labels.Location:
                         <span>@trip.Location</span>
                     </div>
                     <div class="info">
-                        @Resources.TripItemPartial.StartDateLbl:
+                        @Resources.Labels.StartDate:
                         <span>@trip.StartDate.ToString("dd.MM.yyyy")</span>
                     </div>
                     <a href="/profile/profileInfo?name=@trip.OrganiserUsername" >
                         <div class="info">
-                            @Resources.TripItemPartial.OrganizerLbl:
+                            @Resources.Labels.Organizer:
                             <span class="hyperlink">@trip.OrganiserFirstName @trip.OrganiserLastName</span>
                         </div>
                     </a>
