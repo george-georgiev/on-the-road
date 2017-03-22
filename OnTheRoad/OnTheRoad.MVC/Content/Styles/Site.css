@@ -219,3 +219,8 @@ input.tags-select-textbox {
 div.toast:first-child {
     margin-top: 4em !important;
 }
+
+.error-container {
+    height: 1.5em;
+    color: #b94a48 !important;
+}

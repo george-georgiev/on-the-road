@@ -10,6 +10,8 @@ using OnTheRoad.Logic.Factories;
 using Ninject.Extensions.Factory;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Logic.Models;
+using Ninject.Extensions.Interception.Infrastructure.Language;
+using OnTheRoad.MVC.App_Start.Interceptors;
 
 namespace OnTheRoad.MVC.App_Start.BindingModules
 {
@@ -59,6 +61,11 @@ namespace OnTheRoad.MVC.App_Start.BindingModules
 
             this.Bind<IUserGetService>()
                 .To<UserService>();
+
+            this.Bind<IImageService>()
+                .To<ImageService>()
+                .Intercept()
+                .With<ImageServiceResizeInterceptor>();
         }
 
         private IEnumerable<Type> GetTypesToExclude()

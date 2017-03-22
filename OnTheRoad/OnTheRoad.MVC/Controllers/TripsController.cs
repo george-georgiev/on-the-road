@@ -3,6 +3,7 @@ using OnTheRoad.Infrastructure.Enums;
 using OnTheRoad.Infrastructure.Json;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.MVC.Common;
+using OnTheRoad.MVC.Filters;
 using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,14 @@ namespace OnTheRoad.MVC.Controllers
 
         private readonly ITripGetService tripGetService;
         private readonly ISubscriptionService subscriptionService;
+        private readonly ICategoryService categoryService;
+        private readonly IImageService imageService;
 
-        public TripsController(ITripGetService tripGetService, ISubscriptionService subscriptionService)
+        public TripsController(
+            ITripGetService tripGetService,
+            ISubscriptionService subscriptionService,
+            ICategoryService categoryService,
+            IImageService imageService)
         {
             if (tripGetService == null)
             {
@@ -29,8 +36,20 @@ namespace OnTheRoad.MVC.Controllers
                 throw new ArgumentNullException("subscriptionAddService can not be null!");
             }
 
+            if (categoryService == null)
+            {
+                throw new ArgumentNullException("categoryService can not be null!");
+            }
+
+            if (imageService == null)
+            {
+                throw new ArgumentNullException("imageService cannot be null!");
+            }
+
             this.tripGetService = tripGetService;
             this.subscriptionService = subscriptionService;
+            this.categoryService = categoryService;
+            this.imageService = imageService;
         }
 
         [HttpGet]
@@ -85,13 +104,9 @@ namespace OnTheRoad.MVC.Controllers
 
         [Authorize]
         [HttpPost]
+        [Ajax]
         public ActionResult Subscribe(int tripId, string statusValue)
         {
-            if (!this.Request.IsAjaxRequest())
-            {
-                throw new InvalidOperationException("Ajax request is required!");
-            }
-
             Result result;
             try
             {
@@ -99,11 +114,12 @@ namespace OnTheRoad.MVC.Controllers
                 var userName = this.User.Identity.Name;
                 this.subscriptionService.AddOrUpdateSubscription(userName, tripId, status);
 
-                result = new Result(Resources.Messages.SubscriptionSuccess, ResponseStatus.Success);
+                result = new Result(Resources.Messages.SubscriptionSuccess, ResponseStatus.Ok);
             }
             catch (Exception)
             {
-                result = new Result(Resources.Messages.SubscriptionError, ResponseStatus.Error);
+                result = new Result(Resources.Messages.SubscriptionError, ResponseStatus.ServerError);
+                this.Response.StatusCode = (int)ResponseStatus.ServerError;
             }
 
             return this.Json(result);
@@ -113,6 +129,32 @@ namespace OnTheRoad.MVC.Controllers
         [HttpGet]
         public ActionResult AddTrip()
         {
+            var categories = this.categoryService.GetAllCategories();
+            var listItems = new List<SelectListItem>();
+            foreach (var category in categories)
+            {
+                var listItem = new SelectListItem() { Text = category.Name, Value = category.Id.ToString() };
+                listItems.Add(listItem);
+            }
+
+            var model = new AddTripViewModel();
+            model.AllCategories = listItems;
+
+            var image = this.imageService.LoadTripsImage();
+            model.CoverImage = image;
+
+            return this.View(model);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult AddTrip(AddTripViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             return this.View();
         }
     }

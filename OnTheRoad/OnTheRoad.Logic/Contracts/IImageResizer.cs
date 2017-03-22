@@ -2,6 +2,6 @@
 {
     public interface IImageResizer
     {
-        byte[] ResizeImage(byte[] fileStream);
+        byte[] ResizeImage(object fileStream);
     }
 }

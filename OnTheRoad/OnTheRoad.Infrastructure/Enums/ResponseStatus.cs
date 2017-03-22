@@ -2,7 +2,8 @@
 {
     public enum ResponseStatus
     {
-        Success,
-        Error
+        Ok = 200,
+        BadRequest = 400,
+        ServerError = 500
     }
 }

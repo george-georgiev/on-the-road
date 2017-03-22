@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Добави пътешествие.
+        ///   Looks up a localized string similar to Добави Пътешествие.
         /// </summary>
         public static string AddTrip {
             get {
@@ -111,6 +111,15 @@ namespace Resources {
         public static string Category {
             get {
                 return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ИЗБЕРИ СНИМКА.
+        /// </summary>
+        public static string ChooseImage {
+            get {
+                return ResourceManager.GetString("ChooseImage", resourceCulture);
             }
         }
         
@@ -255,6 +264,15 @@ namespace Resources {
         public static string UploadedTrips {
             get {
                 return ResourceManager.GetString("UploadedTrips", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to КАЧИ.
+        /// </summary>
+        public static string UploadImage {
+            get {
+                return ResourceManager.GetString("UploadImage", resourceCulture);
             }
         }
     }

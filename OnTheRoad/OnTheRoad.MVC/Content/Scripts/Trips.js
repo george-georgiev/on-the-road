@@ -8,11 +8,10 @@
             '/trips/subscribe',
             { tripId, statusValue },
             (data) => {
-                if (data.Status === 0) {
-                    toastr.success(data.DisplayMessage);
-                } else if (data.Status === 1) {
-                    toastr.error(data.DisplayMessage);
-                }
+                toastr.success(data.DisplayMessage);
+            })
+            .fail(function () {
+                toastr.error(data.DisplayMessage);
             });
     })
 })()

@@ -8,7 +8,7 @@ namespace OnTheRoad.Common
     {
         private const string InstructionsQueryString = "width=600;format=jpg;mode=max";
 
-        public byte[] ResizeImage(byte[] fileStream)
+        public byte[] ResizeImage(object fileStream)
         {
             byte[] imageAsByteArray = null;
 

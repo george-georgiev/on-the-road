@@ -1,1 +1,97 @@
-﻿
+﻿@using Resources = Resources.Trips
+@model AddTripViewModel
+
+<div class="add-trip-container box-shadow">
+    <div class="form-horizontal">
+
+        <h2 class="page-headers">@Resources.AddTripLabels.CreateTrip</h2>
+
+        <div class="add-trip-image-container box-shadow text-center">
+            <img id="image" src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.CoverImage)" class="add-trip-image box-shadow" />
+
+            <div class="text-center">
+                @Html.Partial("_ImageUploaderPartial")
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(x => x.CoverImage);
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label input-labels">@Resources.AddTripLabels.Title</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(x => x.Name)
+                                <div class="error-container">
+                                    @Html.ValidationMessageFor(x => x.Name)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label input-labels">@Resources.AddTripLabels.Location</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(x => x.Location)
+                                <div class="error-container">
+                                    @Html.ValidationMessageFor(x => x.Location)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label input-labels">@Resources.AddTripLabels.StartDate</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(x => x.StartDate)
+                                <div class="error-container">
+                                    @Html.ValidationMessageFor(x => x.StartDate)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label input-labels">@Resources.AddTripLabels.EndDate</label>
+                            <div class="col-md-8">
+                                @Html.EditorFor(x => x.EndDate)
+                                <div class="error-container">
+                                    @Html.ValidationMessageFor(x => x.EndDate)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label input-labels">@Resources.AddTripLabels.Categories</label>
+                        <div class="col-md-10">
+                            @Html.ListBoxFor(x => x.CategoryIds, this.Model.AllCategories, new { @class = "form-control", size = "6" })
+                            <div class="error-container">
+                                @Html.ValidationMessageFor(x => x.CategoryIds)
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group add-trip-tags">
+                            <uc:TagsSelect ID="Tags" TagsLabel="Тагове" runat="server" CssClass="form-control" />
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="form-group add-trip-description">
+                <label class="col-md-2 control-label input-labels">@Resources.AddTripLabels.Description</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(x => x.Description)
+                    <div class="error-container">
+                        @Html.ValidationMessageFor(x => x.Description)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="@Resources.AddTripLabels.Create" class="btn btn-default" />
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddTrip" xml:space="preserve">
-    <value>Добави пътешествие</value>
+    <value>Добави Пътешествие</value>
   </data>
   <data name="Admin" xml:space="preserve">
     <value>Администрация</value>
@@ -182,5 +182,11 @@
   </data>
   <data name="UploadedTrips" xml:space="preserve">
     <value>Качени пътешествия</value>
+  </data>
+  <data name="ChooseImage" xml:space="preserve">
+    <value>ИЗБЕРИ СНИМКА</value>
+  </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>КАЧИ</value>
   </data>
 </root>

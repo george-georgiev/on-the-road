@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="FileNotSelectedError" xml:space="preserve">
+    <value>Моля изберете файл.</value>
+  </data>
+  <data name="ImageExtensionsOnlyAllowedError" xml:space="preserve">
+    <value>Само JPEG И PNG файлове могат да бъдат качвани!</value>
+  </data>
+  <data name="ImageSizeError" xml:space="preserve">
+    <value>Снимката трябва да е до 4MB!</value>
+  </data>
+  <data name="ImageUploadError" xml:space="preserve">
+    <value>Възникна грешка при качването. Моля опитайте отново.</value>
+  </data>
   <data name="SubscriptionError" xml:space="preserve">
     <value>Възникна грешка при промяна на статуса!</value>
   </data>

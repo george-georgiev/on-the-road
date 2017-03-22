@@ -1,0 +1,26 @@
+﻿@*@using System.ComponentModel.DataAnnotations
+
+@model DateTime?
+@{
+    var isRequired = false;
+    var property = ViewData.ModelMetadata.ContainerType.GetProperty(ViewData.ModelMetadata.PropertyName);
+    if (property != null)
+    {
+        isRequired = property.CustomAttributes.Any(x => x.AttributeType == typeof(RequiredAttribute));
+    }
+
+    var additionalAttrs = "";
+    var attrs = Html.GetUnobtrusiveValidationAttributes(ViewData.TemplateInfo.HtmlFieldPrefix, ViewData.ModelMetadata);
+    foreach (var item in attrs)
+    {
+        if (item.Key == "data-val-required" && !isRequired)
+        {
+            continue;
+        }
+        additionalAttrs += string.Format(" {0}=\"{1}\"", item.Key, item.Value);
+    }
+}
+
+<input type="date" class="form-control" @Html.Raw(additionalAttrs) />*@
+
+@Html.TextBoxFor(m => m, new { @class = "form-control", type = "date" })

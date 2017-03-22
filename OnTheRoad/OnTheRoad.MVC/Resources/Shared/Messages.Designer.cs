@@ -61,6 +61,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля изберете файл..
+        /// </summary>
+        public static string FileNotSelectedError {
+            get {
+                return ResourceManager.GetString("FileNotSelectedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Само JPEG И PNG файлове могат да бъдат качвани!.
+        /// </summary>
+        public static string ImageExtensionsOnlyAllowedError {
+            get {
+                return ResourceManager.GetString("ImageExtensionsOnlyAllowedError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Снимката трябва да е до 4MB!.
+        /// </summary>
+        public static string ImageSizeError {
+            get {
+                return ResourceManager.GetString("ImageSizeError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при качването. Моля опитайте отново..
+        /// </summary>
+        public static string ImageUploadError {
+            get {
+                return ResourceManager.GetString("ImageUploadError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Възникна грешка при промяна на статуса!.
         /// </summary>
         public static string SubscriptionError {
