@@ -5,7 +5,7 @@ using OnTheRoad.Domain.Models;
 
 namespace OnTheRoad.Logic.Services
 {
-    public class TripService : ITripGetService, ITripAddService
+    public class TripService : ITripGetService, ITripAddService, ITripService
     {
         private readonly ITripDataUtil tripDataUtil;
         private readonly ITripAddHelper tripAddHelper;

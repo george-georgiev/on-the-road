@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Успешно добавихте пътешествие!.
+        /// </summary>
+        public static string AddTripSuccess {
+            get {
+                return ResourceManager.GetString("AddTripSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Моля изберете файл..
         /// </summary>
         public static string FileNotSelectedError {

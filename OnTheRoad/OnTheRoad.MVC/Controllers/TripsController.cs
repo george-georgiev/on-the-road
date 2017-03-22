@@ -3,10 +3,12 @@ using OnTheRoad.Infrastructure.Enums;
 using OnTheRoad.Infrastructure.Json;
 using OnTheRoad.Logic.Contracts;
 using OnTheRoad.MVC.Common;
+using OnTheRoad.MVC.Extensions;
 using OnTheRoad.MVC.Filters;
 using OnTheRoad.MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace OnTheRoad.MVC.Controllers
@@ -15,16 +17,18 @@ namespace OnTheRoad.MVC.Controllers
     {
         private const int Take = 3;
 
-        private readonly ITripGetService tripGetService;
+        private readonly ITripService tripService;
         private readonly ISubscriptionService subscriptionService;
         private readonly ICategoryService categoryService;
         private readonly IImageService imageService;
+        private readonly ITripBuilder tripBuilder;
 
         public TripsController(
-            ITripGetService tripGetService,
+            ITripService tripGetService,
             ISubscriptionService subscriptionService,
             ICategoryService categoryService,
-            IImageService imageService)
+            IImageService imageService,
+            ITripBuilder tripBuilder)
         {
             if (tripGetService == null)
             {
@@ -46,10 +50,16 @@ namespace OnTheRoad.MVC.Controllers
                 throw new ArgumentNullException("imageService cannot be null!");
             }
 
-            this.tripGetService = tripGetService;
+            if (tripBuilder == null)
+            {
+                throw new ArgumentNullException("tripBuilder cannot be null!");
+            }
+
+            this.tripService = tripGetService;
             this.subscriptionService = subscriptionService;
             this.categoryService = categoryService;
             this.imageService = imageService;
+            this.tripBuilder = tripBuilder;
         }
 
         [HttpGet]
@@ -68,10 +78,10 @@ namespace OnTheRoad.MVC.Controllers
             {
                 page = page > 0 ? page : 1;
                 var skip = (page - 1) * Take;
-                var trips = this.tripGetService.GetTripsBySearchPattern(pattern, skip, Take);
+                var trips = this.tripService.GetTripsBySearchPattern(pattern, skip, Take);
                 var mappedTrips = MapperProvider.Mapper.Map<IEnumerable<TripViewModel>>(trips);
 
-                var total = this.tripGetService.GetTripsCountBySearchPattern(pattern);
+                var total = this.tripService.GetTripsCountBySearchPattern(pattern);
 
                 categoryModel.Page = page;
                 categoryModel.Trips = mappedTrips;
@@ -85,7 +95,7 @@ namespace OnTheRoad.MVC.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var trip = this.tripGetService.GetTripById(id);
+            var trip = this.tripService.GetTripById(id);
 
             var model = MapperProvider.Mapper.Map<TripDetailsViewModel>(trip);
 
@@ -155,7 +165,31 @@ namespace OnTheRoad.MVC.Controllers
                 return this.View(model);
             }
 
-            return this.View();
+            var name = model.Name;
+            var description = model.Description;
+            var location = model.Location;
+            var startDate = model.StartDate;
+            var endDate = model.EndDate;
+            var coverImage = model.CoverImage;
+
+            var trip = this.tripBuilder
+                .SetName(name)
+                .SetDescription(description)
+                .SetLocation(location)
+                .SetStartDate(startDate)
+                .SetEndDate(endDate)
+                .SetImage(coverImage)
+                .Build();
+
+            var loggedUsername = this.User.Identity.Name;
+
+            var categoryIds = model.CategoryIds.Select(int.Parse);
+            var tagNames = model.TagNames.Distinct().Select(x => x.Trim());
+
+            this.tripService.AddTrip(trip, loggedUsername, categoryIds, tagNames);
+
+            this.AddToastMessage(string.Empty, Resources.Messages.AddTripSuccess, ToastType.Success);
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }
