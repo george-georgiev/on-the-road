@@ -49,5 +49,17 @@ namespace OnTheRoad.Logic.Services
         {
             return this.reviewDataUtils.GetUserReviews(username);
         }
+
+        public IEnumerable<IReview> GetUserReviews(string username, int skip, int take)
+        {
+            return this.reviewDataUtils.GetUserReviews(username, skip, take);
+        }
+
+        public int GetUserReviewsTotal(string username)
+        {
+            var total = this.reviewDataUtils.GetUserReviewsTotal(username);
+
+            return total;
+        }
     }
 }

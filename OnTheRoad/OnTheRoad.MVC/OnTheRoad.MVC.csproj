@@ -231,6 +231,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManageTripsController.cs" />
+    <Compile Include="Areas\User\Controllers\CitiesController.cs" />
+    <Compile Include="Areas\User\Controllers\ProfileController.cs" />
+    <Compile Include="Areas\User\Controllers\ReviewsController.cs" />
+    <Compile Include="Areas\User\Models\CitiesAllViewModel.cs" />
+    <Compile Include="Areas\User\Models\CityViewModel.cs" />
+    <Compile Include="Areas\User\Models\ProfileViewModel.cs" />
+    <Compile Include="Areas\User\Models\ReviewsViewModel.cs" />
+    <Compile Include="Areas\User\Models\ReviewViewModel.cs" />
+    <Compile Include="Areas\User\Models\UserViewModel.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Common\ControllerUtilProvider.cs" />
     <Compile Include="Common\CustomImageResizer.cs" />
     <Compile Include="Common\MapperProvider.cs" />
@@ -280,6 +290,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AddTripMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\User\Labels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Labels.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\User\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\ControllerUtil.cs" />
   </ItemGroup>
@@ -290,12 +310,19 @@
     <Content Include="Client Scripts\MvcFoolproofJQueryValidation.min.js" />
     <Content Include="Client Scripts\MvcFoolproofValidation.js" />
     <Content Include="Client Scripts\MvcFoolproofValidation.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\IMG_497657.jpg" />
     <Content Include="Content\Images\main-image.jpg" />
+    <Content Include="Content\Scripts\Cities.js" />
     <Content Include="Content\Scripts\ImageUploader.js" />
+    <Content Include="Content\Scripts\Reviews.js" />
     <Content Include="Content\Scripts\SiteNavigation.js" />
     <Content Include="Content\Scripts\TagsSelect.js" />
     <Content Include="Content\Scripts\Trips.js" />
+    <Content Include="Content\Scripts\User.js" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Images\OnTheRoad.jpg" />
@@ -364,6 +391,22 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="App_Code\ToastrBuilder.cshtml" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\User\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_UserLayout.cshtml" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\User\Views\Profile\EditorTemplates\User.cshtml" />
+    <Content Include="Areas\User\Views\Profile\DisplayTemplates\User.cshtml" />
+    <Content Include="Areas\User\Views\Shared\_CitiesAllPartial.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Areas\User\Views\Reviews\Index.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - Web Deploy.pubxml" />
@@ -425,7 +468,7 @@
     <Content Include="Views\Shared\_LoaderPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
-    <Content Include="Views\Trips\EditorTemplates\Description.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Textarea.cshtml" />
     <Content Include="Views\Shared\_ImageUploaderPartial.cshtml" />
     <Content Include="Views\Shared\_TagsSelectPartial.cshtml" />
   </ItemGroup>
@@ -433,11 +476,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
+    <Folder Include="Areas\User\Views\Cities\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -483,6 +524,16 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>AddTripMessages.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources.Trips</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\User\Labels.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Labels.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources.User</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\User\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources.User</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -132,10 +132,16 @@
   <data name="ImageUploadError" xml:space="preserve">
     <value>Възникна грешка при качването. Моля опитайте отново.</value>
   </data>
+  <data name="InvalidRequest" xml:space="preserve">
+    <value>Невалидна заявка!</value>
+  </data>
   <data name="SubscriptionError" xml:space="preserve">
     <value>Възникна грешка при промяна на статуса!</value>
   </data>
   <data name="SubscriptionSuccess" xml:space="preserve">
     <value>Успешно променихте статуса си за това пътешествие.</value>
+  </data>
+  <data name="UnAuthorizedAccess" xml:space="preserve">
+    <value>Неоторизиран достъп!</value>
   </data>
 </root>

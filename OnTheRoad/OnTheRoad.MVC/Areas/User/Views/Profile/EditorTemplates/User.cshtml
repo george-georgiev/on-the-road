@@ -1,0 +1,48 @@
+﻿@model UserViewModel
+
+
+<h2 class="page-headers">@Resources.User.Labels.ChangeProfile</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <img id="image" src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.Image)" class="img-responsive" />
+        @Html.Partial("_ImageUploaderPartial")
+    </div>
+    <form id="user-update" action="/user/profile/update" method="post">
+        <div class="col-md-6">
+            @Html.HiddenFor(x => x.Image, new { id = "CoverImage" })
+            @Html.HiddenFor(x => x.Username)
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group ">
+                        <label class="input-labels">@Resources.User.Labels.FirstName</label>
+                        @Html.EditorFor(x => x.FirstName, new { id = "FirstName" })
+                    </div>
+                    <div class="form-group">
+                        <label class="input-labels">@Resources.User.Labels.City</label>
+                        @Html.Action("All", "Cities")
+                        @Html.HiddenFor(x => x.CityId, new { id = "CityId" })
+                        @Html.HiddenFor(x => x.CityName, new { id = "CityName" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="input-labels">@Resources.User.Labels.LastName</label>
+                        @Html.EditorFor(x => x.LastName, new { id = "LastName" })
+                    </div>
+                    <div class="form-group">
+                        <label class="input-labels">@Resources.User.Labels.PhoneNumber</label>
+                        @Html.EditorFor(x => x.PhoneNumber, new { id = "PhoneNumber" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 form-group">
+                    <label class="input-labels">@Resources.User.Labels.ShortInfo</label>
+                    @Html.EditorFor(x => x.Info, new { id = "Info" })
+                    <input type="button" id="save-btn" class="btn btn-success float-right margin-top-1em" value="@Resources.User.Labels.Save" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+﻿@{ 
+    Layout = null;
+}
+
+@model CitiesAllViewModel
+
+<select id="cities" class="form-control">
+    @foreach (var city in this.Model.Cities)
+    {
+        if (city.Name == this.Model.SelectedCityName)
+        {
+            <option selected value="@city.Id">@city.Name</option>
+        }
+        else
+        {
+            <option value="@city.Id">@city.Name</option>
+        }
+    }
+</select>

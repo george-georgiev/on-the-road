@@ -20,7 +20,7 @@
                     <img src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.OrganiserImage)" class="img-responsive image-organiser" />
                 </div>
                 <div>
-                    <a class="organiser-name" href="/profile/profileInfo?name=@this.Model.OrganiserUsername">
+                    <a class="organiser-name" href="/user/profile/@this.Model.OrganiserUsername">
                         @this.Model.OrganiserFirstName @this.Model.OrganiserLastName
                     </a>
                 </div>

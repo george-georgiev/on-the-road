@@ -34,7 +34,7 @@ namespace OnTheRoad.Logic.Services
             return user;
         }
 
-        public void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city)
+        public void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, byte[] image, ICity city)
         {
             var user = this.userRepository.GetByUserName(username);
             user.FirstName = firstName;
@@ -42,6 +42,7 @@ namespace OnTheRoad.Logic.Services
             user.PhoneNumber = phoneNumber;
             user.Info = info;
             user.City = city;
+            user.Image = image;
 
             this.userRepository.Update(user);
             this.uniOfWork.Commit();

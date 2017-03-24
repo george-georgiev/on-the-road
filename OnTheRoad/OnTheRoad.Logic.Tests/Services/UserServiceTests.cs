@@ -81,7 +81,7 @@ namespace OnTheRoad.Logic.Tests.Services
             this.userRepositoryMock.Setup(x => x.GetByUserName(It.IsAny<string>())).Returns(iUserMock.Object);
 
             var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
-            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", iCityMock.Object);
+            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", new byte[0], iCityMock.Object);
 
             userRepositoryMock.Verify(x => x.GetByUserName(It.IsAny<string>()), Times.Once);
         }
@@ -94,7 +94,7 @@ namespace OnTheRoad.Logic.Tests.Services
             this.userRepositoryMock.Setup(x => x.GetByUserName(It.IsAny<string>())).Returns(iUserMock.Object);
 
             var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
-            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", iCityMock.Object);
+            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", new byte[0], iCityMock.Object);
 
             userRepositoryMock.Verify(x => x.Update(It.IsAny<IUser>()), Times.Once);
         }
@@ -107,7 +107,7 @@ namespace OnTheRoad.Logic.Tests.Services
             this.userRepositoryMock.Setup(x => x.GetByUserName(It.IsAny<string>())).Returns(iUserMock.Object);
 
             var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
-            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", iCityMock.Object);
+            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", new byte[0], iCityMock.Object);
 
             userRepositoryMock.Verify(x => x.Update(iUserMock.Object), Times.Once);
         }
@@ -120,7 +120,7 @@ namespace OnTheRoad.Logic.Tests.Services
             this.userRepositoryMock.Setup(x => x.GetByUserName(It.IsAny<string>())).Returns(iUserMock.Object);
 
             var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
-            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", iCityMock.Object);
+            userService.UpdateUserInfo("username", "fName", "lName", "phoneNumber", "info", new byte[0], iCityMock.Object);
 
             unitOfWorkMock.Verify(x => x.Commit(), Times.Once);
         }
@@ -135,7 +135,7 @@ namespace OnTheRoad.Logic.Tests.Services
             this.userRepositoryMock.Setup(x => x.GetByUserName(It.IsAny<string>())).Returns(userMock);
 
             var userService = new UserService(userRepositoryMock.Object, unitOfWorkMock.Object);
-            userService.UpdateUserInfo("username", fName, lName, phoneNumber, info, iCityMock.Object);
+            userService.UpdateUserInfo("username", fName, lName, phoneNumber, info, new byte[0], iCityMock.Object);
 
             Assert.That(userMock.FirstName.Equals(fName));
             Assert.That(userMock.LastName.Equals(lName));

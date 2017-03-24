@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невалидна заявка!.
+        /// </summary>
+        public static string InvalidRequest {
+            get {
+                return ResourceManager.GetString("InvalidRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Възникна грешка при промяна на статуса!.
         /// </summary>
         public static string SubscriptionError {
@@ -120,6 +129,15 @@ namespace Resources {
         public static string SubscriptionSuccess {
             get {
                 return ResourceManager.GetString("SubscriptionSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неоторизиран достъп!.
+        /// </summary>
+        public static string UnAuthorizedAccess {
+            get {
+                return ResourceManager.GetString("UnAuthorizedAccess", resourceCulture);
             }
         }
     }

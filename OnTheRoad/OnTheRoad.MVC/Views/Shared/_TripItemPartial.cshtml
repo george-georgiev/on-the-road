@@ -27,7 +27,7 @@
             @Resources.Labels.StartDate:
             <span>@this.Model.StartDate.ToString("dd.MM.yyyy")</span>
         </div>
-        <a href="/profile/profileInfo?name=@this.Model.OrganiserUsername">
+        <a href="/user/profile/@this.Model.OrganiserUsername">
             <div class="info">
                 @Resources.Labels.Organizer:
                 <span class="hyperlink">@this.Model.OrganiserFirstName @this.Model.OrganiserLastName</span>

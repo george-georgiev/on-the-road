@@ -37,7 +37,22 @@ namespace OnTheRoad.Logic.Utils
         public IEnumerable<IReview> GetUserReviews(string username)
         {
             var reviews = this.reviewRepository.GetByToUser(username);
+
             return reviews;
+        }
+
+        public IEnumerable<IReview> GetUserReviews(string username, int skip, int take)
+        {
+            var reviews = this.reviewRepository.GetByToUser(username, skip, take);
+
+            return reviews;
+        }
+
+        public int GetUserReviewsTotal(string username)
+        {
+            var total = this.reviewRepository.GetByToUserTotal(username);
+
+            return total;
         }
     }
 }

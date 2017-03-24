@@ -4,7 +4,7 @@ namespace OnTheRoad.Logic.Contracts
 {
     public interface IUpdateUserService
     {
-        void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, ICity city);
+        void UpdateUserInfo(string username, string firstName, string lastName, string phoneNumber, string info, byte[] image, ICity city);
 
         void RemoveFavouriteUser(string username, string userToRemoveUsername);
 

@@ -1,0 +1,33 @@
+﻿@model UserViewModel
+
+<h2 class="page-headers username-header text-center">
+    <span id="username-span">@this.Model.Username</span>
+</h2>
+<br />
+<div class="row">
+    <div class="col-md-4">
+        <img id="profile-img" src="data:image/jpeg;base64,@Convert.ToBase64String(this.Model.Image)" class="img-responsive" />
+    </div>
+    <div class="col-md-8">
+        <div class="form-group">
+            <i class="fa fa-user-circle font-awesome" aria-hidden="true"></i>
+            <span id="full-name">@this.Model.FirstName @this.Model.LastName</span>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-envelope-o font-awesome" aria-hidden="true"></i>
+            <span>@this.Model.Email</span>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-map-marker font-awesome" aria-hidden="true"></i>
+            <span id="city-name">@this.Model.CityName</span>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-mobile font-awesome" aria-hidden="true"></i>
+            <span id="phone-number">@this.Model.PhoneNumber</span>
+        </div>
+        <div class="form-group">
+            <i class="fa fa-id-card-o font-awesome" aria-hidden="true"></i>
+            <span id="info">@this.Model.Info</span>
+        </div>
+    </div>
+</div>

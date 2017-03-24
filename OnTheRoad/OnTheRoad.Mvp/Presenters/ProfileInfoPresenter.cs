@@ -53,7 +53,7 @@ namespace OnTheRoad.Mvp.Presenters
             var username = e.Username;
             var city = this.cityService.GetCityById(e.CityId);
 
-            this.userService.UpdateUserInfo(username, e.FirstName, e.LastName, e.PhoneNumber, e.Info, city);
+            this.userService.UpdateUserInfo(username, e.FirstName, e.LastName, e.PhoneNumber, e.Info, null, city);
         }
 
         private void View_GetProfileInfo(object sender, ProfileInfoEventArgs e)

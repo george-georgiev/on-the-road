@@ -52,7 +52,10 @@ namespace OnTheRoad.MVC
                       "~/Content/Scripts/SiteNavigation.js",
                       "~/Content/Scripts/Trips.js",
                       "~/Content/Scripts/ImageUploader.js",
-                      "~/Content/Scripts/TagsSelect.js"));
+                      "~/Content/Scripts/TagsSelect.js",
+                      "~/Content/Scripts/Cities.js",
+                      "~/Content/Scripts/User.js",
+                      "~/Content/Styles/Reviews.js"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",

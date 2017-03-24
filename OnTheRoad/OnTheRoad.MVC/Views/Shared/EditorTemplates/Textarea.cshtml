@@ -22,7 +22,13 @@
     }
 }
 
+@{
+    var fullHtmlFieldName = ViewData.TemplateInfo.GetFullHtmlFieldName("");
+    var id = ViewData["id"] ?? fullHtmlFieldName;
+    var name = fullHtmlFieldName;
+}
+
 <textarea class="form-control" cols="20" rows="6"
-          id="@ViewData.TemplateInfo.GetFullHtmlFieldName("")"
-          name="@ViewData.TemplateInfo.GetFullHtmlFieldName("")"
+          id="@id"
+          name="@name"
           @Html.Raw(additionalAttrs)>@this.Model</textarea>

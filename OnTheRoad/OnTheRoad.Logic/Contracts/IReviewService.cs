@@ -9,6 +9,10 @@ namespace OnTheRoad.Logic.Contracts
     {
         IEnumerable<IReview> GetUserReviews(string username);
 
+        IEnumerable<IReview> GetUserReviews(string username, int skip, int take);
+        
         void AddUserReview(string content, string fromUser, string toUser, RatingEnum rating, DateTime postingDate);
+
+        int GetUserReviewsTotal(string username);
     }
 }

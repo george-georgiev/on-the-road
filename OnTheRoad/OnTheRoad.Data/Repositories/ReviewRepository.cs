@@ -5,6 +5,7 @@ using OnTheRoad.Data.Models;
 using OnTheRoad.Domain.Models;
 using OnTheRoad.Domain.Repositories;
 using OnTheRoad.Data.Contracts;
+using System;
 
 namespace OnTheRoad.Data.Repositories
 {
@@ -23,17 +24,30 @@ namespace OnTheRoad.Data.Repositories
             }
 
             var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser && x.IsDeleted == false).ToList();
-            Mapper.Initialize(config => config.CreateMap<Review, IReview>());
 
-            List<IReview> reviews = new List<IReview>();
-            foreach (var entity in entities)
-            {
-                var review = this.MapEntityToDomain(entity);
+            var result = this.MapReviews(entities);
 
-                reviews.Add(review);
-            }
+            return result;
+        }
 
-            return reviews;
+        public IEnumerable<IReview> GetByToUser(string toUser, int skip, int take)
+        {
+            var entities = this.DbSet.Where(x => x.ToUser.UserName == toUser && x.IsDeleted == false)
+                .OrderByDescending(x => x.PostingDate)
+                .Skip(skip)
+                .Take(take)
+                .ToList();
+
+            var result = this.MapReviews(entities);
+
+            return result;
+        }
+
+        public int GetByToUserTotal(string toUser)
+        {
+            var count = this.DbSet.Where(x => x.ToUser.UserName == toUser && x.IsDeleted == false).Count();
+
+            return count;
         }
 
         protected override void InitializeDomainToEnityMapper()
@@ -73,6 +87,21 @@ namespace OnTheRoad.Data.Repositories
 
             var domain = Mapper.Map<Review, IReview>(entity);
             return domain;
+        }
+
+        private IEnumerable<IReview> MapReviews(IEnumerable<Review> entities)
+        {
+            Mapper.Initialize(config => config.CreateMap<Review, IReview>());
+
+            List<IReview> reviews = new List<IReview>();
+            foreach (var entity in entities)
+            {
+                var review = this.MapEntityToDomain(entity);
+
+                reviews.Add(review);
+            }
+
+            return reviews;
         }
     }
 }

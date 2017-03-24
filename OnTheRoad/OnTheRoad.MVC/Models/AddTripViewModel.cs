@@ -24,7 +24,7 @@ namespace OnTheRoad.MVC.Models
         public DateTime EndDate { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Trips.AddTripMessages), ErrorMessageResourceName = "DescriptionRequired")]
-        [UIHint("Description")]
+        [UIHint("Textarea")]
         public string Description { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Resources.Trips.AddTripMessages), ErrorMessageResourceName = "CategoriesRequired")]

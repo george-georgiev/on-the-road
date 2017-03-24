@@ -1,3 +1,7 @@
 ﻿@model string
 
-@Html.TextBoxFor(m => m, new { @class = "form-control", type = "text" })
+@{
+    var id = ViewData["id"];
+}
+
+@Html.TextBoxFor(m => m, new { @class = "form-control", type = "text", id = id })

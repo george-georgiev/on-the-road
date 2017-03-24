@@ -29,7 +29,7 @@
                         @Resources.Labels.StartDate:
                         <span>@trip.StartDate.ToString("dd.MM.yyyy")</span>
                     </div>
-                    <a href="/profile/profileInfo?name=@trip.OrganiserUsername" >
+                    <a href="/user/profile/@trip.OrganiserUsername" >
                         <div class="info">
                             @Resources.Labels.Organizer:
                             <span class="hyperlink">@trip.OrganiserFirstName @trip.OrganiserLastName</span>

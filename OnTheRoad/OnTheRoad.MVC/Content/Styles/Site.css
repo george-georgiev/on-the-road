@@ -224,3 +224,15 @@ div.toast:first-child {
     height: 1.5em;
     color: #b94a48 !important;
 }
+
+.display-none {
+    display: none;
+}
+
+.float-right {
+    float: right;
+}
+
+.margin-top-1em {
+    margin-top: 1em;
+}

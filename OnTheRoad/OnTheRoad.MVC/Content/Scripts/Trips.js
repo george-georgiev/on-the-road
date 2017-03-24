@@ -10,8 +10,8 @@
             (data) => {
                 toastr.success(data.DisplayMessage);
             })
-            .fail(function () {
-                toastr.error(data.DisplayMessage);
+            .fail(function (data) {
+                toastr.error(data.responseJSON.DisplayMessage);
             });
     })
 })()

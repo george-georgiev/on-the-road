@@ -1,0 +1,65 @@
+﻿@model ProfileViewModel
+
+<div class="row  back-container box-shadow">
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        @if (!this.Model.IsOwner)
+        {
+            if (this.Model.IsFollowing)
+            {
+                <button class="btn btn-warning btn-follow" id="btn-unfollow">@Resources.User.Labels.Unfollow</button>
+                <button class="btn btn-success btn-follow display-none" id="btn-follow">@Resources.User.Labels.Follow</button>
+            }
+            else
+            {
+                <button class="btn btn-warning btn-follow display-none" id="btn-unfollow">@Resources.User.Labels.Unfollow</button>
+                <button class="btn btn-success btn-follow" id="btn-follow">@Resources.User.Labels.Follow</button>
+            }
+        }
+
+        <div id="user-display">
+            @Html.DisplayFor(x => x.User)
+        </div>
+
+        @if (this.Model.IsOwner)
+        {
+            <div id="user-edit" class="display-none">
+                @Html.EditorFor(x => x.User)
+            </div>
+        }
+    </div>
+    @if (this.Model.IsOwner)
+    {
+        <div class="col-sm-offset-6 col-md-offset-6 col-lg-offset-6">
+            <button id="edit-btn" class="btn btn-warning">@Resources.User.Labels.Change</button>
+        </div>
+    }
+</div>
+
+<br />
+
+<div class="row back-container ">
+    <div class="col-md-12 fav-users">
+        <h3 class="page-headers fav-users-header">@Resources.User.Labels.FavouriteTravelers</h3>
+        @foreach (var user in this.Model.User.FavouriteUsers)
+        {
+            <div class="fav-user-wrapper">
+                <img src="data:image/jpeg;base64,@Convert.ToBase64String(user.Image)" class="favUserImage img-circle" />
+                @if (this.Model.IsOwner)
+                {
+                    <div class="btn-group">
+                        <button type="button"
+                                class="btn-dropdown btn btn-xs btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <button class="btn-unfollow" id="lbl-unfollow" username="@user.Username">@Resources.User.Labels.Remove</button>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                <a href="/user/profile/@user.Username" id="username-link">@user.Username</a>
+            </div>
+        }
+    </div>
+</div>
