@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Logic", "OnTheRoa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoverDependency", "CoverDependency\CoverDependency.csproj", "{9ABFBBD5-D2BD-414F-B9C0-761D817E60E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Mvp", "OnTheRoad.Mvp\OnTheRoad.Mvp.csproj", "{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Logic.Tests", "OnTheRoad.Logic.Tests\OnTheRoad.Logic.Tests.csproj", "{3333658D-7887-4068-A71A-8A55C98BA5B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Data.Tests", "OnTheRoad.Data.Tests\OnTheRoad.Data.Tests.csproj", "{58A80396-6262-40F8-B8AE-DE54D0722DEC}"
@@ -51,10 +49,6 @@ Global
 		{9ABFBBD5-D2BD-414F-B9C0-761D817E60E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9ABFBBD5-D2BD-414F-B9C0-761D817E60E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9ABFBBD5-D2BD-414F-B9C0-761D817E60E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E19CA2C7-FCB4-4A9B-8DE4-4E9CA600BF26}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3333658D-7887-4068-A71A-8A55C98BA5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3333658D-7887-4068-A71A-8A55C98BA5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3333658D-7887-4068-A71A-8A55C98BA5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
