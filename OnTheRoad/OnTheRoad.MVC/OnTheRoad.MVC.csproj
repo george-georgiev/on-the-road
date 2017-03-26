@@ -239,7 +239,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\ManageTripsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TripsController.cs" />
+    <Compile Include="Areas\Administration\Models\TripViewModel.cs" />
     <Compile Include="Areas\User\Controllers\CitiesController.cs" />
     <Compile Include="Areas\User\Controllers\MessagesController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
@@ -864,6 +865,7 @@
     <Content Include="Content\kendo\kendo.uniform.mobile.min.css.map" />
     <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\TripsGrid.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - Web Deploy.pubxml" />
@@ -1176,7 +1178,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

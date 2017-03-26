@@ -33,7 +33,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Resources.Labels.Trips, "Index", "Categories", new { area = "" }, null)</li>
                     <li>@Html.ActionLink(Resources.Labels.AddTrip, "AddTrip", "Trips", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink(Resources.Labels.Admin, "Index", "ManageTrips", new { Area = "Administration" }, new { })</li>
+                    <li>@Html.ActionLink(Resources.Labels.Admin, "Index", "Trips", new { Area = "Administration" }, new { })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

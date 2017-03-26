@@ -89,5 +89,11 @@ namespace OnTheRoad.Logic.Utils
 
             return count;
         }
+
+        public void UpdateTrip(ITrip trip)
+        {
+            this.tripRepository.Update(trip);
+            this.unitOfWork.Commit();
+        }
     }
 }

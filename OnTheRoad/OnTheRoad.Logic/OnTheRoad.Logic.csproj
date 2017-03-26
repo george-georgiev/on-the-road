@@ -68,6 +68,7 @@
     <Compile Include="Contracts\IImagePathResolver.cs" />
     <Compile Include="Contracts\IImageResizer.cs" />
     <Compile Include="Contracts\IImageService.cs" />
+    <Compile Include="Contracts\ITripModifyService.cs" />
     <Compile Include="Contracts\ITripService.cs" />
     <Compile Include="Contracts\IUserGetService.cs" />
     <Compile Include="Contracts\IRatingService.cs" />

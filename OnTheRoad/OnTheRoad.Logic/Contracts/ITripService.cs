@@ -1,6 +1,6 @@
 ﻿namespace OnTheRoad.Logic.Contracts
 {
-    public interface ITripService : ITripAddService, ITripGetService
+    public interface ITripService : ITripAddService, ITripGetService, ITripModifyService
     {
     }
 }

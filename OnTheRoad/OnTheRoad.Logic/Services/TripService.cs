@@ -93,5 +93,18 @@ namespace OnTheRoad.Logic.Services
 
             return count;
         }
+
+        public void Update(ITrip modifiedTrip)
+        {
+            var tripId = modifiedTrip.Id;
+            var trip = this.tripDataUtil.GetTripById(tripId);
+
+            trip.Name = modifiedTrip.Name;
+            trip.Location = modifiedTrip.Location;
+            trip.StartDate = modifiedTrip.StartDate;
+            trip.EndDate = modifiedTrip.EndDate;
+
+            this.tripDataUtil.UpdateTrip(trip);
+        }
     }
 }

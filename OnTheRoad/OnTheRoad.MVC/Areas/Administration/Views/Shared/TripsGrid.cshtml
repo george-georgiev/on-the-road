@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TripViewModel>
+
+<div class="row text-center">
+    <div class="col-md-12">
+        <h2 class="header-page">@Resources.Labels.Trips</h2>
+
+        @(Html.Kendo().Grid(Model)
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Id);
+            columns.Bound(c => c.Name);
+            columns.Bound(c => c.StartDate);
+            columns.Bound(c => c.EndDate);
+            columns.Bound(c => c.Location);
+            //columns.Command(command => command.Custom("Users").Action("ShowUsers", "Households")).Width(100);
+            columns.Command(command => { command.Edit(); });
+        })
+        .HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Groupable()
+        .Selectable()
+        .Sortable()
+        .Filterable()
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+            .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5)
+            )
+                .DataSource(dataSource => dataSource
+                .Server()
+                .Model(model => model.Id(p => p.Id))
+                .Read("Index", "Trips")
+                .Update("Update", "Trips")
+            )
+        )
+    </div>
+</div>
