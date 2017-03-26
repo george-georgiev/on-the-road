@@ -45,7 +45,7 @@ namespace OnTheRoad.MVC
             bundles.Add(new ScriptBundle("~/bundles/toastr")
                             .Include("~/Scripts/toastr.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery.form")
+            bundles.Add(new ScriptBundle("~/bundles/jquery-form")
                             .Include("~/Scripts/jquery.form*"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery-ui")

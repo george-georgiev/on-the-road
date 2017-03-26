@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ConversationViewModel>
 
-@{ 
+@{
     Layout = null;
     var loggedUsername = this.User.Identity.Name;
 }
@@ -29,4 +29,9 @@
             <div class="message-text margin-left-1em">@conversation.LastMessage</div>
         </div>
     </div>
+}
+
+@if (this.Model.Count() == 0)
+{
+    <div class="notification-message">@Resources.User.Messages.NoConversationsYet</div>
 }

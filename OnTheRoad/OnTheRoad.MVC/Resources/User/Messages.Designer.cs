@@ -79,6 +79,15 @@ namespace Resources.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Все още нямате съобщения..
+        /// </summary>
+        public static string NoConversationsYet {
+            get {
+                return ResourceManager.GetString("NoConversationsYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Възникна грешка при премахване от следвани!.
         /// </summary>
         public static string UnfollowError {

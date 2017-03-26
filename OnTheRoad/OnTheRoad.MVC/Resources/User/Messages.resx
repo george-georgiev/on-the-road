@@ -123,6 +123,9 @@
   <data name="FollowSucces" xml:space="preserve">
     <value>Успешно добавихте в следвани.</value>
   </data>
+  <data name="NoConversationsYet" xml:space="preserve">
+    <value>Все още нямате съобщения.</value>
+  </data>
   <data name="UnfollowError" xml:space="preserve">
     <value>Възникна грешка при премахване от следвани!</value>
   </data>

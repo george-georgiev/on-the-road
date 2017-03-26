@@ -32,8 +32,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink(Resources.Labels.Trips, "Index", "Categories", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink(Resources.Labels.AddTrip, "AddTrip", "Trips", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink(Resources.Labels.Admin, "Index", "Trips", new { Area = "Administration" }, new { })</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(Resources.Labels.AddTrip, "AddTrip", "Trips", new { area = "" }, null)</li>
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink(Resources.Labels.Admin, "Index", "Trips", new { Area = "Administration" }, new { })</li>
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -53,7 +59,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jquery.form")
+    @Scripts.Render("~/bundles/jquery-form")
     @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jquery-signalR")
     @Scripts.Render("~/signalr/hubs")
