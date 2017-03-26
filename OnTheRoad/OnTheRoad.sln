@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad", "OnTheRoad\OnTheRoad.csproj", "{78256B09-977F-472E-9455-54A5B27199F6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Identity", "OnTheRoad.Identity\OnTheRoad.Identity.csproj", "{AF550F2B-B00A-4835-8DF7-995FC7F863CF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnTheRoad.Domain", "OnTheRoad.Domain\OnTheRoad.Domain.csproj", "{C7B621AB-03D3-42F6-B2DF-92FA0B0AF86E}"
@@ -33,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78256B09-977F-472E-9455-54A5B27199F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78256B09-977F-472E-9455-54A5B27199F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78256B09-977F-472E-9455-54A5B27199F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78256B09-977F-472E-9455-54A5B27199F6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF550F2B-B00A-4835-8DF7-995FC7F863CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF550F2B-B00A-4835-8DF7-995FC7F863CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF550F2B-B00A-4835-8DF7-995FC7F863CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
