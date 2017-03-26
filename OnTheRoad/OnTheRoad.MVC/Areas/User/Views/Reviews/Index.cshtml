@@ -3,47 +3,50 @@
 <div class="row text-center  back-container">
     <div class="col-md-12">
         <h2 class="page-headers">@Resources.User.Labels.Reviews</h2>
-        <input type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="@Resources.User.Labels.AddComment" />
+        @if (!this.Model.IsOwner)
+        {
+            <input type="submit" class="btn btn-success" data-toggle="modal" data-target="#myModal" value="@Resources.User.Labels.AddComment" />
 
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form id="review-add" method="post" action="/user/reviews/add">
-                        @Html.HiddenFor(x => x.Username)
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">@Resources.User.Labels.AddCommentTo <strong class="input-labels">@this.ViewContext.RouteData.Values["username"]</strong></h4>
-                        </div>
-                        <div class="modal-body review-body">
-                            <div class="form-group">
-                                <label id="err-label"></label>
-                                @Html.EditorFor(x => x.NewReview.ReviewContent)
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="review-add" method="post" action="/user/reviews/add">
+                            @Html.HiddenFor(x => x.Username)
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">@Resources.User.Labels.AddCommentTo <strong class="input-labels">@this.ViewContext.RouteData.Values["username"]</strong></h4>
                             </div>
-                            <div class="row form-group text-center">
-                                <div class="input-labels radio-btns-review">
-                                    <div class="col-sm-4 col-md-4 col-lg-4">
-                                        <input type="radio" id="Positive" name="NewReview.RatingValue" value="Positive" />
-                                        <label for="Positive">Позитивен</label>
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 col-lg-4">
-                                        <input type="radio" id="Neutral" name="NewReview.RatingValue" value="Neutral" />
-                                        <label for="Neutral">Неутрален</label>
-                                    </div>
-                                    <div class="col-sm-4 col-md-4 col-lg-4">
-                                        <input type="radio" id="Negative" name="NewReview.RatingValue" value="Negative" />
-                                        <label for="Negative">Негативен</label>
+                            <div class="modal-body review-body">
+                                <div class="form-group">
+                                    <label id="err-label"></label>
+                                    @Html.EditorFor(x => x.NewReview.ReviewContent)
+                                </div>
+                                <div class="row form-group text-center">
+                                    <div class="input-labels radio-btns-review">
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <input type="radio" id="Positive" name="NewReview.RatingValue" value="Positive" />
+                                            <label for="Positive">Позитивен</label>
+                                        </div>
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <input type="radio" id="Neutral" name="NewReview.RatingValue" value="Neutral" />
+                                            <label for="Neutral">Неутрален</label>
+                                        </div>
+                                        <div class="col-sm-4 col-md-4 col-lg-4">
+                                            <input type="radio" id="Negative" name="NewReview.RatingValue" value="Negative" />
+                                            <label for="Negative">Негативен</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" id="btn-dismiss" data-dismiss="modal" value="@Resources.User.Labels.Cancel" />
-                            <input type="submit" value="@Resources.User.Labels.Send" class="btn btn-success" id="btn-send" />
-                        </div>
-                    </form>
+                            <div class="modal-footer">
+                                <input type="button" class="btn btn-default" id="btn-dismiss" data-dismiss="modal" value="@Resources.User.Labels.Cancel" />
+                                <input type="submit" value="@Resources.User.Labels.Send" class="btn btn-success" id="btn-send" />
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 

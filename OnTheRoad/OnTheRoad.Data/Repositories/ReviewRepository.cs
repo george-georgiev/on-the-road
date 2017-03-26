@@ -57,7 +57,8 @@ namespace OnTheRoad.Data.Repositories
                 config.CreateMap<IRating, Rating>();
                 config.CreateMap<ICity, City>();
                 config.CreateMap<IUser, User>()
-                    .ForMember(x => x.Subscriptions, opt => opt.Ignore());
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
+                    .ForMember(x => x.Conversations, opt => opt.Ignore());
 
 
                 config.CreateMap<IReview, Review>()

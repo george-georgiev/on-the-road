@@ -218,7 +218,8 @@ namespace OnTheRoad.Data.Repositories
                     .ForMember(x => x.City, opt => opt.Ignore())
                     .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
                     .ForMember(x => x.GivenReviews, opt => opt.Ignore())
-                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore());
+                    .ForMember(x => x.ReceivedReviews, opt => opt.Ignore())
+                    .ForMember(x => x.Conversations, opt => opt.Ignore());
 
                 config.CreateMap<ISubscription, Subscription>()
                     .ForMember(x => x.User, opt => opt.Ignore());

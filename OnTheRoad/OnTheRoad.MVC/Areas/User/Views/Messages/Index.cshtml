@@ -1,0 +1,22 @@
+﻿@model MessagesViewModel
+
+@{ 
+    var username = (string)this.ViewContext.RouteData.Values["username"];
+}
+
+<div class="row back-container box-shadow">
+    @if (this.Model.IsOwner)
+    {
+        <div class="col-sm-12 col-md-4 col-lg-4">
+            @Html.Action("Conversations", "Messages")
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-8" id="chat-container">
+        </div>
+    }
+    else
+    {
+        <div class="col-sm-12 col-md-8 col-lg-8">
+            @Html.Action("Chat", "Messages", new { username = username })
+        </div>
+    }
+</div>

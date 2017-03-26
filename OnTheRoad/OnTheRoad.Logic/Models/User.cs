@@ -17,7 +17,7 @@ namespace OnTheRoad.Logic.Models
         public string Info { get; set; }
 
         public ICity City { get; set; }
-         
+
         public string Id { get; set; }
 
         public byte[] Image { get; set; }
@@ -33,5 +33,7 @@ namespace OnTheRoad.Logic.Models
         public ICollection<ISubscription> Subscriptions { get; set; }
 
         public ICollection<IUser> FavouriteUsers { get; set; }
+
+        public ICollection<IConversation> Conversations { get; set; }
     }
 }

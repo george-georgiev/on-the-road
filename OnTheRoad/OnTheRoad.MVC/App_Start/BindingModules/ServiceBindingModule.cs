@@ -53,6 +53,14 @@ namespace OnTheRoad.MVC.App_Start.BindingModules
                 .ToFactory()
                 .InSingletonScope();
 
+            this.Bind<IConversationFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
+            this.Bind<IMessageFactory>()
+                .ToFactory()
+                .InSingletonScope();
+
             this.Bind<ITagGetService>()
                 .To<TagService>();
 

@@ -64,6 +64,14 @@
       <HintPath>..\packages\LinFu.DynamicProxy.OfficialRelease.1.0.5\lib\net\LinFu.DynamicProxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.2.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -95,10 +103,6 @@
     </Reference>
     <Reference Include="Ninject.Web.Mvc, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="RouteDebugger, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\routedebugger.2.1.5\lib\net40\RouteDebugger.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -226,16 +230,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\Interceptors\ImageServiceResizeInterceptor.cs" />
     <Compile Include="App_Start\NinjectKernelInstanceProvider.cs" />
+    <Compile Include="App_Start\NinjectSignalRDependencyResolver.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\ManageTripsController.cs" />
     <Compile Include="Areas\User\Controllers\CitiesController.cs" />
+    <Compile Include="Areas\User\Controllers\MessagesController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\Controllers\ReviewsController.cs" />
     <Compile Include="Areas\User\Models\CitiesAllViewModel.cs" />
     <Compile Include="Areas\User\Models\CityViewModel.cs" />
+    <Compile Include="Areas\User\Models\ConversationViewModel.cs" />
+    <Compile Include="Areas\User\Models\MessagesViewModel.cs" />
+    <Compile Include="Areas\User\Models\MessageViewModel.cs" />
+    <Compile Include="Areas\User\Models\ChatViewModel.cs" />
     <Compile Include="Areas\User\Models\ProfileViewModel.cs" />
     <Compile Include="Areas\User\Models\ReviewsViewModel.cs" />
     <Compile Include="Areas\User\Models\ReviewViewModel.cs" />
@@ -259,6 +269,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\ChatHub.cs" />
     <Compile Include="Models\AddTripViewModel.cs" />
     <Compile Include="Models\CategoryOverviewViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -316,6 +327,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\IMG_497657.jpg" />
     <Content Include="Content\Images\main-image.jpg" />
+    <Content Include="Content\Scripts\Chat.js" />
     <Content Include="Content\Scripts\Cities.js" />
     <Content Include="Content\Scripts\ImageUploader.js" />
     <Content Include="Content\Scripts\Reviews.js" />
@@ -328,6 +340,7 @@
     <Content Include="Content\Images\OnTheRoad.jpg" />
     <Content Include="Content\Styles\AddTrip.css" />
     <Content Include="Content\Styles\Admin.css" />
+    <Content Include="Content\Styles\Chat.css" />
     <Content Include="Content\Styles\DataPager.css" />
     <Content Include="Content\Styles\Home.css" />
     <Content Include="Content\Styles\Loader.css" />
@@ -407,6 +420,9 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Areas\User\Views\Reviews\Index.cshtml" />
+    <Content Include="Areas\User\Views\Messages\Index.cshtml" />
+    <Content Include="Areas\User\Views\Messages\Conversations.cshtml" />
+    <Content Include="Areas\User\Views\Messages\Chat.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - Web Deploy.pubxml" />
@@ -418,6 +434,8 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -476,7 +494,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Areas\Administration\Views\Shared\" />
-    <Folder Include="Areas\User\Views\Cities\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

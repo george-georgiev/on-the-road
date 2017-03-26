@@ -30,8 +30,11 @@ namespace OnTheRoad.MVC
             bundles.Add(new ScriptBundle("~/bundles/microsoft-validation").Include(
                       "~/Scripts/MicrosoftMvcValidation.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery.unobtrusive").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery-unobtrusive").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jquery-signalR").Include(
+                        "~/Scripts/jquery.signalR*"));
 
             bundles.Add(new StyleBundle("~/content/toastr")
                 .Include("~/Content/toastr.css"));
@@ -55,7 +58,8 @@ namespace OnTheRoad.MVC
                       "~/Content/Scripts/TagsSelect.js",
                       "~/Content/Scripts/Cities.js",
                       "~/Content/Scripts/User.js",
-                      "~/Content/Styles/Reviews.js"));
+                      "~/Content/Scripts/Reviews.js",
+                      "~/Content/Scripts/Chat.js"));
 
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",
@@ -69,7 +73,8 @@ namespace OnTheRoad.MVC
                       "~/Content/Styles/Trips.css",
                       "~/Content/Styles/TripsContainer.css",
                       "~/Content/Styles/UserProfile.css",
-                      "~/Content/Styles/Loader.css"));
+                      "~/Content/Styles/Loader.css",
+                      "~/Content/Styles/Chat.css"));
         }
     }
 }

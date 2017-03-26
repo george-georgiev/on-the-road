@@ -50,11 +50,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enumerations\RatingEnum.cs" />
+    <Compile Include="Models\IConversation.cs" />
     <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\IMessage.cs" />
     <Compile Include="Models\IRating.cs" />
     <Compile Include="Repositories\ICategoryRepository.cs" />
     <Compile Include="Repositories\ICityRepository.cs" />
+    <Compile Include="Repositories\IConversationRepository.cs" />
     <Compile Include="Repositories\IGetRepository.cs" />
+    <Compile Include="Repositories\IMessageRepository.cs" />
     <Compile Include="Repositories\IModifyRepository.cs" />
     <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Enumerations\SubscriptionStatus.cs" />

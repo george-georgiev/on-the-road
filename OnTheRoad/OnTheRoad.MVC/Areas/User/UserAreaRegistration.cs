@@ -51,6 +51,18 @@ namespace OnTheRoad.MVC.Areas.User
             );
 
             context.MapRoute(
+                "UserConversations",
+                "User/Conversations/{username}",
+                new { controller = "Messages", action = "Conversations", username = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "UserMessages",
+                "User/Messages/{username}",
+                new { controller = "Messages", action = "Index", username = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
                 "User_default",
                 "User/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }

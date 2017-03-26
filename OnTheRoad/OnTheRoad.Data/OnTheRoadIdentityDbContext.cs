@@ -29,6 +29,10 @@ namespace OnTheRoad.Data
 
         public virtual IDbSet<Rating> Ratings { get; set; }
 
+        public virtual IDbSet<Message> Messages { get; set; }
+
+        public virtual IDbSet<Conversation> Conversations { get; set; }
+
         public static OnTheRoadIdentityDbContext Create()
         {
             return new OnTheRoadIdentityDbContext();

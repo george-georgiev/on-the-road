@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ConversationViewModel>
+
+@{ 
+    Layout = null;
+    var loggedUsername = this.User.Identity.Name;
+}
+
+@foreach (var conversation in this.Model)
+{
+    string username;
+    byte[] image;
+    if (loggedUsername == conversation.FirstUserUsername)
+    {
+        username = conversation.SecondUserUsername;
+        image = conversation.SecondUserImage;
+    }
+    else
+    {
+        username = conversation.SecondUserUsername;
+        image = conversation.SecondUserImage;
+    }
+
+    <div class="row conversation" username="@username">
+        <div class="col-sm-12 col-md-2 col-lg-2">
+            <img src="data:image/jpeg;base64,@Convert.ToBase64String(image)" class="favUserImage img-circle" />
+        </div>
+        <div class="col-sm-12 col-md-10 col-lg-10">
+            <div class="message-author margin-left-1em">@username</div>
+            <div class="message-text margin-left-1em">@conversation.LastMessage</div>
+        </div>
+    </div>
+}

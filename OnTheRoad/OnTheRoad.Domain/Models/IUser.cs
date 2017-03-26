@@ -31,5 +31,7 @@ namespace OnTheRoad.Domain.Models
         ICollection<IReview> GivenReviews { get; set; }
 
         ICollection<IReview> ReceivedReviews { get; set; }
+
+        ICollection<IConversation> Conversations { get; set; }
     }
 }

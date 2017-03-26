@@ -83,6 +83,8 @@
     <Compile Include="Factories\Contracts\IFileReaderFactory.cs" />
     <Compile Include="Factories\FileReaderFactory.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Readers\TextDataReader.cs" />
     <Compile Include="Models\User.cs" />
@@ -94,6 +96,8 @@
     <Compile Include="Models\Trip.cs" />
     <Compile Include="OnTheRoadIdentityDbContext.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
+    <Compile Include="Repositories\ConversationRepository.cs" />
+    <Compile Include="Repositories\MessageRepository.cs" />
     <Compile Include="Repositories\RatingRepository.cs" />
     <Compile Include="Repositories\ReviewRepository.cs" />
     <Compile Include="Repositories\SubscriptionRepository.cs" />

@@ -151,6 +151,15 @@ namespace Resources.User {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Съобщения.
+        /// </summary>
+        public static string Messages {
+            get {
+                return ResourceManager.GetString("Messages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to тел. номер.
         /// </summary>
         public static string PhoneNumber {

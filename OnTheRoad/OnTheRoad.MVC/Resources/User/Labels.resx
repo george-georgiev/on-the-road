@@ -147,6 +147,9 @@
   <data name="LastName" xml:space="preserve">
     <value>фамилно име</value>
   </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Съобщения</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>тел. номер</value>
   </data>

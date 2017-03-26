@@ -22,6 +22,10 @@ namespace OnTheRoad.Data.Contracts
 
         IDbSet<Rating> Ratings { get; set; }
 
+        IDbSet<Message> Messages { get; set; }
+
+        IDbSet<Conversation> Conversations { get; set; }
+
         DbChangeTracker ChangeTracker { get; }
 
         DbContextConfiguration Configuration { get; }

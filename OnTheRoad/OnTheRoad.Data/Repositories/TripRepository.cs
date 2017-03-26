@@ -134,7 +134,8 @@ namespace OnTheRoad.Data.Repositories
                     .ForMember(x => x.FavouriteUsers, opt => opt.Ignore())
                     .ForMember(x => x.GivenReviews, opt => opt.Ignore())
                     .ForMember(x => x.ReceivedReviews, opt => opt.Ignore())
-                    .ForMember(x => x.Subscriptions, opt => opt.Ignore());
+                    .ForMember(x => x.Subscriptions, opt => opt.Ignore())
+                    .ForMember(x => x.Conversations, opt => opt.Ignore());
             });
 
             var domain = Mapper.Map<Trip, ITrip>(entity);

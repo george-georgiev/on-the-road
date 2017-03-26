@@ -1,0 +1,33 @@
+﻿@model ChatViewModel
+
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-sm-8 col-md-8 col-lg-8 messages"
+         id="messages-container"
+         author="@User.Identity.Name"
+         target-user="@this.Model.TargetUser">
+        @foreach (var message in this.Model.Messages)
+        {
+            if (User.Identity.Name == message.AuthorUsername)
+            {
+                <div class="message author">@message.Text</div>
+            }
+            else
+            {
+                <div class="message">@message.Text</div>
+            }
+        }
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <textarea class="form-control" id="message"></textarea>
+        </div>
+        <div class="col-sm-12 col-md-2 col-lg-2">
+            <button class="btn btn-lg btn-success" id="send-message">Изпрати</button>
+        </div>
+    </div>
+</div>

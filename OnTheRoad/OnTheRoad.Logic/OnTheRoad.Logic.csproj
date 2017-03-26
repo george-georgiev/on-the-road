@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Builders\TripBuilder.cs" />
     <Compile Include="Contracts\ICategoryGetService.cs" />
+    <Compile Include="Contracts\IConversationHelper.cs" />
+    <Compile Include="Contracts\IConversationService.cs" />
     <Compile Include="Contracts\IImageLoader.cs" />
     <Compile Include="Contracts\IImagePathResolver.cs" />
     <Compile Include="Contracts\IImageResizer.cs" />
@@ -90,11 +92,15 @@
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="Contracts\IReviewAddHelper.cs" />
     <Compile Include="Enums\LoginStatus.cs" />
+    <Compile Include="Factories\IConversationFactory.cs" />
+    <Compile Include="Factories\IMessageFactory.cs" />
     <Compile Include="Factories\IReviewFactory.cs" />
     <Compile Include="Factories\ISubscriptionFactory.cs" />
     <Compile Include="Factories\ITagFactory.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\City.cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Rating.cs" />
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\Subscription.cs" />
@@ -104,6 +110,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\CityService.cs" />
+    <Compile Include="Services\ConversationService.cs" />
     <Compile Include="Services\ImageService.cs" />
     <Compile Include="Services\RatingService.cs" />
     <Compile Include="Services\ReviewService.cs" />
@@ -111,6 +118,7 @@
     <Compile Include="Services\TagService.cs" />
     <Compile Include="Services\TripService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Utils\ConversationHelper.cs" />
     <Compile Include="Utils\ImageLoader.cs" />
     <Compile Include="Utils\ImagePathResolver.cs" />
     <Compile Include="Utils\ReviewAddHelper.cs" />

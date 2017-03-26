@@ -13,14 +13,16 @@ namespace OnTheRoad.Data.Models
         private ICollection<Review> givenReviews;
         private ICollection<Review> receivedReviews;
         private ICollection<User> favouriteUsers;
-        private ICollection<Subscription> subscription;
+        private ICollection<Subscription> subscriptions;
+        private ICollection<Conversation> conversations;
 
         public User()
         {
-            this.givenReviews = new HashSet<Review>();
-            this.receivedReviews = new HashSet<Review>();
-            this.favouriteUsers = new HashSet<User>();
-            this.subscription = new HashSet<Subscription>();
+            this.GivenReviews = new HashSet<Review>();
+            this.ReceivedReviews = new HashSet<Review>();
+            this.FavouriteUsers = new HashSet<User>();
+            this.Subscriptions = new HashSet<Subscription>();
+            this.Conversations = new HashSet<Conversation>();
         }
 
         [MinLength(2)]
@@ -60,8 +62,14 @@ namespace OnTheRoad.Data.Models
 
         public virtual ICollection<Subscription> Subscriptions
         {
-            get { return this.subscription; }
-            set { this.subscription = value; }
+            get { return this.subscriptions; }
+            set { this.subscriptions = value; }
+        }
+
+        public virtual ICollection<Conversation> Conversations
+        {
+            get { return this.conversations; }
+            set { this.conversations = value; }
         }
 
         public ClaimsIdentity GenerateUserIdentity(UserManager<User> manager)
