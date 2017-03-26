@@ -10,6 +10,12 @@
     @Styles.Render("~/Content/Styles/css")
     @Styles.Render("~/Content/toastr")
     @Styles.Render("~/content/jquery-ui")
+    @RenderSection("styles", required: false)
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-unobtrusive")
+    @RenderSection("kendoScripts", required: false)
 
 </head>
 <body>
@@ -44,11 +50,9 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/toastr")
     @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/jquery-unobtrusive")
     @Scripts.Render("~/bundles/jquery.form")
     @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/jquery-signalR")

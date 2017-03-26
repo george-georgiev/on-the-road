@@ -61,6 +61,15 @@ namespace OnTheRoad.MVC
                       "~/Content/Scripts/Reviews.js",
                       "~/Content/Scripts/Chat.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                       "~/Scripts/kendo/kendo.all.min.js",
+                       "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo/css").Include(
+                        "~/Content/kendo/kendo.common-bootstrap.min.css",
+                        "~/Content/kendo/kendo.uniform.min.css",
+                        "~/Content/kendo/kendo.bootstrap.min.css"));
+
             bundles.Add(new StyleBundle("~/Content/Styles/css").Include(
                       "~/Content/Styles/bootstrap.css",
                       "~/Content/Styles/site.css",
