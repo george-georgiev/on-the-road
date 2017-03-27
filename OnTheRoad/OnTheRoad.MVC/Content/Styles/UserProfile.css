@@ -196,3 +196,7 @@
 #err-label {
     color: red;
 }
+
+.modal-body textarea {
+    max-width: 100%;
+}

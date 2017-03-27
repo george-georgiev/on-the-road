@@ -25,11 +25,15 @@ namespace OnTheRoad.MVC.Areas.User.Controllers
             this.tripService = tripService;
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult Attending(string username, int page = 1)
         {
             page = page > 0 ? page : 1;
@@ -51,6 +55,8 @@ namespace OnTheRoad.MVC.Areas.User.Controllers
             return View("_TripsWithPaging", model);
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult Interested(string username, int page = 1)
         {
             return View();

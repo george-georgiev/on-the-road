@@ -13,7 +13,6 @@
             columns.Bound(c => c.StartDate);
             columns.Bound(c => c.EndDate);
             columns.Bound(c => c.Location);
-            //columns.Command(command => command.Custom("Users").Action("ShowUsers", "Households")).Width(100);
             columns.Command(command => { command.Edit(); });
         })
         .HtmlAttributes(new { style = "height: 550px;" })
@@ -31,8 +30,8 @@
                 .DataSource(dataSource => dataSource
                 .Server()
                 .Model(model => model.Id(p => p.Id))
-                .Read("Index", "Trips")
-                .Update("Update", "Trips")
+                .Read("Index", "AdminTrips")
+                .Update("Update", "AdminTrips")
             )
         )
     </div>
