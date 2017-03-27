@@ -1,0 +1,12 @@
+﻿@{ 
+    var username = (string)this.ViewContext.RouteData.Values["username"];
+}
+
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 content-container" >
+        @Html.Action("Attending", "UserTrips", new { username = username })
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 content-container">
+        @*@Html.Action("Interested", "UserTrips", new { username = username })*@
+    </div>
+</div>

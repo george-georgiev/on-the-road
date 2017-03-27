@@ -1,41 +1,41 @@
 ﻿@model TripsWithPagingViewModel
 
-<div class="row">
-    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-        <div class="trips-container text-center box-shadow">
-            <div class="head box-shadow">
-                <span>@this.Model.Heading</span>
-            </div>
+@{
+    Layout = null;
+}
 
-            <div class="main">
-                @foreach (var trip in this.Model.Trips)
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="trips">
+    <div class="trips-container text-center box-shadow">
+        <div class="head box-shadow">
+            <span>@this.Model.Heading</span>
+        </div>
+
+        <div class="main">
+            @foreach (var trip in this.Model.Trips)
+            {
+                Html.RenderPartial("_TripItemPartial", trip);
+            }
+
+            <div class="pager text-center">
+                @if (this.Model.Page == 1)
                 {
-                    Html.RenderPartial("_TripItemPartial", trip);
+                    <a id="prev-page" class="arrow arrow-left disabled"></a>
+                }
+                else
+                {
+                    <a id="prev-page" class="arrow arrow-left" href="@this.Model.PageHyperLink@(this.Model.Page - 1)"></a>
                 }
 
-                <div class="pager text-center">
-                    @if (this.Model.Page == 1)
-                    {
-                        <a id="prev-page" class="arrow arrow-left disabled"></a>
-                    }
-                    else
-                    {
-                        <a id="prev-page" class="arrow arrow-left" href="@this.Model.PageHyperLink@(this.Model.Page - 1)"></a>
-                    }
-
-                    @if ((this.Model.Page * this.Model.Take) >= this.Model.Total)
-                    {
-                        <a id="next-page" class="arrow arrow-right disabled"></a>
-                    }
-                    else
-                    {
-                        <a id="next-page" class="arrow arrow-right" href="@this.Model.PageHyperLink@(this.Model.Page + 1)"></a>
-                    }
-                </div>
+                @if ((this.Model.Page * this.Model.Take) >= this.Model.Total)
+                {
+                    <a id="next-page" class="arrow arrow-right disabled"></a>
+                }
+                else
+                {
+                    <a id="next-page" class="arrow arrow-right" href="@this.Model.PageHyperLink@(this.Model.Page + 1)"></a>
+                }
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        @Html.Action("Index", "NavigationPartial")
-    </div>
 </div>
+

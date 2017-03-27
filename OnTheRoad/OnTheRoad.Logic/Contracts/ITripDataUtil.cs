@@ -24,5 +24,9 @@ namespace OnTheRoad.Logic.Contracts
         int GetTripsCount();
 
         void UpdateTrip(ITrip trip);
+
+        IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take);
+
+        int GetUserAttendingTripsCount(string username);
     }
 }

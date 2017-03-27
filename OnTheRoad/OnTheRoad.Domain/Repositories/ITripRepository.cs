@@ -18,5 +18,9 @@ namespace OnTheRoad.Domain.Repositories
         int GetTripsCount();
 
         IEnumerable<ITrip> GetTripsByCategoryNameOrderedByDate(string categoryName, int count, bool isAscending);
+
+        IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take);
+
+        int GetUserAttendingTripsCount(string username);
     }
 }

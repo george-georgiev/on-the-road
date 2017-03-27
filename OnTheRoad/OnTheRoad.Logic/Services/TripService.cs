@@ -106,5 +106,19 @@ namespace OnTheRoad.Logic.Services
 
             this.tripDataUtil.UpdateTrip(trip);
         }
+
+        public IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take)
+        {
+            var trips = this.tripDataUtil.GetUserAttendingTrips(username, skip, take);
+
+            return trips;
+        }
+
+        public int GetUserAttendingTripsCount(string username)
+        {
+            var count = this.tripDataUtil.GetUserAttendingTripsCount(username);
+
+            return count;
+        }
     }
 }

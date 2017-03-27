@@ -20,5 +20,9 @@ namespace OnTheRoad.Logic.Contracts
         IEnumerable<ITrip> GetTrips(int skip, int take);
 
         int GetTripsCount();
+
+        IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take);
+
+        int GetUserAttendingTripsCount(string username);
     }
 }

@@ -172,7 +172,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
             var result = tripsController.Search(It.IsAny<string>()) as ViewResult;
 
             // Assert
-            Assert.AreEqual("_TripsWithPaging", result.ViewName);
+            Assert.AreEqual("_TripsWithPagingAndNavigation", result.ViewName);
         }
 
         [Test]

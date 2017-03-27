@@ -59,7 +59,8 @@ namespace OnTheRoad.MVC
                       "~/Content/Scripts/Cities.js",
                       "~/Content/Scripts/User.js",
                       "~/Content/Scripts/Reviews.js",
-                      "~/Content/Scripts/Chat.js"));
+                      "~/Content/Scripts/Chat.js",
+                      "~/Content/Scripts/UserTrips.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                        "~/Scripts/kendo/kendo.all.min.js",

@@ -164,7 +164,7 @@ namespace OnTheRoad.MVC.Tests.Controllers
             var result = categoriesController.Details(categoryName, page) as ViewResult;
 
             // Assert
-            Assert.AreEqual("_TripsWithPaging", result.ViewName);
+            Assert.AreEqual("_TripsWithPagingAndNavigation", result.ViewName);
         }
 
         [Test]

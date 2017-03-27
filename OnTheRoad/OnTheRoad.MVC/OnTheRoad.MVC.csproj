@@ -109,6 +109,10 @@
       <HintPath>..\packages\Ninject.MVC5.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RouteDebugger, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\routedebugger.2.1.5\lib\net40\RouteDebugger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -239,12 +243,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\TripsController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminTripsController.cs" />
     <Compile Include="Areas\Administration\Models\TripViewModel.cs" />
     <Compile Include="Areas\User\Controllers\CitiesController.cs" />
     <Compile Include="Areas\User\Controllers\MessagesController.cs" />
     <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\Controllers\ReviewsController.cs" />
+    <Compile Include="Areas\User\Controllers\UserTripsController.cs" />
     <Compile Include="Areas\User\Models\CitiesAllViewModel.cs" />
     <Compile Include="Areas\User\Models\CityViewModel.cs" />
     <Compile Include="Areas\User\Models\ConversationViewModel.cs" />
@@ -677,6 +682,7 @@
     <Content Include="Content\Scripts\TagsSelect.js" />
     <Content Include="Content\Scripts\Trips.js" />
     <Content Include="Content\Scripts\User.js" />
+    <Content Include="Content\Scripts\UserTrips.js" />
     <Content Include="Content\Styles\bootstrap.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
     <Content Include="Content\Images\OnTheRoad.jpg" />
@@ -866,6 +872,7 @@
     <Content Include="Areas\Administration\Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Areas\Administration\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\TripsGrid.cshtml" />
+    <Content Include="Areas\User\Views\UserTrips\Index.cshtml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\ontheroad-bg - Web Deploy.pubxml" />
@@ -1046,7 +1053,7 @@
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Shared\_TripItemPartial.cshtml" />
     <Content Include="Views\Shared\_CategoryOverviewPartial.cshtml" />
-    <Content Include="Views\Shared\_TripsWithPaging.cshtml" />
+    <Content Include="Views\Shared\_TripsWithPagingAndNavigation.cshtml" />
     <Content Include="Views\Trips\Details.cshtml" />
     <Content Include="Views\Shared\_Toastr.cshtml" />
     <Content Include="Views\Shared\_LoaderPartial.cshtml" />
@@ -1175,6 +1182,7 @@
     <Content Include="Scripts\kendo\kendo.virtuallist.min.js.map" />
     <Content Include="Scripts\kendo\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
+    <Content Include="Views\Shared\_TripsWithPaging.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

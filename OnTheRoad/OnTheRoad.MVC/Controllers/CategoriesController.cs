@@ -64,7 +64,7 @@ namespace OnTheRoad.MVC.Controllers
             categoryModel.Page = page;
             categoryModel.Take = Take;
 
-            return this.View("_TripsWithPaging", categoryModel);
+            return this.View("_TripsWithPagingAndNavigation", categoryModel);
         }
 
         private IEnumerable<ITrip> GetTrips(string categoryName, int skip, int take)

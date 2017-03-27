@@ -90,6 +90,20 @@ namespace OnTheRoad.Logic.Utils
             return count;
         }
 
+        public IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take)
+        {
+            var trips = this.tripRepository.GetUserAttendingTrips(username, skip, take);
+
+            return trips;
+        }
+
+        public int GetUserAttendingTripsCount(string username)
+        {
+            var count = this.tripRepository.GetUserAttendingTripsCount(username);
+
+            return count;
+        }
+
         public void UpdateTrip(ITrip trip)
         {
             this.tripRepository.Update(trip);

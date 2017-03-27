@@ -26,6 +26,12 @@ namespace OnTheRoad.MVC
             );
 
             routes.MapRoute(
+                name: "TripsDetails",
+                url: "Trips/Details/{id}",
+                defaults: new { controller = "Trips", action = "Details", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

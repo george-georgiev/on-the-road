@@ -12,8 +12,14 @@ namespace OnTheRoad.MVC.Areas.Administration
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
+            context.MapRoute(
+                "AdminTrips",
+                "Administration/Trips",
+                new { controller = "AdminTrips", action = "Index" }
+            );
+
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",

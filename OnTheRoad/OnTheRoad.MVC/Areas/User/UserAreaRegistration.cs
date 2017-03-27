@@ -63,6 +63,24 @@ namespace OnTheRoad.MVC.Areas.User
             );
 
             context.MapRoute(
+                "UserTripsAttending",
+                "User/Trips/Attending/{username}/{page}",
+                new { controller = "UserTrips", action = "Attending", username = UrlParameter.Optional, page = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "UserTripsInterested",
+                "User/Trips/Interested/{username}/{page}",
+                new { controller = "UserTrips", action = "Interested", username = UrlParameter.Optional, page = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
+                "UserTrips",
+                "User/Trips/{username}",
+                new { controller = "UserTrips", action = "Index", username = UrlParameter.Optional }
+            );
+
+            context.MapRoute(
                 "User_default",
                 "User/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }

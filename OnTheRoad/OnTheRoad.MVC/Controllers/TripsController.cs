@@ -89,7 +89,7 @@ namespace OnTheRoad.MVC.Controllers
                 categoryModel.Take = Take;
             }
 
-            return this.View("_TripsWithPaging", categoryModel);
+            return this.View("_TripsWithPagingAndNavigation", categoryModel);
         }
 
         [HttpGet]

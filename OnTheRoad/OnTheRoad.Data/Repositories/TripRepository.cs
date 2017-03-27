@@ -7,6 +7,7 @@ using OnTheRoad.Domain.Repositories;
 using System.Data.Entity;
 using System;
 using OnTheRoad.Data.Contracts;
+using OnTheRoad.Data.Enums;
 
 namespace OnTheRoad.Data.Repositories
 {
@@ -23,12 +24,9 @@ namespace OnTheRoad.Data.Repositories
                 throw new ArgumentNullException("categoryName can not be null!");
             }
 
-            var trips = this.GetByCategoryName(categoryName)
-                .OrderByDescending(t => t.CreateDate)
-                .Skip(skip)
-                .Take(take);
+            var trips = this.GetByCategoryName(categoryName);
 
-            var mapped = this.MapTrips(trips);
+            var mapped = this.GetSkippedTrips(trips, skip, take);
 
             return mapped;
         }
@@ -65,12 +63,9 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<ITrip> GetTripsBySearchPattern(string pattern, int skip, int take)
         {
-            var trips = this.GetBySearchPattern(pattern)
-                .OrderByDescending(x => x.CreateDate)
-                .Skip(skip)
-                .Take(take);
+            var trips = this.GetBySearchPattern(pattern);
 
-            var mapped = this.MapTrips(trips);
+            var mapped = this.GetSkippedTrips(trips, skip, take);
 
             return mapped;
         }
@@ -84,12 +79,9 @@ namespace OnTheRoad.Data.Repositories
 
         public IEnumerable<ITrip> GetTrips(int skip, int take)
         {
-            var trips = this.GetTrips()
-                .OrderByDescending(t => t.CreateDate)
-                .Skip(skip)
-                .Take(take);
+            var trips = this.GetTrips();
 
-            var mapped = this.MapTrips(trips);
+            var mapped = this.GetSkippedTrips(trips, skip, take);
 
             return mapped;
         }
@@ -115,6 +107,22 @@ namespace OnTheRoad.Data.Repositories
 
             var tags = model.Tags;
             this.AddTagsToTrip(entity, tags);
+        }
+
+        public IEnumerable<ITrip> GetUserAttendingTrips(string username, int skip, int take)
+        {
+            var trips = this.GetUserTrips(username, SubscriptionStatus.Attending);
+
+            var mapped = this.GetSkippedTrips(trips, skip, take);
+
+            return mapped;
+        }
+
+        public int GetUserAttendingTripsCount(string username)
+        {
+            var count = this.GetUserTrips(username, SubscriptionStatus.Attending).Count();
+
+            return count;
         }
 
         protected override ITrip MapEntityToDomain(Trip entity)
@@ -153,6 +161,18 @@ namespace OnTheRoad.Data.Repositories
                     .ForMember(x => x.Subscriptions, opt => opt.Ignore())
                     .ForMember(x => x.Organiser, opt => opt.Ignore());
             });
+        }
+
+        private IEnumerable<ITrip> GetSkippedTrips(IQueryable<Trip> trips, int skip, int take)
+        {
+            var skipped = trips
+                .OrderByDescending(t => t.CreateDate)
+                .Skip(skip)
+                .Take(take);
+
+            var mapped = this.MapTrips(skipped);
+
+            return mapped;
         }
 
         private IQueryable<Trip> GetByCategoryName(string categoryName)
@@ -237,6 +257,25 @@ namespace OnTheRoad.Data.Repositories
         private IQueryable<Trip> GetTrips()
         {
             var trips = this.Context.Trips
+                            .Include(x => x.Categories)
+                            .Include(x => x.Organiser)
+                            .Include(x => x.Subscriptions)
+                            .Include(
+                                x => x.Subscriptions
+                                    .Select(s => s.User)
+                            );
+
+            return trips;
+        }
+
+        private IQueryable<Trip> GetUserTrips(string username, SubscriptionStatus subscriptionStatus)
+        {
+            var trips = this.Context.Trips
+                            .Where(
+                                t => t.Subscriptions
+                                    .Where(c => c.User.UserName == username && c.Status == subscriptionStatus)
+                                    .Any()
+                            )
                             .Include(x => x.Categories)
                             .Include(x => x.Organiser)
                             .Include(x => x.Subscriptions)

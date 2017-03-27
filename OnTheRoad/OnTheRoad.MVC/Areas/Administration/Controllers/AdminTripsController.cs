@@ -9,11 +9,11 @@ using System.Web.Mvc;
 namespace OnTheRoad.MVC.Areas.Administration.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class TripsController : Controller
+    public class AdminTripsController : Controller
     {
         private readonly ITripService tripService;
 
-        public TripsController(ITripService tripService)
+        public AdminTripsController(ITripService tripService)
         {
             if (tripService == null)
             {
